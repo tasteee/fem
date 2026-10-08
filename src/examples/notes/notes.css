@@ -1,0 +1,538 @@
+/* The notes example. Everything here is app layout */
+/* and note content. All controls are fem components. */
+
+:root {
+	--accent: var(--purple);
+	--column-width: 480px;
+	--dot-size: 28px;
+	--keyboard-inset: 0px;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+html {
+	height: 100%;
+	background: var(--surface-page);
+}
+
+body {
+	height: 100%;
+	overflow: hidden;
+	background: var(--surface-page);
+	color: var(--text-strong);
+	font-family: var(--font-family);
+	font-size: var(--font-size-medium);
+	line-height: var(--line-height);
+}
+
+button,
+input {
+	font: inherit;
+	color: inherit;
+	border: 0;
+	padding: 0;
+	background: transparent;
+}
+
+button {
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- screen ---------- */
+.screen {
+	position: fixed;
+	inset: 0;
+	bottom: var(--keyboard-inset);
+	max-width: var(--column-width);
+	margin: 0 auto;
+	background: var(--surface-page);
+	display: flex;
+	flex-direction: column;
+}
+
+.screen.isEditor {
+	visibility: hidden;
+	transform: translateX(100%);
+	transition:
+		transform var(--duration-slow) var(--easing-standard),
+		visibility 0s linear var(--duration-slow);
+}
+
+:root[screen='editor'] .screen.isEditor {
+	visibility: visible;
+	transform: translateX(0);
+	transition-delay: 0s;
+}
+
+.screen-scroll {
+	flex: 1;
+	overflow-y: auto;
+	padding: var(--space-4);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+.screen-scroll.hasFooterButton {
+	padding-bottom: calc(var(--control-height-large) + var(--space-10));
+}
+
+.top-bar {
+	padding: var(--space-3) var(--space-4);
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.row-label {
+	font-weight: var(--font-weight-act);
+}
+
+.spacer {
+	flex: 1;
+}
+
+.page-title {
+	font-size: var(--font-size-display);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+}
+
+.floating-action {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: var(--space-5);
+	display: flex;
+	justify-content: center;
+	pointer-events: none;
+}
+
+.floating-action > * {
+	pointer-events: auto;
+}
+
+/* ---------- note list ---------- */
+.chip-row {
+	margin: 0 calc(var(--space-4) * -1);
+	padding: 0 var(--space-4);
+	display: flex;
+	gap: var(--space-2);
+	overflow-x: auto;
+	scrollbar-width: none;
+	flex-shrink: 0;
+}
+
+.note-groups,
+.note-section {
+	display: flex;
+	flex-direction: column;
+}
+
+.note-groups {
+	gap: var(--space-4);
+}
+
+.note-section {
+	gap: var(--space-2);
+}
+
+.section-label {
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+}
+
+.note-row {
+	width: 100%;
+	padding: var(--space-4);
+	border-radius: var(--radius-container);
+	background: var(--surface-card);
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+	transition: transform var(--duration-press-out) var(--easing-standard);
+}
+
+.note-row:active {
+	transform: scale(var(--press-scale));
+	transition-duration: var(--duration-press-in);
+}
+
+.note-row-title {
+	font-weight: var(--font-weight-act);
+}
+
+.note-row-preview {
+	max-width: 100%;
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.note-row-meta {
+	margin-top: var(--space-1);
+	color: var(--text-muted);
+	font-size: var(--font-size-caption);
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.empty-state {
+	padding: var(--space-8) var(--space-4);
+	color: var(--text-muted);
+	text-align: center;
+}
+
+/* ---------- editor ---------- */
+.editor-title {
+	width: 100%;
+	font-size: var(--font-size-display);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+	outline: none;
+}
+
+.editor-title::placeholder {
+	color: var(--text-muted);
+}
+
+.editor-body {
+	flex: 1;
+	padding-bottom: calc(var(--control-height-large) * 3);
+	outline: none;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}
+
+.editor-body h2 {
+	font-size: var(--font-size-title);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+}
+
+.editor-body h3 {
+	font-size: var(--font-size-heading);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+}
+
+.editor-body h4 {
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight-act);
+}
+
+.editor-body .isSmall {
+	font-size: var(--font-size-small);
+}
+
+.editor-body a {
+	color: var(--info);
+}
+
+.editor-body blockquote {
+	padding: var(--space-4) var(--space-5);
+	border-radius: var(--radius-inset);
+	background: var(--surface-card);
+	font-size: var(--font-size-large);
+	font-style: italic;
+}
+
+.editor-body ul,
+.editor-body ol {
+	padding-left: var(--space-6);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+.editor-body ul.isChecklist {
+	padding-left: 0;
+	list-style: none;
+}
+
+.editor-body ul.isChecklist li {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--space-3);
+}
+
+.editor-body li.isChecked {
+	color: var(--text-muted);
+	text-decoration: line-through;
+}
+
+.check-box {
+	--fill: var(--accent);
+	width: var(--check-size);
+	height: var(--check-size);
+	border-radius: var(--radius-check);
+	background: var(--surface-control);
+	color: transparent;
+	display: grid;
+	place-items: center;
+	flex-shrink: 0;
+	cursor: pointer;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.isChecked > .check-box {
+	background: var(--fill);
+	color: oklch(from var(--fill) clamp(var(--contrast-dark), (var(--contrast-threshold) - l) * 1000, 1) 0 0);
+}
+
+/* ---------- callout ---------- */
+/* Same recipe as fem-banner: a full-strength border, */
+/* a wash for the fill, and tinted text. */
+.callout {
+	--callout-color: var(--surface-control);
+	padding: var(--space-4);
+	border: var(--border-width) solid var(--callout-color);
+	border-radius: var(--radius-inset);
+	background: color-mix(in oklab, var(--callout-color) var(--wash-strength), var(--surface-page));
+	color: color-mix(in oklab, var(--callout-color) var(--tint-strength), var(--text-strong));
+}
+
+.callout.isNeutral {
+	background: var(--surface-inset);
+	color: var(--text-strong);
+}
+
+.callout.isRed {
+	--callout-color: var(--red);
+}
+
+.callout.isYellow {
+	--callout-color: var(--yellow);
+}
+
+.callout.isGreen {
+	--callout-color: var(--green);
+}
+
+/* ---------- marks ---------- */
+.mark.isRegular,
+.weight-sample.isRegular {
+	font-weight: 400;
+}
+
+.mark.isMedium,
+.weight-sample.isMedium {
+	font-weight: 500;
+}
+
+.mark.isSemibold,
+.weight-sample.isSemibold {
+	font-weight: 600;
+}
+
+.mark.isBold,
+.weight-sample.isBold {
+	font-weight: 700;
+}
+
+.mark.isPlain {
+	color: var(--text-strong);
+}
+
+.mark.isRed {
+	color: var(--red);
+}
+
+.mark.isOrange {
+	color: var(--orange);
+}
+
+.mark.isYellow {
+	color: var(--yellow);
+}
+
+.mark.isGreen {
+	color: var(--green);
+}
+
+.mark.isCyan {
+	color: var(--cyan);
+}
+
+.mark.isBlue {
+	color: var(--blue);
+}
+
+.mark.isPurple {
+	color: var(--purple);
+}
+
+.mark.isPink {
+	color: var(--pink);
+}
+
+/* ---------- embed ---------- */
+.embed {
+	border-radius: var(--radius-inset);
+	background: var(--surface-card);
+	color: var(--text-muted);
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.embed.isImage,
+.embed.isVideo {
+	aspect-ratio: 16 / 9;
+	font-size: var(--font-size-small);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+}
+
+.embed.isAudio {
+	padding: var(--space-3);
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.embed-time {
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+}
+
+.embed fem-progress {
+	flex: 1;
+}
+
+/* ---------- editor bar ---------- */
+/* The bar floats on the inverse surface. It gets */
+/* that by flipping the theme for everything inside */
+/* it, so the fem components in it follow along. */
+.editor-bar {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+	padding: 0 var(--space-4);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-2);
+	pointer-events: none;
+}
+
+:root[theme='dark'] .editor-bar {
+	color-scheme: light;
+}
+
+:root[theme='light'] .editor-bar {
+	color-scheme: dark;
+}
+
+.bar-row {
+	max-width: 100%;
+	padding: var(--space-1);
+	border-radius: var(--radius-pill);
+	background: var(--surface-card);
+	color: var(--text-strong);
+	display: none;
+	align-items: center;
+	gap: var(--space-hairline);
+	pointer-events: auto;
+}
+
+.bar-row.isColor {
+	padding: var(--space-2) var(--space-3);
+	gap: var(--space-2);
+}
+
+.bar-row.isLink {
+	width: 100%;
+	gap: var(--space-1);
+}
+
+.bar-row.isLink > fem-input {
+	flex: 1;
+}
+
+:root[bar='resting'] .bar-row.isResting,
+:root[bar='selection'] .bar-row.isSelection,
+:root[bar='selection'][bar-row='weight'] .bar-row.isWeight,
+:root[bar='selection'][bar-row='color'] .bar-row.isColor,
+:root[bar='selection'][bar-row='link'] .bar-row.isLink {
+	display: flex;
+}
+
+/* Toasts sit above the bar while a note is open. */
+:root[screen='editor'] {
+	--toast-offset: calc(var(--control-height-large) + var(--space-8));
+}
+
+/* ---------- color dot ---------- */
+.color-dot {
+	width: var(--dot-size);
+	height: var(--dot-size);
+	border-radius: var(--radius-pill);
+	flex-shrink: 0;
+	display: grid;
+	place-items: center;
+}
+
+.color-dot.isClear,
+.color-dot.isNeutral {
+	background: var(--surface-control);
+}
+
+.color-dot.isRed {
+	background: var(--red);
+}
+
+.color-dot.isOrange {
+	background: var(--orange);
+}
+
+.color-dot.isYellow {
+	background: var(--yellow);
+}
+
+.color-dot.isGreen {
+	background: var(--green);
+}
+
+.color-dot.isCyan {
+	background: var(--cyan);
+}
+
+.color-dot.isBlue {
+	background: var(--blue);
+}
+
+.color-dot.isPurple {
+	background: var(--purple);
+}
+
+.color-dot.isPink {
+	background: var(--pink);
+}
+
+/* ---------- sheet content ---------- */
+.sheet-group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}

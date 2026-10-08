@@ -45,6 +45,7 @@ export const Button = c(
 					class={className}
 					disabled={isInert}
 					aria-busy={props.loading}
+					aria-label={props.label}
 					onclick={handleClick}
 				>
 					{spinner}
@@ -61,6 +62,7 @@ export const Button = c(
 			kind: { type: String, reflect: true, value: (): ButtonKindT => 'solid' },
 			color: { type: String, reflect: true, value: (): ButtonColorT => 'neutral' },
 			shape: { type: String, reflect: true, value: (): ButtonShapeT => 'pill' },
+			label: String,
 			disabled: { type: Boolean, reflect: true },
 			loading: { type: Boolean, reflect: true },
 			wide: { type: Boolean, reflect: true }
