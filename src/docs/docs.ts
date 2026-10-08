@@ -39,3 +39,20 @@ const handleClick = (event: MouseEvent) => {
 }
 
 document.addEventListener('click', handleClick)
+
+// Shows what the demo form would send, in place of
+// sending it anywhere.
+const formElement = document.querySelector<HTMLFormElement>('#demo-form')
+const formOutput = document.querySelector<HTMLElement>('#demo-form-output')
+
+const buildEntryText = (entry: [string, FormDataEntryValue]): string => `${entry[0]}=${entry[1]}`
+
+const handleSubmit = (event: SubmitEvent) => {
+	event.preventDefault()
+	if (!formElement || !formOutput) return
+	const formData = new FormData(formElement)
+	const entryTexts = [...formData.entries()].map(buildEntryText)
+	formOutput.textContent = entryTexts.join('  ')
+}
+
+if (formElement) formElement.addEventListener('submit', handleSubmit)

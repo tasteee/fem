@@ -1,4 +1,4 @@
-import { c, useRef } from 'atomico'
+import { c, useInternals, useRef } from 'atomico'
 import { buildClassName, getFlagClass, getModifierClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
@@ -9,6 +9,7 @@ export type ButtonSizeT = 'small' | 'medium' | 'large'
 export type ButtonKindT = 'solid' | 'soft' | 'ghost'
 export type ButtonColorT = 'neutral' | 'accent' | 'danger' | 'success' | 'warning' | 'info'
 export type ButtonShapeT = 'pill' | 'circle'
+export type ButtonTypeT = 'button' | 'submit' | 'reset'
 
 const buttonSheet = createStyleSheet(buttonCss)
 
@@ -16,6 +17,17 @@ export const Button = c(
 	(props) => {
 		const buttonRef = useRef<HTMLButtonElement>()
 		usePressFeedback(buttonRef)
+
+		const internals = useInternals()
+
+		// A button inside a shadow root cannot submit
+		// the form around its host, so the host does it.
+		const handleClick = () => {
+			const form = internals.form
+			if (!form) return
+			if (props.type === 'submit') return form.requestSubmit()
+			if (props.type === 'reset') form.reset()
+		}
 
 		const isInert = props.disabled || props.loading
 		const sizeClass = getModifierClass(props.size)
@@ -28,7 +40,13 @@ export const Button = c(
 
 		return (
 			<host shadowDom>
-				<button ref={buttonRef} class={className} disabled={isInert} aria-busy={props.loading}>
+				<button
+					ref={buttonRef}
+					class={className}
+					disabled={isInert}
+					aria-busy={props.loading}
+					onclick={handleClick}
+				>
 					{spinner}
 					<slot></slot>
 				</button>
@@ -36,7 +54,9 @@ export const Button = c(
 		)
 	},
 	{
+		form: true,
 		props: {
+			type: { type: String, reflect: true, value: (): ButtonTypeT => 'button' },
 			size: { type: String, reflect: true, value: (): ButtonSizeT => 'medium' },
 			kind: { type: String, reflect: true, value: (): ButtonKindT => 'solid' },
 			color: { type: String, reflect: true, value: (): ButtonColorT => 'neutral' },

@@ -4,6 +4,7 @@ import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
 import { ChevronDownIcon } from '../../foundation/icons'
 import { focusItem, getEnabledItems, handleRovingKeyDown } from '../../foundation/roving-focus'
+import { focusableShadow, useFormControl } from '../../foundation/use-form-control'
 import { useFloatingPopover } from '../../foundation/use-floating-popover'
 import { usePressFeedback } from '../../foundation/use-press-feedback'
 import selectCss from './select.css?inline'
@@ -37,6 +38,18 @@ export const Select = c(
 		// the label is read again.
 		const [optionsVersion, setOptionsVersion] = useState(0)
 		const dispatchChange = useEvent('change', { bubbles: true, composed: true })
+
+		const currentValue = value ?? ''
+		const defaultValueRef = useRef(currentValue)
+		const isMissing = Boolean(props.required) && currentValue === ''
+
+		useFormControl({
+			formValue: currentValue,
+			isMissing,
+			missingMessage: 'Pick an option.',
+			anchorRef: triggerRef,
+			handleReset: () => setValue(defaultValueRef.current)
+		})
 
 		const options = getOptions(hostRef.current)
 		const selectedOption = options.find((option) => option.value === value)
@@ -104,7 +117,7 @@ export const Select = c(
 		const expandedLabel = String(isOpen)
 
 		return (
-			<host shadowDom>
+			<host shadowDom={focusableShadow}>
 				<button
 					ref={triggerRef}
 					class={triggerClassName}
@@ -134,7 +147,10 @@ export const Select = c(
 		)
 	},
 	{
+		form: true,
 		props: {
+			name: { type: String, reflect: true },
+			required: { type: Boolean, reflect: true },
 			size: { type: String, reflect: true, value: (): SelectSizeT => 'medium' },
 			value: { type: String, reflect: true, value: (): string => '' },
 			placeholder: { type: String, value: (): string => '' },

@@ -38,6 +38,22 @@ Options take named values. States are bare flags.
 | `shape`   | `pill`, `circle`                                            |
 | flags     | `disabled`, `selected`, `checked`, `loading`, `invalid`     |
 
+## Forms
+
+Controls work inside a plain `<form>`, like native ones. Give each a `name`.
+
+```html
+<form>
+	<fem-input name="title" required></fem-input>
+	<fem-checkbox name="terms" required>I agree</fem-checkbox>
+	<fem-button type="submit" color="accent">Save</fem-button>
+</form>
+```
+
+- Values show up in `FormData` and are sent on submit.
+- `required` blocks submit on `fem-input`, `fem-select`, `fem-checkbox`, and `fem-switch`.
+- `fem-button` takes `type="submit"` or `type="reset"`. The default is `button`.
+
 ## Theme, density, accent
 
 All three work on the root or on any container.

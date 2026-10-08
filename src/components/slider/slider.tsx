@@ -1,7 +1,8 @@
-import { c, useEvent, useProp } from 'atomico'
+import { c, useEvent, useProp, useRef } from 'atomico'
 import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
+import { focusableShadow, useFormControl } from '../../foundation/use-form-control'
 import sliderCss from './slider.css?inline'
 
 const sliderSheet = createStyleSheet(sliderCss)
@@ -20,6 +21,17 @@ export const Slider = c(
 		const dispatchChange = useEvent('change', { bubbles: true, composed: true })
 
 		const currentValue = value ?? props.min
+		const inputRef = useRef<HTMLInputElement>()
+		const defaultValueRef = useRef(currentValue)
+
+		useFormControl({
+			formValue: String(currentValue),
+			isMissing: false,
+			missingMessage: '',
+			anchorRef: inputRef,
+			handleReset: () => setValue(defaultValueRef.current)
+		})
+
 		const fillRatio = getFillRatio(currentValue, props.min, props.max)
 		const ratioStyle = `--slider-ratio: ${fillRatio}`
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
@@ -35,12 +47,13 @@ export const Slider = c(
 		const handleChange = () => dispatchChange()
 
 		return (
-			<host shadowDom>
+			<host shadowDom={focusableShadow}>
 				<div class={className} style={ratioStyle}>
 					<span class='slider-track'>
 						<span class='slider-fill'></span>
 					</span>
 					<input
+						ref={inputRef}
 						class='slider-input'
 						type='range'
 						min={props.min}
@@ -58,7 +71,9 @@ export const Slider = c(
 		)
 	},
 	{
+		form: true,
 		props: {
+			name: { type: String, reflect: true },
 			value: { type: Number, reflect: true, value: (): number => 0 },
 			min: { type: Number, value: (): number => 0 },
 			max: { type: Number, value: (): number => 100 },
