@@ -22,6 +22,12 @@ const blockKinds: Record<string, BlockKindT> = {
 	checklist: { tag: 'ul', className: 'isChecklist', isList: true }
 }
 
+// Each tap on a bar button moves the line one step
+// along its cycle. The last step is always plain body.
+const textSizeCycle = ['body', 'title', 'heading', 'subheading', 'small']
+const listCycle = ['body', 'bullets', 'numbers', 'checklist']
+const calloutCycle = ['body', 'calloutNeutral', 'calloutRed', 'calloutYellow', 'calloutGreen']
+
 const playIconHtml = '<fem-icon name="play" kind="fill"></fem-icon>'
 
 const embedHtml: Record<string, string> = {
@@ -38,6 +44,11 @@ export type EditorT = {
 	applyLink: (linkAddress: string) => void
 	applyBlockKind: (kindName: string) => void
 	insertEmbed: (embedName: string) => void
+	cycleTextSize: () => void
+	cycleList: () => void
+	cycleCallout: () => void
+	toggleQuote: () => void
+	insertDivider: () => void
 	focusCaret: () => void
 	handleEnterKey: () => boolean
 }
@@ -264,8 +275,8 @@ export const createEditor = (bodyElement: HTMLElement): EditorT => {
 		const block = getCurrentBlock()
 		const kind = blockKinds[kindName]
 		if (!block || !kind) return
-		const isEmbed = block.classList.contains('embed')
-		if (isEmbed) return
+		const isFixedBlock = block.matches('.embed, hr')
+		if (isFixedBlock) return
 		const lineElements = getBlockLines(block)
 		const buildFromLine = (lineElement: Element) => buildBlock(kind, lineElement)
 		const newElements = kind.isList ? [buildList(kind, lineElements)] : lineElements.map(buildFromLine)
@@ -278,6 +289,68 @@ export const createEditor = (bodyElement: HTMLElement): EditorT => {
 		focusCaret()
 	}
 
+	const checkIsKind = (block: Element, kindName: string): boolean => {
+		const kind = blockKinds[kindName]
+		if (!kind) return false
+		const hasTag = block.localName === kind.tag
+		const hasClassName = block.className.trim() === kind.className
+		return hasTag && hasClassName
+	}
+
+	const getBlockKindName = (block: Element): string => {
+		const kindNames = Object.keys(blockKinds)
+		const kindName = kindNames.find((name) => checkIsKind(block, name))
+		return kindName ?? 'body'
+	}
+
+	// Moves the current line to the next kind in a cycle.
+	// A line that is not in the cycle starts at its
+	// first real step.
+	const cycleBlockKind = (cycle: string[]) => {
+		const block = getCurrentBlock()
+		if (!block) return
+		const currentIndex = cycle.indexOf(getBlockKindName(block))
+		const nextIndex = (currentIndex + 1) % cycle.length
+		const isOutsideCycle = currentIndex === -1
+		const nextKindName = isOutsideCycle ? cycle[1] : cycle[nextIndex]
+		if (nextKindName) applyBlockKind(nextKindName)
+	}
+
+	const cycleTextSize = () => cycleBlockKind(textSizeCycle)
+	const cycleList = () => cycleBlockKind(listCycle)
+	const cycleCallout = () => cycleBlockKind(calloutCycle)
+
+	const toggleQuote = () => {
+		const block = getCurrentBlock()
+		if (!block) return
+		const isQuote = getBlockKindName(block) === 'quote'
+		const nextKindName = isQuote ? 'body' : 'quote'
+		applyBlockKind(nextKindName)
+	}
+
+	// An empty line becomes the divider's landing spot:
+	// the divider goes above it. A line with text keeps
+	// its place and gets the divider below.
+	const insertDivider = () => {
+		const dividerElement = document.createElement('hr')
+		const block = getCurrentBlock()
+		const isFixedBlock = block !== undefined && block.matches('.embed, hr')
+		const hasText = block !== undefined && (block.textContent ?? '').trim() !== ''
+		const isEmptyLine = block !== undefined && !isFixedBlock && !hasText
+
+		if (isEmptyLine) {
+			block.before(dividerElement)
+			moveCaretInto(block)
+			return focusCaret()
+		}
+
+		const paragraphElement = buildEmptyParagraph()
+		if (block) block.after(dividerElement, paragraphElement)
+		if (!block) bodyElement.append(dividerElement, paragraphElement)
+		moveCaretInto(paragraphElement)
+		focusCaret()
+	}
+
 	const insertEmbed = (embedName: string) => {
 		const html = `${embedHtml[embedName] ?? ''}<p><br></p>`
 		const block = getCurrentBlock()
@@ -287,5 +360,21 @@ export const createEditor = (bodyElement: HTMLElement): EditorT => {
 		if (embedElement) embedElement.scrollIntoView({ block: 'center', behavior: 'smooth' })
 	}
 
-	return { rememberSelection, forgetSelection, applyMark, applyCommand, applyLink, applyBlockKind, insertEmbed, focusCaret, handleEnterKey }
+
+	return {
+		rememberSelection,
+		forgetSelection,
+		applyMark,
+		applyCommand,
+		applyLink,
+		applyBlockKind,
+		insertEmbed,
+		cycleTextSize,
+		cycleList,
+		cycleCallout,
+		toggleQuote,
+		insertDivider,
+		focusCaret,
+		handleEnterKey
+	}
 }

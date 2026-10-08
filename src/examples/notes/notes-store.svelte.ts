@@ -6,7 +6,7 @@ export const allTagsLabel = 'All'
 export type ScreenT = 'list' | 'editor'
 export type BarModeT = 'resting' | 'selection'
 export type BarRowT = 'none' | 'weight' | 'color' | 'link'
-export type OverlayT = '' | 'style-sheet' | 'insert-sheet' | 'settings-sheet' | 'delete-dialog'
+export type OverlayT = '' | 'settings-sheet' | 'delete-dialog'
 
 const maxPreviewLength = 90
 

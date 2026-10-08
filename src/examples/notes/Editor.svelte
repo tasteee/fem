@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tick, untrack } from 'svelte'
+	import { untrack } from 'svelte'
 	import { showToast } from '../../show-toast'
 	import { createEditor } from './notes-editor'
 	import type { EditorT } from './notes-editor'
@@ -16,27 +16,17 @@
 
 	const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple', 'Pink']
 
-	const textBlocks = [
-		['title', 'Title'],
-		['heading', 'Heading'],
-		['subheading', 'Subheading'],
-		['body', 'Body'],
-		['small', 'Small']
-	]
-
-	const listBlocks = [
-		['quote', 'quotes', 'Quote'],
-		['bullets', 'list-bullets', 'Bullet list'],
-		['numbers', 'list-numbers', 'Numbered list'],
-		['checklist', 'list-checks', 'Checklist']
-	]
-
-	const calloutColors = ['Neutral', 'Red', 'Yellow', 'Green']
-
-	const embeds = [
-		['image', 'image', 'Image'],
-		['audio', 'music-notes', 'Audio'],
-		['video', 'video', 'Video']
+	// The bar that is always there. Every button acts on
+	// the line the caret is in. No menus.
+	const lineTools: [string, string, () => void][] = [
+		['Text size', 'text-aa', () => editor?.cycleTextSize()],
+		['Quote', 'quotes', () => editor?.toggleQuote()],
+		['List', 'list-bullets', () => editor?.cycleList()],
+		['Callout', 'megaphone', () => editor?.cycleCallout()],
+		['Divider', 'minus', () => editor?.insertDivider()],
+		['Image', 'image', () => editor?.insertEmbed('image')],
+		['Audio', 'music-notes', () => editor?.insertEmbed('audio')],
+		['Video', 'video', () => editor?.insertEmbed('video')]
 	]
 
 	const selectionTools = [
@@ -129,25 +119,11 @@
 		store.barRow = 'none'
 	}
 
-	// The sheet hands focus back as it closes, so the
-	// caret is placed again once that has happened.
-	const applyBlockKind = async (kindName: string) => {
-		store.closeOverlays()
-		editor?.applyBlockKind(kindName)
-		await tick()
-		editor?.focusCaret()
-	}
-
 	const handleBodyKeyDown = (event: KeyboardEvent) => {
 		const isPlainEnter = event.key === 'Enter' && !event.shiftKey && !event.isComposing
 		if (!isPlainEnter || !editor) return
 		const wasHandled = editor.handleEnterKey()
 		if (wasHandled) event.preventDefault()
-	}
-
-	const insertEmbed = (embedName: string) => {
-		store.closeOverlays()
-		editor?.insertEmbed(embedName)
 	}
 
 	const duplicateNote = () => {
@@ -250,12 +226,11 @@
 		</div>
 
 		<div class="bar-row isResting" class:isOpen={store.barMode === 'resting'}>
-			<fem-button shape="circle" kind="ghost" label="Text style" onclick={() => store.openOverlay('style-sheet')}>
-				<fem-icon name="text-aa"></fem-icon>
-			</fem-button>
-			<fem-button shape="circle" kind="ghost" label="Insert" onclick={() => store.openOverlay('insert-sheet')}>
-				<fem-icon name="plus"></fem-icon>
-			</fem-button>
+			{#each lineTools as [label, icon, runTool]}
+				<fem-button size="small" shape="circle" kind="ghost" {label} onclick={runTool}>
+					<fem-icon name={icon}></fem-icon>
+				</fem-button>
+			{/each}
 		</div>
 
 		<div class="bar-row isSelection" class:isOpen={store.barMode === 'selection'}>
@@ -276,38 +251,6 @@
 		</div>
 	</div>
 </section>
-
-<fem-sheet heading="Text style" open={store.overlay === 'style-sheet'} onclose={syncClose('style-sheet')}>
-	<div class="tile-row">
-		{#each textBlocks as [kind, label]}
-			<button class="style-tile" onclick={() => applyBlockKind(kind)} aria-label={label}>
-				<span class="size-sample is{label}" aria-hidden="true">Aa</span>
-			</button>
-		{/each}
-	</div>
-
-	<div class="tile-row">
-		{#each listBlocks as [kind, icon, label]}
-			<button class="style-tile" onclick={() => applyBlockKind(kind)} aria-label={label}>
-				<fem-icon name={icon}></fem-icon>
-			</button>
-		{/each}
-	</div>
-
-	<div class="tile-row">
-		{#each calloutColors as color}
-			<button class="style-tile" onclick={() => applyBlockKind(`callout${color}`)} aria-label="{color} callout">
-				<span class="color-dot is{color}"></span>
-			</button>
-		{/each}
-	</div>
-</fem-sheet>
-
-<fem-sheet heading="Insert" open={store.overlay === 'insert-sheet'} onclose={syncClose('insert-sheet')}>
-	{#each embeds as [name, icon, label]}
-		<fem-button wide onclick={() => insertEmbed(name)}><fem-icon name={icon}></fem-icon>{label}</fem-button>
-	{/each}
-</fem-sheet>
 
 <fem-sheet heading="Note settings" open={store.overlay === 'settings-sheet'} onclose={syncClose('settings-sheet')}>
 	<fem-button wide onclick={store.togglePin}>
