@@ -36,7 +36,7 @@ Options take named values. States are bare flags.
 | `kind`    | `solid`, `soft`, `ghost`                                    |
 | `color`   | `neutral`, `accent`, `danger`, `success`, `warning`, `info` |
 | `shape`   | `pill`, `circle`                                            |
-| flags     | `disabled`, `selected`, `loading`, `invalid`, `wide`        |
+| flags     | `disabled`, `selected`, `checked`, `loading`, `invalid`     |
 
 ## Theme, density, accent
 

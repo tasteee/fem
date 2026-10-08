@@ -1,0 +1,24 @@
+/* A checkbox holds a choice, so it is a box. */
+.checkbox-mark {
+	width: var(--check-size);
+	height: var(--check-size);
+	border-radius: var(--radius-check);
+	background: var(--surface-control);
+	color: transparent;
+	display: grid;
+	place-items: center;
+	flex-shrink: 0;
+	transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+.checkbox-mark > .icon {
+	width: calc(var(--check-size) * 0.6);
+	height: calc(var(--check-size) * 0.6);
+	stroke-width: 3;
+}
+
+.checkbox.isChecked > .checkbox-mark {
+	--fill: var(--accent);
+	background: var(--fill);
+	color: var(--on-fill);
+}
