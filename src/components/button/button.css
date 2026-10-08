@@ -1,0 +1,105 @@
+:host([wide]) {
+	display: flex;
+}
+
+.button {
+	--button-color: var(--surface-control);
+	width: 100%;
+	height: var(--control-height-medium);
+	padding: 0 var(--space-5);
+	border-radius: var(--radius-pill);
+	font-weight: var(--font-weight-act);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+	white-space: nowrap;
+}
+
+/* ---------- size ---------- */
+.button.isSmall {
+	height: var(--control-height-small);
+	padding: 0 var(--space-4);
+	font-size: var(--font-size-small);
+}
+
+.button.isLarge {
+	height: var(--control-height-large);
+	padding: 0 var(--space-6);
+}
+
+/* ---------- shape ---------- */
+.button.isCircle {
+	width: var(--control-height-medium);
+	padding: 0;
+}
+
+.button.isCircle.isSmall {
+	width: var(--control-height-small);
+}
+
+.button.isCircle.isLarge {
+	width: var(--control-height-large);
+}
+
+/* ---------- color ---------- */
+.button.isAccent {
+	--button-color: var(--accent);
+}
+
+.button.isDanger {
+	--button-color: var(--danger);
+}
+
+.button.isSuccess {
+	--button-color: var(--success);
+}
+
+.button.isWarning {
+	--button-color: var(--warning);
+}
+
+.button.isInfo {
+	--button-color: var(--info);
+}
+
+/* ---------- kind ---------- */
+.button.isSolid {
+	--fill: var(--button-color);
+	background: var(--fill);
+	color: var(--on-fill);
+}
+
+.button.isSoft {
+	background: color-mix(in oklab, var(--button-color) var(--wash-strength), var(--surface-card));
+	color: color-mix(in oklab, var(--button-color) 70%, var(--text-strong));
+}
+
+.button.isGhost {
+	color: color-mix(in oklab, var(--button-color) 70%, var(--text-strong));
+}
+
+.button.isSoft.isNeutral {
+	background: var(--surface-inset);
+	color: var(--text-strong);
+}
+
+.button.isGhost.isNeutral {
+	color: var(--text-strong);
+}
+
+/* ---------- loading ---------- */
+.spinner {
+	width: var(--spinner-size);
+	height: var(--spinner-size);
+	border-radius: var(--radius-pill);
+	border: var(--space-hairline) solid currentColor;
+	border-top-color: transparent;
+	animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}

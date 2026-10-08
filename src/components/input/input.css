@@ -1,0 +1,33 @@
+:host {
+	display: flex;
+}
+
+.input {
+	width: 100%;
+	height: var(--control-height-medium);
+	padding: 0 var(--space-4);
+	border: var(--border-width) solid transparent;
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	color: var(--text-strong);
+}
+
+.input::placeholder {
+	color: var(--text-muted);
+}
+
+.input.isSmall {
+	height: var(--control-height-small);
+	padding: 0 var(--space-3);
+	font-size: var(--font-size-small);
+}
+
+.input.isLarge {
+	height: var(--control-height-large);
+}
+
+/* The only border in the system is one that */
+/* carries meaning. */
+.input.isInvalid {
+	border-color: var(--danger);
+}

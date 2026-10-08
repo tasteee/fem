@@ -1,0 +1,199 @@
+/* fem tokens. Components read semantic tokens only, */
+/* never the primitives above them. */
+
+/* ---------- neutral ramp ---------- */
+/* Light steps and dark steps carry their own tint, */
+/* so each theme can be pure or cool on its own. */
+:root {
+	--neutral-hue: 255;
+	--neutral-chroma-light: 0.014;
+	--neutral-chroma-dark: 0;
+
+	--neutral-1: oklch(1 0 0);
+	--neutral-2: oklch(0.955 var(--neutral-chroma-light) var(--neutral-hue));
+	--neutral-3: oklch(0.915 var(--neutral-chroma-light) var(--neutral-hue));
+	--neutral-4: oklch(0.86 var(--neutral-chroma-light) var(--neutral-hue));
+	--neutral-6: oklch(0.66 var(--neutral-chroma-dark) var(--neutral-hue));
+	--neutral-7: oklch(0.52 var(--neutral-chroma-light) var(--neutral-hue));
+	--neutral-9: oklch(0.31 var(--neutral-chroma-dark) var(--neutral-hue));
+	--neutral-10: oklch(0.25 var(--neutral-chroma-dark) var(--neutral-hue));
+	--neutral-11: oklch(0.19 var(--neutral-chroma-dark) var(--neutral-hue));
+	--neutral-12: oklch(0.13 var(--neutral-chroma-dark) var(--neutral-hue));
+}
+
+:root[temperature='pure'] {
+	--neutral-chroma-light: 0;
+	--neutral-chroma-dark: 0;
+}
+
+:root[temperature='cool'] {
+	--neutral-chroma-light: 0.014;
+	--neutral-chroma-dark: 0.014;
+}
+
+/* ---------- palette ---------- */
+:root {
+	--blue: #2f93f6;
+	--cyan: #00c6d1;
+	--green: #00c37d;
+	--orange: #ff690d;
+	--pink: #f443c2;
+	--purple: #b400ff;
+	--red: #f12c18;
+	--yellow: #ffaf13;
+}
+
+/* ---------- theme ---------- */
+/* With no theme attribute, the system setting wins. */
+/* The attribute works on any element, not only the root. */
+:root {
+	color-scheme: light dark;
+}
+
+[theme='light'] {
+	color-scheme: light;
+}
+
+[theme='dark'] {
+	color-scheme: dark;
+}
+
+/* ---------- semantic color ---------- */
+:root {
+	--surface-page: light-dark(var(--neutral-2), var(--neutral-12));
+	--surface-card: light-dark(var(--neutral-1), var(--neutral-11));
+	--surface-inset: light-dark(var(--neutral-3), var(--neutral-10));
+	--surface-control: light-dark(var(--neutral-4), var(--neutral-9));
+	--surface-overlay: light-dark(var(--neutral-1), var(--neutral-10));
+	--surface-overlay-inset: light-dark(var(--neutral-3), var(--neutral-9));
+	--surface-inverse: light-dark(var(--neutral-11), var(--neutral-1));
+	--scrim: light-dark(oklch(0.2 0.02 255 / 0.5), oklch(0 0 0 / 0.72));
+
+	--text-strong: light-dark(var(--neutral-11), var(--neutral-1));
+	--text-muted: light-dark(var(--neutral-7), var(--neutral-6));
+	--text-inverse: light-dark(var(--neutral-1), var(--neutral-12));
+
+	--danger: var(--red);
+	--success: var(--green);
+	--warning: var(--yellow);
+	--info: var(--blue);
+
+	/* An app sets its brand with this one token, on */
+	/* the root or on any container. */
+	--accent: var(--surface-inverse);
+
+	/* Fills lighter than this get dark text on top. */
+	--contrast-threshold: 0.695;
+	--contrast-dark: 0.18;
+	--wash-strength: 16%;
+	--tint-strength: 40%;
+}
+
+/* ---------- space ---------- */
+:root {
+	--space-hairline: 2px;
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 20px;
+	--space-6: 24px;
+	--space-8: 32px;
+	--space-10: 40px;
+}
+
+/* ---------- shape ---------- */
+:root {
+	--radius-container: 16px;
+	--radius-inset: 12px;
+	--radius-small: 8px;
+	--radius-check: 6px;
+	--radius-pill: 999px;
+	--border-width: 1px;
+}
+
+/* ---------- size ---------- */
+:root {
+	--control-height-small: 36px;
+	--control-height-medium: 44px;
+	--control-height-large: 52px;
+	--icon-size: 20px;
+	--spinner-size: 18px;
+}
+
+/* ---------- type ---------- */
+:root {
+	--font-family: 'Onest', system-ui, sans-serif;
+	--font-family-numeric: 'Google Sans Code', ui-monospace, monospace;
+
+	--font-size-caption: 12px;
+	--font-size-small: 14px;
+	--font-size-medium: 16px;
+	--font-size-large: 18px;
+	--font-size-heading: 22px;
+	--font-size-title: 28px;
+	--font-size-display: 34px;
+
+	/* Weight signals role: read, act, title. */
+	--font-weight-read: 400;
+	--font-weight-medium: 500;
+	--font-weight-act: 600;
+	--font-weight-title: 700;
+
+	--line-height: 1.45;
+	--line-height-tight: 1.15;
+
+	/* Onest sits high at small sizes, so small */
+	/* labels drop by this much to look centered. */
+	--optical-nudge: 1px;
+}
+
+/* ---------- motion ---------- */
+:root {
+	--duration-press-in: 60ms;
+	--duration-press-out: 120ms;
+	--duration-fast: 120ms;
+	--duration-medium: 240ms;
+	--duration-slow: 360ms;
+	--easing-standard: cubic-bezier(0.2, 0, 0, 1);
+	--press-scale: 0.975;
+}
+
+/* ---------- state ---------- */
+:root {
+	--disabled-opacity: 0.4;
+	--focus-ring-width: 2px;
+	--focus-ring-offset: 2px;
+}
+
+/* ---------- density ---------- */
+/* Roomy is the default. Compact works on any element */
+/* and applies to everything inside it. */
+[density='compact'] {
+	--control-height-small: 28px;
+	--control-height-medium: 32px;
+	--control-height-large: 40px;
+	--icon-size: 16px;
+	--spinner-size: 14px;
+	--space-3: 8px;
+	--space-4: 12px;
+	--space-5: 14px;
+	--space-6: 18px;
+	--radius-container: 12px;
+	--radius-inset: 8px;
+	--radius-small: 6px;
+	--font-size-small: 12px;
+	--font-size-medium: 14px;
+	--font-size-heading: 18px;
+	--font-size-display: 26px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--duration-press-in: 0ms;
+		--duration-press-out: 0ms;
+		--duration-fast: 0ms;
+		--duration-medium: 0ms;
+		--duration-slow: 0ms;
+	}
+}
