@@ -79,19 +79,41 @@
 		if (note && titleInput) note.title = titleInput.value
 	}
 
+	// A tap on the toolbar can collapse the text selection
+	// before the click lands, mostly on phones. While a
+	// press is in flight the bar ignores selection changes,
+	// so the tapped button stays put and still has a
+	// remembered selection to act on.
+	const pressSettleMilliseconds = 400
+	const pressState = { isPressingBar: false, settleTimer: 0 }
+
 	const handleSelectionChange = () => {
 		const isTypingLink = document.activeElement === linkInput
 		if (isTypingLink || !editor) return
+		if (pressState.isPressingBar) return
 		const hasSelectedText = editor.rememberSelection()
 		if (hasSelectedText === undefined) return
 		store.setBarMode(hasSelectedText ? 'selection' : 'resting')
 	}
 
-	// Stops a tap on the toolbar from clearing the text
-	// selection it is about to act on.
+	const endBarPress = () => {
+		pressState.isPressingBar = false
+	}
+
+	// Also stops the press from moving focus out of the note.
 	const handleBarPointerDown = (event: PointerEvent) => {
-		const isField = (event.target as HTMLElement).closest('fem-input') !== null
-		if (!isField) event.preventDefault()
+		const pressedElement = event.target as HTMLElement
+		const isField = pressedElement.closest('fem-input') !== null
+		if (isField) return
+		event.preventDefault()
+		window.clearTimeout(pressState.settleTimer)
+		pressState.isPressingBar = true
+	}
+
+	const handleBarPointerEnd = () => {
+		if (!pressState.isPressingBar) return
+		window.clearTimeout(pressState.settleTimer)
+		pressState.settleTimer = window.setTimeout(endBarPress, pressSettleMilliseconds)
 	}
 
 	const handleBodyClick = (event: MouseEvent) => {
@@ -142,7 +164,11 @@
 	}
 </script>
 
-<svelte:document onselectionchange={handleSelectionChange} />
+<svelte:document
+	onselectionchange={handleSelectionChange}
+	onpointerup={handleBarPointerEnd}
+	onpointercancel={handleBarPointerEnd}
+/>
 
 <section class="screen isEditor">
 	<div class="top-bar">
@@ -240,29 +266,27 @@
 </section>
 
 <fem-sheet heading="Text style" open={store.overlay === 'style-sheet'} onclose={syncClose('style-sheet')}>
-	<div class="sheet-group">
+	<div class="tile-row">
 		{#each textBlocks as [kind, label]}
-			<fem-button wide onclick={() => applyBlockKind(kind)}>{label}</fem-button>
+			<button class="style-tile" onclick={() => applyBlockKind(kind)} aria-label={label}>
+				<span class="size-sample is{label}" aria-hidden="true">Aa</span>
+			</button>
 		{/each}
 	</div>
 
-	<div class="sheet-group">
+	<div class="tile-row">
 		{#each listBlocks as [kind, icon, label]}
-			<fem-button wide onclick={() => applyBlockKind(kind)}>
-				<fem-icon name={icon}></fem-icon>{label}
-			</fem-button>
+			<button class="style-tile" onclick={() => applyBlockKind(kind)} aria-label={label}>
+				<fem-icon name={icon}></fem-icon>
+			</button>
 		{/each}
 	</div>
 
-	<div class="row">
-		<span class="row-label">Callout</span>
-		<span class="spacer"></span>
+	<div class="tile-row">
 		{#each calloutColors as color}
-			<button
-				class="color-dot is{color}"
-				onclick={() => applyBlockKind(`callout${color}`)}
-				aria-label="{color} callout"
-			></button>
+			<button class="style-tile" onclick={() => applyBlockKind(`callout${color}`)} aria-label="{color} callout">
+				<span class="color-dot is{color}"></span>
+			</button>
 		{/each}
 	</div>
 </fem-sheet>

@@ -11,22 +11,34 @@
 		rootElement.setAttribute('screen', store.screen)
 	})
 
-	// Lifts the screen above the phone keyboard where the
-	// browser reports the keyboard height.
+	const keyboardMinimumHeight = 120
+
+	// Phones lay the page out behind the keyboard, so the
+	// screen is pinned to the visible area instead. The
+	// keyboard also covers the home bar, so the bar drops
+	// its safe area gap while the keyboard is open.
 	$effect(() => {
 		const viewport = window.visualViewport
 		if (!viewport) return
 
 		const handleViewportChange = () => {
-			const keyboardInset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop)
-			rootElement.style.setProperty('--keyboard-inset', `${keyboardInset}px`)
-			// iOS draws its AutoFill pill just above the keyboard,
-			// so keep the bar clear of it while the keyboard is up.
-			rootElement.style.setProperty('--autofill-clearance', keyboardInset > 0 ? '48px' : '0px')
+			const hiddenHeight = window.innerHeight - viewport.height
+			const isKeyboardOpen = hiddenHeight > keyboardMinimumHeight
+			const keyboardState = isKeyboardOpen ? 'open' : 'closed'
+			rootElement.style.setProperty('--viewport-top', `${viewport.offsetTop}px`)
+			rootElement.style.setProperty('--viewport-height', `${viewport.height}px`)
+			rootElement.setAttribute('keyboard', keyboardState)
+		}
+
+		const stopWatching = () => {
+			viewport.removeEventListener('resize', handleViewportChange)
+			viewport.removeEventListener('scroll', handleViewportChange)
 		}
 
 		viewport.addEventListener('resize', handleViewportChange)
-		return () => viewport.removeEventListener('resize', handleViewportChange)
+		viewport.addEventListener('scroll', handleViewportChange)
+		handleViewportChange()
+		return stopWatching
 	})
 </script>
 
