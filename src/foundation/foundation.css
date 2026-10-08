@@ -96,3 +96,76 @@ button {
 	stroke-linejoin: round;
 	flex-shrink: 0;
 }
+
+/* ---------- floating panel ---------- */
+/* Menus and select lists. They open in the browser's */
+/* top layer, so no container can clip them, and they */
+/* use the inverse surface to stand off the page */
+/* without a shadow. */
+.floating-panel {
+	position: fixed;
+	inset: auto;
+	top: var(--floating-top, 0);
+	left: var(--floating-left, 0);
+	min-width: var(--menu-min-width);
+	margin: 0;
+	padding: var(--space-1);
+	border: 0;
+	border-radius: var(--radius-inset);
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+	flex-direction: column;
+	opacity: 0;
+	transform: scale(0.96);
+	transform-origin: top left;
+	transition:
+		opacity var(--duration-medium) var(--easing-standard),
+		transform var(--duration-medium) var(--easing-standard),
+		display var(--duration-medium) allow-discrete,
+		overlay var(--duration-medium) allow-discrete;
+}
+
+.floating-panel.isAnchorWidth {
+	min-width: max(var(--menu-min-width), var(--floating-anchor-width, 0px));
+}
+
+.floating-panel:popover-open {
+	display: flex;
+	opacity: 1;
+	transform: scale(1);
+}
+
+@starting-style {
+	.floating-panel:popover-open {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+}
+
+/* ---------- floating row ---------- */
+/* One row inside a floating panel. Its highlight is */
+/* a wash of its own text color, so it works on the */
+/* inverse surface in both themes. */
+.floating-row {
+	--row-highlight: color-mix(in oklab, currentColor 12%, transparent);
+	width: 100%;
+	height: var(--control-height-medium);
+	padding: 0 var(--space-3);
+	border-radius: var(--radius-small);
+	font-weight: var(--font-weight-act);
+	text-align: left;
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.floating-row.isSelected {
+	background: var(--row-highlight);
+}
+
+@media (hover: hover) {
+	.floating-row:hover {
+		background: var(--row-highlight);
+	}
+}

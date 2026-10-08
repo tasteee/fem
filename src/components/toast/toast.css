@@ -1,0 +1,39 @@
+/* The host takes no space in the page. Only the */
+/* floating part is ever seen. */
+:host {
+	display: contents;
+}
+
+.toast {
+	position: fixed;
+	inset: auto;
+	left: 50%;
+	bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
+	max-width: calc(100vw - var(--space-8));
+	margin: 0;
+	padding: var(--space-3) var(--space-5);
+	border: 0;
+	border-radius: var(--radius-pill);
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+	font-weight: var(--font-weight-act);
+	opacity: 0;
+	transform: translate(-50%, var(--space-4));
+	transition:
+		opacity var(--duration-medium) var(--easing-standard),
+		transform var(--duration-slow) var(--easing-standard),
+		display var(--duration-slow) allow-discrete,
+		overlay var(--duration-slow) allow-discrete;
+}
+
+.toast:popover-open {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
+
+@starting-style {
+	.toast:popover-open {
+		opacity: 0;
+		transform: translate(-50%, var(--space-4));
+	}
+}

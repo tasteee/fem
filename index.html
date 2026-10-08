@@ -98,6 +98,54 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Menu</h2>
+				<code class="docs-code">&lt;fem-menu open&gt; &lt;fem-menu-item color disabled&gt;</code>
+
+				<div class="docs-row">
+					<fem-menu>
+						<fem-button slot="trigger">Options</fem-button>
+						<fem-menu-item>Rename</fem-menu-item>
+						<fem-menu-item>Duplicate</fem-menu-item>
+						<fem-menu-item disabled>Move to album</fem-menu-item>
+						<fem-menu-item color="danger">Delete</fem-menu-item>
+					</fem-menu>
+				</div>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Tooltip</h2>
+				<code class="docs-code">&lt;fem-tooltip text&gt;</code>
+
+				<div class="docs-row">
+					<fem-tooltip text="Counts plays over 30 seconds">
+						<fem-button>Hover or focus me</fem-button>
+					</fem-tooltip>
+				</div>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Toast, sheet, dialog</h2>
+				<code class="docs-code">showToast(message) &lt;fem-sheet open heading&gt; &lt;fem-dialog open heading&gt;</code>
+
+				<div class="docs-row">
+					<fem-button data-toast="Link copied">Show toast</fem-button>
+					<fem-button data-opens="demo-sheet">Open sheet</fem-button>
+					<fem-button data-opens="demo-dialog">Open dialog</fem-button>
+				</div>
+
+				<fem-sheet id="demo-sheet" heading="Share track">
+					<fem-button wide data-closes="demo-sheet">Copy link</fem-button>
+					<fem-button wide data-closes="demo-sheet">Edit details</fem-button>
+				</fem-sheet>
+
+				<fem-dialog id="demo-dialog" heading="Delete this track?">
+					You can't undo this. The track and its comments are removed for good.
+					<fem-button slot="actions" data-closes="demo-dialog">Cancel</fem-button>
+					<fem-button slot="actions" color="danger" data-closes="demo-dialog">Delete track</fem-button>
+				</fem-dialog>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Switch</h2>
 				<code class="docs-code">&lt;fem-switch checked disabled&gt;</code>
 				<fem-switch checked>Public profile</fem-switch>

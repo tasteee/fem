@@ -1,0 +1,82 @@
+/* The host takes no space in the page. Only the */
+/* floating part is ever seen. */
+:host {
+	display: contents;
+}
+
+/* A dialog dims the page, so it uses the overlay */
+/* surface and not the inverse one. */
+.dialog {
+	width: min(var(--dialog-width), calc(100vw - var(--space-8)));
+	max-height: calc(100dvh - var(--space-8));
+	margin: auto;
+	padding: 0;
+	border: 0;
+	border-radius: var(--radius-container);
+	background: var(--surface-overlay);
+	color: var(--text-strong);
+	opacity: 0;
+	transform: scale(0.94);
+	transition:
+		opacity var(--duration-slow) var(--easing-standard),
+		transform var(--duration-slow) var(--easing-standard),
+		display var(--duration-slow) allow-discrete,
+		overlay var(--duration-slow) allow-discrete;
+}
+
+.dialog[open] {
+	opacity: 1;
+	transform: scale(1);
+}
+
+@starting-style {
+	.dialog[open] {
+		opacity: 0;
+		transform: scale(0.94);
+	}
+}
+
+.dialog::backdrop {
+	background: var(--scrim);
+	opacity: 0;
+	transition:
+		opacity var(--duration-slow) var(--easing-standard),
+		display var(--duration-slow) allow-discrete,
+		overlay var(--duration-slow) allow-discrete;
+}
+
+.dialog[open]::backdrop {
+	opacity: 1;
+}
+
+@starting-style {
+	.dialog[open]::backdrop {
+		opacity: 0;
+	}
+}
+
+.dialog-body {
+	padding: var(--space-6);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+.dialog-heading {
+	font-size: var(--font-size-heading);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+}
+
+.dialog-content {
+	color: var(--text-muted);
+}
+
+.dialog-actions {
+	display: flex;
+	gap: var(--space-3);
+}
+
+.dialog-actions > ::slotted(*) {
+	flex: 1;
+}

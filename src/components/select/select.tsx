@@ -3,6 +3,7 @@ import { buildClassName, getFlagClass, getModifierClass } from '../../foundation
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
 import { ChevronDownIcon } from '../../foundation/icons'
+import { useFloatingPopover } from '../../foundation/use-floating-popover'
 import { usePressFeedback } from '../../foundation/use-press-feedback'
 import selectCss from './select.css?inline'
 
@@ -26,6 +27,7 @@ export const Select = c(
 	(props) => {
 		const hostRef = useHost<HTMLElement>()
 		const triggerRef = useRef<HTMLButtonElement>()
+		const menuRef = useRef<HTMLDivElement>()
 		usePressFeedback(triggerRef)
 
 		const [value, setValue] = useProp<string>('value')
@@ -46,31 +48,27 @@ export const Select = c(
 			for (const option of options) option.selected = option.value === value
 		}, [value, optionsVersion])
 
-		useEffect(() => {
-			if (!isOpen) return
+		useFloatingPopover(triggerRef, menuRef, isOpen, { placement: 'below', alignment: 'start' })
 
-			const handleOutsidePress = (event: Event) => {
-				const isInside = event.composedPath().includes(hostRef.current)
-				if (!isInside) setOpen(false)
-			}
+		// The browser closes the menu on an outside press
+		// or Escape, so the open flag follows it.
+		const handleToggle = (event: Event) => {
+			const toggleEvent = event as ToggleEvent
+			const isNowOpen = toggleEvent.newState === 'open'
+			setOpen(isNowOpen)
+		}
 
-			const handleKeyDown = (event: KeyboardEvent) => {
-				const isEscape = event.key === 'Escape'
-				if (isEscape) setOpen(false)
-			}
+		// A press on the trigger while the menu is open
+		// closes it first. Without this the click that
+		// follows would open it again.
+		const wasOpenOnPressRef = useRef(false)
+		const handleTriggerPress = () => (wasOpenOnPressRef.current = isOpen)
 
-			document.addEventListener('pointerdown', handleOutsidePress)
-			document.addEventListener('keydown', handleKeyDown)
+		const handleTriggerClick = () => {
+			if (wasOpenOnPressRef.current) return
+			setOpen(true)
+		}
 
-			const removeListeners = () => {
-				document.removeEventListener('pointerdown', handleOutsidePress)
-				document.removeEventListener('keydown', handleKeyDown)
-			}
-
-			return removeListeners
-		}, [isOpen])
-
-		const handleTriggerClick = () => setOpen(!isOpen)
 		const handleSlotChange = () => setOptionsVersion(optionsVersion + 1)
 
 		const handleMenuClick = (event: Event) => {
@@ -88,8 +86,6 @@ export const Select = c(
 		const placeholderClass = getFlagClass(!hasSelection, 'isPlaceholder')
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
 		const triggerClassName = buildClassName(['select', 'isPressable', sizeClass, placeholderClass, disabledClass])
-		const openClass = getFlagClass(isOpen, 'isOpen')
-		const menuClassName = buildClassName(['select-menu', openClass])
 		const expandedLabel = String(isOpen)
 
 		return (
@@ -101,13 +97,21 @@ export const Select = c(
 					aria-haspopup='listbox'
 					aria-expanded={expandedLabel}
 					aria-label={props.label}
+					onpointerdown={handleTriggerPress}
 					onclick={handleTriggerClick}
 				>
 					<span class='select-label'>{labelText}</span>
 					<ChevronDownIcon />
 				</button>
 
-				<div class={menuClassName} role='listbox' onclick={handleMenuClick}>
+				<div
+					ref={menuRef}
+					class='floating-panel isAnchorWidth'
+					popover='auto'
+					role='listbox'
+					onclick={handleMenuClick}
+					ontoggle={handleToggle}
+				>
 					<slot onslotchange={handleSlotChange}></slot>
 				</div>
 			</host>

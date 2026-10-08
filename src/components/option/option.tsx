@@ -10,7 +10,7 @@ export const Option = c(
 	(props) => {
 		const selectedClass = getFlagClass(props.selected, 'isSelected')
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
-		const className = buildClassName(['option', selectedClass, disabledClass])
+		const className = buildClassName(['floating-row', selectedClass, disabledClass])
 		const selectedLabel = String(Boolean(props.selected))
 
 		return (
