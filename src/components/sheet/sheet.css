@@ -1,0 +1,80 @@
+/* The host takes no space in the page. Only the */
+/* floating part is ever seen. */
+:host {
+	display: contents;
+}
+
+/* A sheet rises from the bottom edge. Like a dialog, */
+/* it dims the page and uses the overlay surface. */
+.sheet {
+	width: 100%;
+	max-width: min(var(--sheet-width), 100vw);
+	max-height: 85dvh;
+	margin: auto auto 0;
+	padding: 0;
+	border: 0;
+	border-radius: var(--radius-container) var(--radius-container) 0 0;
+	background: var(--surface-overlay);
+	color: var(--text-strong);
+	transform: translateY(100%);
+	transition:
+		transform var(--duration-slow) var(--easing-standard),
+		display var(--duration-slow) allow-discrete,
+		overlay var(--duration-slow) allow-discrete;
+}
+
+.sheet[open] {
+	transform: translateY(0);
+}
+
+@starting-style {
+	.sheet[open] {
+		transform: translateY(100%);
+	}
+}
+
+.sheet::backdrop {
+	background: var(--scrim);
+	opacity: 0;
+	transition:
+		opacity var(--duration-slow) var(--easing-standard),
+		display var(--duration-slow) allow-discrete,
+		overlay var(--duration-slow) allow-discrete;
+}
+
+.sheet[open]::backdrop {
+	opacity: 1;
+}
+
+@starting-style {
+	.sheet[open]::backdrop {
+		opacity: 0;
+	}
+}
+
+.sheet-body {
+	padding: var(--space-3) var(--space-4) calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+.sheet-handle {
+	align-self: center;
+	width: var(--handle-width);
+	height: var(--handle-height);
+	border-radius: var(--radius-pill);
+	background: var(--surface-overlay-inset);
+}
+
+.sheet-heading {
+	font-size: var(--font-size-heading);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+}
+
+.sheet-content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}

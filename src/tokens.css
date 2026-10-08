@@ -126,6 +126,10 @@
 	--slider-thumb: 24px;
 	--slider-track: 6px;
 	--menu-min-width: 200px;
+	--dialog-width: 340px;
+	--sheet-width: 480px;
+	--handle-width: 40px;
+	--handle-height: 4px;
 }
 
 /* ---------- type ---------- */

@@ -1,0 +1,10 @@
+/* An item takes the menu's text color, not the */
+/* page's, because the menu surface is inverted. */
+:host {
+	display: flex;
+	color: inherit;
+}
+
+.floating-row.isDanger {
+	color: var(--danger);
+}

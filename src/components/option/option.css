@@ -4,28 +4,3 @@
 	display: flex;
 	color: inherit;
 }
-
-/* Options sit on the menu's inverse surface, so */
-/* their highlight is a wash of their own text color. */
-.option {
-	--option-highlight: color-mix(in oklab, currentColor 12%, transparent);
-	width: 100%;
-	height: var(--control-height-medium);
-	padding: 0 var(--space-3);
-	border-radius: var(--radius-small);
-	font-weight: var(--font-weight-act);
-	text-align: left;
-	white-space: nowrap;
-	display: flex;
-	align-items: center;
-}
-
-.option.isSelected {
-	background: var(--option-highlight);
-}
-
-@media (hover: hover) {
-	.option:hover {
-		background: var(--option-highlight);
-	}
-}
