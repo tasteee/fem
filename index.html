@@ -80,6 +80,33 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Form</h2>
+				<code class="docs-code">Every control submits, resets, and validates inside a plain &lt;form&gt;.</code>
+
+				<form class="docs-form" id="demo-form">
+					<fem-input name="title" label="Track name" placeholder="Track name" required></fem-input>
+
+					<fem-select name="genre" label="Genre" placeholder="Pick a genre" required>
+						<fem-option value="pop">Pop</fem-option>
+						<fem-option value="electronic">Electronic</fem-option>
+					</fem-select>
+
+					<fem-slider name="volume" label="Volume" value="60"></fem-slider>
+					<fem-switch name="public" checked>Public track</fem-switch>
+					<fem-checkbox name="terms" required>I own the rights to this track</fem-checkbox>
+					<fem-radio name="comments" value="anyone" checked>Anyone can comment</fem-radio>
+					<fem-radio name="comments" value="off">Comments off</fem-radio>
+
+					<div class="docs-row">
+						<fem-button type="reset">Reset</fem-button>
+						<fem-button type="submit" color="accent">Save track</fem-button>
+					</div>
+				</form>
+
+				<code class="docs-code" id="demo-form-output">Submit to see what the form sends.</code>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Select</h2>
 				<code class="docs-code">&lt;fem-select size value placeholder label disabled&gt; &lt;fem-option value disabled&gt;</code>
 
@@ -163,9 +190,9 @@
 			<section class="docs-card">
 				<h2 class="docs-heading">Radio</h2>
 				<code class="docs-code">&lt;fem-radio name value checked disabled&gt;</code>
-				<fem-radio name="comments" value="anyone" checked>Anyone can comment</fem-radio>
-				<fem-radio name="comments" value="followers">Followers only</fem-radio>
-				<fem-radio name="comments" value="off">Comments off</fem-radio>
+				<fem-radio name="audience" value="anyone" checked>Anyone can comment</fem-radio>
+				<fem-radio name="audience" value="followers">Followers only</fem-radio>
+				<fem-radio name="audience" value="off">Comments off</fem-radio>
 			</section>
 
 			<section class="docs-card">

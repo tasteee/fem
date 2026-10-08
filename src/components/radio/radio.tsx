@@ -1,7 +1,8 @@
-import { c, useEvent, useHost, useProp } from 'atomico'
+import { c, useEvent, useHost, useProp, useRef } from 'atomico'
 import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
+import { focusableShadow, useFormControl } from '../../foundation/use-form-control'
 import radioCss from './radio.css?inline'
 
 type RadioElementT = HTMLElement & { checked: boolean; name: string }
@@ -31,6 +32,20 @@ export const Radio = c(
 		const [isChecked, setChecked] = useProp<boolean>('checked')
 		const dispatchChange = useEvent('change', { bubbles: true, composed: true })
 
+		const buttonRef = useRef<HTMLButtonElement>()
+		const isCurrentlyChecked = Boolean(isChecked)
+		const defaultCheckedRef = useRef(isCurrentlyChecked)
+		// Only the checked radio in a group sends a value.
+		const formValue = isCurrentlyChecked ? props.value : null
+
+		useFormControl({
+			formValue,
+			isMissing: false,
+			missingMessage: '',
+			anchorRef: buttonRef,
+			handleReset: () => setChecked(defaultCheckedRef.current)
+		})
+
 		const checkedClass = getFlagClass(isChecked, 'isChecked')
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
 		const className = buildClassName(['choice', 'radio', checkedClass, disabledClass])
@@ -44,8 +59,15 @@ export const Radio = c(
 		}
 
 		return (
-			<host shadowDom>
-				<button class={className} role='radio' aria-checked={checkedLabel} disabled={props.disabled} onclick={handleClick}>
+			<host shadowDom={focusableShadow}>
+				<button
+					ref={buttonRef}
+					class={className}
+					role='radio'
+					aria-checked={checkedLabel}
+					disabled={props.disabled}
+					onclick={handleClick}
+				>
 					<span class='radio-mark'>
 						<span class='radio-dot'></span>
 					</span>
@@ -57,6 +79,7 @@ export const Radio = c(
 		)
 	},
 	{
+		form: true,
 		props: {
 			name: { type: String, reflect: true, value: (): string => '' },
 			value: { type: String, reflect: true, value: (): string => '' },
