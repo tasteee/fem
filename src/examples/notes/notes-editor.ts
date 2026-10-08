@@ -38,6 +38,8 @@ export type EditorT = {
 	applyLink: (linkAddress: string) => void
 	applyBlockKind: (kindName: string) => void
 	insertEmbed: (embedName: string) => void
+	focusCaret: () => void
+	handleEnterKey: () => boolean
 }
 
 // Holds the editing logic for one editable element.
@@ -150,6 +152,114 @@ export const createEditor = (bodyElement: HTMLElement): EditorT => {
 		state.savedRange = range
 	}
 
+	// Puts the typing caret back where the editor last
+	// left it, so typing can carry on after a tool is used.
+	const focusCaret = () => {
+		bodyElement.focus({ preventScroll: true })
+		restoreSelection()
+	}
+
+	const buildEmptyParagraph = (): Element => {
+		const paragraphElement = document.createElement('p')
+		paragraphElement.appendChild(document.createElement('br'))
+		return paragraphElement
+	}
+
+	const moveCaretInto = (element: Element) => {
+		placeCaretAtEnd(element)
+		// An empty line holds only a line break. The caret
+		// goes before it, not after.
+		const lastNode = element.lastChild
+		const endsWithBreak = lastNode instanceof HTMLBRElement
+		if (endsWithBreak && state.savedRange) state.savedRange.setEndBefore(lastNode)
+		if (endsWithBreak && state.savedRange) state.savedRange.collapse(false)
+		restoreSelection()
+		element.scrollIntoView({ block: 'nearest' })
+	}
+
+	const getCaretRange = (): Range | undefined => {
+		const selection = document.getSelection()
+		const hasRange = selection !== null && selection.rangeCount > 0
+		if (!hasRange) return undefined
+		const range = selection.getRangeAt(0)
+		const isInsideBody = bodyElement.contains(range.commonAncestorContainer)
+		if (!isInsideBody) return undefined
+		return range
+	}
+
+	const findAncestor = (node: Node, selector: string): Element | null => {
+		const element = node instanceof Element ? node : node.parentElement
+		if (!element) return null
+		const ancestor = element.closest(selector)
+		const isInsideBody = ancestor !== null && bodyElement.contains(ancestor)
+		return isInsideBody ? ancestor : null
+	}
+
+	// Enter in a quote leaves the quote for a plain line.
+	const exitQuote = (quoteElement: Element) => {
+		const paragraphElement = buildEmptyParagraph()
+		quoteElement.after(paragraphElement)
+		moveCaretInto(paragraphElement)
+	}
+
+	// Enter on an empty checklist item ends the list.
+	const exitChecklist = (itemElement: Element, listElement: Element) => {
+		const paragraphElement = buildEmptyParagraph()
+		listElement.after(paragraphElement)
+		itemElement.remove()
+		const isListEmpty = listElement.children.length === 0
+		if (isListEmpty) listElement.remove()
+		moveCaretInto(paragraphElement)
+	}
+
+	// Enter on a filled item starts the next one. Text
+	// after the caret moves down with it.
+	const addChecklistItem = (itemElement: Element, range: Range) => {
+		range.deleteContents()
+		const tailRange = document.createRange()
+		tailRange.setStart(range.endContainer, range.endOffset)
+		tailRange.setEndAfter(itemElement.lastChild ?? itemElement)
+		const tailContent = tailRange.extractContents()
+		const newItemElement = document.createElement('li')
+		newItemElement.innerHTML = checkBoxHtml
+		newItemElement.appendChild(tailContent)
+		const hasText = (newItemElement.textContent ?? '').trim() !== ''
+		if (!hasText) newItemElement.appendChild(document.createElement('br'))
+		itemElement.after(newItemElement)
+		const caretRange = document.createRange()
+		caretRange.setStart(newItemElement, 1)
+		caretRange.collapse(true)
+		state.savedRange = caretRange
+		restoreSelection()
+		newItemElement.scrollIntoView({ block: 'nearest' })
+	}
+
+	const handleChecklistEnter = (itemElement: Element, range: Range) => {
+		const listElement = itemElement.parentElement
+		if (!listElement) return
+		const isEmptyItem = (itemElement.textContent ?? '').trim() === ''
+		if (isEmptyItem) return exitChecklist(itemElement, listElement)
+		addChecklistItem(itemElement, range)
+	}
+
+	// Returns true when Enter was handled here, so the
+	// browser's own line break should be cancelled.
+	const handleEnterKey = (): boolean => {
+		const range = getCaretRange()
+		if (!range) return false
+		const quoteElement = findAncestor(range.startContainer, 'blockquote')
+
+		if (quoteElement) {
+			exitQuote(quoteElement)
+			return true
+		}
+
+		const itemElement = findAncestor(range.startContainer, 'ul.isChecklist > li')
+		if (!itemElement) return false
+		handleChecklistEnter(itemElement, range)
+		return true
+	}
+
 	const applyBlockKind = (kindName: string) => {
 		const block = getCurrentBlock()
 		const kind = blockKinds[kindName]
@@ -161,7 +271,11 @@ export const createEditor = (bodyElement: HTMLElement): EditorT => {
 		const newElements = kind.isList ? [buildList(kind, lineElements)] : lineElements.map(buildFromLine)
 		block.replaceWith(...newElements)
 		const lastElement = newElements[newElements.length - 1]
-		if (lastElement) placeCaretAtEnd(lastElement)
+		// In a list the caret belongs in the last item.
+		const lastItem = kind.isList ? lastElement?.lastElementChild : undefined
+		const caretTarget = lastItem ?? lastElement
+		if (caretTarget) placeCaretAtEnd(caretTarget)
+		focusCaret()
 	}
 
 	const insertEmbed = (embedName: string) => {
@@ -173,5 +287,5 @@ export const createEditor = (bodyElement: HTMLElement): EditorT => {
 		if (embedElement) embedElement.scrollIntoView({ block: 'center', behavior: 'smooth' })
 	}
 
-	return { rememberSelection, forgetSelection, applyMark, applyCommand, applyLink, applyBlockKind, insertEmbed }
+	return { rememberSelection, forgetSelection, applyMark, applyCommand, applyLink, applyBlockKind, insertEmbed, focusCaret, handleEnterKey }
 }
