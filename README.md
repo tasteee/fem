@@ -38,6 +38,28 @@ Options take named values. States are bare flags.
 | `shape`   | `pill`, `circle`                                            |
 | flags     | `disabled`, `selected`, `checked`, `loading`, `invalid`     |
 
+## Icons
+
+Icons are [Phosphor](https://phosphoricons.com), bold by default, with a filled version of each.
+
+```ts
+import { registerIcons } from '@tasteee/fem'
+import { heartIcon, playIcon } from '@tasteee/fem/icons'
+
+registerIcons([heartIcon, playIcon])
+```
+
+```html
+<fem-icon name="heart"></fem-icon>
+<fem-icon name="heart" kind="fill"></fem-icon>
+<fem-button color="accent"><fem-icon name="play" kind="fill"></fem-icon>Play</fem-button>
+```
+
+- Register only the icons you use. The rest of the set never reaches the browser.
+- An icon takes its color from the text around it and its size from `--icon-size`.
+- Names match Phosphor's, like `arrow-left`. The import is the same name in camel case with `Icon` on the end: `arrowLeftIcon`.
+- Add `label` when the icon carries meaning by itself. Without one it is hidden from screen readers.
+
 ## Forms
 
 Controls work inside a plain `<form>`, like native ones. Give each a `name`.
@@ -77,6 +99,7 @@ npm run dev        # docs page
 npm run build
 npm run typecheck
 npm run format
+npm run icons      # rebuild the icon module from Phosphor
 ```
 
 ## Layout
@@ -85,5 +108,6 @@ npm run format
 src/tokens.css       every token
 src/foundation/      shared shadow styles and behavior
 src/components/      one folder per component, with a sibling CSS file
+src/icons/           the icon set and its registry
 src/docs/            the docs page
 ```

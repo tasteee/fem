@@ -2,6 +2,33 @@ import '../tokens.css'
 import './docs.css'
 import '../index'
 import { showToast } from '../show-toast'
+import * as icons from '../icons'
+import { registerIcons } from '../icons/registry'
+
+// The docs page shows a sample of the set. A real
+// app would import and register only what it uses.
+const docsIcons = [
+	icons.heartIcon,
+	icons.playIcon,
+	icons.pauseIcon,
+	icons.plusIcon,
+	icons.xIcon,
+	icons.checkIcon,
+	icons.magnifyingGlassIcon,
+	icons.gearSixIcon,
+	icons.lightningIcon,
+	icons.pencilSimpleIcon,
+	icons.trashIcon,
+	icons.shareFatIcon,
+	icons.chatCircleIcon,
+	icons.musicNotesIcon,
+	icons.houseIcon,
+	icons.pushPinIcon,
+	icons.dotsThreeIcon,
+	icons.imageIcon
+]
+
+registerIcons(docsIcons)
 
 const rootElement = document.documentElement
 

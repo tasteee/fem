@@ -1,0 +1,13 @@
+:host {
+	color: inherit;
+}
+
+.icon.isSmall {
+	width: calc(var(--icon-size) * 0.8);
+	height: calc(var(--icon-size) * 0.8);
+}
+
+.icon.isLarge {
+	width: calc(var(--icon-size) * 1.2);
+	height: calc(var(--icon-size) * 1.2);
+}

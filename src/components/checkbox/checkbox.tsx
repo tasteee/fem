@@ -2,7 +2,8 @@ import { c, useEvent, useProp, useRef } from 'atomico'
 import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
-import { CheckIcon } from '../../foundation/icons'
+import { IconSvg } from '../../foundation/icons'
+import { checkIcon } from '../../icons/generated'
 import { focusableShadow, useFormControl } from '../../foundation/use-form-control'
 import checkboxCss from './checkbox.css?inline'
 
@@ -51,7 +52,7 @@ export const Checkbox = c(
 					onclick={handleClick}
 				>
 					<span class='checkbox-mark'>
-						<CheckIcon />
+						<IconSvg icon={checkIcon} kind='bold' />
 					</span>
 					<span class='choice-label'>
 						<slot></slot>

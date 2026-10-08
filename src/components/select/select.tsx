@@ -2,9 +2,10 @@ import { c, useEffect, useEvent, useHost, useProp, useRef, useState } from 'atom
 import { buildClassName, getFlagClass, getModifierClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
-import { ChevronDownIcon } from '../../foundation/icons'
+import { IconSvg } from '../../foundation/icons'
 import { focusItem, getEnabledItems, handleRovingKeyDown } from '../../foundation/roving-focus'
 import { focusableShadow, useFormControl } from '../../foundation/use-form-control'
+import { caretDownIcon } from '../../icons/generated'
 import { useFloatingPopover } from '../../foundation/use-floating-popover'
 import { usePressFeedback } from '../../foundation/use-press-feedback'
 import selectCss from './select.css?inline'
@@ -129,7 +130,7 @@ export const Select = c(
 					onclick={handleTriggerClick}
 				>
 					<span class='select-label'>{labelText}</span>
-					<ChevronDownIcon />
+					<IconSvg icon={caretDownIcon} kind='bold' />
 				</button>
 
 				<div

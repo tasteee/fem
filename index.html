@@ -36,6 +36,62 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Icon</h2>
+				<code class="docs-code">&lt;fem-icon name kind size label&gt; registerIcons([heartIcon, playIcon])</code>
+
+				<div class="docs-row isLoose">
+					<fem-icon name="heart"></fem-icon>
+					<fem-icon name="play"></fem-icon>
+					<fem-icon name="pause"></fem-icon>
+					<fem-icon name="plus"></fem-icon>
+					<fem-icon name="x"></fem-icon>
+					<fem-icon name="check"></fem-icon>
+					<fem-icon name="magnifying-glass"></fem-icon>
+					<fem-icon name="gear-six"></fem-icon>
+					<fem-icon name="lightning"></fem-icon>
+					<fem-icon name="pencil-simple"></fem-icon>
+					<fem-icon name="trash"></fem-icon>
+					<fem-icon name="share-fat"></fem-icon>
+					<fem-icon name="chat-circle"></fem-icon>
+					<fem-icon name="music-notes"></fem-icon>
+					<fem-icon name="house"></fem-icon>
+					<fem-icon name="push-pin"></fem-icon>
+					<fem-icon name="dots-three"></fem-icon>
+					<fem-icon name="image"></fem-icon>
+				</div>
+
+				<div class="docs-row isLoose">
+					<fem-icon name="heart" kind="fill"></fem-icon>
+					<fem-icon name="play" kind="fill"></fem-icon>
+					<fem-icon name="pause" kind="fill"></fem-icon>
+					<fem-icon name="plus" kind="fill"></fem-icon>
+					<fem-icon name="x" kind="fill"></fem-icon>
+					<fem-icon name="check" kind="fill"></fem-icon>
+					<fem-icon name="magnifying-glass" kind="fill"></fem-icon>
+					<fem-icon name="gear-six" kind="fill"></fem-icon>
+					<fem-icon name="lightning" kind="fill"></fem-icon>
+					<fem-icon name="pencil-simple" kind="fill"></fem-icon>
+					<fem-icon name="trash" kind="fill"></fem-icon>
+					<fem-icon name="share-fat" kind="fill"></fem-icon>
+					<fem-icon name="chat-circle" kind="fill"></fem-icon>
+					<fem-icon name="music-notes" kind="fill"></fem-icon>
+					<fem-icon name="house" kind="fill"></fem-icon>
+					<fem-icon name="push-pin" kind="fill"></fem-icon>
+					<fem-icon name="dots-three" kind="fill"></fem-icon>
+					<fem-icon name="image" kind="fill"></fem-icon>
+				</div>
+
+				<div class="docs-row">
+					<fem-button color="accent"><fem-icon name="plus"></fem-icon>New note</fem-button>
+					<fem-button shape="circle" aria-label="Settings"><fem-icon name="gear-six"></fem-icon></fem-button>
+					<fem-button color="danger"><fem-icon name="trash"></fem-icon>Delete</fem-button>
+					<fem-icon name="heart" kind="fill" size="small"></fem-icon>
+					<fem-icon name="heart" kind="fill"></fem-icon>
+					<fem-icon name="heart" kind="fill" size="large"></fem-icon>
+				</div>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Button</h2>
 				<code class="docs-code">&lt;fem-button size kind color shape disabled loading wide&gt;</code>
 
@@ -59,7 +115,7 @@
 					<fem-button size="small">Small</fem-button>
 					<fem-button>Medium</fem-button>
 					<fem-button size="large">Large</fem-button>
-					<fem-button shape="circle" aria-label="Add">+</fem-button>
+					<fem-button shape="circle" aria-label="Add"><fem-icon name="plus"></fem-icon></fem-button>
 				</div>
 
 				<div class="docs-row">
@@ -259,18 +315,18 @@
 
 				<div class="docs-row">
 					<fem-swap label="Play">
-						<span slot="off">▶</span>
-						<span slot="on">❚❚</span>
+						<fem-icon slot="off" name="play" kind="fill"></fem-icon>
+						<fem-icon slot="on" name="pause" kind="fill"></fem-icon>
 					</fem-swap>
 
 					<fem-swap label="Play" color="accent" size="large">
-						<span slot="off">▶</span>
-						<span slot="on">❚❚</span>
+						<fem-icon slot="off" name="play" kind="fill"></fem-icon>
+						<fem-icon slot="on" name="pause" kind="fill"></fem-icon>
 					</fem-swap>
 
 					<fem-swap label="Like" kind="ghost" on>
-						<span slot="off">♡</span>
-						<span slot="on">♥</span>
+						<fem-icon slot="off" name="heart"></fem-icon>
+						<fem-icon slot="on" name="heart" kind="fill"></fem-icon>
 					</fem-swap>
 				</div>
 			</section>
