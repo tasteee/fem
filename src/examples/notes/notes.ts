@@ -298,6 +298,9 @@ const handleViewportChange = () => {
 	if (!viewport) return
 	const keyboardInset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop)
 	rootElement.style.setProperty('--keyboard-inset', `${keyboardInset}px`)
+	// iOS draws its AutoFill pill just above the keyboard,
+	// so keep the bar clear of it while the keyboard is up.
+	rootElement.style.setProperty('--autofill-clearance', keyboardInset > 0 ? '48px' : '0px')
 }
 
 document.addEventListener('click', handleClick)
