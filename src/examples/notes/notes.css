@@ -457,7 +457,7 @@ button {
 	left: 0;
 	right: 0;
 	bottom: calc(var(--space-2) + var(--bar-safe-area));
-	padding: 0 var(--space-4);
+	padding: 0 var(--space-2);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -483,6 +483,13 @@ button {
 	align-items: center;
 	gap: var(--space-hairline);
 	pointer-events: auto;
+}
+
+/* The line tools spread across the full width, so */
+/* each icon gets as much room as the screen allows. */
+.bar-row.isResting {
+	width: 100%;
+	justify-content: space-between;
 }
 
 .bar-row.isColor {
