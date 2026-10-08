@@ -5,8 +5,9 @@
 	--accent: var(--purple);
 	--column-width: 480px;
 	--dot-size: 28px;
-	--keyboard-inset: 0px;
-	--autofill-clearance: 0px;
+	--viewport-top: 0px;
+	--viewport-height: 100dvh;
+	--bar-safe-area: env(safe-area-inset-bottom, 0px);
 }
 
 * {
@@ -43,11 +44,18 @@ button {
 	-webkit-tap-highlight-color: transparent;
 }
 
+/* The keyboard covers the home bar area. */
+:root[keyboard='open'] {
+	--bar-safe-area: 0px;
+}
+
 /* ---------- screen ---------- */
 .screen {
 	position: fixed;
-	inset: 0;
-	bottom: var(--keyboard-inset);
+	top: var(--viewport-top);
+	left: 0;
+	right: 0;
+	height: var(--viewport-height);
 	max-width: var(--column-width);
 	margin: 0 auto;
 	background: var(--surface-page);
@@ -428,7 +436,7 @@ button {
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: calc(var(--space-4) + var(--autofill-clearance) + env(safe-area-inset-bottom, 0px));
+	bottom: calc(var(--space-2) + var(--bar-safe-area));
 	padding: 0 var(--space-4);
 	display: flex;
 	flex-direction: column;
@@ -528,8 +536,58 @@ button {
 }
 
 /* ---------- sheet content ---------- */
-.sheet-group {
+/* Choices sit in rounded boxes, one row per group. */
+.tile-row {
 	display: flex;
-	flex-direction: column;
 	gap: var(--space-2);
+}
+
+.style-tile {
+	flex: 1;
+	min-width: 0;
+	height: var(--control-height-large);
+	border-radius: var(--radius-inset);
+	background: var(--surface-overlay-inset);
+	color: var(--text-strong);
+	display: grid;
+	place-items: center;
+	transition: transform var(--duration-press-out) var(--easing-standard);
+}
+
+.style-tile:active {
+	transform: scale(var(--press-scale));
+	transition-duration: var(--duration-press-in);
+}
+
+.size-sample {
+	line-height: 1;
+	font-weight: var(--font-weight-title);
+}
+
+.size-sample.isTitle {
+	font-size: var(--font-size-title);
+}
+
+.size-sample.isHeading {
+	font-size: var(--font-size-heading);
+}
+
+.size-sample.isSubheading {
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight-act);
+}
+
+.size-sample.isBody {
+	font-size: var(--font-size-medium);
+	font-weight: var(--font-weight-read);
+}
+
+.size-sample.isSmall {
+	font-size: var(--font-size-caption);
+	font-weight: var(--font-weight-read);
+}
+
+/* The neutral dot would vanish on a tile otherwise. */
+.style-tile .color-dot.isNeutral {
+	background: var(--text-muted);
 }
