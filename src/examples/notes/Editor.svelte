@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { untrack } from 'svelte'
+	import { tick, untrack } from 'svelte'
 	import { showToast } from '../../show-toast'
 	import { createEditor } from './notes-editor'
 	import type { EditorT } from './notes-editor'
@@ -129,9 +129,20 @@
 		store.barRow = 'none'
 	}
 
-	const applyBlockKind = (kindName: string) => {
+	// The sheet hands focus back as it closes, so the
+	// caret is placed again once that has happened.
+	const applyBlockKind = async (kindName: string) => {
 		store.closeOverlays()
 		editor?.applyBlockKind(kindName)
+		await tick()
+		editor?.focusCaret()
+	}
+
+	const handleBodyKeyDown = (event: KeyboardEvent) => {
+		const isPlainEnter = event.key === 'Enter' && !event.shiftKey && !event.isComposing
+		if (!isPlainEnter || !editor) return
+		const wasHandled = editor.handleEnterKey()
+		if (wasHandled) event.preventDefault()
 	}
 
 	const insertEmbed = (embedName: string) => {
@@ -200,6 +211,7 @@
 			class="editor-body"
 			bind:this={bodyElement}
 			onclick={handleBodyClick}
+			onkeydown={handleBodyKeyDown}
 			contenteditable="true"
 			spellcheck="false"
 			role="textbox"

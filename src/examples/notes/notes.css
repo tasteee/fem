@@ -260,6 +260,17 @@ button {
 	background: var(--surface-card);
 	font-size: var(--font-size-large);
 	font-style: italic;
+	quotes: '\201C' '\201D';
+}
+
+/* Quote marks are drawn, not typed, so they never */
+/* end up in the note's text. */
+.editor-body blockquote::before {
+	content: open-quote;
+}
+
+.editor-body blockquote::after {
+	content: close-quote;
 }
 
 .editor-body ul,
