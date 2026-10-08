@@ -95,9 +95,10 @@ All three work on the root or on any container.
 
 ```sh
 npm install
-npm run dev        # docs page, and the notes example at /notes.html
+npm run dev        # docs page, and the notes example at /notes/
 npm run build
 npm run typecheck
+npm run build:demos   # static site in demos/, for GitHub Pages
 npm run format
 npm run icons      # rebuild the icon module from Phosphor
 ```

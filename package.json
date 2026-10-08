@@ -22,6 +22,8 @@
 		"dev": "vite",
 		"prebuild": "npm run icons",
 		"build": "vite build",
+		"prebuild:demos": "npm run icons",
+		"build:demos": "vite build --config vite.demos.config.ts",
 		"pretypecheck": "npm run icons",
 		"typecheck": "tsc --noEmit",
 		"format": "prettier --write ."
