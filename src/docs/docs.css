@@ -1,0 +1,60 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+html {
+	background: var(--surface-page);
+}
+
+body {
+	min-height: 100dvh;
+	padding: var(--space-4);
+	background: var(--surface-page);
+	color: var(--text-strong);
+	font-family: var(--font-family);
+	font-size: var(--font-size-medium);
+	line-height: var(--line-height);
+}
+
+.docs-page {
+	max-width: 640px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}
+
+.docs-title {
+	font-size: var(--font-size-display);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+}
+
+.docs-card {
+	padding: var(--space-5);
+	border-radius: var(--radius-container);
+	background: var(--surface-card);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+.docs-heading {
+	font-size: var(--font-size-heading);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+}
+
+.docs-code {
+	color: var(--text-muted);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+}
+
+.docs-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--space-2);
+}

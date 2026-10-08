@@ -1,0 +1,9 @@
+.tag {
+	padding: calc(var(--space-hairline) + var(--optical-nudge)) var(--space-2)
+		calc(var(--space-hairline) - var(--optical-nudge));
+	border-radius: var(--radius-small);
+	background: var(--surface-control);
+	font-size: var(--font-size-caption);
+	font-weight: var(--font-weight-act);
+	white-space: nowrap;
+}

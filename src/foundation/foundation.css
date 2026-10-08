@@ -1,0 +1,70 @@
+/* Shared by every component's shadow root. */
+
+:host {
+	display: inline-flex;
+	font-family: var(--font-family);
+	font-size: var(--font-size-medium);
+	font-weight: var(--font-weight-read);
+	line-height: var(--line-height);
+	color: var(--text-strong);
+	-webkit-tap-highlight-color: transparent;
+}
+
+:host([hidden]) {
+	display: none;
+}
+
+:host([disabled]) {
+	pointer-events: none;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+
+	/* Any element that sets --fill gets a readable */
+	/* text color for it in --on-fill. */
+	--on-fill: oklch(
+		from var(--fill) clamp(var(--contrast-dark), (var(--contrast-threshold) - l) * 1000, 1) 0 0
+	);
+}
+
+button,
+input,
+textarea {
+	font: inherit;
+	color: inherit;
+	border: 0;
+	padding: 0;
+	background: transparent;
+}
+
+button {
+	cursor: pointer;
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+/* ---------- press ---------- */
+.isPressable {
+	transition: transform var(--duration-press-out) var(--easing-standard);
+}
+
+.isPressable.isPressed {
+	transform: scale(var(--press-scale));
+	transition-duration: var(--duration-press-in);
+}
+
+.isDisabled {
+	opacity: var(--disabled-opacity);
+}

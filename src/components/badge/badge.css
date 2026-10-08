@@ -1,0 +1,31 @@
+.badge {
+	--fill: var(--surface-control);
+	padding: calc(var(--space-1) + var(--optical-nudge)) var(--space-3) calc(var(--space-1) - var(--optical-nudge));
+	border-radius: var(--radius-small);
+	background: var(--fill);
+	color: var(--on-fill);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+	white-space: nowrap;
+}
+
+/* A badge is a short label, so its color is solid. */
+.badge.isAccent {
+	--fill: var(--accent);
+}
+
+.badge.isDanger {
+	--fill: var(--danger);
+}
+
+.badge.isSuccess {
+	--fill: var(--success);
+}
+
+.badge.isWarning {
+	--fill: var(--warning);
+}
+
+.badge.isInfo {
+	--fill: var(--info);
+}

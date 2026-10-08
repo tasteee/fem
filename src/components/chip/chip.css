@@ -1,0 +1,26 @@
+.chip {
+	height: var(--control-height-small);
+	padding: calc(var(--optical-nudge) * 2) var(--space-4) 0;
+	border-radius: var(--radius-small);
+	background: var(--surface-inset);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+	white-space: nowrap;
+}
+
+.chip.isMedium {
+	height: var(--control-height-medium);
+	font-size: var(--font-size-medium);
+}
+
+.chip.isLarge {
+	height: var(--control-height-large);
+	padding-inline: var(--space-5);
+	font-size: var(--font-size-medium);
+}
+
+/* A chip holds a choice, so a chosen one inverts. */
+.chip.isSelected {
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>fem</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Google+Sans+Code:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<script type="module" src="/src/docs/docs.ts"></script>
+	</head>
+	<body>
+		<main class="docs-page">
+			<h1 class="docs-title">fem</h1>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Display</h2>
+
+				<div class="docs-row">
+					<fem-button data-setting="theme" data-value="dark">Dark</fem-button>
+					<fem-button data-setting="theme" data-value="light">Light</fem-button>
+					<fem-button data-setting="density" data-value="roomy">Roomy</fem-button>
+					<fem-button data-setting="density" data-value="compact">Compact</fem-button>
+				</div>
+
+				<div class="docs-row">
+					<fem-button data-accent="">Neutral accent</fem-button>
+					<fem-button data-accent="var(--purple)">Purple</fem-button>
+					<fem-button data-accent="var(--red)">Red</fem-button>
+					<fem-button data-accent="var(--yellow)">Yellow</fem-button>
+					<fem-button data-accent="var(--green)">Green</fem-button>
+				</div>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Button</h2>
+				<code class="docs-code">&lt;fem-button size kind color shape disabled loading wide&gt;</code>
+
+				<div class="docs-row">
+					<fem-button color="accent">Accent</fem-button>
+					<fem-button>Neutral</fem-button>
+					<fem-button color="danger">Danger</fem-button>
+					<fem-button color="success">Success</fem-button>
+					<fem-button color="warning">Warning</fem-button>
+					<fem-button color="info">Info</fem-button>
+				</div>
+
+				<div class="docs-row">
+					<fem-button kind="soft">Soft</fem-button>
+					<fem-button kind="soft" color="danger">Soft danger</fem-button>
+					<fem-button kind="ghost">Ghost</fem-button>
+					<fem-button kind="ghost" color="info">Ghost info</fem-button>
+				</div>
+
+				<div class="docs-row">
+					<fem-button size="small">Small</fem-button>
+					<fem-button>Medium</fem-button>
+					<fem-button size="large">Large</fem-button>
+					<fem-button shape="circle" aria-label="Add">+</fem-button>
+				</div>
+
+				<div class="docs-row">
+					<fem-button color="accent" disabled>Disabled</fem-button>
+					<fem-button color="accent" loading>Saving</fem-button>
+				</div>
+
+				<fem-button color="accent" wide>Wide</fem-button>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Input</h2>
+				<code class="docs-code">&lt;fem-input size type value name placeholder label invalid disabled&gt;</code>
+				<fem-input label="Track name" value="ink shaped box"></fem-input>
+				<fem-input label="Search" placeholder="Search notes" size="small"></fem-input>
+				<fem-input label="Email" value="shane@" invalid></fem-input>
+				<fem-input label="Locked field" value="Can't change this" disabled></fem-input>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Chip</h2>
+				<code class="docs-code">&lt;fem-chip size selected disabled&gt;</code>
+
+				<div class="docs-row">
+					<fem-chip selected>Pop</fem-chip>
+					<fem-chip>Rock</fem-chip>
+					<fem-chip>Hip Hop</fem-chip>
+					<fem-chip size="medium">Medium</fem-chip>
+					<fem-chip disabled>Disabled</fem-chip>
+				</div>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Tag</h2>
+				<code class="docs-code">&lt;fem-tag&gt;</code>
+
+				<div class="docs-row">
+					<fem-tag>Guitarist</fem-tag>
+					<fem-tag>Keyboardist</fem-tag>
+					<fem-tag>Drummer</fem-tag>
+				</div>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Badge</h2>
+				<code class="docs-code">&lt;fem-badge color&gt;</code>
+
+				<div class="docs-row">
+					<fem-badge>Draft</fem-badge>
+					<fem-badge color="success">Published</fem-badge>
+					<fem-badge color="warning">Unsaved</fem-badge>
+					<fem-badge color="info">New</fem-badge>
+					<fem-badge color="danger">Failed</fem-badge>
+					<fem-badge color="accent">Accent</fem-badge>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
