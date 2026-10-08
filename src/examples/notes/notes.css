@@ -471,11 +471,7 @@ button {
 	flex: 1;
 }
 
-:root[bar='resting'] .bar-row.isResting,
-:root[bar='selection'] .bar-row.isSelection,
-:root[bar='selection'][bar-row='weight'] .bar-row.isWeight,
-:root[bar='selection'][bar-row='color'] .bar-row.isColor,
-:root[bar='selection'][bar-row='link'] .bar-row.isLink {
+.bar-row.isOpen {
 	display: flex;
 }
 
