@@ -1,0 +1,16 @@
+:host {
+	display: flex;
+}
+
+.segment-group {
+	width: 100%;
+	padding: var(--space-1);
+	border-radius: var(--radius-pill);
+	background: var(--surface-inset);
+	display: flex;
+	gap: var(--space-1);
+}
+
+.segment-group > ::slotted(*) {
+	flex: 1;
+}

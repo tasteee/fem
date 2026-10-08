@@ -3,6 +3,7 @@ import { buildClassName, getFlagClass, getModifierClass } from '../../foundation
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
 import { ChevronDownIcon } from '../../foundation/icons'
+import { focusItem, getEnabledItems, handleRovingKeyDown } from '../../foundation/roving-focus'
 import { useFloatingPopover } from '../../foundation/use-floating-popover'
 import { usePressFeedback } from '../../foundation/use-press-feedback'
 import selectCss from './select.css?inline'
@@ -49,6 +50,20 @@ export const Select = c(
 		}, [value, optionsVersion])
 
 		useFloatingPopover(triggerRef, menuRef, isOpen, { placement: 'below', alignment: 'start' })
+
+		// Opening moves focus to the selected option, or
+		// to the first one, so the arrow keys work right away.
+		useEffect(() => {
+			if (!isOpen) return
+			const enabledItems = getEnabledItems(hostRef.current, 'fem-option')
+			const selectedItem = enabledItems.find((item) => item === selectedOption)
+			focusItem(selectedItem ?? enabledItems[0])
+		}, [isOpen])
+
+		const handleKeyDown = (event: KeyboardEvent) => {
+			const enabledItems = getEnabledItems(hostRef.current, 'fem-option')
+			handleRovingKeyDown(event, enabledItems, 'vertical')
+		}
 
 		// The browser closes the menu on an outside press
 		// or Escape, so the open flag follows it.
@@ -110,6 +125,7 @@ export const Select = c(
 					popover='auto'
 					role='listbox'
 					onclick={handleMenuClick}
+					onkeydown={handleKeyDown}
 					ontoggle={handleToggle}
 				>
 					<slot onslotchange={handleSlotChange}></slot>

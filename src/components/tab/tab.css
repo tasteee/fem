@@ -1,0 +1,31 @@
+.tab {
+	position: relative;
+	height: var(--control-height-medium);
+	color: var(--text-muted);
+	font-weight: var(--font-weight-act);
+	white-space: nowrap;
+	transition: color var(--duration-fast) var(--easing-standard);
+}
+
+.tab::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: var(--indicator-height);
+	border-radius: var(--radius-pill);
+	background: var(--text-strong);
+	opacity: 0;
+	transition: opacity var(--duration-fast) var(--easing-standard);
+}
+
+/* Selected and unselected share one weight, so the */
+/* row never shifts when the selection moves. */
+.tab.isSelected {
+	color: var(--text-strong);
+}
+
+.tab.isSelected::after {
+	opacity: 1;
+}

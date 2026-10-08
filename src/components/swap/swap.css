@@ -1,0 +1,50 @@
+/* A round toggle that swaps between two pieces of */
+/* content, like play and pause. */
+.swap {
+	width: var(--control-height-medium);
+	height: var(--control-height-medium);
+	border-radius: var(--radius-pill);
+	background: var(--surface-control);
+	display: grid;
+	place-items: center;
+}
+
+.swap.isSmall {
+	width: var(--control-height-small);
+	height: var(--control-height-small);
+}
+
+.swap.isLarge {
+	width: var(--control-height-large);
+	height: var(--control-height-large);
+}
+
+.swap.isGhost {
+	background: transparent;
+}
+
+.swap.isAccent {
+	--fill: var(--accent);
+	background: var(--fill);
+	color: var(--on-fill);
+}
+
+.swap-face {
+	grid-area: 1 / 1;
+	display: grid;
+	place-items: center;
+	transition:
+		transform var(--duration-medium) var(--easing-standard),
+		opacity var(--duration-fast) var(--easing-standard);
+}
+
+.swap-face.isOnFace,
+.swap.isOn > .swap-face.isOffFace {
+	opacity: 0;
+	transform: scale(0.5);
+}
+
+.swap.isOn > .swap-face.isOnFace {
+	opacity: 1;
+	transform: scale(1);
+}

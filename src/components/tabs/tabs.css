@@ -1,0 +1,10 @@
+:host {
+	display: flex;
+}
+
+.tab-list {
+	display: flex;
+	gap: var(--space-5);
+	overflow-x: auto;
+	scrollbar-width: none;
+}

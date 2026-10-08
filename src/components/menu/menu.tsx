@@ -1,6 +1,7 @@
-import { c, useProp, useRef } from 'atomico'
+import { c, useEffect, useHost, useProp, useRef } from 'atomico'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
+import { focusItem, getEnabledItems, handleRovingKeyDown } from '../../foundation/roving-focus'
 import { useFloatingPopover } from '../../foundation/use-floating-popover'
 import menuCss from './menu.css?inline'
 
@@ -12,6 +13,7 @@ const checkIsMenuItem = (target: EventTarget): boolean => {
 
 export const Menu = c(
 	() => {
+		const hostRef = useHost<HTMLElement>()
 		const anchorRef = useRef<HTMLSpanElement>()
 		const panelRef = useRef<HTMLDivElement>()
 		const wasOpenOnPressRef = useRef(false)
@@ -19,6 +21,19 @@ export const Menu = c(
 		const isPanelOpen = Boolean(isOpen)
 
 		useFloatingPopover(anchorRef, panelRef, isPanelOpen, { placement: 'below', alignment: 'start' })
+
+		// Opening moves focus to the first item, so the
+		// arrow keys work right away.
+		useEffect(() => {
+			if (!isPanelOpen) return
+			const enabledItems = getEnabledItems(hostRef.current, 'fem-menu-item')
+			focusItem(enabledItems[0])
+		}, [isPanelOpen])
+
+		const handleKeyDown = (event: KeyboardEvent) => {
+			const enabledItems = getEnabledItems(hostRef.current, 'fem-menu-item')
+			handleRovingKeyDown(event, enabledItems, 'vertical')
+		}
 
 		// The browser closes the menu on an outside press
 		// or Escape, so the open flag follows it.
@@ -55,6 +70,7 @@ export const Menu = c(
 					popover='auto'
 					role='menu'
 					onclick={handlePanelClick}
+					onkeydown={handleKeyDown}
 					ontoggle={handleToggle}
 				>
 					<slot></slot>
