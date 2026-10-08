@@ -1,0 +1,22 @@
+:host {
+	display: flex;
+}
+
+.segment {
+	width: 100%;
+	height: var(--control-height-small);
+	padding: calc(var(--optical-nudge) * 2) var(--space-4) 0;
+	border-radius: var(--radius-pill);
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+	white-space: nowrap;
+	transition:
+		background-color var(--duration-fast) var(--easing-standard),
+		color var(--duration-fast) var(--easing-standard);
+}
+
+.segment.isSelected {
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+}

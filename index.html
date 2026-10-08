@@ -176,6 +176,79 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Tabs</h2>
+				<code class="docs-code">&lt;fem-tabs value&gt; &lt;fem-tab value disabled&gt;</code>
+
+				<fem-tabs value="projects">
+					<fem-tab value="projects">Projects</fem-tab>
+					<fem-tab value="albums">Albums</fem-tab>
+					<fem-tab value="playlists">Playlists</fem-tab>
+					<fem-tab value="bands" disabled>Bands</fem-tab>
+				</fem-tabs>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Segmented control</h2>
+				<code class="docs-code">&lt;fem-segmented value&gt; &lt;fem-segment value disabled&gt;</code>
+
+				<fem-segmented value="list">
+					<fem-segment value="list">List</fem-segment>
+					<fem-segment value="grid">Grid</fem-segment>
+					<fem-segment value="board">Board</fem-segment>
+				</fem-segmented>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Banner</h2>
+				<code class="docs-code">&lt;fem-banner color&gt;</code>
+				<fem-banner>A new version of this track is ready to review.</fem-banner>
+				<fem-banner color="success">Your track is live. Anyone with the link can listen.</fem-banner>
+				<fem-banner color="warning">You have changes that aren't saved yet.</fem-banner>
+				<fem-banner color="danger">The upload failed. Check your connection and try again.</fem-banner>
+				<fem-banner color="neutral">Session starts at noon.</fem-banner>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Progress</h2>
+				<code class="docs-code">&lt;fem-progress value max label&gt;</code>
+				<fem-progress label="Uploading" value="68"></fem-progress>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Avatar</h2>
+				<code class="docs-code">&lt;fem-avatar size color name src&gt;</code>
+
+				<div class="docs-row">
+					<fem-avatar size="small" name="tasteink"></fem-avatar>
+					<fem-avatar name="tasteink"></fem-avatar>
+					<fem-avatar name="Mars" color="accent"></fem-avatar>
+					<fem-avatar size="large" name="tasteink"></fem-avatar>
+				</div>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Swap</h2>
+				<code class="docs-code">&lt;fem-swap size kind color on label disabled&gt;</code>
+
+				<div class="docs-row">
+					<fem-swap label="Play">
+						<span slot="off">▶</span>
+						<span slot="on">❚❚</span>
+					</fem-swap>
+
+					<fem-swap label="Play" color="accent" size="large">
+						<span slot="off">▶</span>
+						<span slot="on">❚❚</span>
+					</fem-swap>
+
+					<fem-swap label="Like" kind="ghost" on>
+						<span slot="off">♡</span>
+						<span slot="on">♥</span>
+					</fem-swap>
+				</div>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Chip</h2>
 				<code class="docs-code">&lt;fem-chip size selected disabled&gt;</code>
 

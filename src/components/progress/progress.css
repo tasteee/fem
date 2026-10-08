@@ -1,0 +1,20 @@
+:host {
+	display: flex;
+}
+
+.progress {
+	width: 100%;
+	height: var(--slider-track);
+	border-radius: var(--radius-pill);
+	background: var(--surface-control);
+	overflow: hidden;
+}
+
+.progress-fill {
+	display: block;
+	width: calc(var(--progress-ratio) * 100%);
+	height: 100%;
+	border-radius: var(--radius-pill);
+	background: var(--accent);
+	transition: width var(--duration-medium) var(--easing-standard);
+}

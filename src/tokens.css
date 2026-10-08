@@ -130,6 +130,10 @@
 	--sheet-width: 480px;
 	--handle-width: 40px;
 	--handle-height: 4px;
+	--avatar-small: 28px;
+	--avatar-medium: 44px;
+	--avatar-large: 96px;
+	--indicator-height: 3px;
 }
 
 /* ---------- type ---------- */

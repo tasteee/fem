@@ -1,0 +1,39 @@
+:host {
+	display: flex;
+}
+
+/* A banner holds a sentence to read, so its color is */
+/* a border, a wash, and tinted text. Solid color is */
+/* for short labels like badges. Set --banner-surface */
+/* when the banner sits on something other than a card. */
+.banner {
+	--banner-color: var(--info);
+	width: 100%;
+	padding: var(--space-3) var(--space-4);
+	border: var(--border-width) solid var(--banner-color);
+	border-radius: var(--radius-inset);
+	background: color-mix(
+		in oklab,
+		var(--banner-color) var(--wash-strength),
+		var(--banner-surface, var(--surface-card))
+	);
+	color: color-mix(in oklab, var(--banner-color) var(--tint-strength), var(--text-strong));
+}
+
+.banner.isNeutral {
+	--banner-color: var(--surface-control);
+	background: var(--surface-inset);
+	color: var(--text-strong);
+}
+
+.banner.isSuccess {
+	--banner-color: var(--success);
+}
+
+.banner.isWarning {
+	--banner-color: var(--warning);
+}
+
+.banner.isDanger {
+	--banner-color: var(--danger);
+}
