@@ -8,7 +8,9 @@
 	position: fixed;
 	inset: auto;
 	left: 50%;
-	bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
+	/* An app with something else at the bottom edge */
+	/* can lift toasts above it with --toast-offset. */
+	bottom: calc(var(--toast-offset, var(--space-6)) + env(safe-area-inset-bottom, 0px));
 	max-width: calc(100vw - var(--space-8));
 	margin: 0;
 	padding: var(--space-3) var(--space-5);

@@ -68,3 +68,8 @@ body {
 .docs-row.isLoose {
 	gap: var(--space-4);
 }
+
+.docs-link {
+	color: var(--info);
+	font-weight: var(--font-weight-act);
+}

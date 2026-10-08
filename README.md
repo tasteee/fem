@@ -95,9 +95,10 @@ All three work on the root or on any container.
 
 ```sh
 npm install
-npm run dev        # docs page
+npm run dev        # docs page, and the notes example at /notes/
 npm run build
 npm run typecheck
+npm run build:demos   # static site in demos/, for GitHub Pages
 npm run format
 npm run icons      # rebuild the icon module from Phosphor
 ```
@@ -110,4 +111,5 @@ src/foundation/      shared shadow styles and behavior
 src/components/      one folder per component, with a sibling CSS file
 src/icons/           the icon set and its registry
 src/docs/            the docs page
+src/examples/notes/  a notes app built only from fem components
 ```

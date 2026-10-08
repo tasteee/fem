@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" theme="dark" screen="list" bar="resting" bar-row="none">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<title>fem notes</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Google+Sans+Code:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<script type="module" src="/src/examples/notes/notes.ts"></script>
+	</head>
+	<body>
+		<section class="screen isList">
+			<div class="screen-scroll hasFooterButton">
+				<div class="row">
+					<h1 class="page-title">Notes</h1>
+					<span class="spacer"></span>
+					<fem-button shape="circle" label="Switch theme" data-action="toggle-theme">
+						<fem-icon name="circle-half"></fem-icon>
+					</fem-button>
+				</div>
+
+				<fem-input id="search-input" type="search" label="Search notes" placeholder="Search notes"></fem-input>
+				<div class="chip-row" id="tag-row"></div>
+				<div class="note-groups" id="note-list"></div>
+			</div>
+
+			<div class="floating-action">
+				<fem-button size="large" color="accent" data-action="new-note">
+					<fem-icon name="plus"></fem-icon>
+					New note
+				</fem-button>
+			</div>
+		</section>
+
+		<section class="screen isEditor">
+			<div class="top-bar">
+				<fem-button shape="circle" kind="ghost" label="Back to notes" data-action="close-note">
+					<fem-icon name="caret-left"></fem-icon>
+				</fem-button>
+				<span class="spacer"></span>
+				<fem-swap id="pin-swap" label="Pin note" data-action="toggle-pin">
+					<fem-icon slot="off" name="push-pin"></fem-icon>
+					<fem-icon slot="on" name="push-pin" kind="fill"></fem-icon>
+				</fem-swap>
+				<fem-button shape="circle" label="Note settings" data-opens="settings-sheet">
+					<fem-icon name="dots-three"></fem-icon>
+				</fem-button>
+			</div>
+
+			<div class="screen-scroll">
+				<input class="editor-title" id="title-input" placeholder="Title" aria-label="Note title" />
+				<div class="editor-body" id="editor-body" contenteditable="true" spellcheck="false" aria-label="Note body"></div>
+			</div>
+
+			<div class="editor-bar">
+				<div class="bar-row isWeight">
+					<fem-button size="small" kind="ghost" data-mark="isRegular"><span class="weight-sample isRegular">Regular</span></fem-button>
+					<fem-button size="small" kind="ghost" data-mark="isMedium"><span class="weight-sample isMedium">Medium</span></fem-button>
+					<fem-button size="small" kind="ghost" data-mark="isSemibold"><span class="weight-sample isSemibold">Semibold</span></fem-button>
+					<fem-button size="small" kind="ghost" data-mark="isBold"><span class="weight-sample isBold">Bold</span></fem-button>
+				</div>
+
+				<div class="bar-row isColor">
+					<button class="color-dot isClear" data-mark="isPlain" aria-label="No color"><fem-icon name="x" size="small"></fem-icon></button>
+					<button class="color-dot isRed" data-mark="isRed" aria-label="Red"></button>
+					<button class="color-dot isOrange" data-mark="isOrange" aria-label="Orange"></button>
+					<button class="color-dot isYellow" data-mark="isYellow" aria-label="Yellow"></button>
+					<button class="color-dot isGreen" data-mark="isGreen" aria-label="Green"></button>
+					<button class="color-dot isCyan" data-mark="isCyan" aria-label="Cyan"></button>
+					<button class="color-dot isBlue" data-mark="isBlue" aria-label="Blue"></button>
+					<button class="color-dot isPurple" data-mark="isPurple" aria-label="Purple"></button>
+					<button class="color-dot isPink" data-mark="isPink" aria-label="Pink"></button>
+				</div>
+
+				<div class="bar-row isLink">
+					<fem-input id="link-input" type="url" label="Link address" placeholder="Paste a link"></fem-input>
+					<fem-button color="accent" data-action="apply-link">Add</fem-button>
+				</div>
+
+				<div class="bar-row isResting">
+					<fem-button shape="circle" kind="ghost" label="Text style" data-opens="style-sheet">
+						<fem-icon name="text-aa"></fem-icon>
+					</fem-button>
+					<fem-button shape="circle" kind="ghost" label="Insert" data-opens="insert-sheet">
+						<fem-icon name="plus"></fem-icon>
+					</fem-button>
+				</div>
+
+				<div class="bar-row isSelection">
+					<fem-button shape="circle" kind="ghost" label="Weight" data-bar-row="weight"><fem-icon name="text-b"></fem-icon></fem-button>
+					<fem-button shape="circle" kind="ghost" label="Italic" data-command="italic"><fem-icon name="text-italic"></fem-icon></fem-button>
+					<fem-button shape="circle" kind="ghost" label="Underline" data-command="underline"><fem-icon name="text-underline"></fem-icon></fem-button>
+					<fem-button shape="circle" kind="ghost" label="Strikethrough" data-command="strikeThrough"><fem-icon name="text-strikethrough"></fem-icon></fem-button>
+					<fem-button shape="circle" kind="ghost" label="Color" data-bar-row="color"><fem-icon name="palette"></fem-icon></fem-button>
+					<fem-button shape="circle" kind="ghost" label="Link" data-bar-row="link"><fem-icon name="link"></fem-icon></fem-button>
+				</div>
+			</div>
+		</section>
+
+		<fem-sheet id="style-sheet" heading="Text style">
+			<div class="sheet-group">
+				<fem-button wide data-block="title">Title</fem-button>
+				<fem-button wide data-block="heading">Heading</fem-button>
+				<fem-button wide data-block="subheading">Subheading</fem-button>
+				<fem-button wide data-block="body">Body</fem-button>
+				<fem-button wide data-block="small">Small</fem-button>
+			</div>
+
+			<div class="sheet-group">
+				<fem-button wide data-block="quote"><fem-icon name="quotes"></fem-icon>Quote</fem-button>
+				<fem-button wide data-block="bullets"><fem-icon name="list-bullets"></fem-icon>Bullet list</fem-button>
+				<fem-button wide data-block="numbers"><fem-icon name="list-numbers"></fem-icon>Numbered list</fem-button>
+				<fem-button wide data-block="checklist"><fem-icon name="list-checks"></fem-icon>Checklist</fem-button>
+			</div>
+
+			<div class="row">
+				<span class="row-label">Callout</span>
+				<span class="spacer"></span>
+				<button class="color-dot isNeutral" data-block="calloutNeutral" aria-label="Neutral callout"></button>
+				<button class="color-dot isRed" data-block="calloutRed" aria-label="Red callout"></button>
+				<button class="color-dot isYellow" data-block="calloutYellow" aria-label="Yellow callout"></button>
+				<button class="color-dot isGreen" data-block="calloutGreen" aria-label="Green callout"></button>
+			</div>
+		</fem-sheet>
+
+		<fem-sheet id="insert-sheet" heading="Insert">
+			<fem-button wide data-embed="image"><fem-icon name="image"></fem-icon>Image</fem-button>
+			<fem-button wide data-embed="audio"><fem-icon name="music-notes"></fem-icon>Audio</fem-button>
+			<fem-button wide data-embed="video"><fem-icon name="video"></fem-icon>Video</fem-button>
+		</fem-sheet>
+
+		<fem-sheet id="settings-sheet" heading="Note settings">
+			<fem-button wide data-action="toggle-pin"><fem-icon name="push-pin"></fem-icon><span id="pin-label">Pin note</span></fem-button>
+			<fem-button wide data-action="duplicate-note"><fem-icon name="copy"></fem-icon>Duplicate</fem-button>
+			<fem-button wide data-action="share-note"><fem-icon name="share-fat"></fem-icon>Share</fem-button>
+			<fem-button wide kind="soft" color="danger" data-opens="delete-dialog"><fem-icon name="trash"></fem-icon>Delete note</fem-button>
+		</fem-sheet>
+
+		<fem-dialog id="delete-dialog" heading="Delete this note?">
+			You can't undo this. The note is removed for good.
+			<fem-button slot="actions" data-closes="delete-dialog">Cancel</fem-button>
+			<fem-button slot="actions" color="danger" data-action="delete-note">Delete note</fem-button>
+		</fem-dialog>
+	</body>
+</html>
