@@ -68,3 +68,31 @@ button {
 .isDisabled {
 	opacity: var(--disabled-opacity);
 }
+
+/* ---------- choice ---------- */
+/* The shared row for switch, checkbox, and radio: */
+/* the control first, then its label. */
+.choice {
+	min-height: var(--control-height-small);
+	text-align: left;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.choice-label {
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+/* ---------- icon ---------- */
+.icon {
+	width: var(--icon-size);
+	height: var(--icon-size);
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	flex-shrink: 0;
+}

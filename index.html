@@ -80,6 +80,54 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Select</h2>
+				<code class="docs-code">&lt;fem-select size value placeholder label disabled&gt; &lt;fem-option value disabled&gt;</code>
+
+				<fem-select label="Genre" value="electronic">
+					<fem-option value="pop">Pop</fem-option>
+					<fem-option value="hip-hop">Hip Hop</fem-option>
+					<fem-option value="electronic">Electronic</fem-option>
+					<fem-option value="lo-fi">Lo-fi</fem-option>
+				</fem-select>
+
+				<fem-select label="Key" placeholder="Pick a key" size="small">
+					<fem-option value="c">C major</fem-option>
+					<fem-option value="dm">D minor</fem-option>
+					<fem-option value="g" disabled>G major</fem-option>
+				</fem-select>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Switch</h2>
+				<code class="docs-code">&lt;fem-switch checked disabled&gt;</code>
+				<fem-switch checked>Public profile</fem-switch>
+				<fem-switch>Email me about comments</fem-switch>
+				<fem-switch disabled>Locked setting</fem-switch>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Checkbox</h2>
+				<code class="docs-code">&lt;fem-checkbox checked disabled&gt;</code>
+				<fem-checkbox checked>Allow downloads</fem-checkbox>
+				<fem-checkbox>Mark as explicit</fem-checkbox>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Radio</h2>
+				<code class="docs-code">&lt;fem-radio name value checked disabled&gt;</code>
+				<fem-radio name="comments" value="anyone" checked>Anyone can comment</fem-radio>
+				<fem-radio name="comments" value="followers">Followers only</fem-radio>
+				<fem-radio name="comments" value="off">Comments off</fem-radio>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Slider</h2>
+				<code class="docs-code">&lt;fem-slider value min max step label disabled&gt;</code>
+				<fem-slider label="Volume" value="60"></fem-slider>
+				<fem-slider label="Tempo" value="111" min="60" max="180"></fem-slider>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Chip</h2>
 				<code class="docs-code">&lt;fem-chip size selected disabled&gt;</code>
 

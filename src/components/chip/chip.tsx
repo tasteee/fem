@@ -22,6 +22,8 @@ export const Chip = c(
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
 		const className = buildClassName(['chip', 'isPressable', sizeClass, selectedClass, disabledClass])
 
+		const pressedLabel = String(Boolean(isSelected))
+
 		const handleClick = () => {
 			setSelected(!isSelected)
 			dispatchChange()
@@ -29,7 +31,7 @@ export const Chip = c(
 
 		return (
 			<host shadowDom>
-				<button ref={chipRef} class={className} disabled={props.disabled} aria-pressed={isSelected} onclick={handleClick}>
+				<button ref={chipRef} class={className} disabled={props.disabled} aria-pressed={pressedLabel} onclick={handleClick}>
 					<slot></slot>
 				</button>
 			</host>

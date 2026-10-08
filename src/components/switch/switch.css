@@ -1,0 +1,31 @@
+/* A switch acts right away, so it is a pill. */
+.switch-track {
+	width: var(--switch-width);
+	height: var(--switch-height);
+	padding: calc((var(--switch-height) - var(--switch-thumb)) / 2);
+	border-radius: var(--radius-pill);
+	background: var(--surface-control);
+	flex-shrink: 0;
+	transition: background-color var(--duration-medium) var(--easing-standard);
+}
+
+.switch-thumb {
+	display: block;
+	width: var(--switch-thumb);
+	height: var(--switch-thumb);
+	border-radius: var(--radius-pill);
+	background: var(--text-strong);
+	transition:
+		transform var(--duration-medium) var(--easing-standard),
+		background-color var(--duration-medium) var(--easing-standard);
+}
+
+.switch.isChecked > .switch-track {
+	--fill: var(--accent);
+	background: var(--fill);
+}
+
+.switch.isChecked .switch-thumb {
+	background: var(--on-fill);
+	transform: translateX(calc(var(--switch-width) - var(--switch-height)));
+}

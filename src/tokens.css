@@ -119,6 +119,13 @@
 	--control-height-large: 52px;
 	--icon-size: 20px;
 	--spinner-size: 18px;
+	--check-size: 22px;
+	--switch-width: 52px;
+	--switch-height: 32px;
+	--switch-thumb: 24px;
+	--slider-thumb: 24px;
+	--slider-track: 6px;
+	--menu-min-width: 200px;
 }
 
 /* ---------- type ---------- */
@@ -175,6 +182,11 @@
 	--control-height-large: 40px;
 	--icon-size: 16px;
 	--spinner-size: 14px;
+	--check-size: 18px;
+	--switch-width: 40px;
+	--switch-height: 24px;
+	--switch-thumb: 18px;
+	--slider-thumb: 18px;
 	--space-3: 8px;
 	--space-4: 12px;
 	--space-5: 14px;
