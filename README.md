@@ -111,5 +111,5 @@ src/foundation/      shared shadow styles and behavior
 src/components/      one folder per component, with a sibling CSS file
 src/icons/           the icon set and its registry
 src/docs/            the docs page
-src/examples/notes/  a notes app built only from fem components
+src/examples/notes/  a Svelte 5 notes app built only from fem components
 ```

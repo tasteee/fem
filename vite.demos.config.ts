@@ -1,8 +1,10 @@
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { defineConfig } from 'vite'
 
 // Builds the docs page and the example apps as a
 // static site in demos/, ready for GitHub Pages.
 export default defineConfig({
+	plugins: [svelte()],
 	// Relative paths, so the site works from a
 	// subfolder like /fem/.
 	base: './',
