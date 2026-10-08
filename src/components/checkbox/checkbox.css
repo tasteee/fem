@@ -12,9 +12,8 @@
 }
 
 .checkbox-mark > .icon {
-	width: calc(var(--check-size) * 0.6);
-	height: calc(var(--check-size) * 0.6);
-	stroke-width: 3;
+	width: calc(var(--check-size) * 0.7);
+	height: calc(var(--check-size) * 0.7);
 }
 
 .checkbox.isChecked > .checkbox-mark {

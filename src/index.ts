@@ -5,6 +5,7 @@ import { Button } from './components/button/button'
 import { Checkbox } from './components/checkbox/checkbox'
 import { Chip } from './components/chip/chip'
 import { Dialog } from './components/dialog/dialog'
+import { Icon } from './components/icon/icon'
 import { Input } from './components/input/input'
 import { MenuItem } from './components/menu-item/menu-item'
 import { Menu } from './components/menu/menu'
@@ -23,6 +24,7 @@ import { Tabs } from './components/tabs/tabs'
 import { Tag } from './components/tag/tag'
 import { Toast } from './components/toast/toast'
 import { Tooltip } from './components/tooltip/tooltip'
+import { registerIcons } from './icons/registry'
 import { showToast } from './show-toast'
 
 const elements: [string, CustomElementConstructor][] = [
@@ -33,6 +35,7 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-checkbox', Checkbox],
 	['fem-chip', Chip],
 	['fem-dialog', Dialog],
+	['fem-icon', Icon],
 	['fem-input', Input],
 	['fem-menu', Menu],
 	['fem-menu-item', MenuItem],
@@ -60,7 +63,9 @@ for (const element of elements) {
 	if (!isDefined) customElements.define(tagName, elementClass)
 }
 
-export { showToast }
+export { registerIcons, showToast }
+export { Icon }
+export type { IconKindT, IconT } from './icons/icon-type'
 export { Avatar, Badge, Banner, Button, Checkbox, Chip, Dialog, Input, Menu, MenuItem, Option, Progress }
 export { Radio, Segment, Segmented, Select, Sheet, Slider, Swap, Switch, Tab, Tabs, Tag, Toast }
 export { Tooltip }

@@ -64,3 +64,7 @@ body {
 	flex-direction: column;
 	gap: var(--space-3);
 }
+
+.docs-row.isLoose {
+	gap: var(--space-4);
+}

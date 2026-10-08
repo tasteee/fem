@@ -86,14 +86,12 @@ button {
 }
 
 /* ---------- icon ---------- */
+/* Icons are filled shapes that take the text color */
+/* around them. */
 .icon {
 	width: var(--icon-size);
 	height: var(--icon-size);
-	fill: none;
-	stroke: currentColor;
-	stroke-width: 2;
-	stroke-linecap: round;
-	stroke-linejoin: round;
+	fill: currentColor;
 	flex-shrink: 0;
 }
 
