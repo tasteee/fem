@@ -1,4 +1,4 @@
-import { c, useEvent, useProp, useRef } from 'atomico'
+import { c, useEvent, useProp, useRef, useState } from 'atomico'
 import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
@@ -11,6 +11,7 @@ export const Switch = c(
 	(props) => {
 		const buttonRef = useRef<HTMLButtonElement>()
 		const [isChecked, setChecked] = useProp<boolean>('checked')
+		const [hasLabelText, setLabelText] = useState(false)
 		const dispatchChange = useEvent('change', { bubbles: true, composed: true })
 
 		const isCurrentlyChecked = Boolean(isChecked)
@@ -32,6 +33,17 @@ export const Switch = c(
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
 		const className = buildClassName(['choice', 'switch', checkedClass, disabledClass])
 		const checkedLabel = String(isCurrentlyChecked)
+		const emptyLabelClass = getFlagClass(!hasLabelText, 'isEmpty')
+		const labelClassName = buildClassName(['choice-label', emptyLabelClass])
+
+		// A control with no text of its own drops the
+		// label gap, so it can sit inside a fem-field.
+		const handleSlotChange = (event: Event) => {
+			const slotElement = event.currentTarget as HTMLSlotElement
+			const slotText = slotElement.assignedNodes().map((node) => node.textContent ?? '').join('')
+			const hasText = slotText.trim() !== ''
+			setLabelText(hasText)
+		}
 
 		const handleClick = () => {
 			setChecked(!isCurrentlyChecked)
@@ -46,14 +58,15 @@ export const Switch = c(
 					role='switch'
 					aria-checked={checkedLabel}
 					aria-required={props.required}
+					aria-label={props.label}
 					disabled={props.disabled}
 					onclick={handleClick}
 				>
 					<span class='switch-track'>
 						<span class='switch-thumb'></span>
 					</span>
-					<span class='choice-label'>
-						<slot></slot>
+					<span class={labelClassName}>
+						<slot onslotchange={handleSlotChange}></slot>
 					</span>
 				</button>
 			</host>
@@ -66,6 +79,7 @@ export const Switch = c(
 			value: { type: String, value: (): string => 'on' },
 			checked: { type: Boolean, reflect: true },
 			required: { type: Boolean, reflect: true },
+			label: String,
 			disabled: { type: Boolean, reflect: true }
 		},
 		styles: [foundationSheet, switchSheet]

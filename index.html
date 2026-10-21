@@ -22,6 +22,50 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Field</h2>
+				<code class="docs-code">&lt;fem-field label help error layout&gt; wraps one control</code>
+				<code class="docs-code">layout: stacked (default) or inline. Tap the label to focus or toggle.</code>
+
+				<fem-field label="Track name" help="Shown on your profile and in search.">
+					<fem-input placeholder="Untitled"></fem-input>
+				</fem-field>
+
+				<fem-field label="Genre">
+					<fem-select placeholder="Pick a genre">
+						<fem-option value="pop">Pop</fem-option>
+						<fem-option value="electronic">Electronic</fem-option>
+					</fem-select>
+				</fem-field>
+
+				<fem-field label="Email" error="Add the part after the @.">
+					<fem-input value="shane@"></fem-input>
+				</fem-field>
+
+				<fem-field label="Public track" help="Anyone with the link can listen." layout="inline">
+					<fem-switch checked></fem-switch>
+				</fem-field>
+
+				<fem-field label="Allow downloads" layout="inline">
+					<fem-checkbox></fem-checkbox>
+				</fem-field>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Contract</h2>
+				<code class="docs-code">One row, every control. Same height, same fills, same rhythm.</code>
+				<div class="docs-row isContract">
+					<fem-input placeholder="Input" label="Input"></fem-input>
+					<fem-select placeholder="Select" label="Select">
+						<fem-option value="one">One</fem-option>
+						<fem-option value="two">Two</fem-option>
+					</fem-select>
+					<fem-button>Button</fem-button>
+					<fem-switch label="Switch" checked></fem-switch>
+					<fem-checkbox label="Checkbox" checked></fem-checkbox>
+				</div>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Display</h2>
 
 				<div class="docs-row">
@@ -145,15 +189,22 @@
 				<code class="docs-code">Every control submits, resets, and validates inside a plain &lt;form&gt;.</code>
 
 				<form class="docs-form" id="demo-form">
-					<fem-input name="title" label="Track name" placeholder="Track name" required></fem-input>
+					<fem-field label="Track name">
+						<fem-input name="title" placeholder="Untitled" required></fem-input>
+					</fem-field>
 
-					<fem-select name="genre" label="Genre" placeholder="Pick a genre" required>
-						<fem-option value="pop">Pop</fem-option>
-						<fem-option value="electronic">Electronic</fem-option>
-					</fem-select>
+					<fem-field label="Genre">
+						<fem-select name="genre" placeholder="Pick a genre" required>
+							<fem-option value="pop">Pop</fem-option>
+							<fem-option value="electronic">Electronic</fem-option>
+						</fem-select>
+					</fem-field>
 
 					<fem-slider name="volume" label="Volume" value="60"></fem-slider>
-					<fem-switch name="public" checked>Public track</fem-switch>
+
+					<fem-field label="Public track" layout="inline">
+						<fem-switch name="public" checked></fem-switch>
+					</fem-field>
 					<fem-checkbox name="terms" required>I own the rights to this track</fem-checkbox>
 					<fem-radio name="comments" value="anyone" checked>Anyone can comment</fem-radio>
 					<fem-radio name="comments" value="off">Comments off</fem-radio>

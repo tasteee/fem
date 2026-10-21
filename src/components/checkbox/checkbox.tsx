@@ -1,4 +1,4 @@
-import { c, useEvent, useProp, useRef } from 'atomico'
+import { c, useEvent, useProp, useRef, useState } from 'atomico'
 import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
@@ -13,6 +13,7 @@ export const Checkbox = c(
 	(props) => {
 		const buttonRef = useRef<HTMLButtonElement>()
 		const [isChecked, setChecked] = useProp<boolean>('checked')
+		const [hasLabelText, setLabelText] = useState(false)
 		const dispatchChange = useEvent('change', { bubbles: true, composed: true })
 
 		const isCurrentlyChecked = Boolean(isChecked)
@@ -34,6 +35,17 @@ export const Checkbox = c(
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
 		const className = buildClassName(['choice', 'checkbox', checkedClass, disabledClass])
 		const checkedLabel = String(isCurrentlyChecked)
+		const emptyLabelClass = getFlagClass(!hasLabelText, 'isEmpty')
+		const labelClassName = buildClassName(['choice-label', emptyLabelClass])
+
+		// A control with no text of its own drops the
+		// label gap, so it can sit inside a fem-field.
+		const handleSlotChange = (event: Event) => {
+			const slotElement = event.currentTarget as HTMLSlotElement
+			const slotText = slotElement.assignedNodes().map((node) => node.textContent ?? '').join('')
+			const hasText = slotText.trim() !== ''
+			setLabelText(hasText)
+		}
 
 		const handleClick = () => {
 			setChecked(!isCurrentlyChecked)
@@ -48,14 +60,15 @@ export const Checkbox = c(
 					role='checkbox'
 					aria-checked={checkedLabel}
 					aria-required={props.required}
+					aria-label={props.label}
 					disabled={props.disabled}
 					onclick={handleClick}
 				>
 					<span class='checkbox-mark'>
 						<IconSvg icon={checkIcon} kind='bold' />
 					</span>
-					<span class='choice-label'>
-						<slot></slot>
+					<span class={labelClassName}>
+						<slot onslotchange={handleSlotChange}></slot>
 					</span>
 				</button>
 			</host>
@@ -68,6 +81,7 @@ export const Checkbox = c(
 			value: { type: String, value: (): string => 'on' },
 			checked: { type: Boolean, reflect: true },
 			required: { type: Boolean, reflect: true },
+			label: String,
 			disabled: { type: Boolean, reflect: true }
 		},
 		styles: [foundationSheet, checkboxSheet]

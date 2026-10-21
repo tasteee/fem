@@ -57,11 +57,30 @@ button {
 
 /* ---------- press ---------- */
 .isPressable {
+	position: relative;
 	transition: transform var(--duration-press-out) var(--easing-standard);
+}
+
+/* The darken sits over the fill as its own layer, */
+/* so it works on every kind and color. */
+.isPressable::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: var(--press-overlay);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--duration-press-out) var(--easing-standard);
 }
 
 .isPressable.isPressed {
 	transform: scale(var(--press-scale));
+	transition-duration: var(--duration-press-in);
+}
+
+.isPressable.isPressed::after {
+	opacity: 1;
 	transition-duration: var(--duration-press-in);
 }
 
@@ -73,7 +92,9 @@ button {
 /* The shared row for switch, checkbox, and radio: */
 /* the control first, then its label. */
 .choice {
-	min-height: var(--control-height-small);
+	/* Same height as an input or select, so a switch */
+	/* row lines up with the controls beside it. */
+	min-height: var(--control-height-medium);
 	text-align: left;
 	display: inline-flex;
 	align-items: center;
@@ -83,6 +104,12 @@ button {
 .choice-label {
 	user-select: none;
 	-webkit-user-select: none;
+}
+
+/* With no text, the control stands alone, so it adds */
+/* no gap. A fem-field label takes its place. */
+.choice-label.isEmpty {
+	display: none;
 }
 
 /* ---------- icon ---------- */

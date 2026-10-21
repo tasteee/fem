@@ -38,6 +38,30 @@ Options take named values. States are bare flags.
 | `shape`   | `pill`, `circle`                                            |
 | flags     | `disabled`, `selected`, `checked`, `loading`, `invalid`     |
 
+## Fields
+
+`fem-field` owns every label, help line, and error. Controls never draw their own.
+
+```html
+<fem-field label="Track name" help="Shown on your profile.">
+	<fem-input placeholder="Untitled"></fem-input>
+</fem-field>
+
+<fem-field label="Public track" layout="inline">
+	<fem-switch checked></fem-switch>
+</fem-field>
+```
+
+- `layout`: `stacked` (default) puts the label above. `inline` puts it left, control right.
+- `error` replaces the help line and marks the control `invalid`.
+- The label becomes the control's accessible name. Tapping it focuses the control, or toggles a switch or checkbox.
+
+## Press
+
+- Buttons, chips, and swaps shrink fast and darken while pressed.
+- Openers skip the press. A select steps up one fill while open. A menu trigger stays still.
+- Tune it with `--press-scale` and `--press-overlay` on any container.
+
 ## Icons
 
 Icons are [Phosphor](https://phosphoricons.com), bold by default, with a filled version of each.

@@ -73,3 +73,14 @@ body {
 	color: var(--info);
 	font-weight: var(--font-weight-act);
 }
+
+/* The contract row: every control shares one line. */
+.docs-row.isContract {
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.docs-row.isContract > fem-input,
+.docs-row.isContract > fem-select {
+	flex: 1 1 140px;
+}
