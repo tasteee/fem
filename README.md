@@ -123,6 +123,35 @@ Rows and columns build every screen. No stacks, no clusters.
 - Both send `change` with the new `value`. Route from there.
 - The selected item gets `aria-current="page"`. Arrow keys move between items.
 
+## Tier 2 pieces
+
+```html
+<fem-breadcrumbs>
+	<fem-breadcrumb href="/library">Library</fem-breadcrumb>
+	<fem-breadcrumb>safeword</fem-breadcrumb>
+</fem-breadcrumbs>
+
+<fem-accordion single>
+	<fem-accordion-item open><span slot="summary">Question</span>Answer</fem-accordion-item>
+</fem-accordion>
+
+<fem-pagination page="4" total="12"></fem-pagination>
+
+<fem-empty-state heading="No drafts yet">
+	<fem-icon slot="icon" name="music-notes"></fem-icon>
+	Start a draft to sketch an idea.
+	<fem-button slot="actions" color="accent">New draft</fem-button>
+</fem-empty-state>
+```
+
+- `fem-breadcrumbs`: the last crumb is always the current page.
+- `fem-accordion`: `single` keeps one item open. Items send `toggle`.
+- `fem-pagination`: `page`, `total`, `siblings`. Sends `change`. The current page slides.
+- `fem-table`: set `columns` and `rows` as properties or JSON attributes. A column takes `key`, `label`, `align`, `numeric`, and `sortable`. Rows alternate fills instead of drawing lines.
+- `fem-avatar-group`: `max` folds the rest into a count. Set `--avatar-ring` to the surface behind it.
+- `fem-tag removable`: shows an x and sends `remove`.
+- `fem-checkbox-group`: shares a `name` and a `label`. Each checked box submits its own value.
+
 ## Fields
 
 `fem-field` owns every label, help line, and error. Controls never draw their own.
@@ -150,7 +179,7 @@ Rows and columns build every screen. No stacks, no clusters.
 
 ## The slide
 
-Selection is a thing that moves. In tabs, segmented controls, list radio groups, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
+Selection is a thing that moves. In tabs, segmented controls, list radio groups, pagination, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
 
 ## Icons
 

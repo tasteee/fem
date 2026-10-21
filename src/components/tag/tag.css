@@ -6,3 +6,28 @@
 	font-weight: var(--font-weight-act);
 	white-space: nowrap;
 }
+
+.tag:has(.tag-remove) {
+	padding-right: var(--space-hairline);
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-1);
+}
+
+.tag-remove {
+	--icon-size: 12px;
+	width: 18px;
+	height: 18px;
+	border-radius: var(--radius-pill);
+	color: var(--text-muted);
+	display: grid;
+	place-items: center;
+	transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+@media (hover: hover) {
+	.tag-remove:hover {
+		background: color-mix(in oklab, currentColor 12%, transparent);
+		color: var(--text-strong);
+	}
+}

@@ -86,3 +86,12 @@ const handleSubmit = (event: SubmitEvent) => {
 }
 
 if (formElement) formElement.addEventListener('submit', handleSubmit)
+
+// Removable tags in the docs disappear when removed.
+const handleTagRemove = (event: Event) => {
+	const removedTag = event.target as HTMLElement
+	const isTag = removedTag.localName === 'fem-tag'
+	if (isTag) removedTag.remove()
+}
+
+document.addEventListener('remove', handleTagRemove)
