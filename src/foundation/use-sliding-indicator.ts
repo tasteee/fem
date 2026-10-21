@@ -11,11 +11,16 @@ type SlidingIndicatorInputT = {
 	indicatorRef: Ref<HTMLElement>
 	itemTagName: string
 	value: string | undefined
+	// For items a component renders itself, in its own
+	// shadow root, where the tag lookup can't see them.
+	findSelectedItem?: () => HTMLElement | undefined
 }
 
 type ValuedElementT = HTMLElement & { value: string }
 
 const findSelectedItem = (input: SlidingIndicatorInputT): HTMLElement | undefined => {
+	const hasCustomFinder = input.findSelectedItem !== undefined
+	if (hasCustomFinder) return input.findSelectedItem?.()
 	const items = [...input.hostRef.current.querySelectorAll<ValuedElementT>(input.itemTagName)]
 	return items.find((item) => item.value === input.value)
 }

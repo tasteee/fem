@@ -39,6 +39,15 @@ import { RadioGroup } from './components/radio-group/radio-group'
 import { Skeleton } from './components/skeleton/skeleton'
 import { Spinner } from './components/spinner/spinner'
 import { Text } from './components/text/text'
+import { Accordion } from './components/accordion/accordion'
+import { AccordionItem } from './components/accordion-item/accordion-item'
+import { AvatarGroup } from './components/avatar-group/avatar-group'
+import { Breadcrumb } from './components/breadcrumb/breadcrumb'
+import { Breadcrumbs } from './components/breadcrumbs/breadcrumbs'
+import { CheckboxGroup } from './components/checkbox-group/checkbox-group'
+import { EmptyState } from './components/empty-state/empty-state'
+import { Pagination } from './components/pagination/pagination'
+import { Table } from './components/table/table'
 import { registerIcons } from './icons/registry'
 import { showToast } from './show-toast'
 
@@ -85,7 +94,16 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-radio-group', RadioGroup],
 	['fem-skeleton', Skeleton],
 	['fem-spinner', Spinner],
-	['fem-text', Text]
+	['fem-text', Text],
+	['fem-accordion', Accordion],
+	['fem-accordion-item', AccordionItem],
+	['fem-avatar-group', AvatarGroup],
+	['fem-breadcrumb', Breadcrumb],
+	['fem-breadcrumbs', Breadcrumbs],
+	['fem-checkbox-group', CheckboxGroup],
+	['fem-empty-state', EmptyState],
+	['fem-pagination', Pagination],
+	['fem-table', Table]
 ]
 
 for (const element of elements) {
@@ -102,4 +120,6 @@ export { Avatar, Badge, Banner, Button, Checkbox, Chip, Dialog, Field, Input, Me
 export { Radio, Segment, Segmented, Select, Sheet, Slider, Swap, Switch, Tab, Tabs, Tag, Toast }
 export { Tooltip, Box, Row, Column, Grid, Nav, NavItem, TabBar, TabBarItem }
 export { Card, Divider, Heading, Popover, RadioGroup, Skeleton, Spinner, Text }
+export { Accordion, AccordionItem, AvatarGroup, Breadcrumb, Breadcrumbs, CheckboxGroup, EmptyState, Pagination, Table }
+export type { TableColumnT, TableRowT } from './components/table/table'
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'

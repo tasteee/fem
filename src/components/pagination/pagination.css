@@ -1,0 +1,68 @@
+:host {
+	display: flex;
+}
+
+.pagination {
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+}
+
+.pagination-pages {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+}
+
+.pagination-page,
+.pagination-step,
+.pagination-gap {
+	min-width: var(--control-height-small);
+	height: var(--control-height-small);
+	padding: 0 var(--space-2);
+	border-radius: var(--radius-pill);
+	display: grid;
+	place-items: center;
+}
+
+/* Page numbers are data, so they use the numeric face. */
+.pagination-page {
+	color: var(--text-muted);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	font-variant-numeric: tabular-nums;
+	transition: color var(--duration-slide) var(--easing-standard);
+}
+
+.pagination-page.isCurrent {
+	color: var(--text-inverse);
+}
+
+.pagination-step {
+	color: var(--text-strong);
+}
+
+.pagination-step:disabled {
+	opacity: var(--disabled-opacity);
+	cursor: default;
+}
+
+.pagination-gap {
+	color: var(--text-muted);
+}
+
+@media (hover: hover) {
+	.pagination-page:not(.isCurrent):hover,
+	.pagination-step:not(:disabled):hover {
+		background: var(--surface-inset);
+		color: var(--text-strong);
+	}
+}
+
+.pagination-indicator {
+	z-index: -1;
+	border-radius: var(--radius-pill);
+	background: var(--surface-inverse);
+}

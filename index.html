@@ -124,6 +124,84 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Breadcrumbs</h2>
+				<code class="docs-code">&lt;fem-breadcrumbs label&gt; &lt;fem-breadcrumb href&gt;</code>
+				<fem-breadcrumbs>
+					<fem-breadcrumb href="#">Library</fem-breadcrumb>
+					<fem-breadcrumb href="#">Drafts</fem-breadcrumb>
+					<fem-breadcrumb>safeword</fem-breadcrumb>
+				</fem-breadcrumbs>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Accordion</h2>
+				<code class="docs-code">&lt;fem-accordion single&gt; &lt;fem-accordion-item open disabled&gt; slot: summary</code>
+				<fem-accordion single>
+					<fem-accordion-item open>
+						<span slot="summary">Who can hear my drafts?</span>
+						Only you, until you share a link or publish the track.
+					</fem-accordion-item>
+					<fem-accordion-item>
+						<span slot="summary">Can I export stems?</span>
+						Yes. Open a track, then pick Export and choose Stems.
+					</fem-accordion-item>
+					<fem-accordion-item>
+						<span slot="summary">What formats can I upload?</span>
+						WAV, AIFF, FLAC, and MP3 up to 200 MB each.
+					</fem-accordion-item>
+				</fem-accordion>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Table</h2>
+				<code class="docs-code">&lt;fem-table columns rows label empty-text&gt; columns: key label align numeric sortable</code>
+				<fem-table label="Tracks" columns='[{"key": "title", "label": "Track", "sortable": true}, {"key": "key", "label": "Key"}, {"key": "bpm", "label": "BPM", "numeric": true, "align": "end", "sortable": true}, {"key": "length", "label": "Length", "numeric": true, "align": "end"}]' rows='[{"title": "safeword", "key": "D minor", "bpm": 92, "length": "2:48"}, {"title": "fangirl", "key": "A minor", "bpm": 124, "length": "3:05"}, {"title": "dead people", "key": "F minor", "bpm": 140, "length": "2:31"}, {"title": "señorita", "key": "G major", "bpm": 104, "length": "3:22"}]'></fem-table>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Pagination</h2>
+				<code class="docs-code">&lt;fem-pagination page total siblings&gt;</code>
+				<fem-pagination page="4" total="12"></fem-pagination>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Empty state</h2>
+				<code class="docs-code">&lt;fem-empty-state heading&gt; slots: icon, actions</code>
+				<fem-empty-state heading="No drafts yet">
+					<fem-icon slot="icon" name="music-notes"></fem-icon>
+					Start a draft to sketch an idea. It stays private until you share it.
+					<fem-button slot="actions" color="accent">New draft</fem-button>
+				</fem-empty-state>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Avatar group and tags</h2>
+				<code class="docs-code">&lt;fem-avatar-group max&gt; &lt;fem-tag removable&gt; sends remove</code>
+				<fem-avatar-group max="3">
+					<fem-avatar name="tasteink" color="accent"></fem-avatar>
+					<fem-avatar name="Robin"></fem-avatar>
+					<fem-avatar name="Mia"></fem-avatar>
+					<fem-avatar name="Jo"></fem-avatar>
+					<fem-avatar name="Kai"></fem-avatar>
+				</fem-avatar-group>
+				<fem-row gap="2" wrap>
+					<fem-tag removable>dark pop</fem-tag>
+					<fem-tag removable>D minor</fem-tag>
+					<fem-tag removable>92 BPM</fem-tag>
+				</fem-row>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Checkbox group</h2>
+				<code class="docs-code">&lt;fem-checkbox-group name label&gt;</code>
+				<fem-checkbox-group name="notify" label="Notify me about">
+					<fem-checkbox value="comments" checked>Comments</fem-checkbox>
+					<fem-checkbox value="follows">New followers</fem-checkbox>
+					<fem-checkbox value="collabs" checked>Collab invites</fem-checkbox>
+				</fem-checkbox-group>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Field</h2>
 				<code class="docs-code">&lt;fem-field label help error layout&gt; wraps one control</code>
 				<code class="docs-code">layout: stacked (default) or inline. Tap the label to focus or toggle.</code>

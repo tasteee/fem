@@ -1,0 +1,63 @@
+:host {
+	display: flex;
+}
+
+.accordion-item {
+	width: 100%;
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+}
+
+.accordion-header {
+	width: 100%;
+	min-height: var(--control-height-large);
+	padding: 0 var(--space-4);
+	border-radius: var(--radius-inset);
+	font-weight: var(--font-weight-act);
+	text-align: left;
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.accordion-summary {
+	flex: 1;
+	min-width: 0;
+}
+
+.accordion-header > .icon {
+	color: var(--text-muted);
+	transition: transform var(--duration-medium) var(--easing-standard);
+}
+
+.accordion-item.isOpen .accordion-header > .icon {
+	transform: rotate(180deg);
+}
+
+/* Opens to its content's height with a grid row */
+/* trick, so the height animates without measuring. */
+.accordion-panel {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows var(--duration-slow) var(--easing-standard);
+}
+
+.accordion-item.isOpen .accordion-panel {
+	grid-template-rows: 1fr;
+}
+
+.accordion-panel-inner {
+	min-height: 0;
+	overflow: hidden;
+}
+
+.accordion-content {
+	padding: 0 var(--space-4) var(--space-4);
+	color: var(--text-muted);
+	opacity: 0;
+	transition: opacity var(--duration-medium) var(--easing-standard);
+}
+
+.accordion-item.isOpen .accordion-content {
+	opacity: 1;
+}

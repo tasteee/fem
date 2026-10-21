@@ -1,0 +1,95 @@
+:host {
+	display: block;
+	min-width: 0;
+}
+
+.table-scroll {
+	overflow-x: auto;
+}
+
+.table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	font-size: var(--font-size-small);
+}
+
+.table-cell {
+	height: var(--control-height-medium);
+	padding: 0 var(--space-3);
+	text-align: left;
+	white-space: nowrap;
+}
+
+thead .table-cell {
+	color: var(--text-muted);
+	font-weight: var(--font-weight-act);
+}
+
+/* No lines. Every other row takes the inset fill, */
+/* with round ends. */
+.table-row:nth-child(odd) > .table-cell {
+	background: var(--surface-inset);
+}
+
+.table-row > .table-cell:first-child {
+	border-radius: var(--radius-small) 0 0 var(--radius-small);
+}
+
+.table-row > .table-cell:last-child {
+	border-radius: 0 var(--radius-small) var(--radius-small) 0;
+}
+
+.table-cell.isCenter {
+	text-align: center;
+}
+
+.table-cell.isEnd {
+	text-align: right;
+}
+
+td.table-cell.isNumeric {
+	font-family: var(--font-family-numeric);
+	font-variant-numeric: tabular-nums;
+}
+
+.table-sort {
+	color: inherit;
+	font-weight: inherit;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-1);
+}
+
+.table-sort > .icon {
+	--icon-size: 14px;
+	opacity: 0;
+	transition:
+		opacity var(--duration-fast) var(--easing-standard),
+		transform var(--duration-medium) var(--easing-standard);
+}
+
+.table-sort.isSorted {
+	color: var(--text-strong);
+}
+
+.table-sort.isSorted > .icon {
+	opacity: 1;
+	transform: rotate(180deg);
+}
+
+.table-sort.isSorted.isDescending > .icon {
+	transform: rotate(0deg);
+}
+
+@media (hover: hover) {
+	.table-sort:not(.isSorted):hover > .icon {
+		opacity: 0.5;
+	}
+}
+
+.table-empty {
+	padding: var(--space-6);
+	color: var(--text-muted);
+	text-align: center;
+}

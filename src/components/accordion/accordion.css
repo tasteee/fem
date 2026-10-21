@@ -1,0 +1,10 @@
+:host {
+	display: flex;
+}
+
+.accordion {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}

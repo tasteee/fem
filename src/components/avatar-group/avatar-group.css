@@ -1,0 +1,37 @@
+:host {
+	display: inline-flex;
+}
+
+/* Each avatar is cut out of the one before it by a */
+/* ring in the color of the surface behind the group. */
+/* Set --avatar-ring when the group sits on a */
+/* different surface. */
+.avatar-group {
+	--avatar-ring: var(--surface-card);
+	display: flex;
+	align-items: center;
+}
+
+.avatar-group > ::slotted(fem-avatar) {
+	border-radius: var(--radius-pill);
+	outline: var(--space-hairline) solid var(--avatar-ring);
+}
+
+.avatar-group > ::slotted(fem-avatar:not(:first-child)) {
+	margin-left: calc(var(--avatar-medium) * -0.28);
+}
+
+.avatar-group-overflow {
+	width: var(--avatar-medium);
+	height: var(--avatar-medium);
+	margin-left: calc(var(--avatar-medium) * -0.28);
+	border-radius: var(--radius-pill);
+	outline: var(--space-hairline) solid var(--avatar-ring);
+	background: var(--surface-control);
+	color: var(--text-strong);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	display: grid;
+	place-items: center;
+	flex-shrink: 0;
+}
