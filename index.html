@@ -164,6 +164,7 @@
 					<fem-button>Button</fem-button>
 					<fem-switch label="Switch" checked></fem-switch>
 					<fem-checkbox label="Checkbox" checked></fem-checkbox>
+					<fem-slider label="Slider" value="40"></fem-slider>
 				</div>
 			</section>
 
@@ -302,7 +303,9 @@
 						</fem-select>
 					</fem-field>
 
-					<fem-slider name="volume" label="Volume" value="60"></fem-slider>
+					<fem-field label="Volume">
+						<fem-slider name="volume" value="60" show-value></fem-slider>
+					</fem-field>
 
 					<fem-field label="Public track" layout="inline">
 						<fem-switch name="public" checked></fem-switch>
@@ -421,9 +424,13 @@
 
 			<section class="docs-card">
 				<h2 class="docs-heading">Slider</h2>
-				<code class="docs-code">&lt;fem-slider value min max step label disabled&gt;</code>
-				<fem-slider label="Volume" value="60"></fem-slider>
-				<fem-slider label="Tempo" value="111" min="60" max="180"></fem-slider>
+				<code class="docs-code">&lt;fem-slider value min max step show-value disabled&gt;</code>
+				<fem-field label="Volume">
+					<fem-slider value="60" show-value></fem-slider>
+				</fem-field>
+				<fem-field label="Tempo" layout="inline">
+					<fem-slider value="111" min="60" max="180" show-value></fem-slider>
+				</fem-field>
 			</section>
 
 			<section class="docs-card">

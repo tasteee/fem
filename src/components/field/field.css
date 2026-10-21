@@ -73,6 +73,11 @@
 	display: flex;
 }
 
+/* Stacked controls take the full width of the field. */
+.field.isStacked .field-control ::slotted(*) {
+	flex: 1;
+}
+
 .field.isInline > .field-control {
 	justify-content: flex-end;
 }

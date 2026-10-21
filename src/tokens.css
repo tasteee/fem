@@ -127,6 +127,7 @@
 	--switch-thumb: 24px;
 	--slider-thumb: 24px;
 	--slider-track: 6px;
+	--slider-min-width: 160px;
 	--menu-min-width: 200px;
 	--popover-width: 280px;
 	--dialog-width: 340px;
@@ -207,6 +208,8 @@
 /*    accent or inverse when chosen. */
 /* 3. Shape: pills act, boxes hold. */
 /* 4. Labels belong to fem-field, never the control. */
+/*    A control's label attribute is only its */
+/*    accessible name, and fem-field fills it in. */
 /* 5. One focus ring, one press, one easing. */
 :root {
 	--field-gap: var(--space-2);

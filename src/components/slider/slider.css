@@ -1,5 +1,24 @@
 :host {
 	display: flex;
+	min-width: var(--slider-min-width);
+}
+
+.slider-row {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+/* The value reads as data, in the numeric face. Its */
+/* width is fixed so the track never jumps. */
+.slider-value {
+	min-width: 3ch;
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	font-variant-numeric: tabular-nums;
+	color: var(--text-muted);
+	text-align: right;
 }
 
 /* The visible track and thumb are drawn by hand. */
@@ -7,8 +26,10 @@
 /* handles touch, drag, and the keyboard. */
 .slider {
 	position: relative;
-	width: 100%;
-	height: var(--slider-thumb);
+	flex: 1;
+	/* A slider row is as tall as any other control, so */
+	/* it lines up with inputs and switches beside it. */
+	height: var(--control-height-medium);
 	display: flex;
 	align-items: center;
 }
@@ -30,7 +51,7 @@
 
 .slider-thumb {
 	position: absolute;
-	top: 0;
+	top: calc((100% - var(--slider-thumb)) / 2);
 	left: calc((100% - var(--slider-thumb)) * var(--slider-ratio));
 	width: var(--slider-thumb);
 	height: var(--slider-thumb);
