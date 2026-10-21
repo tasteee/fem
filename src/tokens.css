@@ -165,8 +165,10 @@
 
 /* ---------- motion ---------- */
 :root {
-	--duration-press-in: 40ms;
-	--duration-press-out: 90ms;
+	/* Press is near instant both ways. Snappy, never */
+	/* floaty. */
+	--duration-press-in: 20ms;
+	--duration-press-out: 50ms;
 	--duration-fast: 120ms;
 	--duration-medium: 240ms;
 	--duration-slow: 360ms;

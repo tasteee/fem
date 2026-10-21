@@ -1,6 +1,5 @@
 .tag {
-	padding: calc(var(--space-hairline) + var(--optical-nudge)) var(--space-2)
-		calc(var(--space-hairline) - var(--optical-nudge));
+	padding: var(--space-hairline) var(--space-2);
 	border-radius: var(--radius-small);
 	background: var(--surface-control);
 	font-size: var(--font-size-caption);
