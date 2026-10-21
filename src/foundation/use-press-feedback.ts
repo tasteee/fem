@@ -3,7 +3,7 @@ import type { Ref } from 'atomico'
 
 // A quick tap ends before the eye can see it, so
 // every press is held for a minimum time.
-const minimumPressMilliseconds = 70
+const minimumPressMilliseconds = 50
 const pressStartTimes = new WeakMap<HTMLElement, number>()
 
 const startPress = (element: HTMLElement) => {

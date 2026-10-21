@@ -7,7 +7,6 @@ import { focusItem, getEnabledItems, handleRovingKeyDown } from '../../foundatio
 import { focusableShadow, useFormControl } from '../../foundation/use-form-control'
 import { caretDownIcon } from '../../icons/generated'
 import { useFloatingPopover } from '../../foundation/use-floating-popover'
-import { usePressFeedback } from '../../foundation/use-press-feedback'
 import selectCss from './select.css?inline'
 
 export type SelectSizeT = 'small' | 'medium' | 'large'
@@ -31,7 +30,6 @@ export const Select = c(
 		const hostRef = useHost<HTMLElement>()
 		const triggerRef = useRef<HTMLButtonElement>()
 		const menuRef = useRef<HTMLDivElement>()
-		usePressFeedback(triggerRef)
 
 		const [value, setValue] = useProp<string>('value')
 		const [isOpen, setOpen] = useState(false)
@@ -113,8 +111,9 @@ export const Select = c(
 
 		const sizeClass = getModifierClass(props.size)
 		const placeholderClass = getFlagClass(!hasSelection, 'isPlaceholder')
+		const openClass = getFlagClass(isOpen, 'isOpen')
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
-		const triggerClassName = buildClassName(['select', 'isPressable', sizeClass, placeholderClass, disabledClass])
+		const triggerClassName = buildClassName(['select', sizeClass, placeholderClass, openClass, disabledClass])
 		const expandedLabel = String(isOpen)
 
 		return (

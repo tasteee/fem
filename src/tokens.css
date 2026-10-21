@@ -165,13 +165,20 @@
 
 /* ---------- motion ---------- */
 :root {
-	--duration-press-in: 60ms;
-	--duration-press-out: 120ms;
+	--duration-press-in: 40ms;
+	--duration-press-out: 90ms;
 	--duration-fast: 120ms;
 	--duration-medium: 240ms;
 	--duration-slow: 360ms;
 	--easing-standard: cubic-bezier(0.2, 0, 0, 1);
-	--press-scale: 0.975;
+	--press-scale: 0.97;
+}
+
+/* ---------- press ---------- */
+/* A tap shrinks fast and darkens. Openers like select */
+/* and menu triggers skip it: opening is the feedback. */
+:root {
+	--press-overlay: light-dark(oklch(0 0 0 / 0.1), oklch(0 0 0 / 0.28));
 }
 
 /* ---------- state ---------- */
@@ -179,6 +186,24 @@
 	--disabled-opacity: 0.4;
 	--focus-ring-width: 2px;
 	--focus-ring-offset: 2px;
+}
+
+/* ---------- control contract ---------- */
+/* Every control obeys these, so any two sit side by */
+/* side and look like one family: */
+/* 1. Height comes from the ladder: small, medium, large. */
+/*    Choice rows (switch, checkbox, radio) use it too. */
+/* 2. Fill steps: rest is inset, then control, then */
+/*    accent or inverse when chosen. */
+/* 3. Shape: pills act, boxes hold. */
+/* 4. Labels belong to fem-field, never the control. */
+/* 5. One focus ring, one press, one easing. */
+:root {
+	--field-gap: var(--space-2);
+	--field-inline-gap: var(--space-4);
+	--field-label-size: var(--font-size-small);
+	--field-label-weight: var(--font-weight-act);
+	--field-help-size: var(--font-size-small);
 }
 
 /* ---------- density ---------- */
