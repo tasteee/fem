@@ -10,7 +10,7 @@ Built with [Atomico](https://atomico.gitbook.io/doc) and shadow DOM.
 - **Depth from surface.** No shadows, no gradients, no structural borders.
 - **Color is earned.** Neutral first. Color means something.
 - **Weight signals role.** Regular to read, semibold to act, bold for titles.
-- **Roomy first.** Compact is opt-in, on any container.
+- **Compact first.** Roomy is opt-in, on any container.
 
 ## Use
 
@@ -225,12 +225,12 @@ All three work on the root or on any container.
 
 ```html
 <html theme="dark">
-	<section density="compact" style="--accent: var(--purple)">...</section>
+	<section density="roomy" style="--accent: var(--purple)">...</section>
 </html>
 ```
 
 - `theme`: `light` or `dark`. With no attribute, the system setting wins.
-- `density`: `compact`. Roomy is the default.
+- `density`: `roomy` or `compact`. Compact is the default. Roomy suits touch-first screens.
 - `--accent`: any color. Text on top of it picks dark or light by itself.
 - `temperature`: `pure` or `cool` grays. Root only. The default is cool in light and pure in dark.
 
