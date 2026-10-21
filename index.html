@@ -347,6 +347,38 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Nav</h2>
+				<code class="docs-code">&lt;fem-nav value label&gt; &lt;fem-nav-item value disabled&gt; slots: icon, end</code>
+				<fem-nav value="all" label="Notes">
+					<fem-nav-item value="all">
+						<fem-icon slot="icon" name="note"></fem-icon>All notes<span slot="end">128</span>
+					</fem-nav-item>
+					<fem-nav-item value="lyrics">
+						<fem-icon slot="icon" name="music-notes"></fem-icon>Lyrics<span slot="end">42</span>
+					</fem-nav-item>
+					<fem-nav-item value="ideas">
+						<fem-icon slot="icon" name="lightbulb"></fem-icon>Ideas<span slot="end">17</span>
+					</fem-nav-item>
+					<fem-nav-item value="trash">
+						<fem-icon slot="icon" name="trash"></fem-icon>Trash<span slot="end">3</span>
+					</fem-nav-item>
+				</fem-nav>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Tab bar</h2>
+				<code class="docs-code">&lt;fem-tab-bar value label&gt; &lt;fem-tab-bar-item value disabled&gt; slot: icon</code>
+				<div class="docs-phone">
+					<fem-tab-bar value="home" label="App">
+						<fem-tab-bar-item value="home"><fem-icon slot="icon" name="house"></fem-icon>Home</fem-tab-bar-item>
+						<fem-tab-bar-item value="search"><fem-icon slot="icon" name="magnifying-glass"></fem-icon>Search</fem-tab-bar-item>
+						<fem-tab-bar-item value="library"><fem-icon slot="icon" name="music-notes"></fem-icon>Library</fem-tab-bar-item>
+						<fem-tab-bar-item value="you"><fem-icon slot="icon" name="user"></fem-icon>You</fem-tab-bar-item>
+					</fem-tab-bar>
+				</div>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Tabs</h2>
 				<code class="docs-code">&lt;fem-tabs value&gt; &lt;fem-tab value disabled&gt;</code>
 

@@ -61,6 +61,24 @@ Rows and columns build every screen. No stacks, no clusters.
 - `wrap` lets a row wrap. `grow` makes a box fill the space left in its parent.
 - `fem-grid` takes `columns` (a count) or `min` (a minimum column width that fits as many as it can).
 
+## Navigation
+
+```html
+<fem-nav value="all" label="Notes">
+	<fem-nav-item value="all"><fem-icon slot="icon" name="note"></fem-icon>All notes<span slot="end">128</span></fem-nav-item>
+	<fem-nav-item value="ideas"><fem-icon slot="icon" name="lightbulb"></fem-icon>Ideas</fem-nav-item>
+</fem-nav>
+
+<fem-tab-bar value="home" label="App">
+	<fem-tab-bar-item value="home"><fem-icon slot="icon" name="house"></fem-icon>Home</fem-tab-bar-item>
+	<fem-tab-bar-item value="you"><fem-icon slot="icon" name="user"></fem-icon>You</fem-tab-bar-item>
+</fem-tab-bar>
+```
+
+- `fem-nav` is a vertical sidebar list. `fem-tab-bar` is the mobile bottom bar.
+- Both send `change` with the new `value`. Route from there.
+- The selected item gets `aria-current="page"`. Arrow keys move between items.
+
 ## Fields
 
 `fem-field` owns every label, help line, and error. Controls never draw their own.
@@ -87,7 +105,7 @@ Rows and columns build every screen. No stacks, no clusters.
 
 ## The slide
 
-Selection is a thing that moves. In tabs and segmented controls, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
+Selection is a thing that moves. In tabs, segmented controls, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
 
 ## Icons
 

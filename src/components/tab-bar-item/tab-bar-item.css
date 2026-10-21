@@ -1,0 +1,27 @@
+:host {
+	display: flex;
+}
+
+.tab-bar-item {
+	width: 100%;
+	height: var(--tab-bar-item-height);
+	border-radius: var(--radius-pill);
+	color: var(--text-muted);
+	font-size: var(--font-size-caption);
+	font-weight: var(--font-weight-act);
+	line-height: var(--line-height-tight);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-1);
+	transition: color var(--duration-slide) var(--easing-standard);
+}
+
+.tab-bar-item.isSelected {
+	color: var(--text-inverse);
+}
+
+.tab-bar-item-label {
+	white-space: nowrap;
+}

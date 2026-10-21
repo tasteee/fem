@@ -134,6 +134,7 @@
 	--avatar-medium: 44px;
 	--avatar-large: 96px;
 	--indicator-height: 3px;
+	--tab-bar-item-height: 56px;
 }
 
 /* ---------- type ---------- */
@@ -226,6 +227,7 @@
 	--switch-height: 24px;
 	--switch-thumb: 18px;
 	--slider-thumb: 18px;
+	--tab-bar-item-height: 48px;
 	--space-3: 8px;
 	--space-4: 12px;
 	--space-5: 14px;
