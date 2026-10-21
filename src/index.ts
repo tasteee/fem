@@ -11,6 +11,8 @@ import { Grid } from './components/grid/grid'
 import { Icon } from './components/icon/icon'
 import { Input } from './components/input/input'
 import { MenuItem } from './components/menu-item/menu-item'
+import { NavItem } from './components/nav-item/nav-item'
+import { Nav } from './components/nav/nav'
 import { Menu } from './components/menu/menu'
 import { Option } from './components/option/option'
 import { Progress } from './components/progress/progress'
@@ -22,6 +24,8 @@ import { Sheet } from './components/sheet/sheet'
 import { Slider } from './components/slider/slider'
 import { Swap } from './components/swap/swap'
 import { Switch } from './components/switch/switch'
+import { TabBarItem } from './components/tab-bar-item/tab-bar-item'
+import { TabBar } from './components/tab-bar/tab-bar'
 import { Tab } from './components/tab/tab'
 import { Tabs } from './components/tabs/tabs'
 import { Tag } from './components/tag/tag'
@@ -46,6 +50,8 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-input', Input],
 	['fem-menu', Menu],
 	['fem-menu-item', MenuItem],
+	['fem-nav', Nav],
+	['fem-nav-item', NavItem],
 	['fem-option', Option],
 	['fem-progress', Progress],
 	['fem-radio', Radio],
@@ -58,6 +64,8 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-swap', Swap],
 	['fem-switch', Switch],
 	['fem-tab', Tab],
+	['fem-tab-bar', TabBar],
+	['fem-tab-bar-item', TabBarItem],
 	['fem-tabs', Tabs],
 	['fem-tag', Tag],
 	['fem-toast', Toast],
@@ -76,5 +84,5 @@ export { Icon }
 export type { IconKindT, IconT } from './icons/icon-type'
 export { Avatar, Badge, Banner, Button, Checkbox, Chip, Dialog, Field, Input, Menu, MenuItem, Option, Progress }
 export { Radio, Segment, Segmented, Select, Sheet, Slider, Swap, Switch, Tab, Tabs, Tag, Toast }
-export { Tooltip, Box, Row, Column, Grid }
+export { Tooltip, Box, Row, Column, Grid, Nav, NavItem, TabBar, TabBarItem }
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'

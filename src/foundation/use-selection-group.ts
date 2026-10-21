@@ -1,5 +1,6 @@
 import { useEffect } from 'atomico'
 import { getEnabledItems, handleRovingKeyDown } from './roving-focus'
+import type { RovingOrientationT } from './roving-focus'
 
 // The host of a component is always present, unlike
 // a ref to an element it renders.
@@ -19,9 +20,10 @@ type SelectionGroupInputT = {
 	value: string | undefined
 	setValue: (value: string) => void
 	dispatchChange: () => void
+	orientation?: RovingOrientationT
 }
 
-// Shared by tabs and the segmented control: one item
+// Shared by every selection group: one item
 // is selected at a time, and the arrow keys move
 // between items.
 export const useSelectionGroup = (input: SelectionGroupInputT): SelectionGroupT => {
@@ -46,7 +48,8 @@ export const useSelectionGroup = (input: SelectionGroupInputT): SelectionGroupT 
 
 	const handleKeyDown = (event: KeyboardEvent) => {
 		const enabledItems = getEnabledItems(input.hostRef.current, input.itemTagName)
-		handleRovingKeyDown(event, enabledItems, 'horizontal')
+		const orientation = input.orientation ?? 'horizontal'
+		handleRovingKeyDown(event, enabledItems, orientation)
 	}
 
 	return { syncItems, handleClick, handleKeyDown }

@@ -96,3 +96,10 @@ body {
 	font-weight: var(--font-weight-act);
 	text-align: center;
 }
+
+/* A stand-in phone screen behind the tab bar. */
+.docs-phone {
+	padding: var(--space-3);
+	border-radius: var(--radius-container);
+	background: var(--surface-inset);
+}

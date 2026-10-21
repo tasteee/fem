@@ -25,7 +25,10 @@ const docsIcons = [
 	icons.houseIcon,
 	icons.pushPinIcon,
 	icons.dotsThreeIcon,
-	icons.imageIcon
+	icons.imageIcon,
+	icons.noteIcon,
+	icons.lightbulbIcon,
+	icons.userIcon
 ]
 
 registerIcons(docsIcons)
