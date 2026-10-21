@@ -124,6 +124,52 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Combobox</h2>
+				<code class="docs-code">&lt;fem-combobox value name placeholder label empty-text size required disabled&gt; &lt;fem-option value&gt;</code>
+				<fem-field label="Key">
+					<fem-combobox placeholder="Type a key" value="d-minor">
+						<fem-option value="c-major">C major</fem-option>
+						<fem-option value="c-minor">C minor</fem-option>
+						<fem-option value="d-minor">D minor</fem-option>
+						<fem-option value="e-minor">E minor</fem-option>
+						<fem-option value="f-minor">F minor</fem-option>
+						<fem-option value="g-major">G major</fem-option>
+						<fem-option value="a-minor">A minor</fem-option>
+					</fem-combobox>
+				</fem-field>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Date picker</h2>
+				<code class="docs-code">&lt;fem-date-picker value name min max locale week-start placeholder label&gt; &lt;fem-calendar value min max&gt;</code>
+				<fem-field label="Release date">
+					<fem-date-picker value="2026-11-13"></fem-date-picker>
+				</fem-field>
+				<fem-calendar value="2026-11-13"></fem-calendar>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Range slider</h2>
+				<code class="docs-code">&lt;fem-range-slider start end min max step show-value&gt; submits "start,end"</code>
+				<fem-field label="Tempo">
+					<fem-range-slider start="90" end="140" min="60" max="180" show-value></fem-range-slider>
+				</fem-field>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Collapsible nav</h2>
+				<code class="docs-code">&lt;fem-nav collapsed&gt; shows icons only</code>
+				<fem-row align-y="start" gap="4">
+					<fem-nav value="ideas" label="Notes collapsed" collapsed id="collapsible-nav">
+						<fem-nav-item value="all"><fem-icon slot="icon" name="note"></fem-icon>All notes<span slot="end">128</span></fem-nav-item>
+						<fem-nav-item value="ideas"><fem-icon slot="icon" name="lightbulb"></fem-icon>Ideas<span slot="end">17</span></fem-nav-item>
+						<fem-nav-item value="trash"><fem-icon slot="icon" name="trash"></fem-icon>Trash<span slot="end">3</span></fem-nav-item>
+					</fem-nav>
+					<fem-button size="small" kind="soft" data-toggle-collapsed="collapsible-nav">Toggle</fem-button>
+				</fem-row>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Breadcrumbs</h2>
 				<code class="docs-code">&lt;fem-breadcrumbs label&gt; &lt;fem-breadcrumb href&gt;</code>
 				<fem-breadcrumbs>

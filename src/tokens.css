@@ -130,6 +130,7 @@
 	--slider-min-width: 160px;
 	--menu-min-width: 200px;
 	--popover-width: 280px;
+	--calendar-day-size: 44px;
 	--dialog-width: 340px;
 	--sheet-width: 480px;
 	--handle-width: 40px;
@@ -238,6 +239,7 @@
 	--switch-thumb: 18px;
 	--slider-thumb: 18px;
 	--tab-bar-item-height: 48px;
+	--calendar-day-size: 36px;
 	--space-3: 8px;
 	--space-4: 12px;
 	--space-5: 14px;
@@ -272,6 +274,7 @@
 	--switch-thumb: 24px;
 	--slider-thumb: 24px;
 	--tab-bar-item-height: 56px;
+	--calendar-day-size: 44px;
 	--space-3: 12px;
 	--space-4: 16px;
 	--space-5: 20px;

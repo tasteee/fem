@@ -48,6 +48,10 @@ import { CheckboxGroup } from './components/checkbox-group/checkbox-group'
 import { EmptyState } from './components/empty-state/empty-state'
 import { Pagination } from './components/pagination/pagination'
 import { Table } from './components/table/table'
+import { Calendar } from './components/calendar/calendar'
+import { Combobox } from './components/combobox/combobox'
+import { DatePicker } from './components/date-picker/date-picker'
+import { RangeSlider } from './components/range-slider/range-slider'
 import { registerIcons } from './icons/registry'
 import { showToast } from './show-toast'
 
@@ -103,7 +107,11 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-checkbox-group', CheckboxGroup],
 	['fem-empty-state', EmptyState],
 	['fem-pagination', Pagination],
-	['fem-table', Table]
+	['fem-table', Table],
+	['fem-calendar', Calendar],
+	['fem-combobox', Combobox],
+	['fem-date-picker', DatePicker],
+	['fem-range-slider', RangeSlider]
 ]
 
 for (const element of elements) {
@@ -121,5 +129,6 @@ export { Radio, Segment, Segmented, Select, Sheet, Slider, Swap, Switch, Tab, Ta
 export { Tooltip, Box, Row, Column, Grid, Nav, NavItem, TabBar, TabBarItem }
 export { Card, Divider, Heading, Popover, RadioGroup, Skeleton, Spinner, Text }
 export { Accordion, AccordionItem, AvatarGroup, Breadcrumb, Breadcrumbs, CheckboxGroup, EmptyState, Pagination, Table }
+export { Calendar, Combobox, DatePicker, RangeSlider }
 export type { TableColumnT, TableRowT } from './components/table/table'
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'

@@ -1,0 +1,89 @@
+:host {
+	display: flex;
+}
+
+/* Holds a choice, so it is a box, like select. */
+.date-picker {
+	width: 100%;
+	height: var(--control-height-medium);
+	padding: 0 var(--space-3) 0 var(--space-4);
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	text-align: left;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-2);
+	transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+.date-picker.isOpen {
+	background: var(--surface-control);
+}
+
+.date-picker.isSmall {
+	height: var(--control-height-small);
+	font-size: var(--font-size-small);
+}
+
+.date-picker.isLarge {
+	height: var(--control-height-large);
+}
+
+.date-picker.isPlaceholder > .date-picker-label {
+	color: var(--text-muted);
+}
+
+.date-picker > .icon {
+	color: var(--text-muted);
+}
+
+.date-picker-label {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* The panel flips the theme, so the calendar inside */
+/* reads as the inverse, like menus and popovers. */
+.date-picker-panel {
+	position: fixed;
+	inset: auto;
+	top: var(--floating-top, 0);
+	left: var(--floating-left, 0);
+	margin: 0;
+	padding: var(--space-3);
+	border: 0;
+	border-radius: var(--radius-container);
+	background: var(--surface-card);
+	color: var(--text-strong);
+	opacity: 0;
+	transform: scale(0.96);
+	transform-origin: top left;
+	transition:
+		opacity var(--duration-medium) var(--easing-standard),
+		transform var(--duration-medium) var(--easing-standard),
+		display var(--duration-medium) allow-discrete,
+		overlay var(--duration-medium) allow-discrete;
+}
+
+.date-picker-panel.isDark {
+	color-scheme: dark;
+}
+
+.date-picker-panel.isLight {
+	color-scheme: light;
+}
+
+.date-picker-panel:popover-open {
+	display: flex;
+	opacity: 1;
+	transform: scale(1);
+}
+
+@starting-style {
+	.date-picker-panel:popover-open {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+}

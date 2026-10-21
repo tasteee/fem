@@ -2,24 +2,12 @@ import { c, useProp, useRef } from 'atomico'
 import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
+import { getEffectiveTheme } from '../../foundation/get-effective-theme'
 import { useFloatingPopover } from '../../foundation/use-floating-popover'
 import type { FloatingAlignmentT, FloatingPlacementT } from '../../foundation/position-floating'
 import popoverCss from './popover.css?inline'
 
 const popoverSheet = createStyleSheet(popoverCss)
-
-// The theme in effect at an element: the nearest
-// theme attribute, or else the system setting.
-const getEffectiveTheme = (element: HTMLElement): 'light' | 'dark' => {
-	const themedAncestor = element.closest('[theme]')
-	const themeValue = themedAncestor?.getAttribute('theme')
-	const isExplicitDark = themeValue === 'dark'
-	if (isExplicitDark) return 'dark'
-	const isExplicitLight = themeValue === 'light'
-	if (isExplicitLight) return 'light'
-	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-	return prefersDark ? 'dark' : 'light'
-}
 
 // A floating panel for any content: a short form, a
 // color picker, details. Like menus, it opens in the

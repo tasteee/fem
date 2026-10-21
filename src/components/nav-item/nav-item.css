@@ -51,3 +51,15 @@
 .nav-item-end:not(:has(*)) {
 	display: contents;
 }
+
+/* ---------- collapsed ---------- */
+.nav-item.isCollapsed {
+	width: var(--control-height-medium);
+	padding: 0;
+	justify-content: center;
+}
+
+.nav-item.isCollapsed > .nav-item-label,
+.nav-item.isCollapsed > .nav-item-end {
+	display: none;
+}

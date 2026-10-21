@@ -230,7 +230,8 @@ button {
 	gap: var(--space-3);
 }
 
-.floating-row.isSelected {
+.floating-row.isSelected,
+.floating-row.isActive {
 	background: var(--row-highlight);
 }
 

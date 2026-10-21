@@ -152,6 +152,26 @@ Rows and columns build every screen. No stacks, no clusters.
 - `fem-tag removable`: shows an x and sends `remove`.
 - `fem-checkbox-group`: shares a `name` and a `label`. Each checked box submits its own value.
 
+## Pickers
+
+```html
+<fem-combobox placeholder="Type a key">
+	<fem-option value="d-minor">D minor</fem-option>
+	<fem-option value="f-minor">F minor</fem-option>
+</fem-combobox>
+
+<fem-date-picker value="2026-11-13" min="2026-10-01"></fem-date-picker>
+<fem-calendar value="2026-11-13"></fem-calendar>
+
+<fem-range-slider start="90" end="140" min="60" max="180" show-value></fem-range-slider>
+```
+
+- `fem-combobox`: typing filters the options. Arrow keys move, Enter picks, Escape closes. Works in forms like `fem-select`.
+- `fem-date-picker`: a box like select that opens `fem-calendar` in the inverse theme. Values are ISO dates. `min`, `max`, `locale`, `week-start` (0 is Sunday).
+- `fem-calendar`: one month, standalone. The chosen day slides. Arrow keys move by day and week, Page Up and Page Down by month.
+- `fem-range-slider`: two thumbs that can't cross. Submits `"start,end"`.
+- `fem-nav collapsed`: icons only. Each label moves into the item's accessible name and hover title.
+
 ## Fields
 
 `fem-field` owns every label, help line, and error. Controls never draw their own.
@@ -179,7 +199,7 @@ Rows and columns build every screen. No stacks, no clusters.
 
 ## The slide
 
-Selection is a thing that moves. In tabs, segmented controls, list radio groups, pagination, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
+Selection is a thing that moves. In tabs, segmented controls, list radio groups, pagination, the calendar, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
 
 ## Icons
 
