@@ -37,6 +37,8 @@ export const Slider = c(
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
 		const className = buildClassName(['slider', disabledClass])
 
+		const valueLabel = props.showValue ? <span class='slider-value'>{currentValue}</span> : null
+
 		const handleInput = (event: Event) => {
 			const inputElement = event.currentTarget as HTMLInputElement
 			setValue(Number(inputElement.value))
@@ -48,24 +50,27 @@ export const Slider = c(
 
 		return (
 			<host shadowDom={focusableShadow}>
-				<div class={className} style={ratioStyle}>
-					<span class='slider-track'>
-						<span class='slider-fill'></span>
-					</span>
-					<input
-						ref={inputRef}
-						class='slider-input'
-						type='range'
-						min={props.min}
-						max={props.max}
-						step={props.step}
-						value={currentValue}
-						disabled={props.disabled}
-						aria-label={props.label}
-						oninput={handleInput}
-						onchange={handleChange}
-					/>
-					<span class='slider-thumb'></span>
+				<div class='slider-row'>
+					<div class={className} style={ratioStyle}>
+						<span class='slider-track'>
+							<span class='slider-fill'></span>
+						</span>
+						<input
+							ref={inputRef}
+							class='slider-input'
+							type='range'
+							min={props.min}
+							max={props.max}
+							step={props.step}
+							value={currentValue}
+							disabled={props.disabled}
+							aria-label={props.label}
+							oninput={handleInput}
+							onchange={handleChange}
+						/>
+						<span class='slider-thumb'></span>
+					</div>
+					{valueLabel}
 				</div>
 			</host>
 		)
@@ -79,6 +84,7 @@ export const Slider = c(
 			max: { type: Number, value: (): number => 100 },
 			step: { type: Number, value: (): number => 1 },
 			label: String,
+			showValue: { type: Boolean, reflect: true },
 			disabled: { type: Boolean, reflect: true }
 		},
 		styles: [foundationSheet, sliderSheet]

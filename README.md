@@ -139,6 +139,7 @@ Rows and columns build every screen. No stacks, no clusters.
 
 - `layout`: `stacked` (default) puts the label above. `inline` puts it left, control right.
 - `error` replaces the help line and marks the control `invalid`.
+- Controls never draw a visible label. Their `label` attribute is only the accessible name, and `fem-field` fills it in.
 - The label becomes the control's accessible name. Tapping it focuses the control, or toggles a switch or checkbox.
 
 ## Press
