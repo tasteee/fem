@@ -1,0 +1,56 @@
+.popover-anchor {
+	display: inline-flex;
+
+	/* The trigger opens a panel, so it skips the press. */
+	--press-scale: 1;
+	--press-overlay: transparent;
+}
+
+/* Opens in the browser's top layer, so nothing can */
+/* clip it. The panel flips the theme, so its surfaces */
+/* and every component inside read as the inverse. */
+.popover-panel {
+	position: fixed;
+	inset: auto;
+	top: var(--floating-top, 0);
+	left: var(--floating-left, 0);
+	width: var(--popover-width);
+	max-width: calc(100vw - var(--space-8));
+	margin: 0;
+	padding: var(--space-4);
+	border: 0;
+	border-radius: var(--radius-container);
+	background: var(--surface-card);
+	color: var(--text-strong);
+	flex-direction: column;
+	gap: var(--space-3);
+	opacity: 0;
+	transform: scale(0.96);
+	transform-origin: top left;
+	transition:
+		opacity var(--duration-medium) var(--easing-standard),
+		transform var(--duration-medium) var(--easing-standard),
+		display var(--duration-medium) allow-discrete,
+		overlay var(--duration-medium) allow-discrete;
+}
+
+.popover-panel.isDark {
+	color-scheme: dark;
+}
+
+.popover-panel.isLight {
+	color-scheme: light;
+}
+
+.popover-panel:popover-open {
+	display: flex;
+	opacity: 1;
+	transform: scale(1);
+}
+
+@starting-style {
+	.popover-panel:popover-open {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+}

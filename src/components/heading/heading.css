@@ -1,0 +1,31 @@
+:host {
+	display: block;
+}
+
+/* Titles are bold, tight, and balanced. */
+.heading {
+	color: var(--text-strong);
+	font-weight: var(--font-weight-title);
+	line-height: var(--line-height-tight);
+	letter-spacing: -0.01em;
+	text-wrap: balance;
+}
+
+.heading.isDisplay {
+	font-size: var(--font-size-display);
+	letter-spacing: -0.02em;
+}
+
+.heading.isTitle {
+	font-size: var(--font-size-title);
+	letter-spacing: -0.02em;
+}
+
+.heading.isHeading {
+	font-size: var(--font-size-heading);
+}
+
+.heading.isLarge {
+	font-size: var(--font-size-large);
+	letter-spacing: 0;
+}

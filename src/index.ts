@@ -31,6 +31,14 @@ import { Tabs } from './components/tabs/tabs'
 import { Tag } from './components/tag/tag'
 import { Toast } from './components/toast/toast'
 import { Tooltip } from './components/tooltip/tooltip'
+import { Card } from './components/card/card'
+import { Divider } from './components/divider/divider'
+import { Heading } from './components/heading/heading'
+import { Popover } from './components/popover/popover'
+import { RadioGroup } from './components/radio-group/radio-group'
+import { Skeleton } from './components/skeleton/skeleton'
+import { Spinner } from './components/spinner/spinner'
+import { Text } from './components/text/text'
 import { registerIcons } from './icons/registry'
 import { showToast } from './show-toast'
 
@@ -69,7 +77,15 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-tabs', Tabs],
 	['fem-tag', Tag],
 	['fem-toast', Toast],
-	['fem-tooltip', Tooltip]
+	['fem-tooltip', Tooltip],
+	['fem-card', Card],
+	['fem-divider', Divider],
+	['fem-heading', Heading],
+	['fem-popover', Popover],
+	['fem-radio-group', RadioGroup],
+	['fem-skeleton', Skeleton],
+	['fem-spinner', Spinner],
+	['fem-text', Text]
 ]
 
 for (const element of elements) {
@@ -85,4 +101,5 @@ export type { IconKindT, IconT } from './icons/icon-type'
 export { Avatar, Badge, Banner, Button, Checkbox, Chip, Dialog, Field, Input, Menu, MenuItem, Option, Progress }
 export { Radio, Segment, Segmented, Select, Sheet, Slider, Swap, Switch, Tab, Tabs, Tag, Toast }
 export { Tooltip, Box, Row, Column, Grid, Nav, NavItem, TabBar, TabBarItem }
+export { Card, Divider, Heading, Popover, RadioGroup, Skeleton, Spinner, Text }
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'

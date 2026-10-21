@@ -1,0 +1,32 @@
+:host {
+	display: flex;
+}
+
+.radio-group {
+	position: relative;
+	isolation: isolate;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ---------- plain ---------- */
+/* A column of normal radios. Nothing slides. */
+.radio-group.isPlain > .radio-group-indicator {
+	display: none;
+}
+
+/* ---------- list ---------- */
+/* Rows in one inset box, with a sliding fill. */
+.radio-group.isList {
+	padding: var(--space-1);
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	gap: var(--space-hairline);
+}
+
+.radio-group-indicator {
+	z-index: -1;
+	border-radius: var(--radius-small);
+	background: var(--surface-inverse);
+}

@@ -61,6 +61,50 @@ Rows and columns build every screen. No stacks, no clusters.
 - `wrap` lets a row wrap. `grow` makes a box fill the space left in its parent.
 - `fem-grid` takes `columns` (a count) or `min` (a minimum column width that fits as many as it can).
 
+## Type, surfaces, loading
+
+```html
+<fem-heading level="2">Library</fem-heading>
+<fem-text size="small" color="muted">Last edited today</fem-text>
+<fem-text numeric>1:11</fem-text>
+
+<fem-card padding="5" gap="4">...</fem-card>
+<fem-divider></fem-divider>
+
+<fem-spinner></fem-spinner>
+<fem-skeleton lines="3"></fem-skeleton>
+```
+
+- `fem-heading`: `level` 1 to 6 sets the semantics and a natural size. `size` (`display`, `title`, `heading`, `large`) overrides the look.
+- `fem-text`: `size`, `weight`, `color`, plus `numeric` for the mono face and `truncate`.
+- `fem-card`: `surface` (`card` or `inset`), `padding`, `gap`. It stacks children like a column.
+- `fem-divider`: a filled bar, not a border. `orientation` `horizontal` or `vertical`.
+- `fem-skeleton`: `shape` (`text`, `box`, `circle`), `lines`, `width`, `height`. It pulses. No shimmer gradient.
+
+## Popover
+
+```html
+<fem-popover label="Rename track">
+	<fem-button slot="trigger">Rename</fem-button>
+	<fem-input value="safeword"></fem-input>
+</fem-popover>
+```
+
+- Opens in the inverse theme, like menus, so it stands off the page with no shadow. Every fem component inside flips with it.
+- `placement`: `below` or `above`. `alignment`: `start` or `center`. `open` opens it from code.
+
+## Radio group
+
+```html
+<fem-radio-group name="key" value="d-minor" label="Key" kind="list">
+	<fem-radio value="c-minor">C minor<span slot="end">3♭</span></fem-radio>
+	<fem-radio value="d-minor">D minor</fem-radio>
+</fem-radio-group>
+```
+
+- Owns the shared `name`, the checked radio, and arrow keys.
+- `kind="plain"` is a column of radios. `kind="list"` makes each radio a row with the sliding fill.
+
 ## Navigation
 
 ```html
@@ -105,7 +149,7 @@ Rows and columns build every screen. No stacks, no clusters.
 
 ## The slide
 
-Selection is a thing that moves. In tabs, segmented controls, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
+Selection is a thing that moves. In tabs, segmented controls, list radio groups, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
 
 ## Icons
 

@@ -1,0 +1,21 @@
+:host {
+	display: flex;
+	align-self: stretch;
+}
+
+.divider {
+	flex: 1;
+	border-radius: var(--radius-pill);
+	/* One step above inset, so it reads on cards and */
+	/* inset surfaces alike. */
+	background: var(--surface-control);
+}
+
+.divider.isHorizontal {
+	height: var(--space-hairline);
+}
+
+.divider.isVertical {
+	width: var(--space-hairline);
+	min-height: var(--icon-size);
+}

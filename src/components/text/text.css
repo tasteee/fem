@@ -1,0 +1,85 @@
+:host {
+	display: inline;
+	min-width: 0;
+}
+
+:host([truncate]) {
+	display: block;
+}
+
+.text {
+	font-size: var(--font-size-medium);
+	line-height: var(--line-height);
+}
+
+/* ---------- size ---------- */
+.text.isCaption {
+	font-size: var(--font-size-caption);
+}
+
+.text.isSmall {
+	font-size: var(--font-size-small);
+}
+
+.text.isLarge {
+	font-size: var(--font-size-large);
+}
+
+/* ---------- weight ---------- */
+.text.isRegular {
+	font-weight: var(--font-weight-read);
+}
+
+.text.isMedium {
+	font-weight: var(--font-weight-medium);
+}
+
+.text.isSemibold {
+	font-weight: var(--font-weight-act);
+}
+
+.text.isBold {
+	font-weight: var(--font-weight-title);
+}
+
+/* ---------- color ---------- */
+.text.isStrong {
+	color: var(--text-strong);
+}
+
+.text.isMuted {
+	color: var(--text-muted);
+}
+
+.text.isAccent {
+	color: var(--accent);
+}
+
+.text.isDanger {
+	color: var(--danger);
+}
+
+.text.isSuccess {
+	color: var(--success);
+}
+
+.text.isWarning {
+	color: var(--warning);
+}
+
+.text.isInfo {
+	color: var(--info);
+}
+
+/* ---------- flags ---------- */
+.text.isNumeric {
+	font-family: var(--font-family-numeric);
+	font-variant-numeric: tabular-nums;
+}
+
+.text.isTruncated {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
