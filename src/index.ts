@@ -1,11 +1,13 @@
 import { Avatar } from './components/avatar/avatar'
 import { Badge } from './components/badge/badge'
 import { Banner } from './components/banner/banner'
+import { Box, Column, Row } from './components/box/box'
 import { Button } from './components/button/button'
 import { Checkbox } from './components/checkbox/checkbox'
 import { Chip } from './components/chip/chip'
 import { Dialog } from './components/dialog/dialog'
 import { Field } from './components/field/field'
+import { Grid } from './components/grid/grid'
 import { Icon } from './components/icon/icon'
 import { Input } from './components/input/input'
 import { MenuItem } from './components/menu-item/menu-item'
@@ -32,11 +34,14 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-avatar', Avatar],
 	['fem-badge', Badge],
 	['fem-banner', Banner],
+	['fem-box', Box],
 	['fem-button', Button],
 	['fem-checkbox', Checkbox],
 	['fem-chip', Chip],
+	['fem-column', Column],
 	['fem-dialog', Dialog],
 	['fem-field', Field],
+	['fem-grid', Grid],
 	['fem-icon', Icon],
 	['fem-input', Input],
 	['fem-menu', Menu],
@@ -44,6 +49,7 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-option', Option],
 	['fem-progress', Progress],
 	['fem-radio', Radio],
+	['fem-row', Row],
 	['fem-segment', Segment],
 	['fem-segmented', Segmented],
 	['fem-select', Select],
@@ -70,4 +76,5 @@ export { Icon }
 export type { IconKindT, IconT } from './icons/icon-type'
 export { Avatar, Badge, Banner, Button, Checkbox, Chip, Dialog, Field, Input, Menu, MenuItem, Option, Progress }
 export { Radio, Segment, Segmented, Select, Sheet, Slider, Swap, Switch, Tab, Tabs, Tag, Toast }
-export { Tooltip }
+export { Tooltip, Box, Row, Column, Grid }
+export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'
