@@ -1,9 +1,11 @@
 import { c, useEvent, useHost, useProp, useRef } from 'atomico'
-import { buildClassName, getFlagClass } from '../../foundation/class-names'
+import { buildClassName, getFlagClass, getModifierClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
 import { focusableShadow, useFormControl } from '../../foundation/use-form-control'
 import radioCss from './radio.css?inline'
+
+export type RadioKindT = 'plain' | 'row'
 
 type RadioElementT = HTMLElement & { checked: boolean; name: string }
 
@@ -48,7 +50,8 @@ export const Radio = c(
 
 		const checkedClass = getFlagClass(isChecked, 'isChecked')
 		const disabledClass = getFlagClass(props.disabled, 'isDisabled')
-		const className = buildClassName(['choice', 'radio', checkedClass, disabledClass])
+		const kindClass = getModifierClass(props.kind)
+		const className = buildClassName(['choice', 'radio', kindClass, checkedClass, disabledClass])
 		const checkedLabel = String(Boolean(isChecked))
 
 		const handleClick = () => {
@@ -74,6 +77,9 @@ export const Radio = c(
 					<span class='choice-label'>
 						<slot></slot>
 					</span>
+					<span class='radio-end'>
+						<slot name='end'></slot>
+					</span>
 				</button>
 			</host>
 		)
@@ -84,6 +90,7 @@ export const Radio = c(
 			name: { type: String, reflect: true, value: (): string => '' },
 			value: { type: String, reflect: true, value: (): string => '' },
 			checked: { type: Boolean, reflect: true },
+			kind: { type: String, reflect: true, value: (): RadioKindT => 'plain' },
 			disabled: { type: Boolean, reflect: true }
 		},
 		styles: [foundationSheet, radioSheet]

@@ -87,19 +87,3 @@
 .button.isGhost.isNeutral {
 	color: var(--text-strong);
 }
-
-/* ---------- loading ---------- */
-.spinner {
-	width: var(--spinner-size);
-	height: var(--spinner-size);
-	border-radius: var(--radius-pill);
-	border: var(--space-hairline) solid currentColor;
-	border-top-color: transparent;
-	animation: spin 700ms linear infinite;
-}
-
-@keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
-}

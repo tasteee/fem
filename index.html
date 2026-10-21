@@ -22,6 +22,76 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Type</h2>
+				<code class="docs-code">&lt;fem-heading level size&gt; &lt;fem-text size weight color numeric truncate&gt;</code>
+				<fem-heading level="1">Display</fem-heading>
+				<fem-heading level="2">Title</fem-heading>
+				<fem-heading level="3">Heading</fem-heading>
+				<fem-heading level="4">Large</fem-heading>
+				<fem-text>Body text reads at the regular weight.</fem-text>
+				<fem-text size="small" color="muted">Small, muted text for help and meta.</fem-text>
+				<fem-row gap="3">
+					<fem-text numeric size="large" weight="medium">1:11</fem-text>
+					<fem-text numeric color="muted">128 BPM</fem-text>
+					<fem-text numeric color="accent">D minor</fem-text>
+				</fem-row>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Card and divider</h2>
+				<code class="docs-code">&lt;fem-card surface padding gap&gt; &lt;fem-divider orientation&gt;</code>
+				<fem-card surface="inset" padding="4" gap="3">
+					<fem-row align-x="between">
+						<fem-heading level="4">safeword</fem-heading>
+						<fem-badge color="accent">Draft</fem-badge>
+					</fem-row>
+					<fem-text size="small" color="muted">Dark pop in D minor. Last edited today.</fem-text>
+					<fem-divider></fem-divider>
+					<fem-row gap="3">
+						<fem-text numeric size="small">2:48</fem-text>
+						<fem-divider orientation="vertical"></fem-divider>
+						<fem-text numeric size="small">92 BPM</fem-text>
+					</fem-row>
+				</fem-card>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Loading</h2>
+				<code class="docs-code">&lt;fem-spinner size label&gt; &lt;fem-skeleton shape lines width height&gt;</code>
+				<fem-row gap="4">
+					<fem-spinner size="small"></fem-spinner>
+					<fem-spinner></fem-spinner>
+					<fem-spinner size="large"></fem-spinner>
+				</fem-row>
+				<fem-row gap="3" align-y="start">
+					<fem-skeleton shape="circle"></fem-skeleton>
+					<fem-column gap="2" grow>
+						<fem-skeleton width="40%"></fem-skeleton>
+						<fem-skeleton lines="3"></fem-skeleton>
+					</fem-column>
+				</fem-row>
+				<fem-skeleton shape="box" height="120px"></fem-skeleton>
+			</section>
+
+			<section class="docs-card">
+				<h2 class="docs-heading">Popover</h2>
+				<code class="docs-code">&lt;fem-popover open placement alignment label&gt; slot: trigger</code>
+				<code class="docs-code">Opens in the inverse theme. Everything inside flips with it.</code>
+				<fem-row>
+					<fem-popover label="Rename track">
+						<fem-button slot="trigger">Rename</fem-button>
+						<fem-field label="Track name">
+							<fem-input value="safeword"></fem-input>
+						</fem-field>
+						<fem-row gap="2" align-x="end">
+							<fem-button size="small" kind="ghost">Cancel</fem-button>
+							<fem-button size="small" color="accent">Save</fem-button>
+						</fem-row>
+					</fem-popover>
+				</fem-row>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Layout</h2>
 				<code class="docs-code">&lt;fem-row | fem-column | fem-box direction align-x align-y gap padding wrap grow&gt;</code>
 				<code class="docs-code">align-x is always left to right. align-y is always top to bottom. The box maps them to flexbox for you.</code>
@@ -333,10 +403,20 @@
 
 			<section class="docs-card">
 				<h2 class="docs-heading">Radio</h2>
-				<code class="docs-code">&lt;fem-radio name value checked disabled&gt;</code>
-				<fem-radio name="audience" value="anyone" checked>Anyone can comment</fem-radio>
-				<fem-radio name="audience" value="followers">Followers only</fem-radio>
-				<fem-radio name="audience" value="off">Comments off</fem-radio>
+				<code class="docs-code">&lt;fem-radio-group value name label kind&gt; &lt;fem-radio value disabled&gt; slot: end</code>
+				<fem-radio-group name="audience" value="anyone" label="Who can comment">
+					<fem-radio value="anyone">Anyone can comment</fem-radio>
+					<fem-radio value="followers">Followers only</fem-radio>
+					<fem-radio value="off">Comments off</fem-radio>
+				</fem-radio-group>
+
+				<code class="docs-code">kind="list": rows with a sliding fill</code>
+				<fem-radio-group name="key" value="d-minor" label="Key" kind="list">
+					<fem-radio value="c-minor">C minor<span slot="end">3♭</span></fem-radio>
+					<fem-radio value="d-minor">D minor<span slot="end">1♭</span></fem-radio>
+					<fem-radio value="f-minor">F minor<span slot="end">4♭</span></fem-radio>
+					<fem-radio value="a-minor">A minor<span slot="end">0</span></fem-radio>
+				</fem-radio-group>
 			</section>
 
 			<section class="docs-card">

@@ -113,6 +113,26 @@ button {
 	display: none;
 }
 
+/* ---------- spinner ---------- */
+/* Shared by fem-spinner and loading buttons. It takes */
+/* the text color around it. */
+.spinner {
+	display: block;
+	width: var(--spinner-size);
+	height: var(--spinner-size);
+	border-radius: var(--radius-pill);
+	border: var(--space-hairline) solid currentColor;
+	border-top-color: transparent;
+	flex-shrink: 0;
+	animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 /* ---------- choice ---------- */
 /* The shared row for switch, checkbox, and radio: */
 /* the control first, then its label. */
