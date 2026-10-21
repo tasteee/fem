@@ -88,6 +88,31 @@ button {
 	opacity: var(--disabled-opacity);
 }
 
+/* ---------- slide ---------- */
+/* The indicator behind or under the selected item in */
+/* a group. Its track must be positioned. */
+.slide-indicator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: var(--slide-width, 0px);
+	height: var(--slide-height, 0px);
+	transform: translate(var(--slide-x, 0px), var(--slide-y, 0px));
+	pointer-events: none;
+	transition:
+		transform var(--duration-slide) var(--easing-standard),
+		width var(--duration-slide) var(--easing-standard),
+		height var(--duration-slide) var(--easing-standard);
+}
+
+.slide-indicator.isInstant {
+	transition: none;
+}
+
+.slide-indicator.isHidden {
+	display: none;
+}
+
 /* ---------- choice ---------- */
 /* The shared row for switch, checkbox, and radio: */
 /* the control first, then its label. */

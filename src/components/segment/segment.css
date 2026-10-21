@@ -11,12 +11,11 @@
 	font-size: var(--font-size-small);
 	font-weight: var(--font-weight-act);
 	white-space: nowrap;
-	transition:
-		background-color var(--duration-fast) var(--easing-standard),
-		color var(--duration-fast) var(--easing-standard);
+	transition: color var(--duration-slide) var(--easing-standard);
 }
 
+/* The fill comes from the group's sliding indicator. */
+/* The text turns as the fill arrives. */
 .segment.isSelected {
-	background: var(--surface-inverse);
 	color: var(--text-inverse);
 }

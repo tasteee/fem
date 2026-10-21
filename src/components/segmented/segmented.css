@@ -3,6 +3,8 @@
 }
 
 .segment-group {
+	position: relative;
+	isolation: isolate;
 	width: 100%;
 	padding: var(--space-1);
 	border-radius: var(--radius-pill);
@@ -13,4 +15,11 @@
 
 .segment-group > ::slotted(*) {
 	flex: 1;
+}
+
+/* The selected fill slides between segments. */
+.segment-indicator {
+	z-index: -1;
+	border-radius: var(--radius-pill);
+	background: var(--surface-inverse);
 }

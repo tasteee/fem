@@ -81,9 +81,13 @@ Rows and columns build every screen. No stacks, no clusters.
 
 ## Press
 
-- Buttons, chips, and swaps shrink fast and darken while pressed.
-- Openers skip the press. A select steps up one fill while open. A menu trigger stays still.
+- Only buttons shrink and darken on a tap: `fem-button` and `fem-swap`. It's near instant: 20ms in, 50ms out.
+- Everything else answers by changing state. Chips select, tabs and segments slide, selects open, menu rows highlight.
 - Tune it with `--press-scale` and `--press-overlay` on any container.
+
+## The slide
+
+Selection is a thing that moves. In tabs and segmented controls, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
 
 ## Icons
 

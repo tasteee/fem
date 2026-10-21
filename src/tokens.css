@@ -174,11 +174,15 @@
 	--duration-slow: 360ms;
 	--easing-standard: cubic-bezier(0.2, 0, 0, 1);
 	--press-scale: 0.97;
+
+	/* The slide: selection indicators travel between */
+	/* choices. Snappy, on the standard curve. */
+	--duration-slide: 180ms;
 }
 
 /* ---------- press ---------- */
-/* A tap shrinks fast and darkens. Openers like select */
-/* and menu triggers skip it: opening is the feedback. */
+/* Only buttons shrink and darken on a tap. Everything */
+/* else answers by becoming selected, open, or active. */
 :root {
 	--press-overlay: light-dark(oklch(0 0 0 / 0.1), oklch(0 0 0 / 0.28));
 }
@@ -242,5 +246,6 @@
 		--duration-fast: 0ms;
 		--duration-medium: 0ms;
 		--duration-slow: 0ms;
+		--duration-slide: 0ms;
 	}
 }

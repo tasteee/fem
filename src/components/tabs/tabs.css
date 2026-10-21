@@ -3,8 +3,18 @@
 }
 
 .tab-list {
+	position: relative;
 	display: flex;
 	gap: var(--space-5);
 	overflow-x: auto;
 	scrollbar-width: none;
+}
+
+/* The underline slides between tabs. It takes the */
+/* tab's width and sits on its bottom edge. */
+.tab-indicator {
+	height: var(--indicator-height);
+	margin-top: calc(var(--slide-height, 0px) - var(--indicator-height));
+	border-radius: var(--radius-pill);
+	background: var(--text-strong);
 }
