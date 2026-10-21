@@ -22,6 +22,38 @@
 			</section>
 
 			<section class="docs-card">
+				<h2 class="docs-heading">Layout</h2>
+				<code class="docs-code">&lt;fem-row | fem-column | fem-box direction align-x align-y gap padding wrap grow&gt;</code>
+				<code class="docs-code">align-x is always left to right. align-y is always top to bottom. The box maps them to flexbox for you.</code>
+
+				<fem-row gap="2" align-x="between">
+					<fem-row gap="2">
+						<fem-avatar size="small" name="tasteink"></fem-avatar>
+						<fem-column>
+							<span>safeword</span>
+							<fem-tag>D minor</fem-tag>
+						</fem-column>
+					</fem-row>
+					<fem-button size="small" kind="soft">Open</fem-button>
+				</fem-row>
+
+				<fem-column gap="2" align-x="center" padding="4" class="docs-specimen">
+					<span>Centered column</span>
+					<fem-badge color="accent">align-x="center"</fem-badge>
+				</fem-column>
+
+				<code class="docs-code">&lt;fem-grid columns min gap&gt;</code>
+				<fem-grid min="120px" gap="2">
+					<div class="docs-tile">Pop</div>
+					<div class="docs-tile">Dark pop</div>
+					<div class="docs-tile">Electronic</div>
+					<div class="docs-tile">Acoustic</div>
+					<div class="docs-tile">R&amp;B</div>
+					<div class="docs-tile">Hip hop</div>
+				</fem-grid>
+			</section>
+
+			<section class="docs-card">
 				<h2 class="docs-heading">Field</h2>
 				<code class="docs-code">&lt;fem-field label help error layout&gt; wraps one control</code>
 				<code class="docs-code">layout: stacked (default) or inline. Tap the label to focus or toggle.</code>

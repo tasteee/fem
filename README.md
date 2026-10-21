@@ -38,6 +38,29 @@ Options take named values. States are bare flags.
 | `shape`   | `pill`, `circle`                                            |
 | flags     | `disabled`, `selected`, `checked`, `loading`, `invalid`     |
 
+## Layout
+
+Rows and columns build every screen. No stacks, no clusters.
+
+```html
+<fem-row gap="2" align-x="between">
+	<fem-column>
+		<span>safeword</span>
+		<fem-tag>D minor</fem-tag>
+	</fem-column>
+	<fem-button size="small">Open</fem-button>
+</fem-row>
+
+<fem-grid min="200px" gap="4">...</fem-grid>
+```
+
+- `fem-row` and `fem-column` are `fem-box` with the direction fixed. `fem-box direction="row|column"` when it changes.
+- `align-x` is always left to right, `align-y` always top to bottom: `start`, `center`, `end`, `stretch`, `between`. The box maps them to `justify-content` or `align-items` for its direction.
+- Defaults: a row centers items vertically. A column stretches them to its width.
+- `gap` and `padding` take space steps: `1`, `2`, `3`, `4`, `5`, `6`, `8`, `10`.
+- `wrap` lets a row wrap. `grow` makes a box fill the space left in its parent.
+- `fem-grid` takes `columns` (a count) or `min` (a minimum column width that fits as many as it can).
+
 ## Fields
 
 `fem-field` owns every label, help line, and error. Controls never draw their own.

@@ -84,3 +84,15 @@ body {
 .docs-row.isContract > fem-select {
 	flex: 1 1 140px;
 }
+
+.docs-specimen,
+.docs-tile {
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+}
+
+.docs-tile {
+	padding: var(--space-4);
+	font-weight: var(--font-weight-act);
+	text-align: center;
+}
