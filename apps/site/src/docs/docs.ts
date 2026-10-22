@@ -28,7 +28,14 @@ const docsIcons = [
 	icons.imageIcon,
 	icons.noteIcon,
 	icons.lightbulbIcon,
-	icons.userIcon
+	icons.userIcon,
+	icons.dotsSixVerticalIcon,
+	icons.skipBackIcon,
+	icons.skipForwardIcon,
+	icons.queueIcon,
+	icons.speakerHighIcon,
+	icons.shuffleIcon,
+	icons.repeatIcon
 ]
 
 registerIcons(docsIcons)

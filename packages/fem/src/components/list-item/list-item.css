@@ -1,0 +1,120 @@
+:host {
+	display: block;
+}
+
+/* A row holds content, so it is a rounded box. */
+.list-item {
+	position: relative;
+	min-height: var(--list-item-height);
+	padding: var(--space-2) var(--space-3);
+	border-radius: var(--radius-inset);
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+.list-item.isLarge {
+	min-height: var(--list-item-height-large);
+	gap: var(--space-4);
+}
+
+@media (hover: hover) {
+	.list-item.isInteractive:hover {
+		background: var(--surface-inset);
+	}
+}
+
+.list-item.isSelected {
+	background: var(--surface-inset);
+}
+
+/* The hit area fills the row. Content sits above it */
+/* but lets clicks fall through, except the trailing */
+/* actions, which take their own. */
+.list-item-hit {
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	cursor: pointer;
+}
+
+.list-item-hit:focus-visible {
+	outline-offset: calc(var(--focus-ring-width) * -1);
+}
+
+.list-item-leading,
+.list-item-body,
+.list-item-meta {
+	position: relative;
+	pointer-events: none;
+}
+
+/* Controls placed in the leading or meta slot, like */
+/* a drag handle or a checkbox, still take pointers. */
+::slotted([data-sortable-handle]),
+::slotted(button),
+::slotted(a),
+::slotted(fem-button),
+::slotted(fem-checkbox) {
+	pointer-events: auto;
+}
+
+.list-item-trailing {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+}
+
+.list-item-leading {
+	flex: none;
+	display: flex;
+}
+
+.list-item-body {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-hairline);
+}
+
+.list-item-label,
+.list-item-description {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.list-item-label {
+	color: var(--text-strong);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-tight);
+}
+
+.list-item-description {
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	line-height: var(--line-height-tight);
+}
+
+.list-item-description[hidden] {
+	display: none;
+}
+
+/* Meta is data, like a duration or a count, so it */
+/* uses the numeric face. */
+.list-item-meta {
+	flex: none;
+	color: var(--text-muted);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	font-variant-numeric: tabular-nums;
+}
+
+.list-item-leading.isEmpty,
+.list-item-meta.isEmpty,
+.list-item-trailing.isEmpty {
+	display: none;
+}

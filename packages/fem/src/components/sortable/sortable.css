@@ -1,0 +1,53 @@
+:host {
+	display: block;
+}
+
+.sortable {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sortable-gap);
+}
+
+/* Long press on touch must not open the system menu */
+/* or start a text selection. */
+::slotted(*) {
+	-webkit-touch-callout: none;
+}
+
+:host([data-dragging]) {
+	user-select: none;
+	cursor: grabbing;
+}
+
+/* While a drag is on, the other items glide aside. */
+::slotted([data-sortable-active]:not([data-sortable-dragging])) {
+	transition: transform var(--duration-slide) var(--easing-standard);
+}
+
+/* The dragged item rides above the rest. Flat: it */
+/* steps up one surface, no shadow. */
+::slotted([data-sortable-dragging]) {
+	position: relative;
+	z-index: 1;
+	border-radius: var(--radius-inset);
+	background: var(--surface-control);
+}
+
+::slotted([data-sortable-settling]) {
+	transition: transform var(--duration-slide) var(--easing-standard);
+}
+
+::slotted([data-sortable-grabbed]) {
+	border-radius: var(--radius-inset);
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+.sortable-status {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

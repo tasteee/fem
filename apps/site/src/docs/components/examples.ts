@@ -476,6 +476,81 @@ const displayExamples: Record<string, ExampleT> = {
 	}
 }
 
+const artwork = (seed: string): string => `https://picsum.photos/seed/${seed}/240/240`
+
+const listAndMediaExamples: Record<string, ExampleT> = {
+	'fem-list-item': {
+		group: 'Data display',
+		html: `<fem-column gap="0">
+	<fem-list-item interactive label="safeword" description="tasteink · Dark pop">
+		<fem-image slot="leading" src="${artwork('safeword')}" alt="" style="width: 40px"></fem-image>
+		<span slot="meta">3:12</span>
+		<fem-button slot="trailing" kind="ghost" shape="circle" size="small" label="More"><fem-icon name="dots-three"></fem-icon></fem-button>
+	</fem-list-item>
+	<fem-list-item interactive selected label="glass hours" description="tasteink · Ambient">
+		<fem-image slot="leading" src="${artwork('glass')}" alt="" style="width: 40px"></fem-image>
+		<span slot="meta">4:05</span>
+	</fem-list-item>
+	<fem-list-item label="Robin" description="Following">
+		<fem-avatar slot="leading" size="small" name="Robin"></fem-avatar>
+	</fem-list-item>
+</fem-column>`
+	},
+	'fem-image': {
+		group: 'Data display',
+		html: `<fem-grid min="120px" gap="3">
+	<fem-image src="${artwork('cover')}" alt="Cover art"></fem-image>
+	<fem-image src="${artwork('wide')}" ratio="16 / 9" radius="container" alt="Header"></fem-image>
+	<fem-image src="" alt="No artwork yet"></fem-image>
+</fem-grid>`
+	},
+	'fem-sortable': {
+		group: 'Data display',
+		html: `<fem-sortable move-nodes label="Playlist order" gap="0">
+	<fem-list-item label="safeword" description="Drag me, or Alt + arrow">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">3:12</span>
+	</fem-list-item>
+	<fem-list-item label="glass hours" description="tasteink">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">4:05</span>
+	</fem-list-item>
+	<fem-list-item label="low tide" description="tasteink">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">2:48</span>
+	</fem-list-item>
+	<fem-list-item label="northbound" description="tasteink">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">3:30</span>
+	</fem-list-item>
+</fem-sortable>`
+	},
+	'fem-textarea': {
+		group: 'Forms',
+		html: `<fem-field label="Bio" help="A line or two about your music.">
+	<fem-textarea autosize maxlength="160" placeholder="Making quiet songs in a loud city."></fem-textarea>
+</fem-field>`
+	},
+	'fem-file-upload': {
+		group: 'Forms',
+		html: `<fem-column gap="4">
+	<fem-file-upload multiple accept="audio/*,.mp3,.wav,.flac" description="MP3, WAV, or FLAC"></fem-file-upload>
+	<fem-file-upload kind="image" accept="image/*" label="Artwork" description="Square" style="width: 180px"></fem-file-upload>
+</fem-column>`
+	},
+	'fem-copy-field': {
+		group: 'Forms',
+		html: `<fem-copy-field shareable share-title="safeword" value="https://artisst.app/tasteink/safeword"></fem-copy-field>`
+	},
+	'fem-scrubber': {
+		group: 'Media',
+		html: `<fem-column gap="5">
+	<fem-scrubber time="sides" value="42" max="192" buffered="120"></fem-scrubber>
+	<fem-scrubber time="below" show-remaining value="95" max="245" buffered="245"></fem-scrubber>
+</fem-column>`
+	}
+}
+
 export const examplesByTag: Record<string, ExampleT> = {
 	...layoutExamples,
 	...typeExamples,
@@ -486,7 +561,8 @@ export const examplesByTag: Record<string, ExampleT> = {
 	...overlayExamples,
 	...navigationExamples,
 	...displayExamples,
-	...commandExamples
+	...commandExamples,
+	...listAndMediaExamples
 }
 
 // Tags that only make sense inside a parent show the
@@ -516,5 +592,6 @@ export const groupOrder = [
 	'Feedback',
 	'Overlays',
 	'Navigation',
-	'Data display'
+	'Data display',
+	'Media'
 ]

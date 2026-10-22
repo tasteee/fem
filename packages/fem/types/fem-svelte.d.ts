@@ -25,16 +25,20 @@ declare module 'svelte/elements' {
 		'fem-command-group': HTMLAttributes<HTMLElement> & Fem.FemCommandGroupPropsT & Fem.FemCommandGroupAttributesT
 		'fem-command-item': HTMLAttributes<HTMLElement> & Fem.FemCommandItemPropsT & Fem.FemCommandItemAttributesT
 		'fem-command-palette': HTMLAttributes<HTMLElement> & Fem.FemCommandPalettePropsT & Fem.FemCommandPaletteAttributesT
+		'fem-copy-field': HTMLAttributes<HTMLElement> & Fem.FemCopyFieldPropsT & Fem.FemCopyFieldAttributesT
 		'fem-date-picker': HTMLAttributes<HTMLElement> & Fem.FemDatePickerPropsT & Fem.FemDatePickerAttributesT
 		'fem-date-range-picker': HTMLAttributes<HTMLElement> & Fem.FemDateRangePickerPropsT & Fem.FemDateRangePickerAttributesT
 		'fem-dialog': HTMLAttributes<HTMLElement> & Fem.FemDialogPropsT & Fem.FemDialogAttributesT
 		'fem-divider': HTMLAttributes<HTMLElement> & Fem.FemDividerPropsT & Fem.FemDividerAttributesT
 		'fem-empty-state': HTMLAttributes<HTMLElement> & Fem.FemEmptyStatePropsT & Fem.FemEmptyStateAttributesT
 		'fem-field': HTMLAttributes<HTMLElement> & Fem.FemFieldPropsT & Fem.FemFieldAttributesT
+		'fem-file-upload': HTMLAttributes<HTMLElement> & Fem.FemFileUploadPropsT & Fem.FemFileUploadAttributesT
 		'fem-grid': HTMLAttributes<HTMLElement> & Fem.FemGridPropsT & Fem.FemGridAttributesT
 		'fem-heading': HTMLAttributes<HTMLElement> & Fem.FemHeadingPropsT & Fem.FemHeadingAttributesT
 		'fem-icon': HTMLAttributes<HTMLElement> & Fem.FemIconPropsT & Fem.FemIconAttributesT
+		'fem-image': HTMLAttributes<HTMLElement> & Fem.FemImagePropsT & Fem.FemImageAttributesT
 		'fem-input': HTMLAttributes<HTMLElement> & Fem.FemInputPropsT & Fem.FemInputAttributesT
+		'fem-list-item': HTMLAttributes<HTMLElement> & Fem.FemListItemPropsT & Fem.FemListItemAttributesT
 		'fem-menu': HTMLAttributes<HTMLElement> & Fem.FemMenuPropsT & Fem.FemMenuAttributesT
 		'fem-menu-item': HTMLAttributes<HTMLElement> & Fem.FemMenuItemPropsT & Fem.FemMenuItemAttributesT
 		'fem-nav': HTMLAttributes<HTMLElement> & Fem.FemNavPropsT & Fem.FemNavAttributesT
@@ -47,12 +51,14 @@ declare module 'svelte/elements' {
 		'fem-radio-group': HTMLAttributes<HTMLElement> & Fem.FemRadioGroupPropsT & Fem.FemRadioGroupAttributesT
 		'fem-range-slider': HTMLAttributes<HTMLElement> & Fem.FemRangeSliderPropsT & Fem.FemRangeSliderAttributesT
 		'fem-row': HTMLAttributes<HTMLElement> & Fem.FemRowPropsT & Fem.FemRowAttributesT
+		'fem-scrubber': HTMLAttributes<HTMLElement> & Fem.FemScrubberPropsT & Fem.FemScrubberAttributesT
 		'fem-segment': HTMLAttributes<HTMLElement> & Fem.FemSegmentPropsT & Fem.FemSegmentAttributesT
 		'fem-segmented': HTMLAttributes<HTMLElement> & Fem.FemSegmentedPropsT & Fem.FemSegmentedAttributesT
 		'fem-select': HTMLAttributes<HTMLElement> & Fem.FemSelectPropsT & Fem.FemSelectAttributesT
 		'fem-sheet': HTMLAttributes<HTMLElement> & Fem.FemSheetPropsT & Fem.FemSheetAttributesT
 		'fem-skeleton': HTMLAttributes<HTMLElement> & Fem.FemSkeletonPropsT & Fem.FemSkeletonAttributesT
 		'fem-slider': HTMLAttributes<HTMLElement> & Fem.FemSliderPropsT & Fem.FemSliderAttributesT
+		'fem-sortable': HTMLAttributes<HTMLElement> & Fem.FemSortablePropsT & Fem.FemSortableAttributesT
 		'fem-spinner': HTMLAttributes<HTMLElement> & Fem.FemSpinnerPropsT & Fem.FemSpinnerAttributesT
 		'fem-swap': HTMLAttributes<HTMLElement> & Fem.FemSwapPropsT & Fem.FemSwapAttributesT
 		'fem-switch': HTMLAttributes<HTMLElement> & Fem.FemSwitchPropsT & Fem.FemSwitchAttributesT
@@ -63,6 +69,7 @@ declare module 'svelte/elements' {
 		'fem-tabs': HTMLAttributes<HTMLElement> & Fem.FemTabsPropsT & Fem.FemTabsAttributesT
 		'fem-tag': HTMLAttributes<HTMLElement> & Fem.FemTagPropsT & Fem.FemTagAttributesT
 		'fem-text': HTMLAttributes<HTMLElement> & Fem.FemTextPropsT & Fem.FemTextAttributesT
+		'fem-textarea': HTMLAttributes<HTMLElement> & Fem.FemTextareaPropsT & Fem.FemTextareaAttributesT
 		'fem-toast': HTMLAttributes<HTMLElement> & Fem.FemToastPropsT & Fem.FemToastAttributesT
 		'fem-tooltip': HTMLAttributes<HTMLElement> & Fem.FemTooltipPropsT & Fem.FemTooltipAttributesT
 		'fem-tree': HTMLAttributes<HTMLElement> & Fem.FemTreePropsT & Fem.FemTreeAttributesT
