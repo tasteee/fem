@@ -14,7 +14,8 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				docs: 'index.html',
-				notes: 'notes/index.html'
+				notes: 'notes/index.html',
+				components: 'components/index.html'
 			}
 		}
 	}

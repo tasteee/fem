@@ -1,0 +1,193 @@
+/* The components site: a sidebar of every component */
+/* beside one page at a time. Built from fem itself. */
+
+body {
+	padding: 0;
+}
+
+.site {
+	min-height: 100dvh;
+	display: grid;
+	grid-template-columns: var(--site-sidebar-width) minmax(0, 1fr);
+	--site-sidebar-width: 248px;
+}
+
+.site-sidebar {
+	position: sticky;
+	top: 0;
+	height: 100dvh;
+	padding: var(--space-5) var(--space-3);
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+	scrollbar-width: thin;
+}
+
+.site-brand {
+	padding: 0 var(--space-3);
+	color: var(--text-strong);
+	font-size: var(--font-size-heading);
+	font-weight: var(--font-weight-title);
+	text-decoration: none;
+}
+
+.site-nav-group {
+	padding: var(--space-4) var(--space-4) var(--space-1);
+	color: var(--text-muted);
+	font-size: var(--font-size-caption);
+	font-weight: var(--font-weight-act);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.site-nav-group:first-child {
+	padding-top: 0;
+}
+
+.site-main {
+	min-width: 0;
+	padding: var(--space-5) var(--space-6) var(--space-10);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+}
+
+.site-header {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: var(--space-3);
+	flex-wrap: wrap;
+}
+
+.site-jump {
+	display: none;
+	flex: 1 1 220px;
+	min-width: 0;
+}
+
+.site-content {
+	width: 100%;
+	max-width: 880px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+}
+
+/* ---------- example ---------- */
+/* The live example sits on a card. Its code sits */
+/* right under it, on the inset surface. */
+.site-example {
+	border-radius: var(--radius-container);
+	background: var(--surface-card);
+	overflow: hidden;
+}
+
+.site-preview {
+	padding: var(--space-8) var(--space-6);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-3);
+}
+
+.site-preview > * {
+	max-width: 100%;
+}
+
+.site-preview > fem-field,
+.site-preview > fem-column,
+.site-preview > fem-row,
+.site-preview > fem-grid,
+.site-preview > fem-card,
+.site-preview > fem-table,
+.site-preview > fem-accordion,
+.site-preview > fem-radio-group,
+.site-preview > fem-checkbox-group,
+.site-preview > fem-empty-state,
+.site-preview > fem-progress,
+.site-preview > fem-tab-bar,
+.site-preview > fem-tabs,
+.site-preview > fem-segmented,
+.site-preview > fem-box {
+	align-self: stretch;
+}
+
+.site-preview > fem-nav {
+	width: 240px;
+}
+
+.site-code {
+	position: relative;
+	background: var(--surface-inset);
+}
+
+.site-code-bar {
+	padding: var(--space-2) var(--space-3) 0 var(--space-6);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.site-code pre {
+	margin: 0;
+	padding: var(--space-2) var(--space-6) var(--space-5);
+	overflow-x: auto;
+	color: var(--text-strong);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	line-height: 1.6;
+	tab-size: 2;
+}
+
+/* ---------- links ---------- */
+.site-link {
+	color: var(--text-strong);
+	font-weight: var(--font-weight-act);
+	text-decoration: none;
+	border-radius: var(--radius-check);
+}
+
+.site-link:hover {
+	color: var(--accent-link, var(--info));
+}
+
+.site-link-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2) var(--space-4);
+}
+
+/* ---------- small screens ---------- */
+/* The sidebar gives way to a search box at the top. */
+@media (max-width: 860px) {
+	.site {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.site-sidebar {
+		display: none;
+	}
+
+	.site-main {
+		padding: var(--space-4) max(var(--space-4), env(safe-area-inset-right)) var(--space-8)
+			max(var(--space-4), env(safe-area-inset-left));
+	}
+
+	.site-jump {
+		display: flex;
+	}
+
+	.site-preview {
+		padding: var(--space-6) var(--space-4);
+	}
+
+	.site-code-bar {
+		padding-left: var(--space-4);
+	}
+
+	.site-code pre {
+		padding: var(--space-2) var(--space-4) var(--space-4);
+	}
+}

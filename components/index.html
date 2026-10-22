@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<title>fem components</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Google+Sans+Code:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<script type="module" src="/src/docs/components/main.ts"></script>
+	</head>
+	<body>
+		<div class="site">
+			<aside class="site-sidebar">
+				<a class="site-brand" href="#">fem</a>
+				<nav class="site-nav" id="site-nav"></nav>
+			</aside>
+
+			<main class="site-main">
+				<header class="site-header">
+					<div class="site-jump" id="site-jump"></div>
+					<fem-row gap="2" class="site-settings">
+						<fem-segmented value="system" id="theme-setting">
+							<fem-segment value="system">Auto</fem-segment>
+							<fem-segment value="light">Light</fem-segment>
+							<fem-segment value="dark">Dark</fem-segment>
+						</fem-segmented>
+						<fem-segmented value="compact" id="density-setting">
+							<fem-segment value="compact">Compact</fem-segment>
+							<fem-segment value="roomy">Roomy</fem-segment>
+						</fem-segmented>
+					</fem-row>
+				</header>
+
+				<div class="site-content" id="site-content"></div>
+			</main>
+		</div>
+	</body>
+</html>
