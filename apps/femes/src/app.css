@@ -1,0 +1,242 @@
+/* femes page styles. Every value comes from fem's tokens. */
+
+body {
+	margin: 0;
+	background: var(--surface-page);
+	color: var(--text-strong);
+	font-family: var(--font-family);
+	font-size: var(--font-size-medium);
+	line-height: var(--line-height);
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+h1,
+h2,
+p {
+	margin: 0;
+}
+
+/* ---------- page frame ---------- */
+/* The bottom padding keeps the last row clear of the */
+/* player bar. */
+.app-page {
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: var(--space-4) var(--space-4) calc(var(--player-bar-height) + var(--space-10));
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+}
+
+.player-dock {
+	position: fixed;
+	left: var(--space-2);
+	right: var(--space-2);
+	bottom: calc(var(--space-2) + env(safe-area-inset-bottom));
+	z-index: 10;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+.site-header {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	min-height: var(--control-height-medium);
+}
+
+.site-brand {
+	font-size: var(--font-size-heading);
+	font-weight: var(--font-weight-title);
+	letter-spacing: -0.02em;
+}
+
+.site-header-end {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.section-label {
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+}
+
+.muted {
+	color: var(--text-muted);
+}
+
+.numeric {
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	font-variant-numeric: tabular-nums;
+}
+
+/* ---------- artist chip ---------- */
+.artist-chip {
+	align-self: flex-start;
+	height: var(--control-height-small);
+	padding: 0 var(--space-4) 0 var(--space-1);
+	border-radius: var(--radius-pill);
+	background: var(--surface-inset);
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+}
+
+.artist-chip fem-avatar {
+	--avatar-small: calc(var(--control-height-small) - var(--space-2));
+}
+
+/* ---------- profile ---------- */
+.profile-header {
+	position: relative;
+}
+
+.profile-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--space-6);
+	margin-top: calc(var(--avatar-large) / -2);
+	padding: 0 var(--space-2);
+}
+
+.profile-intro {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+/* The avatar sits on a ring of page color, so it reads */
+/* as cut out of the header. A surface, not a border. */
+.profile-avatar-ring {
+	position: relative;
+	align-self: flex-start;
+	padding: var(--space-1);
+	border-radius: var(--radius-pill);
+	background: var(--surface-page);
+	display: flex;
+}
+
+.profile-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-2);
+}
+
+.profile-link {
+	height: var(--control-height-small);
+	padding: 0 var(--space-4);
+	border-radius: var(--radius-pill);
+	background: var(--surface-inset);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.profile-actions {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.profile-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+@media (min-width: 900px) {
+	.profile-layout {
+		grid-template-columns: 300px minmax(0, 1fr);
+		gap: var(--space-10);
+	}
+
+	.profile-body {
+		padding-top: calc(var(--avatar-large) / 2 + var(--space-4));
+	}
+}
+
+/* ---------- lists ---------- */
+.track-list {
+	display: flex;
+	flex-direction: column;
+	margin: 0 calc(var(--space-3) * -1);
+}
+
+.playlist-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	gap: var(--space-4);
+}
+
+.playlist-tile {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+.playlist-tile-name {
+	font-weight: var(--font-weight-medium);
+}
+
+/* ---------- track page ---------- */
+.track-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--space-8);
+	align-items: start;
+}
+
+.track-side {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-5);
+}
+
+@media (min-width: 960px) {
+	.track-layout {
+		grid-template-columns: minmax(0, 1fr) 360px;
+		gap: var(--space-10);
+	}
+}
+
+/* ---------- playlist page ---------- */
+.playlist-head {
+	display: flex;
+	align-items: flex-end;
+	gap: var(--space-5);
+}
+
+.playlist-cover {
+	width: clamp(120px, 30vw, 220px);
+	flex: none;
+}
+
+.playlist-titles {
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+/* ---------- home ---------- */
+.home-hero {
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--space-4);
+	max-width: 560px;
+}

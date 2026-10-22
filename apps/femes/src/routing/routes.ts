@@ -1,0 +1,60 @@
+// Public addresses:
+//   /artist
+//   /artist/track/track-name
+//   /artist/playlist/playlist-name
+
+export type RouteT =
+	| { kind: 'home' }
+	| { kind: 'artist'; artistSlug: string }
+	| { kind: 'track'; artistSlug: string; trackSlug: string }
+	| { kind: 'playlist'; artistSlug: string; playlistSlug: string }
+	| { kind: 'not-found' }
+
+// Paths the app owns. No artist can take these names.
+export const reservedSlugs = ['studio', 'signin', 'embed', 'api', 'demo', 'assets', 'track', 'playlist']
+
+export const buildArtistPath = (artistSlug: string): string => `/${artistSlug}`
+
+export const buildTrackPath = (artistSlug: string, trackSlug: string): string => `/${artistSlug}/track/${trackSlug}`
+
+export const buildPlaylistPath = (artistSlug: string, playlistSlug: string): string => {
+	return `/${artistSlug}/playlist/${playlistSlug}`
+}
+
+const getSegments = (pathname: string): string[] => {
+	const parts = pathname.split('/').filter((part) => part !== '')
+	return parts.map((part) => decodeURIComponent(part).toLowerCase())
+}
+
+export const parseRoute = (pathname: string): RouteT => {
+	const segments = getSegments(pathname)
+	const isHome = segments.length === 0
+	if (isHome) return { kind: 'home' }
+
+	const artistSlug = segments[0]
+	const isReserved = reservedSlugs.includes(artistSlug)
+	if (isReserved) return { kind: 'not-found' }
+
+	const isArtist = segments.length === 1
+	if (isArtist) return { kind: 'artist', artistSlug }
+
+	const isPair = segments.length === 3
+	if (!isPair) return { kind: 'not-found' }
+
+	const section = segments[1]
+	const itemSlug = segments[2]
+	const isTrack = section === 'track'
+	if (isTrack) return { kind: 'track', artistSlug, trackSlug: itemSlug }
+	const isPlaylist = section === 'playlist'
+	if (isPlaylist) return { kind: 'playlist', artistSlug, playlistSlug: itemSlug }
+	return { kind: 'not-found' }
+}
+
+// Turns a name into its address part: "late night
+// drafts" becomes "late-night-drafts".
+export const buildSlug = (name: string): string => {
+	const lowered = name.toLowerCase().normalize('NFKD')
+	const withoutMarks = lowered.replace(/[̀-ͯ]/g, '')
+	const dashed = withoutMarks.replace(/[^a-z0-9]+/g, '-')
+	return dashed.replace(/^-+|-+$/g, '')
+}
