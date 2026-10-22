@@ -46,8 +46,8 @@ const buildBoxClassName = (props: BoxPropsT, direction: BoxDirectionT): string =
 }
 
 const sharedProps = {
-	alignX: { type: String, reflect: true },
-	alignY: { type: String, reflect: true },
+	alignX: { type: String, reflect: true, value: (): BoxAlignT | '' => '' },
+	alignY: { type: String, reflect: true, value: (): BoxAlignT | '' => '' },
 	gap: { type: String, reflect: true, value: (): BoxSpaceT => 'none' },
 	padding: { type: String, reflect: true, value: (): BoxSpaceT => 'none' },
 	wrap: { type: Boolean, reflect: true },

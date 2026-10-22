@@ -8,6 +8,8 @@ export type BannerColorT = 'info' | 'success' | 'warning' | 'danger' | 'neutral'
 
 const bannerSheet = createStyleSheet(bannerCss)
 
+// A message across the top of a section: info, success,
+// warning, or danger.
 export const Banner = c(
 	(props) => {
 		const colorClass = getModifierClass(props.color)

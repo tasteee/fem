@@ -8,6 +8,7 @@ export type MenuItemColorT = 'neutral' | 'danger'
 
 const menuItemSheet = createStyleSheet(menuItemCss)
 
+// One action in a fem-menu.
 export const MenuItem = c(
 	(props) => {
 		const colorClass = getModifierClass(props.color)

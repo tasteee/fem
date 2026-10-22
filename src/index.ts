@@ -51,6 +51,7 @@ import { Table } from './components/table/table'
 import { Calendar } from './components/calendar/calendar'
 import { Combobox } from './components/combobox/combobox'
 import { DatePicker } from './components/date-picker/date-picker'
+import { DateRangePicker } from './components/date-range-picker/date-range-picker'
 import { RangeSlider } from './components/range-slider/range-slider'
 import { registerIcons } from './icons/registry'
 import { showToast } from './show-toast'
@@ -111,6 +112,7 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-calendar', Calendar],
 	['fem-combobox', Combobox],
 	['fem-date-picker', DatePicker],
+	['fem-date-range-picker', DateRangePicker],
 	['fem-range-slider', RangeSlider]
 ]
 
@@ -129,6 +131,6 @@ export { Radio, Segment, Segmented, Select, Sheet, Slider, Swap, Switch, Tab, Ta
 export { Tooltip, Box, Row, Column, Grid, Nav, NavItem, TabBar, TabBarItem }
 export { Card, Divider, Heading, Popover, RadioGroup, Skeleton, Spinner, Text }
 export { Accordion, AccordionItem, AvatarGroup, Breadcrumb, Breadcrumbs, CheckboxGroup, EmptyState, Pagination, Table }
-export { Calendar, Combobox, DatePicker, RangeSlider }
+export { Calendar, Combobox, DatePicker, DateRangePicker, RangeSlider }
 export type { TableColumnT, TableRowT } from './components/table/table'
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'

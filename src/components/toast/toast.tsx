@@ -5,6 +5,8 @@ import toastCss from './toast.css?inline'
 
 const toastSheet = createStyleSheet(toastCss)
 
+// A short message that appears and leaves on its own.
+// Use showToast().
 export const Toast = c(
 	(props) => {
 		const toastRef = useRef<HTMLDivElement>()

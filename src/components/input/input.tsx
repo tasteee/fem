@@ -9,6 +9,8 @@ export type InputSizeT = 'small' | 'medium' | 'large'
 
 const inputSheet = createStyleSheet(inputCss)
 
+// A single line of text. Works in forms like a native
+// input.
 export const Input = c(
 	(props) => {
 		const inputRef = useRef<HTMLInputElement>()

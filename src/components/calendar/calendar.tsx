@@ -17,7 +17,16 @@ import { useSlidingIndicator } from '../../foundation/use-sliding-indicator'
 import { caretLeftIcon, caretRightIcon } from '../../icons/generated'
 import calendarCss from './calendar.css?inline'
 
+export type CalendarModeT = 'single' | 'range'
+
 const calendarSheet = createStyleSheet(calendarCss)
+
+// Puts two ISO dates in order, earliest first.
+const orderDates = (firstIso: string, secondIso: string): [string, string] => {
+	const isInOrder = firstIso <= secondIso
+	if (isInOrder) return [firstIso, secondIso]
+	return [secondIso, firstIso]
+}
 
 // Days the arrow keys and paging keys move by.
 const dayStepsByKey: Record<string, number> = {
@@ -48,9 +57,16 @@ export const Calendar = c(
 		const gridRef = useRef<HTMLDivElement>()
 		const indicatorRef = useRef<HTMLSpanElement>()
 		const [value, setValue] = useProp<string>('value')
+		const [start, setStart] = useProp<string>('start')
+		const [end, setEnd] = useProp<string>('end')
+		// In range mode, the day under the pointer while
+		// only the start is picked, to preview the range.
+		const [hoverIso, setHoverIso] = useState('')
+		const isRangeMode = props.mode === 'range'
 		const dispatchChange = useEvent('change', { bubbles: true, composed: true })
 
-		const selectedDate = parseIsoDate(value)
+		const anchorIso = isRangeMode ? start : value
+		const selectedDate = parseIsoDate(anchorIso)
 		const today = new Date()
 		const todayIso = toIsoDate(today)
 		const [focusedDate, setFocusedDate] = useState<Date>(selectedDate ?? today)
@@ -65,9 +81,11 @@ export const Calendar = c(
 		const focusedIso = toIsoDate(focusedDate)
 		const monthKey = toIsoDate(monthStart)
 
+		// Range mode draws its own fill, so nothing slides.
 		const findSelectedDay = () => {
 			const grid = gridRef.current
 			if (!grid) return undefined
+			if (isRangeMode) return undefined
 			return grid.querySelector<HTMLElement>('[aria-selected="true"]') ?? undefined
 		}
 
@@ -92,14 +110,42 @@ export const Calendar = c(
 			focusedButton?.focus()
 		}, [focusedIso])
 
+		// The first pick starts a range. The second ends
+		// it, in either order. A third starts over.
+		const pickRangeDate = (isoDate: string) => {
+			const hasOpenRange = Boolean(start) && !end
+			if (!hasOpenRange) {
+				setStart(isoDate)
+				setEnd('')
+				return
+			}
+			const orderedDates = orderDates(start ?? isoDate, isoDate)
+			setStart(orderedDates[0])
+			setEnd(orderedDates[1])
+			setHoverIso('')
+			dispatchChange()
+		}
+
 		const pickDate = (date: Date) => {
 			const isoDate = toIsoDate(date)
 			const isInRange = checkDateInRange(isoDate, props.min, props.max)
 			if (!isInRange) return
 			setFocusedDate(date)
+			if (isRangeMode) return pickRangeDate(isoDate)
 			setValue(isoDate)
 			dispatchChange()
 		}
+
+		// The range to draw: the chosen one, or a preview
+		// from the start to the hovered day.
+		const hasOpenRange = isRangeMode && Boolean(start) && !end
+		const hasHover = hoverIso !== ''
+		const isPreviewing = hasOpenRange && hasHover
+		const previewEnd = isPreviewing ? hoverIso : end
+		const hasBothEnds = Boolean(start) && Boolean(previewEnd)
+		const drawnRange = hasBothEnds ? orderDates(start ?? '', previewEnd ?? '') : undefined
+		const rangeStartIso = drawnRange ? drawnRange[0] : start
+		const rangeEndIso = drawnRange ? drawnRange[1] : ''
 
 		const moveFocus = (nextDate: Date) => {
 			shouldMoveFocusRef.current = true
@@ -128,7 +174,14 @@ export const Calendar = c(
 
 		const renderDay = (date: Date) => {
 			const isoDate = toIsoDate(date)
-			const isSelected = isoDate === value
+			const isRangeStart = isRangeMode && isoDate === rangeStartIso
+			const isRangeEnd = isRangeMode && isoDate === rangeEndIso
+			const isAfterRangeStart = isoDate > (rangeStartIso ?? '')
+			const isBeforeRangeEnd = isoDate < rangeEndIso
+			const hasRangeEnd = Boolean(rangeEndIso)
+			const isBetween = isRangeMode && hasRangeEnd && isAfterRangeStart && isBeforeRangeEnd
+			const isSingleSelected = !isRangeMode && isoDate === value
+			const isSelected = isSingleSelected || isRangeStart || isRangeEnd
 			const isToday = isoDate === todayIso
 			const isOutside = !checkSameMonth(date, monthStart)
 			const isFocused = isoDate === focusedIso
@@ -136,11 +189,25 @@ export const Calendar = c(
 			const selectedClass = getFlagClass(isSelected, 'isSelected')
 			const todayClass = getFlagClass(isToday, 'isToday')
 			const outsideClass = getFlagClass(isOutside, 'isOutside')
-			const className = buildClassName(['calendar-day', selectedClass, todayClass, outsideClass])
+			const rangeStartClass = getFlagClass(isRangeStart && Boolean(rangeEndIso), 'isRangeStart')
+			const rangeEndClass = getFlagClass(isRangeEnd, 'isRangeEnd')
+			const betweenClass = getFlagClass(isBetween, 'isBetween')
+			const className = buildClassName([
+				'calendar-day',
+				selectedClass,
+				todayClass,
+				outsideClass,
+				rangeStartClass,
+				rangeEndClass,
+				betweenClass
+			])
 			const tabIndex = isFocused ? 0 : -1
 			const selectedLabel = String(isSelected)
 			const dayLabel = dayLabelFormatter.format(date)
 			const handleDayClick = () => pickDate(date)
+			const handleDayEnter = () => {
+				if (hasOpenRange) setHoverIso(isoDate)
+			}
 
 			return (
 				<button
@@ -152,6 +219,7 @@ export const Calendar = c(
 					aria-label={dayLabel}
 					disabled={isDisabled}
 					onclick={handleDayClick}
+					onpointerenter={handleDayEnter}
 				>
 					{date.getDate()}
 				</button>
@@ -191,7 +259,11 @@ export const Calendar = c(
 	},
 	{
 		props: {
+			mode: { type: String, reflect: true, value: (): CalendarModeT => 'single' },
 			value: { type: String, reflect: true },
+			// Range mode reads and writes start and end.
+			start: { type: String, reflect: true },
+			end: { type: String, reflect: true },
 			min: String,
 			max: String,
 			locale: String,

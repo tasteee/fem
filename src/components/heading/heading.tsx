@@ -25,11 +25,14 @@ const getHeadingLevel = (level: number): number => {
 	return level
 }
 
+// A title on the type scale. Level sets meaning and a
+// natural size.
 export const Heading = c(
 	(props) => {
 		const headingLevel = getHeadingLevel(props.level)
 		const naturalSize = sizeForLevel[headingLevel]
-		const headingSize = props.size ?? naturalSize
+		const hasSizeOverride = Boolean(props.size)
+		const headingSize = hasSizeOverride ? props.size : naturalSize
 		const sizeClass = getModifierClass(headingSize)
 		const className = buildClassName(['heading', sizeClass])
 		const ariaLevel = String(headingLevel)
@@ -45,7 +48,7 @@ export const Heading = c(
 	{
 		props: {
 			level: { type: Number, reflect: true, value: (): number => 2 },
-			size: { type: String, reflect: true }
+			size: { type: String, reflect: true, value: (): HeadingSizeT | '' => '' }
 		},
 		styles: [foundationSheet, headingSheet]
 	}

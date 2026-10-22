@@ -7,6 +7,7 @@ import segmentedCss from './segmented.css?inline'
 
 const segmentedSheet = createStyleSheet(segmentedCss)
 
+// A few choices side by side. The selected fill slides.
 export const Segmented = c(
 	() => {
 		const hostRef = useHost<HTMLElement>()

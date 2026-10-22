@@ -6,6 +6,7 @@ import sheetCss from './sheet.css?inline'
 
 const sheetSheet = createStyleSheet(sheetCss)
 
+// A panel that slides in from the bottom or side.
 export const Sheet = c(
 	(props) => {
 		const dialogRef = useRef<HTMLDialogElement>()

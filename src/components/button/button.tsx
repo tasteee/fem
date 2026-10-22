@@ -13,6 +13,8 @@ export type ButtonTypeT = 'button' | 'submit' | 'reset'
 
 const buttonSheet = createStyleSheet(buttonCss)
 
+// Runs an action. Pills act. Shrinks and darkens on
+// press.
 export const Button = c(
 	(props) => {
 		const buttonRef = useRef<HTMLButtonElement>()

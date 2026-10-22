@@ -6,6 +6,7 @@ import segmentCss from './segment.css?inline'
 
 const segmentSheet = createStyleSheet(segmentCss)
 
+// One choice in a fem-segmented control.
 export const Segment = c(
 	(props) => {
 		const selectedClass = getFlagClass(props.selected, 'isSelected')

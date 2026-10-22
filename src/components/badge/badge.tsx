@@ -8,6 +8,7 @@ export type BadgeColorT = 'neutral' | 'accent' | 'danger' | 'success' | 'warning
 
 const badgeSheet = createStyleSheet(badgeCss)
 
+// A short status label. Solid and bright, never murky.
 export const Badge = c(
 	(props) => {
 		const colorClass = getModifierClass(props.color)

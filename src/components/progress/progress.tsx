@@ -12,6 +12,7 @@ const getProgressRatio = (value: number, maximum: number): number => {
 	return Math.min(1, Math.max(0, ratio))
 }
 
+// Shows how far along a task is.
 export const Progress = c(
 	(props) => {
 		const progressRatio = getProgressRatio(props.value, props.max)

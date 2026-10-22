@@ -9,6 +9,8 @@ export type AvatarColorT = 'neutral' | 'accent'
 
 const avatarSheet = createStyleSheet(avatarCss)
 
+// A round picture of a person. With no image, the first
+// letter of the name stands in.
 export const Avatar = c(
 	(props) => {
 		const sizeClass = getModifierClass(props.size)

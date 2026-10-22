@@ -25,6 +25,8 @@ const findClickedOption = (event: Event): OptionElementT | undefined => {
 	return clickPath.find(isOption) as OptionElementT | undefined
 }
 
+// Picks one option from a list that opens below. Works
+// in forms.
 export const Select = c(
 	(props) => {
 		const hostRef = useHost<HTMLElement>()

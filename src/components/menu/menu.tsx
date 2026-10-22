@@ -11,6 +11,8 @@ const checkIsMenuItem = (target: EventTarget): boolean => {
 	return target instanceof HTMLElement && target.localName === 'fem-menu-item'
 }
 
+// A list of actions that opens from a trigger, in the
+// inverse theme.
 export const Menu = c(
 	() => {
 		const hostRef = useHost<HTMLElement>()
