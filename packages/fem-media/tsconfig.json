@@ -1,0 +1,38 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"lib": [
+			"ES2022",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"jsx": "react-jsx",
+		"jsxImportSource": "atomico",
+		"strict": true,
+		"noEmit": true,
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+		"verbatimModuleSyntax": true,
+		"types": [
+			"vite/client"
+		],
+		"paths": {
+			"@tasteee/fem": [
+				"../fem/src/index.ts"
+			],
+			"@tasteee/fem/foundation": [
+				"../fem/src/foundation/index.ts"
+			],
+			"@tasteee/fem/icons": [
+				"../fem/src/icons/index.ts"
+			]
+		}
+	},
+	"include": [
+		"src",
+		"vite.config.ts"
+	]
+}

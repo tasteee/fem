@@ -1,4 +1,4 @@
 node_modules
 dist
-src/icons/generated.ts
+packages/fem/src/icons/generated.ts
 demos

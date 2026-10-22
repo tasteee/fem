@@ -1,4 +1,4 @@
-// Generated. Typed fem tags for React 19 JSX.
+// Generated. Typed @tasteee/fem tags for React 19 JSX.
 import './fem-jsx'
 import type * as Fem from './fem-jsx'
 import type { DetailedHTMLProps, HTMLAttributes as ReactHTMLAttributes } from 'react'

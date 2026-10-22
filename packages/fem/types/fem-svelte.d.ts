@@ -1,4 +1,4 @@
-// Generated. Typed fem tags for Svelte 5.
+// Generated. Typed @tasteee/fem tags for Svelte 5.
 import './fem-jsx'
 import type * as Fem from './fem-jsx'
 import type { HTMLAttributes } from 'svelte/elements'
