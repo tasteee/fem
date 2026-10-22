@@ -1,0 +1,193 @@
+:host {
+	display: block;
+}
+
+.file-upload {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+/* The zone is a calm inset box. Dragging over it lifts */
+/* the surface one step, with no border or dash. */
+.file-upload-zone {
+	position: relative;
+	min-height: var(--file-upload-height);
+	padding: var(--space-6) var(--space-5);
+	border-radius: var(--radius-container);
+	background: var(--surface-inset);
+	color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	cursor: pointer;
+	transition:
+		background-color var(--duration-fast) var(--easing-standard),
+		color var(--duration-fast) var(--easing-standard);
+}
+
+@media (hover: hover) {
+	.file-upload-zone:hover {
+		color: var(--text-strong);
+	}
+}
+
+.file-upload-zone.isDragging {
+	background: var(--surface-control);
+	color: var(--text-strong);
+}
+
+.file-upload-zone.isDisabled {
+	cursor: default;
+}
+
+/* The real input covers nothing and is read by */
+/* screen readers. The label opens it. */
+.file-upload-input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.file-upload-zone:has(.file-upload-input:focus-visible) {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+.file-upload-prompt {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-2);
+	text-align: center;
+}
+
+.file-upload-prompt-icon {
+	width: var(--control-height-medium);
+	height: var(--control-height-medium);
+	border-radius: var(--radius-pill);
+	background: var(--surface-card);
+	color: var(--text-strong);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: var(--space-1);
+}
+
+.file-upload-label {
+	color: var(--text-strong);
+	font-weight: var(--font-weight-act);
+}
+
+.file-upload-description {
+	font-size: var(--font-size-small);
+}
+
+/* ---------- image ---------- */
+.file-upload-zone.isImage {
+	min-height: 0;
+	aspect-ratio: var(--file-upload-ratio);
+	padding: var(--space-4);
+}
+
+.file-upload-image {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* The replace hint is a pill over the picture, shown */
+/* on hover, and always shown on touch screens. */
+.file-upload-replace {
+	position: absolute;
+	bottom: var(--space-3);
+	left: 50%;
+	translate: -50% 0;
+	height: var(--control-height-small);
+	padding: 0 var(--space-4);
+	border-radius: var(--radius-pill);
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+	display: flex;
+	align-items: center;
+	transition: opacity var(--duration-fast) var(--easing-standard);
+}
+
+@media (hover: hover) {
+	.file-upload-replace {
+		opacity: 0;
+	}
+
+	.file-upload-zone:hover .file-upload-replace,
+	.file-upload-zone:has(.file-upload-input:focus-visible) .file-upload-replace {
+		opacity: 1;
+	}
+}
+
+/* ---------- list ---------- */
+.file-upload-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}
+
+.file-upload-row {
+	height: var(--control-height-large);
+	padding: 0 var(--space-2) 0 var(--space-3);
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.file-upload-row-icon {
+	display: flex;
+	color: var(--text-muted);
+}
+
+.file-upload-row-name {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: var(--text-strong);
+}
+
+.file-upload-row-size {
+	color: var(--text-muted);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	font-variant-numeric: tabular-nums;
+}
+
+.file-upload-remove {
+	width: var(--control-height-small);
+	height: var(--control-height-small);
+	border-radius: var(--radius-pill);
+	color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition:
+		background-color var(--duration-fast) var(--easing-standard),
+		color var(--duration-fast) var(--easing-standard);
+}
+
+@media (hover: hover) {
+	.file-upload-remove:hover {
+		background: var(--surface-control);
+		color: var(--text-strong);
+	}
+}

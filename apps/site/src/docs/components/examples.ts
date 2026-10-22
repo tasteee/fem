@@ -476,6 +476,128 @@ const displayExamples: Record<string, ExampleT> = {
 	}
 }
 
+const artwork = (seed: string): string => `https://picsum.photos/seed/${seed}/600/600`
+
+const listAndMediaExamples: Record<string, ExampleT> = {
+	'fem-list-item': {
+		group: 'Data display',
+		html: `<fem-column gap="0">
+	<fem-list-item interactive label="safeword" description="tasteink · Dark pop">
+		<fem-image slot="leading" src="${artwork('safeword')}" alt="" style="width: 40px"></fem-image>
+		<span slot="meta">3:12</span>
+		<fem-button slot="trailing" kind="ghost" shape="circle" size="small" label="More"><fem-icon name="dots-three"></fem-icon></fem-button>
+	</fem-list-item>
+	<fem-list-item interactive selected label="glass hours" description="tasteink · Ambient">
+		<fem-image slot="leading" src="${artwork('glass')}" alt="" style="width: 40px"></fem-image>
+		<span slot="meta">4:05</span>
+	</fem-list-item>
+	<fem-list-item label="Robin" description="Following">
+		<fem-avatar slot="leading" size="small" name="Robin"></fem-avatar>
+	</fem-list-item>
+</fem-column>`
+	},
+	'fem-image': {
+		group: 'Data display',
+		html: `<fem-grid min="120px" gap="3">
+	<fem-image src="${artwork('cover')}" alt="Cover art"></fem-image>
+	<fem-image src="${artwork('wide')}" ratio="16 / 9" radius="container" alt="Header"></fem-image>
+	<fem-image src="" alt="No artwork yet"></fem-image>
+</fem-grid>`
+	},
+	'fem-sortable': {
+		group: 'Data display',
+		html: `<fem-sortable move-nodes label="Playlist order" gap="0">
+	<fem-list-item label="safeword" description="Drag me, or Alt + arrow">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">3:12</span>
+	</fem-list-item>
+	<fem-list-item label="glass hours" description="tasteink">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">4:05</span>
+	</fem-list-item>
+	<fem-list-item label="low tide" description="tasteink">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">2:48</span>
+	</fem-list-item>
+	<fem-list-item label="northbound" description="tasteink">
+		<fem-icon slot="leading" name="dots-six-vertical" data-sortable-handle tabindex="0"></fem-icon>
+		<span slot="meta">3:30</span>
+	</fem-list-item>
+</fem-sortable>`
+	},
+	'fem-textarea': {
+		group: 'Forms',
+		html: `<fem-field label="Bio" help="A line or two about your music.">
+	<fem-textarea autosize maxlength="160" placeholder="Making quiet songs in a loud city."></fem-textarea>
+</fem-field>`
+	},
+	'fem-file-upload': {
+		group: 'Forms',
+		html: `<fem-column gap="4">
+	<fem-file-upload multiple accept="audio/*,.mp3,.wav,.flac" description="MP3, WAV, or FLAC"></fem-file-upload>
+	<fem-file-upload kind="image" accept="image/*" label="Artwork" description="Square" style="width: 180px"></fem-file-upload>
+</fem-column>`
+	},
+	'fem-copy-field': {
+		group: 'Forms',
+		html: `<fem-copy-field shareable share-title="safeword" value="https://artisst.app/tasteink/safeword"></fem-copy-field>`
+	},
+	'fem-scrubber': {
+		group: 'Media',
+		html: `<fem-column gap="5">
+	<fem-scrubber time="sides" value="42" max="192" buffered="120"></fem-scrubber>
+	<fem-scrubber time="below" show-remaining value="95" max="245" buffered="245"></fem-scrubber>
+</fem-column>`
+	}
+}
+
+// Short demo tracks that ship with the site.
+const demoTracks = [
+	{ id: 'safeword', src: '../audio/safeword.mp3', title: 'safeword', artist: 'tasteink', artwork: artwork('safeword'), duration: 24 },
+	{ id: 'glass-hours', src: '../audio/glass-hours.mp3', title: 'glass hours', artist: 'tasteink', artwork: artwork('glass'), duration: 28 },
+	{ id: 'low-tide', src: '../audio/low-tide.mp3', title: 'low tide', artist: 'tasteink', duration: 20 }
+]
+
+const queueJson = JSON.stringify(demoTracks)
+const trackJson = (index: number): string => JSON.stringify(demoTracks[index])
+
+const playerExamples: Record<string, ExampleT> = {
+	'fem-track-row': {
+		group: 'Media',
+		html: `<fem-column gap="0">
+	<fem-track-row track='${trackJson(0)}' queue='${queueJson}'>
+		<fem-button slot="trailing" kind="ghost" shape="circle" size="small" label="More"><fem-icon name="dots-three"></fem-icon></fem-button>
+	</fem-track-row>
+	<fem-track-row track='${trackJson(1)}' queue='${queueJson}'></fem-track-row>
+	<fem-track-row track='${trackJson(2)}' queue='${queueJson}'></fem-track-row>
+</fem-column>`
+	},
+	'fem-play-button': {
+		group: 'Media',
+		html: `<fem-row gap="3" align-y="center">
+	<fem-play-button queue='${queueJson}'></fem-play-button>
+	<fem-play-button track='${trackJson(1)}' size="medium" kind="ghost"></fem-play-button>
+</fem-row>`
+	},
+	'fem-player-bar': {
+		group: 'Media',
+		html: `<fem-column gap="4">
+	<fem-row gap="3" align-y="center">
+		<fem-play-button queue='${queueJson}' size="medium"></fem-play-button>
+		<fem-text color="muted">Play something. The bar appears once a track is loaded.</fem-text>
+	</fem-row>
+	<fem-player-bar expandable></fem-player-bar>
+</fem-column>`
+	},
+	'fem-now-playing': {
+		group: 'Media',
+		html: `<fem-now-playing track='${trackJson(1)}' queue='${queueJson}' artist-href="#">
+	<fem-button slot="actions" kind="ghost" shape="circle" label="Like"><fem-icon name="heart"></fem-icon></fem-button>
+	<fem-button slot="end" kind="ghost" shape="circle" size="small" label="Share"><fem-icon name="share-fat"></fem-icon></fem-button>
+</fem-now-playing>`
+	}
+}
+
 export const examplesByTag: Record<string, ExampleT> = {
 	...layoutExamples,
 	...typeExamples,
@@ -486,7 +608,9 @@ export const examplesByTag: Record<string, ExampleT> = {
 	...overlayExamples,
 	...navigationExamples,
 	...displayExamples,
-	...commandExamples
+	...commandExamples,
+	...listAndMediaExamples,
+	...playerExamples
 }
 
 // Tags that only make sense inside a parent show the
@@ -516,5 +640,6 @@ export const groupOrder = [
 	'Feedback',
 	'Overlays',
 	'Navigation',
-	'Data display'
+	'Data display',
+	'Media'
 ]

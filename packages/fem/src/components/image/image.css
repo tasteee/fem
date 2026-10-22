@@ -1,0 +1,62 @@
+:host {
+	display: block;
+}
+
+/* The box holds its shape before the picture arrives, */
+/* so nothing below it jumps. */
+.image {
+	position: relative;
+	width: 100%;
+	aspect-ratio: var(--image-ratio);
+	overflow: hidden;
+	background: var(--surface-inset);
+	display: flex;
+}
+
+.image.isContainer {
+	border-radius: var(--radius-container);
+}
+
+.image.isInset {
+	border-radius: var(--radius-inset);
+}
+
+.image.isSmall {
+	border-radius: var(--radius-small);
+}
+
+.image.isPill {
+	border-radius: var(--radius-pill);
+}
+
+.image-picture {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity var(--duration-medium) var(--easing-standard);
+}
+
+.image-picture.isContain {
+	object-fit: contain;
+}
+
+.image-picture.isLoaded {
+	opacity: 1;
+}
+
+.image-fallback {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-muted);
+}
+
+/* The icon scales with the box, inside sensible limits. */
+.image-fallback .icon {
+	width: clamp(var(--icon-size), 28%, calc(var(--icon-size) * 3));
+	height: auto;
+	opacity: 0.6;
+}

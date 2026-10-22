@@ -1,0 +1,57 @@
+:host {
+	display: flex;
+}
+
+.textarea-frame {
+	position: relative;
+	width: 100%;
+	display: flex;
+}
+
+/* Same surface and radius as the single-line input, */
+/* so the two read as one family. */
+.textarea {
+	width: 100%;
+	min-height: var(--control-height-medium);
+	padding: var(--space-3) var(--space-4);
+	border: var(--border-width) solid transparent;
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	color: var(--text-strong);
+	line-height: var(--line-height);
+	resize: vertical;
+}
+
+.textarea::placeholder {
+	color: var(--text-muted);
+}
+
+.textarea.isAutosize {
+	resize: none;
+	overflow: hidden;
+}
+
+.textarea.isInvalid {
+	border-color: var(--danger);
+}
+
+/* The count sits in the corner and leaves room for */
+/* itself, so text never runs under it. */
+.textarea-frame:has(.textarea-counter) .textarea {
+	padding-bottom: calc(var(--space-3) + var(--line-height-tight) * var(--font-size-caption) + var(--space-1));
+}
+
+.textarea-counter {
+	position: absolute;
+	right: var(--space-4);
+	bottom: var(--space-2);
+	color: var(--text-muted);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-caption);
+	font-variant-numeric: tabular-nums;
+	pointer-events: none;
+}
+
+.textarea-counter.isNearLimit {
+	color: var(--warning);
+}

@@ -2,13 +2,73 @@
 // Import once to get typed fem tags:
 // import '@tasteee/fem-media/jsx'
 
+export type FemNowPlayingPropsT = {
+	track?: object
+	queue?: unknown[]
+	artistHref?: string
+}
 
+export type FemPlayButtonPropsT = {
+	track?: object
+	queue?: unknown[]
+	size?: 'small' | 'medium' | 'large'
+	kind?: 'ghost' | 'solid'
+}
 
+export type FemPlayerBarPropsT = {
+	expandable?: boolean
+	onexpand?: (event: CustomEvent) => void
+}
 
+export type FemTrackRowPropsT = {
+	track?: object
+	queue?: unknown[]
+}
 
+export type FemNowPlayingAttributesT = {
+	'artist-href'?: string
+}
 
+export type FemPlayButtonAttributesT = {
+	'size'?: 'small' | 'medium' | 'large'
+	'kind'?: 'ghost' | 'solid'
+}
+
+export type FemPlayerBarAttributesT = {
+	'expandable'?: boolean | ''
+}
+
+export type FemTrackRowAttributesT = {
+
+}
+
+export type FemNowPlayingElementT = HTMLElement & {
+	track: object | undefined
+	queue: unknown[]
+	artistHref: string
+}
+
+export type FemPlayButtonElementT = HTMLElement & {
+	track: object | undefined
+	queue: unknown[]
+	size: 'small' | 'medium' | 'large'
+	kind: 'ghost' | 'solid'
+}
+
+export type FemPlayerBarElementT = HTMLElement & {
+	expandable: boolean
+}
+
+export type FemTrackRowElementT = HTMLElement & {
+	track: object | undefined
+	queue: unknown[]
+}
 
 declare global {
 	interface HTMLElementTagNameMap {
+		'fem-now-playing': FemNowPlayingElementT
+		'fem-play-button': FemPlayButtonElementT
+		'fem-player-bar': FemPlayerBarElementT
+		'fem-track-row': FemTrackRowElementT
 	}
 }

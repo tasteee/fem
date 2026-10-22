@@ -1859,6 +1859,123 @@
 		},
 		{
 			"kind": "javascript-module",
+			"path": "src/components/copy-field/copy-field.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "CopyField",
+					"tagName": "fem-copy-field",
+					"customElement": true,
+					"description": "A value to hand out, like a share link, with a Copy button. Add shareable to offer the phone's share sheet where there is one.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Link\""
+						},
+						{
+							"name": "copy-label",
+							"fieldName": "copyLabel",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Copy\""
+						},
+						{
+							"name": "copied-label",
+							"fieldName": "copiedLabel",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Copied\""
+						},
+						{
+							"name": "share-title",
+							"fieldName": "shareTitle",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "shareable",
+							"fieldName": "shareable",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "copyLabel",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "copiedLabel",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "shareTitle",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "shareable",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-copy-field",
+					"declaration": {
+						"name": "CopyField",
+						"module": "src/components/copy-field/copy-field.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/date-picker/date-picker.tsx",
 			"declarations": [
 				{
@@ -2567,6 +2684,205 @@
 		},
 		{
 			"kind": "javascript-module",
+			"path": "src/components/file-upload/file-upload.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "FileUpload",
+					"tagName": "fem-file-upload",
+					"customElement": true,
+					"description": "Takes files by drop or by picker. kind=\"image\" shows one picture, for artwork, avatars, and headers.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "kind",
+							"fieldName": "kind",
+							"type": {
+								"text": "'files' | 'image'"
+							},
+							"default": "\"files\""
+						},
+						{
+							"name": "accept",
+							"fieldName": "accept",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "multiple",
+							"fieldName": "multiple",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "max-size",
+							"fieldName": "maxSize",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Drop files or browse\""
+						},
+						{
+							"name": "description",
+							"fieldName": "description",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "replace-label",
+							"fieldName": "replaceLabel",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Replace\""
+						},
+						{
+							"name": "src",
+							"fieldName": "src",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "ratio",
+							"fieldName": "ratio",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"1 / 1\""
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "kind",
+							"type": {
+								"text": "'files' | 'image'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "accept",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "multiple",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "maxSize",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "description",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "replaceLabel",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "src",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "ratio",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "files",
+							"type": {
+								"text": "unknown[]"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-file-upload",
+					"declaration": {
+						"name": "FileUpload",
+						"module": "src/components/file-upload/file-upload.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/grid/grid.tsx",
 			"declarations": [
 				{
@@ -2803,6 +3119,126 @@
 		},
 		{
 			"kind": "javascript-module",
+			"path": "src/components/image/image.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Image",
+					"tagName": "fem-image",
+					"customElement": true,
+					"description": "A picture that holds its shape while it loads, fades in when ready, and shows a quiet icon if it fails. Artwork, covers, headers.",
+					"attributes": [
+						{
+							"name": "src",
+							"fieldName": "src",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "alt",
+							"fieldName": "alt",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "ratio",
+							"fieldName": "ratio",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"1 / 1\""
+						},
+						{
+							"name": "fit",
+							"fieldName": "fit",
+							"type": {
+								"text": "'cover' | 'contain'"
+							},
+							"default": "\"cover\""
+						},
+						{
+							"name": "radius",
+							"fieldName": "radius",
+							"type": {
+								"text": "'container' | 'inset' | 'small' | 'pill' | 'none'"
+							},
+							"default": "\"inset\""
+						},
+						{
+							"name": "eager",
+							"fieldName": "eager",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "src",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "alt",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "ratio",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "fit",
+							"type": {
+								"text": "'cover' | 'contain'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "radius",
+							"type": {
+								"text": "'container' | 'inset' | 'small' | 'pill' | 'none'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "eager",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-image",
+					"declaration": {
+						"name": "Image",
+						"module": "src/components/image/image.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/input/input.tsx",
 			"declarations": [
 				{
@@ -2967,6 +3403,162 @@
 					"declaration": {
 						"name": "Input",
 						"module": "src/components/input/input.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/list-item/list-item.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "ListItem",
+					"tagName": "fem-list-item",
+					"customElement": true,
+					"description": "A row with a picture, a title, a line under it, and room for actions at the end. Tracks, people, files.",
+					"attributes": [
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "description",
+							"fieldName": "description",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "href",
+							"fieldName": "href",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "interactive",
+							"fieldName": "interactive",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "description",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "href",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "interactive",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "select",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "leading",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						},
+						{
+							"name": "meta",
+							"description": ""
+						},
+						{
+							"name": "trailing",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-list-item",
+					"declaration": {
+						"name": "ListItem",
+						"module": "src/components/list-item/list-item.tsx"
 					}
 				}
 			]
@@ -4145,6 +4737,141 @@
 		},
 		{
 			"kind": "javascript-module",
+			"path": "src/components/scrubber/scrubber.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Scrubber",
+					"tagName": "fem-scrubber",
+					"customElement": true,
+					"description": "A seek bar for audio and video. It keeps its own position while dragged, so playback updates never yank the thumb out from under a finger.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "buffered",
+							"fieldName": "buffered",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Seek\""
+						},
+						{
+							"name": "time",
+							"fieldName": "time",
+							"type": {
+								"text": "'none' | 'sides' | 'below'"
+							},
+							"default": "\"none\""
+						},
+						{
+							"name": "show-remaining",
+							"fieldName": "showRemaining",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "buffered",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "time",
+							"type": {
+								"text": "'none' | 'sides' | 'below'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "showRemaining",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-scrubber",
+					"declaration": {
+						"name": "Scrubber",
+						"module": "src/components/scrubber/scrubber.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/segment/segment.tsx",
 			"declarations": [
 				{
@@ -4734,6 +5461,100 @@
 					"declaration": {
 						"name": "Slider",
 						"module": "src/components/slider/slider.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/sortable/sortable.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Sortable",
+					"tagName": "fem-sortable",
+					"customElement": true,
+					"description": "A list people can put in order. Drag an item, or a [data-sortable-handle] inside it. Hold to drag on touch. Alt with an arrow moves the focused item.  It sends reorder with { from, to } and leaves the DOM alone, so a framework can reorder its own data. Add move-nodes to have it move the elements itself.",
+					"attributes": [
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "gap",
+							"fieldName": "gap",
+							"type": {
+								"text": "'0' | '1' | '2' | '3' | '4' | '5' | '6'"
+							},
+							"default": "\"1\""
+						},
+						{
+							"name": "move-nodes",
+							"fieldName": "moveNodes",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "gap",
+							"type": {
+								"text": "'0' | '1' | '2' | '3' | '4' | '5' | '6'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "moveNodes",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-sortable",
+					"declaration": {
+						"name": "Sortable",
+						"module": "src/components/sortable/sortable.tsx"
 					}
 				}
 			]
@@ -5595,6 +6416,189 @@
 					"declaration": {
 						"name": "Text",
 						"module": "src/components/text/text.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/textarea/textarea.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Textarea",
+					"tagName": "fem-textarea",
+					"customElement": true,
+					"description": "Several lines of text. Add autosize to grow with the text, and maxlength to show a count.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "placeholder",
+							"fieldName": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "rows",
+							"fieldName": "rows",
+							"type": {
+								"text": "number"
+							},
+							"default": "3"
+						},
+						{
+							"name": "maxlength",
+							"fieldName": "maxlength",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "autosize",
+							"fieldName": "autosize",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "invalid",
+							"fieldName": "invalid",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "rows",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "maxlength",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "autosize",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "invalid",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-textarea",
+					"declaration": {
+						"name": "Textarea",
+						"module": "src/components/textarea/textarea.tsx"
 					}
 				}
 			]

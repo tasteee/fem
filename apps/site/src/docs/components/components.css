@@ -111,7 +111,10 @@ body {
 .site-preview > fem-tabs,
 .site-preview > fem-segmented,
 .site-preview > fem-tree,
-.site-preview > fem-box {
+.site-preview > fem-box,
+.site-preview > fem-sortable,
+.site-preview > fem-copy-field,
+.site-preview > fem-now-playing {
 	align-self: stretch;
 }
 

@@ -1,4 +1,60 @@
 {
 	"version": 1.1,
-	"tags": []
+	"tags": [
+		{
+			"name": "fem-now-playing",
+			"description": "The big view: artwork, title, seek bar, and controls. With a track set it shows that track, ready to play, as on a share page. Without one it follows whatever is playing.",
+			"attributes": [
+				{
+					"name": "artist-href"
+				}
+			]
+		},
+		{
+			"name": "fem-play-button",
+			"description": "Plays a track, or a whole list from its first track, and turns to pause while that track plays. Use it for \"Play\" on a profile or playlist header.",
+			"attributes": [
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "kind",
+					"values": [
+						{
+							"name": "ghost"
+						},
+						{
+							"name": "solid"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-player-bar",
+			"description": "The mini player that sits along the bottom of an app. Wide, it shows transport, seek, and volume. Narrow, it folds to the track and a play button, with a thin progress line. Tap the track to send expand.",
+			"attributes": [
+				{
+					"name": "expandable",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-track-row",
+			"description": "One track in a list. Tap it to play the list from here. The playing track shows its state, and the trailing slot holds actions like a menu.",
+			"attributes": []
+		}
+	]
 }
