@@ -6,6 +6,8 @@ import dialogCss from './dialog.css?inline'
 
 const dialogSheet = createStyleSheet(dialogCss)
 
+// A centered panel that asks for a decision. Blocks the
+// page until it closes.
 export const Dialog = c(
 	(props) => {
 		const dialogRef = useRef<HTMLDialogElement>()

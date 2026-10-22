@@ -28,6 +28,8 @@ const uncheckOtherRadios = (radioElement: RadioElementT) => {
 	}
 }
 
+// Picks one option from a set. Group radios with
+// fem-radio-group.
 export const Radio = c(
 	(props) => {
 		const hostRef = useHost<RadioElementT>()

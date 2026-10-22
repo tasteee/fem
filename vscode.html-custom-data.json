@@ -1,0 +1,1765 @@
+{
+	"version": 1.1,
+	"tags": [
+		{
+			"name": "fem-accordion",
+			"description": "Stacks accordion items. With single, opening one closes the rest.",
+			"attributes": [
+				{
+					"name": "single",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-accordion-item",
+			"description": "One section that opens and closes. The summary slot is the always-visible header.",
+			"attributes": [
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-avatar",
+			"description": "A round picture of a person. With no image, the first letter of the name stands in.",
+			"attributes": [
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "color",
+					"values": [
+						{
+							"name": "neutral"
+						},
+						{
+							"name": "accent"
+						}
+					]
+				},
+				{
+					"name": "name"
+				},
+				{
+					"name": "src"
+				}
+			]
+		},
+		{
+			"name": "fem-avatar-group",
+			"description": "Overlapping avatars. Past the max, the rest fold into a count.",
+			"attributes": [
+				{
+					"name": "max"
+				}
+			]
+		},
+		{
+			"name": "fem-badge",
+			"description": "A short status label. Solid and bright, never murky.",
+			"attributes": [
+				{
+					"name": "color",
+					"values": [
+						{
+							"name": "neutral"
+						},
+						{
+							"name": "accent"
+						},
+						{
+							"name": "danger"
+						},
+						{
+							"name": "success"
+						},
+						{
+							"name": "warning"
+						},
+						{
+							"name": "info"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-banner",
+			"description": "A message across the top of a section: info, success, warning, or danger.",
+			"attributes": [
+				{
+					"name": "color",
+					"values": [
+						{
+							"name": "info"
+						},
+						{
+							"name": "success"
+						},
+						{
+							"name": "warning"
+						},
+						{
+							"name": "danger"
+						},
+						{
+							"name": "neutral"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-box",
+			"description": "The general box. Picks its direction from an attribute. Row is the default.",
+			"attributes": [
+				{
+					"name": "align-x",
+					"values": [
+						{
+							"name": "start"
+						},
+						{
+							"name": "center"
+						},
+						{
+							"name": "end"
+						},
+						{
+							"name": "stretch"
+						},
+						{
+							"name": "between"
+						}
+					]
+				},
+				{
+					"name": "align-y",
+					"values": [
+						{
+							"name": "start"
+						},
+						{
+							"name": "center"
+						},
+						{
+							"name": "end"
+						},
+						{
+							"name": "stretch"
+						},
+						{
+							"name": "between"
+						}
+					]
+				},
+				{
+					"name": "gap",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				},
+				{
+					"name": "padding",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				},
+				{
+					"name": "wrap",
+					"valueSet": "v"
+				},
+				{
+					"name": "grow",
+					"valueSet": "v"
+				},
+				{
+					"name": "direction",
+					"values": [
+						{
+							"name": "row"
+						},
+						{
+							"name": "column"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-breadcrumb",
+			"description": "One step in a trail. The last step is the current page: it isn't a link and has no caret after it.",
+			"attributes": [
+				{
+					"name": "href"
+				},
+				{
+					"name": "current",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-breadcrumbs",
+			"description": "A trail of breadcrumbs. The last one is always the current page.",
+			"attributes": [
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-button",
+			"description": "Runs an action. Pills act. Shrinks and darkens on press.",
+			"attributes": [
+				{
+					"name": "type",
+					"values": [
+						{
+							"name": "button"
+						},
+						{
+							"name": "submit"
+						},
+						{
+							"name": "reset"
+						}
+					]
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "kind",
+					"values": [
+						{
+							"name": "solid"
+						},
+						{
+							"name": "soft"
+						},
+						{
+							"name": "ghost"
+						}
+					]
+				},
+				{
+					"name": "color",
+					"values": [
+						{
+							"name": "neutral"
+						},
+						{
+							"name": "accent"
+						},
+						{
+							"name": "danger"
+						},
+						{
+							"name": "success"
+						},
+						{
+							"name": "warning"
+						},
+						{
+							"name": "info"
+						}
+					]
+				},
+				{
+					"name": "shape",
+					"values": [
+						{
+							"name": "pill"
+						},
+						{
+							"name": "circle"
+						}
+					]
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				},
+				{
+					"name": "loading",
+					"valueSet": "v"
+				},
+				{
+					"name": "wide",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-calendar",
+			"description": "One month of days. The chosen day's fill slides, like every selection in fem. Arrow keys move by day and week, Page Up and Page Down by month.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "min"
+				},
+				{
+					"name": "max"
+				},
+				{
+					"name": "locale"
+				},
+				{
+					"name": "week-start"
+				}
+			]
+		},
+		{
+			"name": "fem-card",
+			"description": "A raised surface that groups related content. It is a column, so its children stack with the gap.",
+			"attributes": [
+				{
+					"name": "surface",
+					"values": [
+						{
+							"name": "card"
+						},
+						{
+							"name": "inset"
+						}
+					]
+				},
+				{
+					"name": "padding",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				},
+				{
+					"name": "gap",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-checkbox",
+			"description": "Turns one option on or off. Works in forms like a native checkbox.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "checked",
+					"valueSet": "v"
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-checkbox-group",
+			"description": "Groups checkboxes under one name and label. Each checked box sends its own value with the form, like native checkboxes that share a name.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-chip",
+			"description": "A choice you toggle, like a filter. A chosen chip inverts.",
+			"attributes": [
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "selected",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-column",
+			"description": "A box that is always a column.",
+			"attributes": [
+				{
+					"name": "align-x",
+					"values": [
+						{
+							"name": "start"
+						},
+						{
+							"name": "center"
+						},
+						{
+							"name": "end"
+						},
+						{
+							"name": "stretch"
+						},
+						{
+							"name": "between"
+						}
+					]
+				},
+				{
+					"name": "align-y",
+					"values": [
+						{
+							"name": "start"
+						},
+						{
+							"name": "center"
+						},
+						{
+							"name": "end"
+						},
+						{
+							"name": "stretch"
+						},
+						{
+							"name": "between"
+						}
+					]
+				},
+				{
+					"name": "gap",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				},
+				{
+					"name": "padding",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				},
+				{
+					"name": "wrap",
+					"valueSet": "v"
+				},
+				{
+					"name": "grow",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-combobox",
+			"description": "A select you can type into. Typing filters the options. Arrow keys move, Enter picks, Escape closes and puts the chosen label back.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "placeholder"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "empty-text"
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-date-picker",
+			"description": "A box like select that opens a calendar. The value is an ISO date, like 2026-10-21. The panel opens in the inverse theme, like every floating panel.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "placeholder"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "min"
+				},
+				{
+					"name": "max"
+				},
+				{
+					"name": "locale"
+				},
+				{
+					"name": "week-start"
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-dialog",
+			"description": "A centered panel that asks for a decision. Blocks the page until it closes.",
+			"attributes": [
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "heading"
+				}
+			]
+		},
+		{
+			"name": "fem-divider",
+			"description": "A divider is a filled bar on the surface scale, not a border. Use it between groups, never around them.",
+			"attributes": [
+				{
+					"name": "orientation",
+					"values": [
+						{
+							"name": "horizontal"
+						},
+						{
+							"name": "vertical"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-empty-state",
+			"description": "What a screen shows when there's nothing in it yet: an icon, a heading that names what's missing, one line on how to add it, and the action that does.",
+			"attributes": [
+				{
+					"name": "heading"
+				}
+			]
+		},
+		{
+			"name": "fem-field",
+			"description": "Owns the label, help, and error for one control, so every control in the system is labeled the same way. Stacked puts the label above. Inline puts it on the left with the control on the right.",
+			"attributes": [
+				{
+					"name": "label"
+				},
+				{
+					"name": "help"
+				},
+				{
+					"name": "error"
+				},
+				{
+					"name": "layout",
+					"values": [
+						{
+							"name": "stacked"
+						},
+						{
+							"name": "inline"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-grid",
+			"description": "A grid of equal columns, by count or by minimum column width.",
+			"attributes": [
+				{
+					"name": "columns"
+				},
+				{
+					"name": "min"
+				},
+				{
+					"name": "gap",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-heading",
+			"description": "A title on the type scale. Level sets meaning and a natural size.",
+			"attributes": [
+				{
+					"name": "level"
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "display"
+						},
+						{
+							"name": "title"
+						},
+						{
+							"name": "heading"
+						},
+						{
+							"name": "large"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-icon",
+			"description": "A Phosphor icon. Takes the text color around it.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "kind",
+					"values": [
+						{
+							"name": "bold"
+						},
+						{
+							"name": "fill"
+						}
+					]
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-input",
+			"description": "A single line of text. Works in forms like a native input.",
+			"attributes": [
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "type"
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "name"
+				},
+				{
+					"name": "placeholder"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "invalid",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-menu",
+			"description": "A list of actions that opens from a trigger, in the inverse theme.",
+			"attributes": [
+				{
+					"name": "open",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-menu-item",
+			"description": "One action in a fem-menu.",
+			"attributes": [
+				{
+					"name": "color",
+					"values": [
+						{
+							"name": "neutral"
+						},
+						{
+							"name": "danger"
+						}
+					]
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-nav",
+			"description": "A vertical list of destinations, like a sidebar. The selected fill slides between items.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "collapsed",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-nav-item",
+			"description": "One destination in a fem-nav: an icon, a label, and an optional end slot for a count or badge.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "selected",
+					"valueSet": "v"
+				},
+				{
+					"name": "collapsed",
+					"description": "Set by fem-nav. Shows the icon only.",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-option",
+			"description": "One choice in a fem-select or fem-combobox.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "selected",
+					"valueSet": "v"
+				},
+				{
+					"name": "active",
+					"description": "Set by a combobox while the arrow keys rest on this option, since focus stays in its input.",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-pagination",
+			"description": "Page numbers for long lists. The current page's fill slides, like every other selection in fem.",
+			"attributes": [
+				{
+					"name": "page"
+				},
+				{
+					"name": "total"
+				},
+				{
+					"name": "siblings"
+				}
+			]
+		},
+		{
+			"name": "fem-popover",
+			"description": "A floating panel for any content: a short form, a color picker, details. Like menus, it opens in the inverse theme, so it stands off the page with no shadow. Every fem component inside flips with it.",
+			"attributes": [
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "placement",
+					"values": [
+						{
+							"name": "below"
+						},
+						{
+							"name": "above"
+						}
+					]
+				},
+				{
+					"name": "alignment",
+					"values": [
+						{
+							"name": "start"
+						},
+						{
+							"name": "center"
+						}
+					]
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-progress",
+			"description": "Shows how far along a task is.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "max"
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-radio",
+			"description": "Picks one option from a set. Group radios with fem-radio-group.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "checked",
+					"valueSet": "v"
+				},
+				{
+					"name": "kind",
+					"values": [
+						{
+							"name": "plain"
+						},
+						{
+							"name": "row"
+						}
+					]
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-radio-group",
+			"description": "Owns a set of radios: their shared name, which one is checked, and arrow key movement. The list kind turns each radio into a row with a sliding fill.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "name"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "kind",
+					"values": [
+						{
+							"name": "plain"
+						},
+						{
+							"name": "list"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "fem-range-slider",
+			"description": "Two thumbs on one track, for a span like a BPM range. Each thumb is a real range input, so touch, drag, and the keyboard all work natively. The thumbs can't cross.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "start"
+				},
+				{
+					"name": "end"
+				},
+				{
+					"name": "min"
+				},
+				{
+					"name": "max"
+				},
+				{
+					"name": "step"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "show-value",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-row",
+			"description": "A box that is always a row. Reads better in markup.",
+			"attributes": [
+				{
+					"name": "align-x",
+					"values": [
+						{
+							"name": "start"
+						},
+						{
+							"name": "center"
+						},
+						{
+							"name": "end"
+						},
+						{
+							"name": "stretch"
+						},
+						{
+							"name": "between"
+						}
+					]
+				},
+				{
+					"name": "align-y",
+					"values": [
+						{
+							"name": "start"
+						},
+						{
+							"name": "center"
+						},
+						{
+							"name": "end"
+						},
+						{
+							"name": "stretch"
+						},
+						{
+							"name": "between"
+						}
+					]
+				},
+				{
+					"name": "gap",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				},
+				{
+					"name": "padding",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						},
+						{
+							"name": "8"
+						},
+						{
+							"name": "10"
+						}
+					]
+				},
+				{
+					"name": "wrap",
+					"valueSet": "v"
+				},
+				{
+					"name": "grow",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-segment",
+			"description": "One choice in a fem-segmented control.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "selected",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-segmented",
+			"description": "A few choices side by side. The selected fill slides.",
+			"attributes": [
+				{
+					"name": "value"
+				}
+			]
+		},
+		{
+			"name": "fem-select",
+			"description": "Picks one option from a list that opens below. Works in forms.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "placeholder"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-sheet",
+			"description": "A panel that slides in from the bottom or side.",
+			"attributes": [
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "heading"
+				}
+			]
+		},
+		{
+			"name": "fem-skeleton",
+			"description": "A flat placeholder that pulses while content loads. No shimmer gradient: fem stays flat.",
+			"attributes": [
+				{
+					"name": "shape",
+					"values": [
+						{
+							"name": "text"
+						},
+						{
+							"name": "box"
+						},
+						{
+							"name": "circle"
+						}
+					]
+				},
+				{
+					"name": "lines"
+				},
+				{
+					"name": "width"
+				},
+				{
+					"name": "height"
+				}
+			]
+		},
+		{
+			"name": "fem-slider",
+			"description": "Picks a number along a track. Add show-value for a readout.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "min"
+				},
+				{
+					"name": "max"
+				},
+				{
+					"name": "step"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "show-value",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-spinner",
+			"description": "Takes its color from the text around it.",
+			"attributes": [
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-swap",
+			"description": "A round toggle that swaps between two faces, like play and pause.",
+			"attributes": [
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "kind",
+					"values": [
+						{
+							"name": "solid"
+						},
+						{
+							"name": "ghost"
+						}
+					]
+				},
+				{
+					"name": "color",
+					"values": [
+						{
+							"name": "neutral"
+						},
+						{
+							"name": "accent"
+						}
+					]
+				},
+				{
+					"name": "on",
+					"valueSet": "v"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-switch",
+			"description": "Turns a setting on or off right away. Works in forms.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "value"
+				},
+				{
+					"name": "checked",
+					"valueSet": "v"
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-tab",
+			"description": "One tab in fem-tabs.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "selected",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-tab-bar",
+			"description": "The bottom bar of a mobile app. A few top-level destinations, each an icon over a short label.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-tab-bar-item",
+			"description": "One destination in a fem-tab-bar: an icon over a short label.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "selected",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-table",
+			"description": "A data table drawn from columns and rows. Rows alternate fills instead of drawing lines, so it stays flat. Sortable columns sort on click.",
+			"attributes": [
+				{
+					"name": "label"
+				},
+				{
+					"name": "empty-text"
+				}
+			]
+		},
+		{
+			"name": "fem-tabs",
+			"description": "Switches between views. The underline slides.",
+			"attributes": [
+				{
+					"name": "value"
+				}
+			]
+		},
+		{
+			"name": "fem-tag",
+			"description": "A small label. With removable, it gets an x that sends a remove event. The app decides what to do.",
+			"attributes": [
+				{
+					"name": "removable",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-text",
+			"description": "Running text on the type scale. Numbers get the numeric face with the numeric flag.",
+			"attributes": [
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "caption"
+						},
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "weight",
+					"values": [
+						{
+							"name": "regular"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "semibold"
+						},
+						{
+							"name": "bold"
+						}
+					]
+				},
+				{
+					"name": "color",
+					"values": [
+						{
+							"name": "strong"
+						},
+						{
+							"name": "muted"
+						},
+						{
+							"name": "accent"
+						},
+						{
+							"name": "danger"
+						},
+						{
+							"name": "success"
+						},
+						{
+							"name": "warning"
+						},
+						{
+							"name": "info"
+						}
+					]
+				},
+				{
+					"name": "numeric",
+					"valueSet": "v"
+				},
+				{
+					"name": "truncate",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-toast",
+			"description": "A short message that appears and leaves on its own. Use showToast().",
+			"attributes": [
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "duration"
+				}
+			]
+		},
+		{
+			"name": "fem-tooltip",
+			"description": "A short label that appears on hover or focus.",
+			"attributes": [
+				{
+					"name": "text"
+				}
+			]
+		}
+	]
+}

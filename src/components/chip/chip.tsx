@@ -8,6 +8,8 @@ export type ChipSizeT = 'small' | 'medium' | 'large'
 
 const chipSheet = createStyleSheet(chipCss)
 
+// A choice you toggle, like a filter. A chosen chip
+// inverts.
 export const Chip = c(
 	(props) => {
 		const [isSelected, setSelected] = useProp<boolean>('selected')

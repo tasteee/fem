@@ -11,6 +11,7 @@ export type IconSizeT = 'small' | 'medium' | 'large'
 
 const iconSheet = createStyleSheet(iconCss)
 
+// A Phosphor icon. Takes the text color around it.
 export const Icon = c(
 	(props) => {
 		// Bumped when icons are registered, so an icon

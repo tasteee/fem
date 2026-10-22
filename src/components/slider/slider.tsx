@@ -15,6 +15,8 @@ const getFillRatio = (value: number, minimum: number, maximum: number): number =
 	return Math.min(1, Math.max(0, ratio))
 }
 
+// Picks a number along a track. Add show-value for a
+// readout.
 export const Slider = c(
 	(props) => {
 		const [value, setValue] = useProp<number>('value')

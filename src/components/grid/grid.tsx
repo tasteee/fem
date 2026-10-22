@@ -16,6 +16,8 @@ const getTrackTemplate = (columns: number, minimumWidth: string | undefined): st
 	return `repeat(${columns}, minmax(0, 1fr))`
 }
 
+// A grid of equal columns, by count or by minimum
+// column width.
 export const Grid = c(
 	(props) => {
 		const trackTemplate = getTrackTemplate(props.columns, props.min)

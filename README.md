@@ -254,6 +254,35 @@ All three work on the root or on any container.
 - `--accent`: any color. Text on top of it picks dark or light by itself.
 - `temperature`: `pure` or `cool` grays. Root only. The default is cool in light and pure in dark.
 
+## Editors and types
+
+Every component's props, attributes, events, and slots come from one generated manifest. `npm run manifest` rebuilds it from the component source, and `build` and `typecheck` run it for you.
+
+- `custom-elements.json`: the standard Custom Elements Manifest. Storybook, docs tools, and IDE plugins read it.
+- `vscode.html-custom-data.json`: tag and attribute autocomplete in HTML. This repo already points VS Code at it. In your app:
+
+```json
+{ "html.customData": ["./node_modules/@tasteee/fem/vscode.html-custom-data.json"] }
+```
+
+- Typed tags. Add one entry to `compilerOptions.types` in your `tsconfig.json`:
+
+| Setup | Entry | What you get |
+| --- | --- | --- |
+| Plain TypeScript | `@tasteee/fem/jsx` | `document.querySelector('fem-select')` is typed |
+| React 19 | `@tasteee/fem/react` | typed JSX props and values, plus lowercase events like `onchange` |
+| Svelte 5 | `@tasteee/fem/svelte` | typed props on fem tags |
+
+A wrong value is a type error:
+
+```tsx
+<fem-button size="huge" />
+// Type '"huge"' is not assignable to type '"small" | "medium" | "large" | undefined'
+```
+
+- React 19 sets fem props as properties and listens to their events, so no wrapper components are needed.
+- Svelte checks values passed as expressions, like `size={someSize}`. It doesn't check plain string attributes.
+
 ## Develop
 
 ```sh
@@ -264,6 +293,7 @@ npm run typecheck
 npm run build:demos   # static site in demos/, for GitHub Pages
 npm run format
 npm run icons      # rebuild the icon module from Phosphor
+npm run manifest   # rebuild custom-elements.json, editor data, and types
 ```
 
 ## Layout

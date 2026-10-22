@@ -6,6 +6,7 @@ import tabCss from './tab.css?inline'
 
 const tabSheet = createStyleSheet(tabCss)
 
+// One tab in fem-tabs.
 export const Tab = c(
 	(props) => {
 		const selectedClass = getFlagClass(props.selected, 'isSelected')

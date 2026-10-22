@@ -6,6 +6,7 @@ import tooltipCss from './tooltip.css?inline'
 
 const tooltipSheet = createStyleSheet(tooltipCss)
 
+// A short label that appears on hover or focus.
 export const Tooltip = c(
 	(props) => {
 		const anchorRef = useRef<HTMLSpanElement>()

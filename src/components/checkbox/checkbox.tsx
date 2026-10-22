@@ -9,6 +9,8 @@ import checkboxCss from './checkbox.css?inline'
 
 const checkboxSheet = createStyleSheet(checkboxCss)
 
+// Turns one option on or off. Works in forms like a
+// native checkbox.
 export const Checkbox = c(
 	(props) => {
 		const buttonRef = useRef<HTMLButtonElement>()

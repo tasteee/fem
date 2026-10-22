@@ -11,6 +11,8 @@ export type SwapColorT = 'neutral' | 'accent'
 
 const swapSheet = createStyleSheet(swapCss)
 
+// A round toggle that swaps between two faces, like
+// play and pause.
 export const Swap = c(
 	(props) => {
 		const swapRef = useRef<HTMLButtonElement>()

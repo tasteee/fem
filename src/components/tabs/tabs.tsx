@@ -7,6 +7,7 @@ import tabsCss from './tabs.css?inline'
 
 const tabsSheet = createStyleSheet(tabsCss)
 
+// Switches between views. The underline slides.
 export const Tabs = c(
 	() => {
 		const hostRef = useHost<HTMLElement>()

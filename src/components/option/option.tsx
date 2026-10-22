@@ -6,6 +6,7 @@ import optionCss from './option.css?inline'
 
 const optionSheet = createStyleSheet(optionCss)
 
+// One choice in a fem-select or fem-combobox.
 export const Option = c(
 	(props) => {
 		const selectedClass = getFlagClass(props.selected, 'isSelected')

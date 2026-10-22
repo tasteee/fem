@@ -1,0 +1,5184 @@
+{
+	"schemaVersion": "1.0.0",
+	"readme": "README.md",
+	"modules": [
+		{
+			"kind": "javascript-module",
+			"path": "src/components/accordion/accordion.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Accordion",
+					"tagName": "fem-accordion",
+					"customElement": true,
+					"description": "Stacks accordion items. With single, opening one closes the rest.",
+					"attributes": [
+						{
+							"name": "single",
+							"fieldName": "single",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "single",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-accordion",
+					"declaration": {
+						"name": "Accordion",
+						"module": "src/components/accordion/accordion.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/accordion-item/accordion-item.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "AccordionItem",
+					"tagName": "fem-accordion-item",
+					"customElement": true,
+					"description": "One section that opens and closes. The summary slot is the always-visible header.",
+					"attributes": [
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "toggle",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "summary",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-accordion-item",
+					"declaration": {
+						"name": "AccordionItem",
+						"module": "src/components/accordion-item/accordion-item.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/avatar/avatar.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Avatar",
+					"tagName": "fem-avatar",
+					"customElement": true,
+					"description": "A round picture of a person. With no image, the first letter of the name stands in.",
+					"attributes": [
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "color",
+							"fieldName": "color",
+							"type": {
+								"text": "'neutral' | 'accent'"
+							},
+							"default": "\"neutral\""
+						},
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "src",
+							"fieldName": "src",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "color",
+							"type": {
+								"text": "'neutral' | 'accent'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "src",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-avatar",
+					"declaration": {
+						"name": "Avatar",
+						"module": "src/components/avatar/avatar.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/avatar-group/avatar-group.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "AvatarGroup",
+					"tagName": "fem-avatar-group",
+					"customElement": true,
+					"description": "Overlapping avatars. Past the max, the rest fold into a count.",
+					"attributes": [
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "number"
+							},
+							"default": "4"
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-avatar-group",
+					"declaration": {
+						"name": "AvatarGroup",
+						"module": "src/components/avatar-group/avatar-group.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/badge/badge.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Badge",
+					"tagName": "fem-badge",
+					"customElement": true,
+					"description": "A short status label. Solid and bright, never murky.",
+					"attributes": [
+						{
+							"name": "color",
+							"fieldName": "color",
+							"type": {
+								"text": "'neutral' | 'accent' | 'danger' | 'success' | 'warning' | 'info'"
+							},
+							"default": "\"neutral\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "color",
+							"type": {
+								"text": "'neutral' | 'accent' | 'danger' | 'success' | 'warning' | 'info'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-badge",
+					"declaration": {
+						"name": "Badge",
+						"module": "src/components/badge/badge.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/banner/banner.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Banner",
+					"tagName": "fem-banner",
+					"customElement": true,
+					"description": "A message across the top of a section: info, success, warning, or danger.",
+					"attributes": [
+						{
+							"name": "color",
+							"fieldName": "color",
+							"type": {
+								"text": "'info' | 'success' | 'warning' | 'danger' | 'neutral'"
+							},
+							"default": "\"info\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "color",
+							"type": {
+								"text": "'info' | 'success' | 'warning' | 'danger' | 'neutral'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-banner",
+					"declaration": {
+						"name": "Banner",
+						"module": "src/components/banner/banner.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/box/box.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Box",
+					"tagName": "fem-box",
+					"customElement": true,
+					"description": "The general box. Picks its direction from an attribute. Row is the default.",
+					"attributes": [
+						{
+							"name": "align-x",
+							"fieldName": "alignX",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							}
+						},
+						{
+							"name": "align-y",
+							"fieldName": "alignY",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							}
+						},
+						{
+							"name": "gap",
+							"fieldName": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"none\""
+						},
+						{
+							"name": "padding",
+							"fieldName": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"none\""
+						},
+						{
+							"name": "wrap",
+							"fieldName": "wrap",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "grow",
+							"fieldName": "grow",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "direction",
+							"fieldName": "direction",
+							"type": {
+								"text": "'row' | 'column'"
+							},
+							"default": "\"row\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "alignX",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "alignY",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "wrap",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "grow",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "direction",
+							"type": {
+								"text": "'row' | 'column'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-box",
+					"declaration": {
+						"name": "Box",
+						"module": "src/components/box/box.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/breadcrumb/breadcrumb.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Breadcrumb",
+					"tagName": "fem-breadcrumb",
+					"customElement": true,
+					"description": "One step in a trail. The last step is the current page: it isn't a link and has no caret after it.",
+					"attributes": [
+						{
+							"name": "href",
+							"fieldName": "href",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "current",
+							"fieldName": "current",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "href",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "current",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-breadcrumb",
+					"declaration": {
+						"name": "Breadcrumb",
+						"module": "src/components/breadcrumb/breadcrumb.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/breadcrumbs/breadcrumbs.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Breadcrumbs",
+					"tagName": "fem-breadcrumbs",
+					"customElement": true,
+					"description": "A trail of breadcrumbs. The last one is always the current page.",
+					"attributes": [
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-breadcrumbs",
+					"declaration": {
+						"name": "Breadcrumbs",
+						"module": "src/components/breadcrumbs/breadcrumbs.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/button/button.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Button",
+					"tagName": "fem-button",
+					"customElement": true,
+					"description": "Runs an action. Pills act. Shrinks and darkens on press.",
+					"attributes": [
+						{
+							"name": "type",
+							"fieldName": "type",
+							"type": {
+								"text": "'button' | 'submit' | 'reset'"
+							},
+							"default": "\"button\""
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "kind",
+							"fieldName": "kind",
+							"type": {
+								"text": "'solid' | 'soft' | 'ghost'"
+							},
+							"default": "\"solid\""
+						},
+						{
+							"name": "color",
+							"fieldName": "color",
+							"type": {
+								"text": "'neutral' | 'accent' | 'danger' | 'success' | 'warning' | 'info'"
+							},
+							"default": "\"neutral\""
+						},
+						{
+							"name": "shape",
+							"fieldName": "shape",
+							"type": {
+								"text": "'pill' | 'circle'"
+							},
+							"default": "\"pill\""
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "loading",
+							"fieldName": "loading",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "wide",
+							"fieldName": "wide",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "type",
+							"type": {
+								"text": "'button' | 'submit' | 'reset'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "kind",
+							"type": {
+								"text": "'solid' | 'soft' | 'ghost'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "color",
+							"type": {
+								"text": "'neutral' | 'accent' | 'danger' | 'success' | 'warning' | 'info'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "shape",
+							"type": {
+								"text": "'pill' | 'circle'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "loading",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "wide",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-button",
+					"declaration": {
+						"name": "Button",
+						"module": "src/components/button/button.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/calendar/calendar.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Calendar",
+					"tagName": "fem-calendar",
+					"customElement": true,
+					"description": "One month of days. The chosen day's fill slides, like every selection in fem. Arrow keys move by day and week, Page Up and Page Down by month.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "min",
+							"fieldName": "min",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "locale",
+							"fieldName": "locale",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "week-start",
+							"fieldName": "weekStart",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "min",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "locale",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "weekStart",
+							"type": {
+								"text": "number"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-calendar",
+					"declaration": {
+						"name": "Calendar",
+						"module": "src/components/calendar/calendar.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/card/card.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Card",
+					"tagName": "fem-card",
+					"customElement": true,
+					"description": "A raised surface that groups related content. It is a column, so its children stack with the gap.",
+					"attributes": [
+						{
+							"name": "surface",
+							"fieldName": "surface",
+							"type": {
+								"text": "'card' | 'inset'"
+							},
+							"default": "\"card\""
+						},
+						{
+							"name": "padding",
+							"fieldName": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"5\""
+						},
+						{
+							"name": "gap",
+							"fieldName": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"4\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "surface",
+							"type": {
+								"text": "'card' | 'inset'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-card",
+					"declaration": {
+						"name": "Card",
+						"module": "src/components/card/card.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/checkbox/checkbox.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Checkbox",
+					"tagName": "fem-checkbox",
+					"customElement": true,
+					"description": "Turns one option on or off. Works in forms like a native checkbox.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"on\""
+						},
+						{
+							"name": "checked",
+							"fieldName": "checked",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "checked",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-checkbox",
+					"declaration": {
+						"name": "Checkbox",
+						"module": "src/components/checkbox/checkbox.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/checkbox-group/checkbox-group.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "CheckboxGroup",
+					"tagName": "fem-checkbox-group",
+					"customElement": true,
+					"description": "Groups checkboxes under one name and label. Each checked box sends its own value with the form, like native checkboxes that share a name.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-checkbox-group",
+					"declaration": {
+						"name": "CheckboxGroup",
+						"module": "src/components/checkbox-group/checkbox-group.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/chip/chip.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Chip",
+					"tagName": "fem-chip",
+					"customElement": true,
+					"description": "A choice you toggle, like a filter. A chosen chip inverts.",
+					"attributes": [
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"small\""
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-chip",
+					"declaration": {
+						"name": "Chip",
+						"module": "src/components/chip/chip.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/box/box.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Column",
+					"tagName": "fem-column",
+					"customElement": true,
+					"description": "A box that is always a column.",
+					"attributes": [
+						{
+							"name": "align-x",
+							"fieldName": "alignX",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							}
+						},
+						{
+							"name": "align-y",
+							"fieldName": "alignY",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							}
+						},
+						{
+							"name": "gap",
+							"fieldName": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"none\""
+						},
+						{
+							"name": "padding",
+							"fieldName": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"none\""
+						},
+						{
+							"name": "wrap",
+							"fieldName": "wrap",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "grow",
+							"fieldName": "grow",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "alignX",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "alignY",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "wrap",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "grow",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-column",
+					"declaration": {
+						"name": "Column",
+						"module": "src/components/box/box.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/combobox/combobox.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Combobox",
+					"tagName": "fem-combobox",
+					"customElement": true,
+					"description": "A select you can type into. Typing filters the options. Arrow keys move, Enter picks, Escape closes and puts the chosen label back.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "placeholder",
+							"fieldName": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "empty-text",
+							"fieldName": "emptyText",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"No matches\""
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "emptyText",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-combobox",
+					"declaration": {
+						"name": "Combobox",
+						"module": "src/components/combobox/combobox.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/date-picker/date-picker.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "DatePicker",
+					"tagName": "fem-date-picker",
+					"customElement": true,
+					"description": "A box like select that opens a calendar. The value is an ISO date, like 2026-10-21. The panel opens in the inverse theme, like every floating panel.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "placeholder",
+							"fieldName": "placeholder",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Pick a date\""
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "min",
+							"fieldName": "min",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "locale",
+							"fieldName": "locale",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "week-start",
+							"fieldName": "weekStart",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "min",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "locale",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "weekStart",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-date-picker",
+					"declaration": {
+						"name": "DatePicker",
+						"module": "src/components/date-picker/date-picker.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/dialog/dialog.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Dialog",
+					"tagName": "fem-dialog",
+					"customElement": true,
+					"description": "A centered panel that asks for a decision. Blocks the page until it closes.",
+					"attributes": [
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "heading",
+							"fieldName": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "close",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						},
+						{
+							"name": "actions",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-dialog",
+					"declaration": {
+						"name": "Dialog",
+						"module": "src/components/dialog/dialog.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/divider/divider.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Divider",
+					"tagName": "fem-divider",
+					"customElement": true,
+					"description": "A divider is a filled bar on the surface scale, not a border. Use it between groups, never around them.",
+					"attributes": [
+						{
+							"name": "orientation",
+							"fieldName": "orientation",
+							"type": {
+								"text": "'horizontal' | 'vertical'"
+							},
+							"default": "\"horizontal\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "orientation",
+							"type": {
+								"text": "'horizontal' | 'vertical'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-divider",
+					"declaration": {
+						"name": "Divider",
+						"module": "src/components/divider/divider.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/empty-state/empty-state.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "EmptyState",
+					"tagName": "fem-empty-state",
+					"customElement": true,
+					"description": "What a screen shows when there's nothing in it yet: an icon, a heading that names what's missing, one line on how to add it, and the action that does.",
+					"attributes": [
+						{
+							"name": "heading",
+							"fieldName": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "icon",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						},
+						{
+							"name": "actions",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-empty-state",
+					"declaration": {
+						"name": "EmptyState",
+						"module": "src/components/empty-state/empty-state.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/field/field.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Field",
+					"tagName": "fem-field",
+					"customElement": true,
+					"description": "Owns the label, help, and error for one control, so every control in the system is labeled the same way. Stacked puts the label above. Inline puts it on the left with the control on the right.",
+					"attributes": [
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "help",
+							"fieldName": "help",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "error",
+							"fieldName": "error",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "layout",
+							"fieldName": "layout",
+							"type": {
+								"text": "'stacked' | 'inline'"
+							},
+							"default": "\"stacked\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "help",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "error",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "layout",
+							"type": {
+								"text": "'stacked' | 'inline'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-field",
+					"declaration": {
+						"name": "Field",
+						"module": "src/components/field/field.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/grid/grid.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Grid",
+					"tagName": "fem-grid",
+					"customElement": true,
+					"description": "A grid of equal columns, by count or by minimum column width.",
+					"attributes": [
+						{
+							"name": "columns",
+							"fieldName": "columns",
+							"type": {
+								"text": "number"
+							},
+							"default": "2"
+						},
+						{
+							"name": "min",
+							"fieldName": "min",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "gap",
+							"fieldName": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"4\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "columns",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "min",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-grid",
+					"declaration": {
+						"name": "Grid",
+						"module": "src/components/grid/grid.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/heading/heading.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Heading",
+					"tagName": "fem-heading",
+					"customElement": true,
+					"description": "A title on the type scale. Level sets meaning and a natural size.",
+					"attributes": [
+						{
+							"name": "level",
+							"fieldName": "level",
+							"type": {
+								"text": "number"
+							},
+							"default": "2"
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'display' | 'title' | 'heading' | 'large'"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "level",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'display' | 'title' | 'heading' | 'large'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-heading",
+					"declaration": {
+						"name": "Heading",
+						"module": "src/components/heading/heading.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/icon/icon.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Icon",
+					"tagName": "fem-icon",
+					"customElement": true,
+					"description": "A Phosphor icon. Takes the text color around it.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "kind",
+							"fieldName": "kind",
+							"type": {
+								"text": "'bold' | 'fill'"
+							},
+							"default": "\"bold\""
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "kind",
+							"type": {
+								"text": "'bold' | 'fill'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-icon",
+					"declaration": {
+						"name": "Icon",
+						"module": "src/components/icon/icon.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/input/input.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Input",
+					"tagName": "fem-input",
+					"customElement": true,
+					"description": "A single line of text. Works in forms like a native input.",
+					"attributes": [
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "type",
+							"fieldName": "type",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"text\""
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "placeholder",
+							"fieldName": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "invalid",
+							"fieldName": "invalid",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "type",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "invalid",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-input",
+					"declaration": {
+						"name": "Input",
+						"module": "src/components/input/input.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/menu/menu.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Menu",
+					"tagName": "fem-menu",
+					"customElement": true,
+					"description": "A list of actions that opens from a trigger, in the inverse theme.",
+					"attributes": [
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "trigger",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-menu",
+					"declaration": {
+						"name": "Menu",
+						"module": "src/components/menu/menu.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/menu-item/menu-item.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "MenuItem",
+					"tagName": "fem-menu-item",
+					"customElement": true,
+					"description": "One action in a fem-menu.",
+					"attributes": [
+						{
+							"name": "color",
+							"fieldName": "color",
+							"type": {
+								"text": "'neutral' | 'danger'"
+							},
+							"default": "\"neutral\""
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "color",
+							"type": {
+								"text": "'neutral' | 'danger'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-menu-item",
+					"declaration": {
+						"name": "MenuItem",
+						"module": "src/components/menu-item/menu-item.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/nav/nav.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Nav",
+					"tagName": "fem-nav",
+					"customElement": true,
+					"description": "A vertical list of destinations, like a sidebar. The selected fill slides between items.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "collapsed",
+							"fieldName": "collapsed",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "collapsed",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-nav",
+					"declaration": {
+						"name": "Nav",
+						"module": "src/components/nav/nav.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/nav-item/nav-item.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "NavItem",
+					"tagName": "fem-nav-item",
+					"customElement": true,
+					"description": "One destination in a fem-nav: an icon, a label, and an optional end slot for a count or badge.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "collapsed",
+							"fieldName": "collapsed",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Set by fem-nav. Shows the icon only."
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "collapsed",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true,
+							"description": "Set by fem-nav. Shows the icon only."
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "icon",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						},
+						{
+							"name": "end",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-nav-item",
+					"declaration": {
+						"name": "NavItem",
+						"module": "src/components/nav-item/nav-item.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/option/option.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Option",
+					"tagName": "fem-option",
+					"customElement": true,
+					"description": "One choice in a fem-select or fem-combobox.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "active",
+							"fieldName": "active",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Set by a combobox while the arrow keys rest on this option, since focus stays in its input."
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "active",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true,
+							"description": "Set by a combobox while the arrow keys rest on this option, since focus stays in its input."
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-option",
+					"declaration": {
+						"name": "Option",
+						"module": "src/components/option/option.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/pagination/pagination.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Pagination",
+					"tagName": "fem-pagination",
+					"customElement": true,
+					"description": "Page numbers for long lists. The current page's fill slides, like every other selection in fem.",
+					"attributes": [
+						{
+							"name": "page",
+							"fieldName": "page",
+							"type": {
+								"text": "number"
+							},
+							"default": "1"
+						},
+						{
+							"name": "total",
+							"fieldName": "total",
+							"type": {
+								"text": "number"
+							},
+							"default": "1"
+						},
+						{
+							"name": "siblings",
+							"fieldName": "siblings",
+							"type": {
+								"text": "number"
+							},
+							"default": "1"
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "page",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "total",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "siblings",
+							"type": {
+								"text": "number"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-pagination",
+					"declaration": {
+						"name": "Pagination",
+						"module": "src/components/pagination/pagination.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/popover/popover.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Popover",
+					"tagName": "fem-popover",
+					"customElement": true,
+					"description": "A floating panel for any content: a short form, a color picker, details. Like menus, it opens in the inverse theme, so it stands off the page with no shadow. Every fem component inside flips with it.",
+					"attributes": [
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "placement",
+							"fieldName": "placement",
+							"type": {
+								"text": "'below' | 'above'"
+							},
+							"default": "\"below\""
+						},
+						{
+							"name": "alignment",
+							"fieldName": "alignment",
+							"type": {
+								"text": "'start' | 'center'"
+							},
+							"default": "\"start\""
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "placement",
+							"type": {
+								"text": "'below' | 'above'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "alignment",
+							"type": {
+								"text": "'start' | 'center'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "trigger",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-popover",
+					"declaration": {
+						"name": "Popover",
+						"module": "src/components/popover/popover.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/progress/progress.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Progress",
+					"tagName": "fem-progress",
+					"customElement": true,
+					"description": "Shows how far along a task is.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "number"
+							},
+							"default": "100"
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-progress",
+					"declaration": {
+						"name": "Progress",
+						"module": "src/components/progress/progress.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/radio/radio.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Radio",
+					"tagName": "fem-radio",
+					"customElement": true,
+					"description": "Picks one option from a set. Group radios with fem-radio-group.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "checked",
+							"fieldName": "checked",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "kind",
+							"fieldName": "kind",
+							"type": {
+								"text": "'plain' | 'row'"
+							},
+							"default": "\"plain\""
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "checked",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "kind",
+							"type": {
+								"text": "'plain' | 'row'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						},
+						{
+							"name": "end",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-radio",
+					"declaration": {
+						"name": "Radio",
+						"module": "src/components/radio/radio.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/radio-group/radio-group.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "RadioGroup",
+					"tagName": "fem-radio-group",
+					"customElement": true,
+					"description": "Owns a set of radios: their shared name, which one is checked, and arrow key movement. The list kind turns each radio into a row with a sliding fill.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "kind",
+							"fieldName": "kind",
+							"type": {
+								"text": "'plain' | 'list'"
+							},
+							"default": "\"plain\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "kind",
+							"type": {
+								"text": "'plain' | 'list'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-radio-group",
+					"declaration": {
+						"name": "RadioGroup",
+						"module": "src/components/radio-group/radio-group.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/range-slider/range-slider.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "RangeSlider",
+					"tagName": "fem-range-slider",
+					"customElement": true,
+					"description": "Two thumbs on one track, for a span like a BPM range. Each thumb is a real range input, so touch, drag, and the keyboard all work natively. The thumbs can't cross.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "start",
+							"fieldName": "start",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "end",
+							"fieldName": "end",
+							"type": {
+								"text": "number"
+							},
+							"default": "100"
+						},
+						{
+							"name": "min",
+							"fieldName": "min",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "number"
+							},
+							"default": "100"
+						},
+						{
+							"name": "step",
+							"fieldName": "step",
+							"type": {
+								"text": "number"
+							},
+							"default": "1"
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "show-value",
+							"fieldName": "showValue",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "start",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "end",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "min",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "step",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "showValue",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-range-slider",
+					"declaration": {
+						"name": "RangeSlider",
+						"module": "src/components/range-slider/range-slider.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/box/box.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Row",
+					"tagName": "fem-row",
+					"customElement": true,
+					"description": "A box that is always a row. Reads better in markup.",
+					"attributes": [
+						{
+							"name": "align-x",
+							"fieldName": "alignX",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							}
+						},
+						{
+							"name": "align-y",
+							"fieldName": "alignY",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							}
+						},
+						{
+							"name": "gap",
+							"fieldName": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"none\""
+						},
+						{
+							"name": "padding",
+							"fieldName": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"default": "\"none\""
+						},
+						{
+							"name": "wrap",
+							"fieldName": "wrap",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "grow",
+							"fieldName": "grow",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "alignX",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "alignY",
+							"type": {
+								"text": "'start' | 'center' | 'end' | 'stretch' | 'between'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "gap",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "padding",
+							"type": {
+								"text": "'none' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "wrap",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "grow",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-row",
+					"declaration": {
+						"name": "Row",
+						"module": "src/components/box/box.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/segment/segment.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Segment",
+					"tagName": "fem-segment",
+					"customElement": true,
+					"description": "One choice in a fem-segmented control.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-segment",
+					"declaration": {
+						"name": "Segment",
+						"module": "src/components/segment/segment.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/segmented/segmented.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Segmented",
+					"tagName": "fem-segmented",
+					"customElement": true,
+					"description": "A few choices side by side. The selected fill slides.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-segmented",
+					"declaration": {
+						"name": "Segmented",
+						"module": "src/components/segmented/segmented.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/select/select.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Select",
+					"tagName": "fem-select",
+					"customElement": true,
+					"description": "Picks one option from a list that opens below. Works in forms.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "placeholder",
+							"fieldName": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-select",
+					"declaration": {
+						"name": "Select",
+						"module": "src/components/select/select.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/sheet/sheet.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Sheet",
+					"tagName": "fem-sheet",
+					"customElement": true,
+					"description": "A panel that slides in from the bottom or side.",
+					"attributes": [
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "heading",
+							"fieldName": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "close",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-sheet",
+					"declaration": {
+						"name": "Sheet",
+						"module": "src/components/sheet/sheet.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/skeleton/skeleton.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Skeleton",
+					"tagName": "fem-skeleton",
+					"customElement": true,
+					"description": "A flat placeholder that pulses while content loads. No shimmer gradient: fem stays flat.",
+					"attributes": [
+						{
+							"name": "shape",
+							"fieldName": "shape",
+							"type": {
+								"text": "'text' | 'box' | 'circle'"
+							},
+							"default": "\"text\""
+						},
+						{
+							"name": "lines",
+							"fieldName": "lines",
+							"type": {
+								"text": "number"
+							},
+							"default": "1"
+						},
+						{
+							"name": "width",
+							"fieldName": "width",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "height",
+							"fieldName": "height",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "shape",
+							"type": {
+								"text": "'text' | 'box' | 'circle'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "lines",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "width",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "height",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-skeleton",
+					"declaration": {
+						"name": "Skeleton",
+						"module": "src/components/skeleton/skeleton.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/slider/slider.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Slider",
+					"tagName": "fem-slider",
+					"customElement": true,
+					"description": "Picks a number along a track. Add show-value for a readout.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "min",
+							"fieldName": "min",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "number"
+							},
+							"default": "100"
+						},
+						{
+							"name": "step",
+							"fieldName": "step",
+							"type": {
+								"text": "number"
+							},
+							"default": "1"
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "show-value",
+							"fieldName": "showValue",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "number"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "min",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "step",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "showValue",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-slider",
+					"declaration": {
+						"name": "Slider",
+						"module": "src/components/slider/slider.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/spinner/spinner.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Spinner",
+					"tagName": "fem-spinner",
+					"customElement": true,
+					"description": "Takes its color from the text around it.",
+					"attributes": [
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-spinner",
+					"declaration": {
+						"name": "Spinner",
+						"module": "src/components/spinner/spinner.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/swap/swap.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Swap",
+					"tagName": "fem-swap",
+					"customElement": true,
+					"description": "A round toggle that swaps between two faces, like play and pause.",
+					"attributes": [
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "kind",
+							"fieldName": "kind",
+							"type": {
+								"text": "'solid' | 'ghost'"
+							},
+							"default": "\"solid\""
+						},
+						{
+							"name": "color",
+							"fieldName": "color",
+							"type": {
+								"text": "'neutral' | 'accent'"
+							},
+							"default": "\"neutral\""
+						},
+						{
+							"name": "on",
+							"fieldName": "on",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "kind",
+							"type": {
+								"text": "'solid' | 'ghost'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "color",
+							"type": {
+								"text": "'neutral' | 'accent'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "on",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "off",
+							"description": ""
+						},
+						{
+							"name": "on",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-swap",
+					"declaration": {
+						"name": "Swap",
+						"module": "src/components/swap/swap.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/switch/switch.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Switch",
+					"tagName": "fem-switch",
+					"customElement": true,
+					"description": "Turns a setting on or off right away. Works in forms.",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"on\""
+						},
+						{
+							"name": "checked",
+							"fieldName": "checked",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "checked",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-switch",
+					"declaration": {
+						"name": "Switch",
+						"module": "src/components/switch/switch.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tab/tab.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Tab",
+					"tagName": "fem-tab",
+					"customElement": true,
+					"description": "One tab in fem-tabs.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tab",
+					"declaration": {
+						"name": "Tab",
+						"module": "src/components/tab/tab.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tab-bar/tab-bar.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "TabBar",
+					"tagName": "fem-tab-bar",
+					"customElement": true,
+					"description": "The bottom bar of a mobile app. A few top-level destinations, each an icon over a short label.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tab-bar",
+					"declaration": {
+						"name": "TabBar",
+						"module": "src/components/tab-bar/tab-bar.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tab-bar-item/tab-bar-item.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "TabBarItem",
+					"tagName": "fem-tab-bar-item",
+					"customElement": true,
+					"description": "One destination in a fem-tab-bar: an icon over a short label.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "icon",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tab-bar-item",
+					"declaration": {
+						"name": "TabBarItem",
+						"module": "src/components/tab-bar-item/tab-bar-item.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/table/table.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Table",
+					"tagName": "fem-table",
+					"customElement": true,
+					"description": "A data table drawn from columns and rows. Rows alternate fills instead of drawing lines, so it stays flat. Sortable columns sort on click.",
+					"attributes": [
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "empty-text",
+							"fieldName": "emptyText",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Nothing here yet.\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "columns",
+							"type": {
+								"text": "unknown[]"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "rows",
+							"type": {
+								"text": "unknown[]"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "emptyText",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "sort",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-table",
+					"declaration": {
+						"name": "Table",
+						"module": "src/components/table/table.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tabs/tabs.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Tabs",
+					"tagName": "fem-tabs",
+					"customElement": true,
+					"description": "Switches between views. The underline slides.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tabs",
+					"declaration": {
+						"name": "Tabs",
+						"module": "src/components/tabs/tabs.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tag/tag.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Tag",
+					"tagName": "fem-tag",
+					"customElement": true,
+					"description": "A small label. With removable, it gets an x that sends a remove event. The app decides what to do.",
+					"attributes": [
+						{
+							"name": "removable",
+							"fieldName": "removable",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "removable",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "remove",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tag",
+					"declaration": {
+						"name": "Tag",
+						"module": "src/components/tag/tag.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/text/text.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Text",
+					"tagName": "fem-text",
+					"customElement": true,
+					"description": "Running text on the type scale. Numbers get the numeric face with the numeric flag.",
+					"attributes": [
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'caption' | 'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "weight",
+							"fieldName": "weight",
+							"type": {
+								"text": "'regular' | 'medium' | 'semibold' | 'bold'"
+							},
+							"default": "\"regular\""
+						},
+						{
+							"name": "color",
+							"fieldName": "color",
+							"type": {
+								"text": "'strong' | 'muted' | 'accent' | 'danger' | 'success' | 'warning' | 'info'"
+							},
+							"default": "\"strong\""
+						},
+						{
+							"name": "numeric",
+							"fieldName": "numeric",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "truncate",
+							"fieldName": "truncate",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'caption' | 'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "weight",
+							"type": {
+								"text": "'regular' | 'medium' | 'semibold' | 'bold'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "color",
+							"type": {
+								"text": "'strong' | 'muted' | 'accent' | 'danger' | 'success' | 'warning' | 'info'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "numeric",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "truncate",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-text",
+					"declaration": {
+						"name": "Text",
+						"module": "src/components/text/text.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/toast/toast.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Toast",
+					"tagName": "fem-toast",
+					"customElement": true,
+					"description": "A short message that appears and leaves on its own. Use showToast().",
+					"attributes": [
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "duration",
+							"fieldName": "duration",
+							"type": {
+								"text": "number"
+							},
+							"default": "2400"
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "duration",
+							"type": {
+								"text": "number"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "close",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-toast",
+					"declaration": {
+						"name": "Toast",
+						"module": "src/components/toast/toast.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tooltip/tooltip.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Tooltip",
+					"tagName": "fem-tooltip",
+					"customElement": true,
+					"description": "A short label that appears on hover or focus.",
+					"attributes": [
+						{
+							"name": "text",
+							"fieldName": "text",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "text",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tooltip",
+					"declaration": {
+						"name": "Tooltip",
+						"module": "src/components/tooltip/tooltip.tsx"
+					}
+				}
+			]
+		}
+	]
+}

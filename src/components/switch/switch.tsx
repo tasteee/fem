@@ -7,6 +7,7 @@ import switchCss from './switch.css?inline'
 
 const switchSheet = createStyleSheet(switchCss)
 
+// Turns a setting on or off right away. Works in forms.
 export const Switch = c(
 	(props) => {
 		const buttonRef = useRef<HTMLButtonElement>()
