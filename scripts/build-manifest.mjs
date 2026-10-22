@@ -232,7 +232,8 @@ const readSlots = (sourceText) => {
 
 const listComponentFiles = () => {
 	const folderNames = readdirSync(componentsDirectory)
-	return folderNames.map((folderName) => join(componentsDirectory, folderName, `${folderName}.tsx`))
+	const filePaths = folderNames.map((folderName) => join(componentsDirectory, folderName, `${folderName}.tsx`))
+	return filePaths.filter((filePath) => existsSync(filePath))
 }
 
 const buildElements = () => {

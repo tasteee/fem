@@ -101,6 +101,44 @@
 	}
 }
 
+/* ---------- range ---------- */
+/* The days between start and end sit on one band. */
+/* The ends are solid circles on top of it. */
+.calendar-day.isBetween {
+	border-radius: 0;
+	background: var(--surface-inset);
+}
+
+.calendar-day.isRangeStart,
+.calendar-day.isRangeEnd {
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+}
+
+/* Half bands tie the end circles into the band. */
+.calendar-day.isRangeStart::before,
+.calendar-day.isRangeEnd::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	width: 50%;
+	background: var(--surface-inset);
+}
+
+.calendar-day.isRangeStart::before {
+	right: 0;
+}
+
+.calendar-day.isRangeEnd::before {
+	left: 0;
+}
+
+.calendar-day.isRangeStart.isRangeEnd::before {
+	display: none;
+}
+
 .calendar-indicator {
 	z-index: -1;
 	border-radius: var(--radius-pill);

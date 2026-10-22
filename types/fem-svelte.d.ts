@@ -23,6 +23,7 @@ declare module 'svelte/elements' {
 		'fem-column': HTMLAttributes<HTMLElement> & Fem.FemColumnPropsT & Fem.FemColumnAttributesT
 		'fem-combobox': HTMLAttributes<HTMLElement> & Fem.FemComboboxPropsT & Fem.FemComboboxAttributesT
 		'fem-date-picker': HTMLAttributes<HTMLElement> & Fem.FemDatePickerPropsT & Fem.FemDatePickerAttributesT
+		'fem-date-range-picker': HTMLAttributes<HTMLElement> & Fem.FemDateRangePickerPropsT & Fem.FemDateRangePickerAttributesT
 		'fem-dialog': HTMLAttributes<HTMLElement> & Fem.FemDialogPropsT & Fem.FemDialogAttributesT
 		'fem-divider': HTMLAttributes<HTMLElement> & Fem.FemDividerPropsT & Fem.FemDividerAttributesT
 		'fem-empty-state': HTMLAttributes<HTMLElement> & Fem.FemEmptyStatePropsT & Fem.FemEmptyStateAttributesT

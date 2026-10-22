@@ -63,7 +63,11 @@ export type FemButtonPropsT = {
 }
 
 export type FemCalendarPropsT = {
+	mode?: 'single' | 'range'
 	value?: string
+	/** Range mode reads and writes start and end. */
+	start?: string
+	end?: string
 	min?: string
 	max?: string
 	locale?: string
@@ -123,6 +127,23 @@ export type FemComboboxPropsT = {
 export type FemDatePickerPropsT = {
 	name?: string
 	value?: string
+	open?: boolean
+	placeholder?: string
+	label?: string
+	min?: string
+	max?: string
+	locale?: string
+	weekStart?: number
+	size?: 'small' | 'medium' | 'large'
+	required?: boolean
+	disabled?: boolean
+	onchange?: (event: CustomEvent) => void
+}
+
+export type FemDateRangePickerPropsT = {
+	name?: string
+	start?: string
+	end?: string
 	open?: boolean
 	placeholder?: string
 	label?: string
@@ -464,7 +485,10 @@ export type FemButtonAttributesT = {
 }
 
 export type FemCalendarAttributesT = {
+	'mode'?: 'single' | 'range'
 	'value'?: string
+	'start'?: string
+	'end'?: string
 	'min'?: string
 	'max'?: string
 	'locale'?: string
@@ -520,6 +544,22 @@ export type FemComboboxAttributesT = {
 export type FemDatePickerAttributesT = {
 	'name'?: string
 	'value'?: string
+	'open'?: boolean | ''
+	'placeholder'?: string
+	'label'?: string
+	'min'?: string
+	'max'?: string
+	'locale'?: string
+	'week-start'?: number
+	'size'?: 'small' | 'medium' | 'large'
+	'required'?: boolean | ''
+	'disabled'?: boolean | ''
+}
+
+export type FemDateRangePickerAttributesT = {
+	'name'?: string
+	'start'?: string
+	'end'?: string
 	'open'?: boolean | ''
 	'placeholder'?: string
 	'label'?: string
@@ -839,7 +879,10 @@ export type FemButtonElementT = HTMLElement & {
 }
 
 export type FemCalendarElementT = HTMLElement & {
+	mode: 'single' | 'range'
 	value: string | undefined
+	start: string | undefined
+	end: string | undefined
 	min: string | undefined
 	max: string | undefined
 	locale: string | undefined
@@ -895,6 +938,22 @@ export type FemComboboxElementT = HTMLElement & {
 export type FemDatePickerElementT = HTMLElement & {
 	name: string | undefined
 	value: string
+	open: boolean
+	placeholder: string
+	label: string | undefined
+	min: string | undefined
+	max: string | undefined
+	locale: string | undefined
+	weekStart: number
+	size: 'small' | 'medium' | 'large'
+	required: boolean
+	disabled: boolean
+}
+
+export type FemDateRangePickerElementT = HTMLElement & {
+	name: string | undefined
+	start: string
+	end: string
 	open: boolean
 	placeholder: string
 	label: string | undefined
@@ -1176,6 +1235,7 @@ declare global {
 		'fem-column': FemColumnElementT
 		'fem-combobox': FemComboboxElementT
 		'fem-date-picker': FemDatePickerElementT
+		'fem-date-range-picker': FemDateRangePickerElementT
 		'fem-dialog': FemDialogElementT
 		'fem-divider': FemDividerElementT
 		'fem-empty-state': FemEmptyStateElementT

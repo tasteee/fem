@@ -379,7 +379,25 @@
 			"description": "One month of days. The chosen day's fill slides, like every selection in fem. Arrow keys move by day and week, Page Up and Page Down by month.",
 			"attributes": [
 				{
+					"name": "mode",
+					"values": [
+						{
+							"name": "single"
+						},
+						{
+							"name": "range"
+						}
+					]
+				},
+				{
 					"name": "value"
+				},
+				{
+					"name": "start",
+					"description": "Range mode reads and writes start and end."
+				},
+				{
+					"name": "end"
 				},
 				{
 					"name": "min"
@@ -713,6 +731,65 @@
 				},
 				{
 					"name": "value"
+				},
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "placeholder"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "min"
+				},
+				{
+					"name": "max"
+				},
+				{
+					"name": "locale"
+				},
+				{
+					"name": "week-start"
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "small"
+						},
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-date-range-picker",
+			"description": "A box like select that opens a range calendar. Pick a start day, then an end day. Submits \"start,end\".",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "start"
+				},
+				{
+					"name": "end"
 				},
 				{
 					"name": "open",

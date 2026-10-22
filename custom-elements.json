@@ -803,8 +803,31 @@
 					"description": "One month of days. The chosen day's fill slides, like every selection in fem. Arrow keys move by day and week, Page Up and Page Down by month.",
 					"attributes": [
 						{
+							"name": "mode",
+							"fieldName": "mode",
+							"type": {
+								"text": "'single' | 'range'"
+							},
+							"default": "\"single\""
+						},
+						{
 							"name": "value",
 							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "start",
+							"fieldName": "start",
+							"type": {
+								"text": "string"
+							},
+							"description": "Range mode reads and writes start and end."
+						},
+						{
+							"name": "end",
+							"fieldName": "end",
 							"type": {
 								"text": "string"
 							}
@@ -842,7 +865,32 @@
 					"members": [
 						{
 							"kind": "field",
+							"name": "mode",
+							"type": {
+								"text": "'single' | 'range'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
 							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "start",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true,
+							"description": "Range mode reads and writes start and end."
+						},
+						{
+							"kind": "field",
+							"name": "end",
 							"type": {
 								"text": "string"
 							},
@@ -1756,6 +1804,234 @@
 					"declaration": {
 						"name": "DatePicker",
 						"module": "src/components/date-picker/date-picker.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/date-range-picker/date-range-picker.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "DateRangePicker",
+					"tagName": "fem-date-range-picker",
+					"customElement": true,
+					"description": "A box like select that opens a range calendar. Pick a start day, then an end day. Submits \"start,end\".",
+					"attributes": [
+						{
+							"name": "name",
+							"fieldName": "name",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "start",
+							"fieldName": "start",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "end",
+							"fieldName": "end",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "placeholder",
+							"fieldName": "placeholder",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Pick dates\""
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "min",
+							"fieldName": "min",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "max",
+							"fieldName": "max",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "locale",
+							"fieldName": "locale",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "week-start",
+							"fieldName": "weekStart",
+							"type": {
+								"text": "number"
+							},
+							"default": "0"
+						},
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"medium\""
+						},
+						{
+							"name": "required",
+							"fieldName": "required",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "name",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "start",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "end",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "min",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "max",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "locale",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "weekStart",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "required",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-date-range-picker",
+					"declaration": {
+						"name": "DateRangePicker",
+						"module": "src/components/date-range-picker/date-range-picker.tsx"
 					}
 				}
 			]

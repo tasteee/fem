@@ -26,6 +26,7 @@ declare module 'react' {
 			'fem-column': ReactElementPropsT & Fem.FemColumnPropsT & Fem.FemColumnAttributesT
 			'fem-combobox': ReactElementPropsT & Fem.FemComboboxPropsT & Fem.FemComboboxAttributesT
 			'fem-date-picker': ReactElementPropsT & Fem.FemDatePickerPropsT & Fem.FemDatePickerAttributesT
+			'fem-date-range-picker': ReactElementPropsT & Fem.FemDateRangePickerPropsT & Fem.FemDateRangePickerAttributesT
 			'fem-dialog': ReactElementPropsT & Fem.FemDialogPropsT & Fem.FemDialogAttributesT
 			'fem-divider': ReactElementPropsT & Fem.FemDividerPropsT & Fem.FemDividerAttributesT
 			'fem-empty-state': ReactElementPropsT & Fem.FemEmptyStatePropsT & Fem.FemEmptyStateAttributesT

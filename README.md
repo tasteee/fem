@@ -168,7 +168,8 @@ Rows and columns build every screen. No stacks, no clusters.
 
 - `fem-combobox`: typing filters the options. Arrow keys move, Enter picks, Escape closes. Works in forms like `fem-select`.
 - `fem-date-picker`: a box like select that opens `fem-calendar` in the inverse theme. Values are ISO dates. `min`, `max`, `locale`, `week-start` (0 is Sunday).
-- `fem-calendar`: one month, standalone. The chosen day slides. Arrow keys move by day and week, Page Up and Page Down by month.
+- `fem-date-range-picker`: the same box, opening a range calendar. Pick a start, then an end, in either order. Hovering previews the range. Submits `"start,end"`.
+- `fem-calendar`: one month, standalone. `mode="range"` reads and writes `start` and `end`. The chosen day slides. Arrow keys move by day and week, Page Up and Page Down by month.
 - `fem-range-slider`: two thumbs that can't cross. Submits `"start,end"`.
 - `fem-nav collapsed`: icons only. Each label moves into the item's accessible name and hover title.
 
