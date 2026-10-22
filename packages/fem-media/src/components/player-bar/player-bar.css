@@ -1,0 +1,133 @@
+:host {
+	display: block;
+	container-type: inline-size;
+}
+
+:host([data-empty]) {
+	display: none;
+}
+
+/* One card surface, no border or shadow. The app */
+/* decides where it sits. */
+.player-bar {
+	position: relative;
+	min-height: var(--player-bar-height);
+	padding: var(--space-2) var(--space-4) var(--space-2) var(--space-2);
+	border-radius: var(--radius-container);
+	background: var(--surface-card);
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+	align-items: center;
+	gap: var(--space-4);
+	overflow: hidden;
+}
+
+/* ---------- track ---------- */
+.player-bar-track {
+	min-width: 0;
+	padding: var(--space-1);
+	border-radius: var(--radius-inset);
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	text-align: left;
+	transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+@media (hover: hover) {
+	.player-bar-track.isExpandable:hover {
+		background: var(--surface-inset);
+	}
+}
+
+.player-bar-art {
+	width: var(--player-bar-art);
+	flex: none;
+}
+
+.player-bar-art.isEmpty {
+	height: var(--player-bar-art);
+	border-radius: var(--radius-small);
+	background: var(--surface-inset);
+}
+
+.player-bar-text {
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-hairline);
+}
+
+/* ---------- center ---------- */
+.player-bar-center {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}
+
+.player-bar-transport {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+}
+
+/* Balances the repeat button, so play sits in the */
+/* true middle. */
+.player-bar-transport-spacer {
+	width: var(--control-height-small);
+	flex: none;
+}
+
+/* ---------- end ---------- */
+.player-bar-end {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: var(--space-1);
+}
+
+.player-bar-volume {
+	width: var(--player-volume-width);
+	min-width: 0;
+}
+
+/* ---------- compact ---------- */
+.player-bar-compact-play,
+.player-bar-progress {
+	display: none;
+}
+
+/* A thin line along the bottom edge stands in for */
+/* the seek bar on a phone. */
+.player-bar-progress {
+	position: absolute;
+	inset: auto 0 0 0;
+	height: var(--indicator-height);
+	background: var(--surface-control);
+}
+
+.player-bar-progress::after {
+	content: '';
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: calc(var(--player-progress) * 100%);
+	background: var(--text-strong);
+}
+
+@container (max-width: 720px) {
+	.player-bar {
+		grid-template-columns: minmax(0, 1fr) auto;
+		padding-right: var(--space-2);
+	}
+
+	.player-bar-center,
+	.player-bar-end {
+		display: none;
+	}
+
+	.player-bar-compact-play,
+	.player-bar-progress {
+		display: block;
+	}
+}

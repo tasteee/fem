@@ -1,6 +1,8 @@
 import '@tasteee/fem/tokens.css'
+import '@tasteee/fem-media/tokens.css'
 import './docs.css'
 import '@tasteee/fem'
+import '@tasteee/fem-media'
 import { showToast } from '@tasteee/fem'
 import * as icons from '@tasteee/fem/icons'
 import { registerIcons } from '@tasteee/fem'

@@ -476,7 +476,7 @@ const displayExamples: Record<string, ExampleT> = {
 	}
 }
 
-const artwork = (seed: string): string => `https://picsum.photos/seed/${seed}/240/240`
+const artwork = (seed: string): string => `https://picsum.photos/seed/${seed}/600/600`
 
 const listAndMediaExamples: Record<string, ExampleT> = {
 	'fem-list-item': {
@@ -551,6 +551,53 @@ const listAndMediaExamples: Record<string, ExampleT> = {
 	}
 }
 
+// Short demo tracks that ship with the site.
+const demoTracks = [
+	{ id: 'safeword', src: '../audio/safeword.mp3', title: 'safeword', artist: 'tasteink', artwork: artwork('safeword'), duration: 24 },
+	{ id: 'glass-hours', src: '../audio/glass-hours.mp3', title: 'glass hours', artist: 'tasteink', artwork: artwork('glass'), duration: 28 },
+	{ id: 'low-tide', src: '../audio/low-tide.mp3', title: 'low tide', artist: 'tasteink', duration: 20 }
+]
+
+const queueJson = JSON.stringify(demoTracks)
+const trackJson = (index: number): string => JSON.stringify(demoTracks[index])
+
+const playerExamples: Record<string, ExampleT> = {
+	'fem-track-row': {
+		group: 'Media',
+		html: `<fem-column gap="0">
+	<fem-track-row track='${trackJson(0)}' queue='${queueJson}'>
+		<fem-button slot="trailing" kind="ghost" shape="circle" size="small" label="More"><fem-icon name="dots-three"></fem-icon></fem-button>
+	</fem-track-row>
+	<fem-track-row track='${trackJson(1)}' queue='${queueJson}'></fem-track-row>
+	<fem-track-row track='${trackJson(2)}' queue='${queueJson}'></fem-track-row>
+</fem-column>`
+	},
+	'fem-play-button': {
+		group: 'Media',
+		html: `<fem-row gap="3" align-y="center">
+	<fem-play-button queue='${queueJson}'></fem-play-button>
+	<fem-play-button track='${trackJson(1)}' size="medium" kind="ghost"></fem-play-button>
+</fem-row>`
+	},
+	'fem-player-bar': {
+		group: 'Media',
+		html: `<fem-column gap="4">
+	<fem-row gap="3" align-y="center">
+		<fem-play-button queue='${queueJson}' size="medium"></fem-play-button>
+		<fem-text color="muted">Play something. The bar appears once a track is loaded.</fem-text>
+	</fem-row>
+	<fem-player-bar expandable></fem-player-bar>
+</fem-column>`
+	},
+	'fem-now-playing': {
+		group: 'Media',
+		html: `<fem-now-playing track='${trackJson(1)}' queue='${queueJson}' artist-href="#">
+	<fem-button slot="actions" kind="ghost" shape="circle" label="Like"><fem-icon name="heart"></fem-icon></fem-button>
+	<fem-button slot="end" kind="ghost" shape="circle" size="small" label="Share"><fem-icon name="share-fat"></fem-icon></fem-button>
+</fem-now-playing>`
+	}
+}
+
 export const examplesByTag: Record<string, ExampleT> = {
 	...layoutExamples,
 	...typeExamples,
@@ -562,7 +609,8 @@ export const examplesByTag: Record<string, ExampleT> = {
 	...navigationExamples,
 	...displayExamples,
 	...commandExamples,
-	...listAndMediaExamples
+	...listAndMediaExamples,
+	...playerExamples
 }
 
 // Tags that only make sense inside a parent show the

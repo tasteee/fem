@@ -306,6 +306,18 @@ A wrong value is a type error:
 - React 19 sets fem props as properties and listens to their events, so no wrapper components are needed.
 - Svelte checks values passed as expressions, like `size={someSize}`. It doesn't check plain string attributes.
 
+## Media building blocks
+
+Generic pieces any media app needs. The music-specific player lives in [`@tasteee/fem-media`](../fem-media/README.md).
+
+- **`fem-list-item`**: leading media, title, description, `meta` (numeric face), `trailing` actions. `interactive` sends `select`.
+- **`fem-image`**: holds its `ratio` while loading, fades in, shows an icon on failure.
+- **`fem-textarea`**: `autosize` grows with text, `maxlength` shows a count.
+- **`fem-file-upload`**: drop or pick. `kind="image"` previews one picture. Sends `change` and `reject` (`type` or `size`).
+- **`fem-sortable`**: drag, long-press on touch, or Alt + arrow. Sends `reorder` with `{ from, to }`. Add `move-nodes` to move elements itself.
+- **`fem-copy-field`**: value + Copy. `shareable` adds the phone share sheet.
+- **`fem-scrubber`**: seek bar. Holds its own position while dragged. `input` while dragging, `change` on release.
+
 ## Develop
 
 This package lives in the fem monorepo. Run these from the repo root.

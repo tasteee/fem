@@ -2691,7 +2691,7 @@
 					"name": "FileUpload",
 					"tagName": "fem-file-upload",
 					"customElement": true,
-					"description": "---------- component ---------- Takes files by drop or by picker. kind=\"image\" shows one picture, for artwork, avatars, and headers.",
+					"description": "Takes files by drop or by picker. kind=\"image\" shows one picture, for artwork, avatars, and headers.",
 					"attributes": [
 						{
 							"name": "name",

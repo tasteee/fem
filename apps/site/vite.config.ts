@@ -12,6 +12,7 @@ const sourceAliases = [
 	{ find: /^@tasteee\/fem\/foundation$/, replacement: fromRoot('packages/fem/src/foundation/index.ts') },
 	{ find: /^@tasteee\/fem\/custom-elements\.json$/, replacement: fromRoot('packages/fem/custom-elements.json') },
 	{ find: /^@tasteee\/fem$/, replacement: fromRoot('packages/fem/src/index.ts') },
+	{ find: /^@tasteee\/fem-media\/tokens\.css$/, replacement: fromRoot('packages/fem-media/src/tokens.css') },
 	{ find: /^@tasteee\/fem-media\/custom-elements\.json$/, replacement: fromRoot('packages/fem-media/custom-elements.json') },
 	{ find: /^@tasteee\/fem-media$/, replacement: fromRoot('packages/fem-media/src/index.ts') }
 ]

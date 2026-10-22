@@ -1,0 +1,25 @@
+/* Sizes for fem-media. Load after fem's tokens.css. */
+/* Colors, type, space, and motion all come from fem. */
+
+:root,
+[density='compact'] {
+	--player-bar-height: 64px;
+	--player-bar-art: 40px;
+	--player-bar-side-width: 280px;
+	--player-volume-width: 96px;
+	--track-row-art: 40px;
+	--now-playing-art-max: 420px;
+	--play-button-large: 56px;
+	--equalizer-height: 12px;
+}
+
+[density='roomy'] {
+	--player-bar-height: 72px;
+	--player-bar-art: 48px;
+	--player-bar-side-width: 320px;
+	--player-volume-width: 112px;
+	--track-row-art: 48px;
+	--now-playing-art-max: 480px;
+	--play-button-large: 64px;
+	--equalizer-height: 14px;
+}

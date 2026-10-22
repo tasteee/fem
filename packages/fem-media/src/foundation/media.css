@@ -1,0 +1,136 @@
+/* Shared by every fem-media component. */
+
+/* Transport buttons are circles: they act. */
+.media-button {
+	width: var(--control-height-medium);
+	height: var(--control-height-medium);
+	border-radius: var(--radius-pill);
+	color: var(--text-strong);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	transition:
+		background-color var(--duration-fast) var(--easing-standard),
+		color var(--duration-fast) var(--easing-standard);
+}
+
+@media (hover: hover) {
+	.media-button.isGhost:hover {
+		background: var(--surface-inset);
+	}
+}
+
+.media-button.isSmall {
+	width: var(--control-height-small);
+	height: var(--control-height-small);
+}
+
+.media-button.isLarge {
+	width: var(--play-button-large);
+	height: var(--play-button-large);
+}
+
+.media-button.isLarge .icon {
+	width: calc(var(--icon-size) * 1.5);
+	height: calc(var(--icon-size) * 1.5);
+}
+
+.media-button.isSolid {
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+}
+
+.media-button.isMuted {
+	color: var(--text-muted);
+}
+
+/* An active toggle, like repeat, takes the accent. */
+.media-button.isActive {
+	color: var(--accent);
+}
+
+.media-button:disabled {
+	opacity: var(--disabled-opacity);
+	cursor: default;
+}
+
+/* ---------- equalizer ---------- */
+/* Three bars that bounce while a track plays and rest */
+/* when it pauses. */
+.equalizer {
+	height: var(--equalizer-height);
+	display: inline-flex;
+	align-items: flex-end;
+	gap: var(--space-hairline);
+	color: var(--accent);
+}
+
+.equalizer-bar {
+	width: calc(var(--equalizer-height) / 4);
+	height: 100%;
+	border-radius: var(--radius-pill);
+	background: currentColor;
+	transform-origin: bottom;
+	animation: equalize var(--duration-slow) var(--easing-standard) infinite alternate;
+}
+
+.equalizer-bar:nth-child(2) {
+	animation-delay: calc(var(--duration-slow) * -0.4);
+}
+
+.equalizer-bar:nth-child(3) {
+	animation-delay: calc(var(--duration-slow) * -0.7);
+}
+
+.equalizer.isPaused .equalizer-bar {
+	animation-play-state: paused;
+}
+
+@keyframes equalize {
+	from {
+		transform: scaleY(0.3);
+	}
+
+	to {
+		transform: scaleY(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.equalizer-bar {
+		animation: none;
+		transform: scaleY(0.6);
+	}
+}
+
+/* ---------- text ---------- */
+.media-title,
+.media-artist {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.media-title {
+	color: var(--text-strong);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-tight);
+}
+
+.media-artist {
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	line-height: var(--line-height-tight);
+}
+
+.media-link {
+	color: inherit;
+	text-decoration: none;
+}
+
+@media (hover: hover) {
+	.media-link:hover {
+		text-decoration: underline;
+	}
+}

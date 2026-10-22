@@ -1,0 +1,58 @@
+:host {
+	display: block;
+}
+
+/* The artwork doubles as the play button. Its icon */
+/* shows on hover, and stays while the track is the */
+/* current one. */
+.track-row-art {
+	position: relative;
+	width: var(--track-row-art);
+	height: var(--track-row-art);
+	border-radius: var(--radius-small);
+	background: var(--surface-inset);
+	color: var(--text-strong);
+	overflow: hidden;
+	flex: none;
+	display: flex;
+}
+
+.track-row-art fem-image {
+	width: 100%;
+}
+
+.track-row-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--scrim);
+	color: var(--neutral-1);
+	opacity: 0;
+	transition: opacity var(--duration-fast) var(--easing-standard);
+}
+
+/* With no artwork the icon sits on the inset surface, */
+/* so it uses the normal text color. */
+.track-row-art:not(:has(fem-image)) .track-row-overlay {
+	background: none;
+	color: var(--text-strong);
+	opacity: 1;
+}
+
+@media (hover: hover) {
+	fem-list-item:hover .track-row-overlay {
+		opacity: 1;
+	}
+}
+
+.track-row-art.isCurrent .track-row-overlay {
+	opacity: 1;
+}
+
+.track-row-meta {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
