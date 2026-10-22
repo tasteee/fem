@@ -130,6 +130,9 @@
 	--slider-min-width: 160px;
 	--menu-min-width: 200px;
 	--popover-width: 280px;
+	--command-palette-width: 560px;
+	--command-palette-list-height: 360px;
+	--tree-indent: 20px;
 	--calendar-day-size: 44px;
 	--dialog-width: 340px;
 	--sheet-width: 480px;

@@ -1,0 +1,101 @@
+:host {
+	display: flex;
+	flex-direction: column;
+}
+
+.tree-row {
+	height: var(--control-height-medium);
+	padding: 0 var(--space-3) 0 calc(var(--space-1) + var(--tree-depth) * var(--tree-indent));
+	border-radius: var(--radius-small);
+	color: var(--text-muted);
+	font-weight: var(--font-weight-act);
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+	cursor: pointer;
+	user-select: none;
+	-webkit-user-select: none;
+	transition: color var(--duration-slide) var(--easing-standard);
+}
+
+.tree-row:focus-visible {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: calc(var(--focus-ring-width) * -1);
+}
+
+@media (hover: hover) {
+	.tree-row:not(.isSelected):hover {
+		color: var(--text-strong);
+	}
+}
+
+/* The fill comes from the tree's sliding indicator. */
+.tree-row.isSelected {
+	color: var(--text-inverse);
+}
+
+.tree-row.isDisabled {
+	opacity: var(--disabled-opacity);
+	cursor: default;
+}
+
+/* Leaf rows keep the caret's space, so labels line up. */
+.tree-caret {
+	--icon-size: 14px;
+	width: var(--icon-size);
+	height: 100%;
+	display: grid;
+	place-items: center;
+	visibility: hidden;
+	flex-shrink: 0;
+}
+
+.tree-row.isParent > .tree-caret {
+	visibility: visible;
+}
+
+.tree-caret > .icon {
+	transition: transform var(--duration-medium) var(--easing-standard);
+}
+
+.tree-row.isExpanded > .tree-caret > .icon {
+	transform: rotate(90deg);
+}
+
+.tree-label {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tree-end {
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-read);
+	opacity: 0.7;
+}
+
+.tree-end:not(:has(*)) {
+	display: contents;
+}
+
+/* Children open to their height with a grid row trick. */
+.tree-children {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows var(--duration-medium) var(--easing-standard);
+}
+
+.tree-row.isExpanded + .tree-children {
+	grid-template-rows: 1fr;
+}
+
+.tree-children-inner {
+	min-height: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-hairline);
+}

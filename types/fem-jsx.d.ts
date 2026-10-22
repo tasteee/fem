@@ -124,6 +124,27 @@ export type FemComboboxPropsT = {
 	onchange?: (event: CustomEvent) => void
 }
 
+export type FemCommandGroupPropsT = {
+	heading?: string
+}
+
+export type FemCommandItemPropsT = {
+	value?: string
+	keywords?: string
+	/** Set by the palette while the arrow keys or the pointer rest on this command. */
+	active?: boolean
+	disabled?: boolean
+}
+
+export type FemCommandPalettePropsT = {
+	open?: boolean
+	label?: string
+	placeholder?: string
+	emptyText?: string
+	/** Set to an empty string to turn the shortcut off. */
+	hotkey?: string
+}
+
 export type FemDatePickerPropsT = {
 	name?: string
 	value?: string
@@ -425,6 +446,22 @@ export type FemTooltipPropsT = {
 	text?: string
 }
 
+export type FemTreePropsT = {
+	value?: string
+	label?: string
+	onchange?: (event: CustomEvent) => void
+}
+
+export type FemTreeItemPropsT = {
+	value?: string
+	label?: string
+	expanded?: boolean
+	/** Set by fem-tree from its value. */
+	selected?: boolean
+	disabled?: boolean
+	ontoggle?: (event: CustomEvent) => void
+}
+
 export type FemAccordionAttributesT = {
 	'single'?: boolean | ''
 }
@@ -539,6 +576,25 @@ export type FemComboboxAttributesT = {
 	'size'?: 'small' | 'medium' | 'large'
 	'required'?: boolean | ''
 	'disabled'?: boolean | ''
+}
+
+export type FemCommandGroupAttributesT = {
+	'heading'?: string
+}
+
+export type FemCommandItemAttributesT = {
+	'value'?: string
+	'keywords'?: string
+	'active'?: boolean | ''
+	'disabled'?: boolean | ''
+}
+
+export type FemCommandPaletteAttributesT = {
+	'open'?: boolean | ''
+	'label'?: string
+	'placeholder'?: string
+	'empty-text'?: string
+	'hotkey'?: string
 }
 
 export type FemDatePickerAttributesT = {
@@ -819,6 +875,19 @@ export type FemTooltipAttributesT = {
 	'text'?: string
 }
 
+export type FemTreeAttributesT = {
+	'value'?: string
+	'label'?: string
+}
+
+export type FemTreeItemAttributesT = {
+	'value'?: string
+	'label'?: string
+	'expanded'?: boolean | ''
+	'selected'?: boolean | ''
+	'disabled'?: boolean | ''
+}
+
 export type FemAccordionElementT = HTMLElement & {
 	single: boolean
 }
@@ -933,6 +1002,25 @@ export type FemComboboxElementT = HTMLElement & {
 	size: 'small' | 'medium' | 'large'
 	required: boolean
 	disabled: boolean
+}
+
+export type FemCommandGroupElementT = HTMLElement & {
+	heading: string
+}
+
+export type FemCommandItemElementT = HTMLElement & {
+	value: string
+	keywords: string
+	active: boolean
+	disabled: boolean
+}
+
+export type FemCommandPaletteElementT = HTMLElement & {
+	open: boolean
+	label: string
+	placeholder: string
+	emptyText: string
+	hotkey: string
 }
 
 export type FemDatePickerElementT = HTMLElement & {
@@ -1215,6 +1303,19 @@ export type FemTooltipElementT = HTMLElement & {
 	text: string
 }
 
+export type FemTreeElementT = HTMLElement & {
+	value: string
+	label: string | undefined
+}
+
+export type FemTreeItemElementT = HTMLElement & {
+	value: string
+	label: string
+	expanded: boolean
+	selected: boolean
+	disabled: boolean
+}
+
 declare global {
 	interface HTMLElementTagNameMap {
 		'fem-accordion': FemAccordionElementT
@@ -1234,6 +1335,9 @@ declare global {
 		'fem-chip': FemChipElementT
 		'fem-column': FemColumnElementT
 		'fem-combobox': FemComboboxElementT
+		'fem-command-group': FemCommandGroupElementT
+		'fem-command-item': FemCommandItemElementT
+		'fem-command-palette': FemCommandPaletteElementT
 		'fem-date-picker': FemDatePickerElementT
 		'fem-date-range-picker': FemDateRangePickerElementT
 		'fem-dialog': FemDialogElementT
@@ -1274,5 +1378,7 @@ declare global {
 		'fem-text': FemTextElementT
 		'fem-toast': FemToastElementT
 		'fem-tooltip': FemTooltipElementT
+		'fem-tree': FemTreeElementT
+		'fem-tree-item': FemTreeItemElementT
 	}
 }

@@ -723,6 +723,59 @@
 			]
 		},
 		{
+			"name": "fem-command-group",
+			"description": "A labeled set of commands. The palette hides a group when a search leaves nothing in it.",
+			"attributes": [
+				{
+					"name": "heading"
+				}
+			]
+		},
+		{
+			"name": "fem-command-item",
+			"description": "One command in a fem-command-palette: an icon, a label, and an optional shortcut hint. Keywords help it match searches its label doesn't cover.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "keywords"
+				},
+				{
+					"name": "active",
+					"description": "Set by the palette while the arrow keys or the pointer rest on this command.",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-command-palette",
+			"description": "Search and run any command from the keyboard. Opens with ⌘K or Ctrl+K. The highlight slides between commands, like every selection in fem.",
+			"attributes": [
+				{
+					"name": "open",
+					"valueSet": "v"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "placeholder"
+				},
+				{
+					"name": "empty-text"
+				},
+				{
+					"name": "hotkey",
+					"description": "Set to an empty string to turn the shortcut off."
+				}
+			]
+		},
+		{
 			"name": "fem-date-picker",
 			"description": "A box like select that opens a calendar. The value is an ISO date, like 2026-10-21. The panel opens in the inverse theme, like every floating panel.",
 			"attributes": [
@@ -1835,6 +1888,43 @@
 			"attributes": [
 				{
 					"name": "text"
+				}
+			]
+		},
+		{
+			"name": "fem-tree",
+			"description": "Nested items, like folders and files. The selected row's fill slides, even across levels.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
+			"name": "fem-tree-item",
+			"description": "One row in a fem-tree. Nested tree items are its children. The caret opens and closes them.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "expanded",
+					"valueSet": "v"
+				},
+				{
+					"name": "selected",
+					"description": "Set by fem-tree from its value.",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
 				}
 			]
 		}

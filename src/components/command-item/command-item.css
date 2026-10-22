@@ -1,0 +1,53 @@
+:host {
+	display: flex;
+}
+
+:host([hidden]) {
+	display: none;
+}
+
+.command-item {
+	width: 100%;
+	height: var(--control-height-medium);
+	padding: 0 var(--space-3);
+	border-radius: var(--radius-small);
+	color: var(--text-muted);
+	font-weight: var(--font-weight-act);
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	cursor: pointer;
+	user-select: none;
+	-webkit-user-select: none;
+	transition: color var(--duration-slide) var(--easing-standard);
+}
+
+.command-item.isActive {
+	color: var(--text-strong);
+}
+
+.command-item.isDisabled {
+	opacity: var(--disabled-opacity);
+	cursor: default;
+}
+
+.command-item-label {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* Shortcut hints read as keys, in the numeric face. */
+.command-item-shortcut {
+	color: var(--text-muted);
+	font-family: var(--font-family-numeric);
+	font-size: var(--font-size-caption);
+	font-weight: var(--font-weight-read);
+	letter-spacing: 0.04em;
+}
+
+.command-item-shortcut:not(:has(*)) {
+	display: contents;
+}

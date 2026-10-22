@@ -175,6 +175,26 @@ Rows and columns build every screen. No stacks, no clusters.
 - `fem-range-slider`: two thumbs that can't cross. Submits `"start,end"`.
 - `fem-nav collapsed`: icons only. Each label moves into the item's accessible name and hover title.
 
+## Command palette and tree
+
+```html
+<fem-command-palette>
+	<fem-command-group heading="Tracks">
+		<fem-command-item value="new-track">New track<span slot="shortcut">⌘N</span></fem-command-item>
+		<fem-command-item value="open" keywords="dark pop">Open safeword</fem-command-item>
+	</fem-command-group>
+</fem-command-palette>
+
+<fem-tree value="safeword" label="Library">
+	<fem-tree-item value="drafts" label="Drafts" expanded>
+		<fem-tree-item value="safeword" label="safeword"></fem-tree-item>
+	</fem-tree-item>
+</fem-tree>
+```
+
+- `fem-command-palette`: opens with ⌘K or Ctrl+K (`hotkey`, or `hotkey=""` to turn it off). Typing filters by label and `keywords`, and empty groups hide. The highlight slides. Picking sends `select` with `detail.value`.
+- `fem-tree`: nested `fem-tree-item`s. The caret opens and closes, and a row click selects. Arrow keys move, Right opens, Left closes or goes up. The selected fill slides across levels. Sends `change`.
+
 ## Fields
 
 `fem-field` owns every label, help line, and error. Controls never draw their own.
@@ -202,7 +222,7 @@ Rows and columns build every screen. No stacks, no clusters.
 
 ## The slide
 
-Selection is a thing that moves. In tabs, segmented controls, list radio groups, pagination, the calendar, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
+Selection is a thing that moves. In tabs, segmented controls, list radio groups, pagination, the calendar, the tree, the command palette, nav, and the tab bar, one indicator slides from the old choice to the new one in 180ms on the standard curve. Tune it with `--duration-slide`.
 
 ## Icons
 
