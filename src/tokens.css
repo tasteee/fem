@@ -220,8 +220,10 @@
 }
 
 /* ---------- density ---------- */
-/* Roomy is the default. Compact works on any element */
-/* and applies to everything inside it. */
+/* Compact is the default. Roomy works on any element */
+/* and applies to everything inside it, like a */
+/* touch-first screen. Compact can nest back inside. */
+:root,
 [density='compact'] {
 	--control-height-small: 28px;
 	--control-height-medium: 32px;
@@ -247,6 +249,47 @@
 	--font-size-medium: 14px;
 	--font-size-heading: 18px;
 	--font-size-display: 26px;
+
+	/* Tokens built from the ones above resolve where */
+	/* they're declared, so they're declared again here */
+	/* to follow the density. */
+	--field-inline-gap: var(--space-4);
+	--field-label-size: var(--font-size-small);
+	--field-help-size: var(--font-size-small);
+}
+
+[density='roomy'] {
+	--control-height-small: 36px;
+	--control-height-medium: 44px;
+	--control-height-large: 52px;
+	--icon-size: 20px;
+	--spinner-size: 18px;
+	--spinner-size-small: 14px;
+	--spinner-size-large: 28px;
+	--check-size: 22px;
+	--switch-width: 52px;
+	--switch-height: 32px;
+	--switch-thumb: 24px;
+	--slider-thumb: 24px;
+	--tab-bar-item-height: 56px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 20px;
+	--space-6: 24px;
+	--radius-container: 16px;
+	--radius-inset: 12px;
+	--radius-small: 8px;
+	--font-size-small: 14px;
+	--font-size-medium: 16px;
+	--font-size-heading: 22px;
+	--font-size-display: 34px;
+
+	/* Tokens built from the ones above resolve where */
+	/* they're declared, so they're declared again here */
+	/* to follow the density. */
+	--field-inline-gap: var(--space-4);
+	--field-label-size: var(--font-size-small);
+	--field-help-size: var(--font-size-small);
 }
 
 @media (prefers-reduced-motion: reduce) {
