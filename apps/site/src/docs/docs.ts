@@ -1,9 +1,9 @@
-import '../tokens.css'
+import '@tasteee/fem/tokens.css'
 import './docs.css'
-import '../index'
-import { showToast } from '../show-toast'
-import * as icons from '../icons'
-import { registerIcons } from '../icons/registry'
+import '@tasteee/fem'
+import { showToast } from '@tasteee/fem'
+import * as icons from '@tasteee/fem/icons'
+import { registerIcons } from '@tasteee/fem'
 
 // The docs page shows a sample of the set. A real
 // app would import and register only what it uses.

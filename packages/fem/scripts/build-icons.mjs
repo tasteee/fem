@@ -1,10 +1,23 @@
 // Turns the Phosphor SVG files into one TypeScript
 // module of named icons. Run by the pre-scripts in
 // package.json. The output is not committed.
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
 
-const assetsFolder = 'node_modules/@phosphor-icons/core/assets'
+// Looks in node_modules here, then in each folder
+// above, so it works in a workspace where packages are
+// installed at the root.
+const findInstalledPackage = (startFolder, packageName) => {
+	const candidate = join(startFolder, 'node_modules', packageName)
+	if (existsSync(candidate)) return candidate
+	const parentFolder = dirname(startFolder)
+	const isAtTop = parentFolder === startFolder
+	if (isAtTop) throw new Error(`Can't find ${packageName}. Run npm install first.`)
+	return findInstalledPackage(parentFolder, packageName)
+}
+
+const phosphorFolder = findInstalledPackage(process.cwd(), '@phosphor-icons/core')
+const assetsFolder = join(phosphorFolder, 'assets')
 const outputPath = 'src/icons/generated.ts'
 const boldSuffix = '-bold.svg'
 

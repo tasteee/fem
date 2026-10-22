@@ -1,7 +1,7 @@
 import '../docs'
 import './components.css'
-import manifest from '../../../custom-elements.json'
-import { showToast } from '../../show-toast'
+import manifest from '@tasteee/fem/custom-elements.json'
+import { showToast } from '@tasteee/fem'
 import { examplesByTag, groupOrder, parentByChildTag } from './examples'
 
 // One page per component, read from the generated

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte'
-	import { showToast } from '../../show-toast'
+	import { showToast } from '@tasteee/fem'
 	import { createEditor } from './notes-editor'
 	import type { EditorT } from './notes-editor'
 	import { store } from './notes-store.svelte'

@@ -1,6 +1,6 @@
-import '../../tokens.css'
+import '@tasteee/fem/tokens.css'
 import './notes.css'
-import '../../index'
+import '@tasteee/fem'
 import { mount } from 'svelte'
 import App from './App.svelte'
 import { registerNoteIcons } from './register-icons'
