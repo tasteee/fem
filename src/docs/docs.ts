@@ -95,3 +95,17 @@ const handleTagRemove = (event: Event) => {
 }
 
 document.addEventListener('remove', handleTagRemove)
+
+type CollapsibleElementT = HTMLElement & { collapsed: boolean }
+
+// The collapsible nav demo flips on a button press.
+const handleCollapseToggle = (event: MouseEvent) => {
+	const clickedElement = event.target as HTMLElement
+	const toggleButton = clickedElement.closest<HTMLElement>('[data-toggle-collapsed]')
+	if (!toggleButton) return
+	const targetId = toggleButton.dataset.toggleCollapsed ?? ''
+	const targetElement = document.getElementById(targetId) as CollapsibleElementT | null
+	if (targetElement) targetElement.collapsed = !targetElement.collapsed
+}
+
+document.addEventListener('click', handleCollapseToggle)

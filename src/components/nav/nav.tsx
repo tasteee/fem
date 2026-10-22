@@ -1,9 +1,12 @@
-import { c, useEvent, useHost, useProp, useRef } from 'atomico'
+import { c, useEffect, useEvent, useHost, useProp, useRef } from 'atomico'
+import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
 import { useSelectionGroup } from '../../foundation/use-selection-group'
 import { useSlidingIndicator } from '../../foundation/use-sliding-indicator'
 import navCss from './nav.css?inline'
+
+type NavItemElementT = HTMLElement & { collapsed: boolean }
 
 const navSheet = createStyleSheet(navCss)
 
@@ -29,16 +32,29 @@ export const Nav = c(
 
 		const slide = useSlidingIndicator({ hostRef, trackRef, indicatorRef, itemTagName, value })
 
+		// Collapsed shows icons only. Each item hears it
+		// through its own collapsed flag.
+		const syncCollapsed = () => {
+			const items = [...hostRef.current.querySelectorAll<NavItemElementT>(itemTagName)]
+			for (const item of items) item.collapsed = Boolean(props.collapsed)
+		}
+
+		useEffect(syncCollapsed, [props.collapsed])
+
 		const handleSlotChange = () => {
 			group.syncItems()
+			syncCollapsed()
 			slide.handleItemsChange()
 		}
+
+		const collapsedClass = getFlagClass(props.collapsed, 'isCollapsed')
+		const navClassName = buildClassName(['nav', collapsedClass])
 
 		return (
 			<host shadowDom>
 				<nav
 					ref={trackRef}
-					class='nav'
+					class={navClassName}
 					aria-label={props.label}
 					onclick={group.handleClick}
 					onkeydown={group.handleKeyDown}
@@ -52,7 +68,8 @@ export const Nav = c(
 	{
 		props: {
 			value: { type: String, reflect: true, value: (): string => '' },
-			label: String
+			label: String,
+			collapsed: { type: Boolean, reflect: true }
 		},
 		styles: [foundationSheet, navSheet]
 	}

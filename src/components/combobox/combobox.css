@@ -1,0 +1,61 @@
+:host {
+	display: flex;
+}
+
+/* A combobox holds a choice, so it is a box, like */
+/* select and input. */
+.combobox {
+	width: 100%;
+	height: var(--control-height-medium);
+	padding: 0 var(--space-3) 0 0;
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+	transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+.combobox.isOpen {
+	background: var(--surface-control);
+}
+
+.combobox.isSmall {
+	height: var(--control-height-small);
+	font-size: var(--font-size-small);
+}
+
+.combobox.isLarge {
+	height: var(--control-height-large);
+}
+
+.combobox-input {
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+	padding: 0 0 0 var(--space-4);
+	border-radius: inherit;
+	color: var(--text-strong);
+}
+
+.combobox-input::placeholder {
+	color: var(--text-muted);
+}
+
+.combobox > .icon {
+	color: var(--text-muted);
+	transition: transform var(--duration-medium) var(--easing-standard);
+}
+
+.combobox.isOpen > .icon {
+	transform: rotate(180deg);
+}
+
+.combobox-empty {
+	height: var(--control-height-medium);
+	padding: 0 var(--space-3);
+	color: inherit;
+	opacity: 0.6;
+	display: flex;
+	align-items: center;
+}

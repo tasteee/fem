@@ -6,6 +6,7 @@
 	position: relative;
 	isolation: isolate;
 	width: 100%;
+	transition: width var(--duration-medium) var(--easing-standard);
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-hairline);
@@ -16,4 +17,13 @@
 	z-index: -1;
 	border-radius: var(--radius-inset);
 	background: var(--surface-inverse);
+}
+
+/* Collapsed shrinks to one icon column. */
+.nav.isCollapsed {
+	width: var(--control-height-medium);
+}
+
+:host([collapsed]) {
+	display: inline-flex;
 }
