@@ -9,7 +9,7 @@
 .command-item {
 	width: 100%;
 	height: var(--control-height-medium);
-	padding: 0 var(--space-3);
+	padding: 0 var(--space-4) 0 var(--space-3);
 	border-radius: var(--radius-small);
 	color: var(--text-muted);
 	font-weight: var(--font-weight-act);
@@ -39,8 +39,10 @@
 	white-space: nowrap;
 }
 
-/* Shortcut hints read as keys, in the numeric face. */
+/* Shortcut hints read as keys, in the numeric face, */
+/* with room between them and the label. */
 .command-item-shortcut {
+	padding-left: var(--space-4);
 	color: var(--text-muted);
 	font-family: var(--font-family-numeric);
 	font-size: var(--font-size-caption);

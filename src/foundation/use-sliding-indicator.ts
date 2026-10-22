@@ -25,6 +25,16 @@ const findSelectedItem = (input: SlidingIndicatorInputT): HTMLElement | undefine
 	return items.find((item) => item.value === input.value)
 }
 
+const getTrackScale = (track: HTMLElement, trackRect: DOMRect): number => {
+	const layoutWidth = track.offsetWidth
+	const hasLayoutWidth = layoutWidth > 0
+	if (!hasLayoutWidth) return 1
+	const scale = trackRect.width / layoutWidth
+	const hasScale = scale > 0
+	if (!hasScale) return 1
+	return scale
+}
+
 // Moves the indicator over the selected item. The
 // track can scroll, so its scroll offset is added
 // back in.
@@ -40,14 +50,19 @@ const placeIndicator = (input: SlidingIndicatorInputT, isInstant: boolean) => {
 
 	const trackRect = track.getBoundingClientRect()
 	const itemRect = selectedItem.getBoundingClientRect()
-	const left = itemRect.left - trackRect.left + track.scrollLeft
-	const top = itemRect.top - trackRect.top + track.scrollTop
+	// A panel that's still scaling in reports shrunken
+	// sizes. Dividing by its scale gives the real ones.
+	const scale = getTrackScale(track, trackRect)
+	const left = (itemRect.left - trackRect.left) / scale + track.scrollLeft
+	const top = (itemRect.top - trackRect.top) / scale + track.scrollTop
+	const width = itemRect.width / scale
+	const height = itemRect.height / scale
 
 	indicator.classList.toggle('isInstant', isInstant)
 	indicator.style.setProperty('--slide-x', `${left}px`)
 	indicator.style.setProperty('--slide-y', `${top}px`)
-	indicator.style.setProperty('--slide-width', `${itemRect.width}px`)
-	indicator.style.setProperty('--slide-height', `${itemRect.height}px`)
+	indicator.style.setProperty('--slide-width', `${width}px`)
+	indicator.style.setProperty('--slide-height', `${height}px`)
 }
 
 // fem's signature move: selection is a thing that

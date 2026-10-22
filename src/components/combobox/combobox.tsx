@@ -89,12 +89,16 @@ export const Combobox = c(
 		// under the arrow keys.
 		useEffect(() => {
 			const activeOption = enabledVisibleOptions[activeIndex]
+			// One highlight at a time: the row under the arrow
+			// keys, or else the chosen one.
+			const hasActiveOption = activeOption !== undefined
+			const shouldShowSelected = !isTyping && !hasActiveOption
 			for (const option of options) {
 				option.hidden = !visibleOptions.includes(option)
-				option.selected = option.value === currentValue
+				option.selected = shouldShowSelected && option.value === currentValue
 				option.active = option === activeOption
 			}
-		}, [filterText, currentValue, activeIndex, optionsVersion])
+		}, [filterText, currentValue, activeIndex, optionsVersion, isTyping])
 
 		useFloatingPopover(fieldRef, panelRef, isOpen, { placement: 'below', alignment: 'start' })
 
@@ -133,6 +137,13 @@ export const Combobox = c(
 				event.preventDefault()
 				openPanel()
 				const step = isDown ? 1 : -1
+				// The first arrow press starts from the chosen
+				// option, not the top of the list.
+				const selectedIndex = enabledVisibleOptions.findIndex((option) => option.value === currentValue)
+				const hasNoActive = activeIndex === -1
+				const isSelectedVisible = selectedIndex !== -1
+				const shouldStartAtSelected = hasNoActive && isSelectedVisible
+				if (shouldStartAtSelected) return setActiveIndex(selectedIndex)
 				setActiveIndex(stepIndex(activeIndex, step, enabledVisibleOptions.length))
 				return
 			}

@@ -22,9 +22,20 @@ export const CheckboxGroup = c(
 
 		useEffect(shareName, [props.name])
 
+		// The label shows like a fem-field label, so a
+		// group reads the same as a single control.
+		const hasLabel = Boolean(props.label)
+		const groupLabel = hasLabel ? (
+			<span class='group-label' id='group-label'>
+				{props.label}
+			</span>
+		) : null
+		const labelledBy = hasLabel ? 'group-label' : undefined
+
 		return (
 			<host shadowDom>
-				<div class='checkbox-group' role='group' aria-label={props.label}>
+				<div class='checkbox-group' role='group' aria-labelledby={labelledBy}>
+					{groupLabel}
 					<slot onslotchange={shareName}></slot>
 				</div>
 			</host>

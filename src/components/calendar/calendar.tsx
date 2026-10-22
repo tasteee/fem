@@ -77,6 +77,10 @@ export const Calendar = c(
 		const weekdayLabels = buildWeekdayLabels(props.locale, props.weekStart)
 		const monthFormatter = new Intl.DateTimeFormat(props.locale, { month: 'long', year: 'numeric' })
 		const monthLabel = monthFormatter.format(monthStart)
+		const monthNameFormatter = new Intl.DateTimeFormat(props.locale, { month: 'long' })
+		const monthName = monthNameFormatter.format(monthStart)
+		const yearFormatter = new Intl.DateTimeFormat(props.locale, { year: 'numeric' })
+		const yearName = yearFormatter.format(monthStart)
 		const dayLabelFormatter = new Intl.DateTimeFormat(props.locale, { dateStyle: 'full' })
 		const focusedIso = toIsoDate(focusedDate)
 		const monthKey = toIsoDate(monthStart)
@@ -171,6 +175,8 @@ export const Calendar = c(
 
 		const handlePreviousMonth = () => setFocusedDate(addMonths(focusedDate, -1))
 		const handleNextMonth = () => setFocusedDate(addMonths(focusedDate, 1))
+		const handlePreviousYear = () => setFocusedDate(addMonths(focusedDate, -12))
+		const handleNextYear = () => setFocusedDate(addMonths(focusedDate, 12))
 
 		const renderDay = (date: Date) => {
 			const isoDate = toIsoDate(date)
@@ -237,16 +243,25 @@ export const Calendar = c(
 		return (
 			<host shadowDom>
 				<div class='calendar'>
-					<div class='calendar-header'>
-						<span class='calendar-month' aria-live='polite'>
-							{monthLabel}
-						</span>
-						<button class='calendar-step' aria-label='Previous month' onclick={handlePreviousMonth}>
-							<IconSvg icon={caretLeftIcon} kind='bold' />
-						</button>
-						<button class='calendar-step' aria-label='Next month' onclick={handleNextMonth}>
-							<IconSvg icon={caretRightIcon} kind='bold' />
-						</button>
+					<div class='calendar-header' aria-live='polite' aria-label={monthLabel}>
+						<div class='calendar-stepper isMonth'>
+							<button class='calendar-step' aria-label='Previous month' onclick={handlePreviousMonth}>
+								<IconSvg icon={caretLeftIcon} kind='bold' />
+							</button>
+							<span class='calendar-stepper-label'>{monthName}</span>
+							<button class='calendar-step' aria-label='Next month' onclick={handleNextMonth}>
+								<IconSvg icon={caretRightIcon} kind='bold' />
+							</button>
+						</div>
+						<div class='calendar-stepper isYear'>
+							<button class='calendar-step' aria-label='Previous year' onclick={handlePreviousYear}>
+								<IconSvg icon={caretLeftIcon} kind='bold' />
+							</button>
+							<span class='calendar-stepper-label'>{yearName}</span>
+							<button class='calendar-step' aria-label='Next year' onclick={handleNextYear}>
+								<IconSvg icon={caretRightIcon} kind='bold' />
+							</button>
+						</div>
 					</div>
 					<div class='calendar-weekdays'>{weekdayCells}</div>
 					<div ref={gridRef} class='calendar-grid' role='grid' aria-label={monthLabel} onkeydown={handleGridKeyDown}>

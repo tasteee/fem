@@ -2,6 +2,12 @@
 	display: flex;
 }
 
+.radio-group-frame {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
 .radio-group {
 	position: relative;
 	isolation: isolate;
