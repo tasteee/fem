@@ -133,6 +133,18 @@ button {
 	}
 }
 
+/* ---------- group label ---------- */
+/* The visible label of a checkbox or radio group. */
+/* Same look as a fem-field label. */
+.group-label {
+	display: block;
+	padding-bottom: var(--field-gap);
+	font-size: var(--field-label-size);
+	font-weight: var(--field-label-weight);
+	line-height: var(--line-height-tight);
+	color: var(--text-strong);
+}
+
 /* ---------- choice ---------- */
 /* The shared row for switch, checkbox, and radio: */
 /* the control first, then its label. */

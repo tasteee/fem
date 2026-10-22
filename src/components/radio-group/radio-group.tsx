@@ -80,14 +80,27 @@ export const RadioGroup = c(
 			innerButton?.click()
 		}
 
+		// The label shows like a fem-field label, so a
+		// group reads the same as a single control.
+		const hasLabel = Boolean(props.label)
+		const groupLabel = hasLabel ? (
+			<span class='group-label' id='group-label'>
+				{props.label}
+			</span>
+		) : null
+		const labelledBy = hasLabel ? 'group-label' : undefined
+
 		const kindClass = getModifierClass(props.kind)
 		const className = buildClassName(['radio-group', kindClass])
 
 		return (
 			<host shadowDom onchange={handleChange}>
-				<div ref={trackRef} class={className} role='radiogroup' aria-label={props.label} onkeydown={handleKeyDown}>
-					<span ref={indicatorRef} class='slide-indicator radio-group-indicator' aria-hidden='true'></span>
-					<slot onslotchange={handleSlotChange}></slot>
+				<div class='radio-group-frame'>
+					{groupLabel}
+					<div ref={trackRef} class={className} role='radiogroup' aria-labelledby={labelledBy} onkeydown={handleKeyDown}>
+						<span ref={indicatorRef} class='slide-indicator radio-group-indicator' aria-hidden='true'></span>
+						<slot onslotchange={handleSlotChange}></slot>
+					</div>
 				</div>
 			</host>
 		)
