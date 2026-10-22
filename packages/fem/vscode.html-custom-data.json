@@ -776,6 +776,31 @@
 			]
 		},
 		{
+			"name": "fem-copy-field",
+			"description": "A value to hand out, like a share link, with a Copy button. Add shareable to offer the phone's share sheet where there is one.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "copy-label"
+				},
+				{
+					"name": "copied-label"
+				},
+				{
+					"name": "share-title"
+				},
+				{
+					"name": "shareable",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
 			"name": "fem-date-picker",
 			"description": "A box like select that opens a calendar. The value is an ISO date, like 2026-10-21. The panel opens in the inverse theme, like every floating panel.",
 			"attributes": [
@@ -956,6 +981,55 @@
 			]
 		},
 		{
+			"name": "fem-file-upload",
+			"description": "Takes files by drop or by picker. kind=\"image\" shows one picture, for artwork, avatars, and headers.",
+			"attributes": [
+				{
+					"name": "name"
+				},
+				{
+					"name": "kind",
+					"values": [
+						{
+							"name": "files"
+						},
+						{
+							"name": "image"
+						}
+					]
+				},
+				{
+					"name": "accept"
+				},
+				{
+					"name": "multiple",
+					"valueSet": "v"
+				},
+				{
+					"name": "max-size"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "description"
+				},
+				{
+					"name": "replace-label"
+				},
+				{
+					"name": "src"
+				},
+				{
+					"name": "ratio"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
 			"name": "fem-grid",
 			"description": "A grid of equal columns, by count or by minimum column width.",
 			"attributes": [
@@ -1063,6 +1137,56 @@
 			]
 		},
 		{
+			"name": "fem-image",
+			"description": "A picture that holds its shape while it loads, fades in when ready, and shows a quiet icon if it fails. Artwork, covers, headers.",
+			"attributes": [
+				{
+					"name": "src"
+				},
+				{
+					"name": "alt"
+				},
+				{
+					"name": "ratio"
+				},
+				{
+					"name": "fit",
+					"values": [
+						{
+							"name": "cover"
+						},
+						{
+							"name": "contain"
+						}
+					]
+				},
+				{
+					"name": "radius",
+					"values": [
+						{
+							"name": "container"
+						},
+						{
+							"name": "inset"
+						},
+						{
+							"name": "small"
+						},
+						{
+							"name": "pill"
+						},
+						{
+							"name": "none"
+						}
+					]
+				},
+				{
+					"name": "eager",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
 			"name": "fem-input",
 			"description": "A single line of text. Works in forms like a native input.",
 			"attributes": [
@@ -1101,6 +1225,44 @@
 				},
 				{
 					"name": "invalid",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-list-item",
+			"description": "A row with a picture, a title, a line under it, and room for actions at the end. Tracks, people, files.",
+			"attributes": [
+				{
+					"name": "label"
+				},
+				{
+					"name": "description"
+				},
+				{
+					"name": "href"
+				},
+				{
+					"name": "size",
+					"values": [
+						{
+							"name": "medium"
+						},
+						{
+							"name": "large"
+						}
+					]
+				},
+				{
+					"name": "interactive",
+					"valueSet": "v"
+				},
+				{
+					"name": "selected",
 					"valueSet": "v"
 				},
 				{
@@ -1476,6 +1638,46 @@
 			]
 		},
 		{
+			"name": "fem-scrubber",
+			"description": "A seek bar for audio and video. It keeps its own position while dragged, so playback updates never yank the thumb out from under a finger.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "max"
+				},
+				{
+					"name": "buffered"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "time",
+					"values": [
+						{
+							"name": "none"
+						},
+						{
+							"name": "sides"
+						},
+						{
+							"name": "below"
+						}
+					]
+				},
+				{
+					"name": "show-remaining",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
 			"name": "fem-segment",
 			"description": "One choice in a fem-segmented control.",
 			"attributes": [
@@ -1607,6 +1809,49 @@
 				},
 				{
 					"name": "show-value",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-sortable",
+			"description": "A list people can put in order. Drag an item, or a [data-sortable-handle] inside it. Hold to drag on touch. Alt with an arrow moves the focused item.  It sends reorder with { from, to } and leaves the DOM alone, so a framework can reorder its own data. Add move-nodes to have it move the elements itself.",
+			"attributes": [
+				{
+					"name": "label"
+				},
+				{
+					"name": "gap",
+					"values": [
+						{
+							"name": "0"
+						},
+						{
+							"name": "1"
+						},
+						{
+							"name": "2"
+						},
+						{
+							"name": "3"
+						},
+						{
+							"name": "4"
+						},
+						{
+							"name": "5"
+						},
+						{
+							"name": "6"
+						}
+					]
+				},
+				{
+					"name": "move-nodes",
 					"valueSet": "v"
 				},
 				{
@@ -1865,6 +2110,46 @@
 				},
 				{
 					"name": "truncate",
+					"valueSet": "v"
+				}
+			]
+		},
+		{
+			"name": "fem-textarea",
+			"description": "Several lines of text. Add autosize to grow with the text, and maxlength to show a count.",
+			"attributes": [
+				{
+					"name": "value"
+				},
+				{
+					"name": "name"
+				},
+				{
+					"name": "placeholder"
+				},
+				{
+					"name": "label"
+				},
+				{
+					"name": "rows"
+				},
+				{
+					"name": "maxlength"
+				},
+				{
+					"name": "autosize",
+					"valueSet": "v"
+				},
+				{
+					"name": "required",
+					"valueSet": "v"
+				},
+				{
+					"name": "invalid",
+					"valueSet": "v"
+				},
+				{
+					"name": "disabled",
 					"valueSet": "v"
 				}
 			]

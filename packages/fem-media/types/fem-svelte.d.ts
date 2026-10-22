@@ -5,5 +5,9 @@ import type { HTMLAttributes } from 'svelte/elements'
 
 declare module 'svelte/elements' {
 	interface SvelteHTMLElements {
+		'fem-now-playing': HTMLAttributes<HTMLElement> & Fem.FemNowPlayingPropsT & Fem.FemNowPlayingAttributesT
+		'fem-play-button': HTMLAttributes<HTMLElement> & Fem.FemPlayButtonPropsT & Fem.FemPlayButtonAttributesT
+		'fem-player-bar': HTMLAttributes<HTMLElement> & Fem.FemPlayerBarPropsT & Fem.FemPlayerBarAttributesT
+		'fem-track-row': HTMLAttributes<HTMLElement> & Fem.FemTrackRowPropsT & Fem.FemTrackRowAttributesT
 	}
 }

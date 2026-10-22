@@ -28,16 +28,20 @@ declare module 'react' {
 			'fem-command-group': ReactElementPropsT & Fem.FemCommandGroupPropsT & Fem.FemCommandGroupAttributesT
 			'fem-command-item': ReactElementPropsT & Fem.FemCommandItemPropsT & Fem.FemCommandItemAttributesT
 			'fem-command-palette': ReactElementPropsT & Fem.FemCommandPalettePropsT & Fem.FemCommandPaletteAttributesT
+			'fem-copy-field': ReactElementPropsT & Fem.FemCopyFieldPropsT & Fem.FemCopyFieldAttributesT
 			'fem-date-picker': ReactElementPropsT & Fem.FemDatePickerPropsT & Fem.FemDatePickerAttributesT
 			'fem-date-range-picker': ReactElementPropsT & Fem.FemDateRangePickerPropsT & Fem.FemDateRangePickerAttributesT
 			'fem-dialog': ReactElementPropsT & Fem.FemDialogPropsT & Fem.FemDialogAttributesT
 			'fem-divider': ReactElementPropsT & Fem.FemDividerPropsT & Fem.FemDividerAttributesT
 			'fem-empty-state': ReactElementPropsT & Fem.FemEmptyStatePropsT & Fem.FemEmptyStateAttributesT
 			'fem-field': ReactElementPropsT & Fem.FemFieldPropsT & Fem.FemFieldAttributesT
+			'fem-file-upload': ReactElementPropsT & Fem.FemFileUploadPropsT & Fem.FemFileUploadAttributesT
 			'fem-grid': ReactElementPropsT & Fem.FemGridPropsT & Fem.FemGridAttributesT
 			'fem-heading': ReactElementPropsT & Fem.FemHeadingPropsT & Fem.FemHeadingAttributesT
 			'fem-icon': ReactElementPropsT & Fem.FemIconPropsT & Fem.FemIconAttributesT
+			'fem-image': ReactElementPropsT & Fem.FemImagePropsT & Fem.FemImageAttributesT
 			'fem-input': ReactElementPropsT & Fem.FemInputPropsT & Fem.FemInputAttributesT
+			'fem-list-item': ReactElementPropsT & Fem.FemListItemPropsT & Fem.FemListItemAttributesT
 			'fem-menu': ReactElementPropsT & Fem.FemMenuPropsT & Fem.FemMenuAttributesT
 			'fem-menu-item': ReactElementPropsT & Fem.FemMenuItemPropsT & Fem.FemMenuItemAttributesT
 			'fem-nav': ReactElementPropsT & Fem.FemNavPropsT & Fem.FemNavAttributesT
@@ -50,12 +54,14 @@ declare module 'react' {
 			'fem-radio-group': ReactElementPropsT & Fem.FemRadioGroupPropsT & Fem.FemRadioGroupAttributesT
 			'fem-range-slider': ReactElementPropsT & Fem.FemRangeSliderPropsT & Fem.FemRangeSliderAttributesT
 			'fem-row': ReactElementPropsT & Fem.FemRowPropsT & Fem.FemRowAttributesT
+			'fem-scrubber': ReactElementPropsT & Fem.FemScrubberPropsT & Fem.FemScrubberAttributesT
 			'fem-segment': ReactElementPropsT & Fem.FemSegmentPropsT & Fem.FemSegmentAttributesT
 			'fem-segmented': ReactElementPropsT & Fem.FemSegmentedPropsT & Fem.FemSegmentedAttributesT
 			'fem-select': ReactElementPropsT & Fem.FemSelectPropsT & Fem.FemSelectAttributesT
 			'fem-sheet': ReactElementPropsT & Fem.FemSheetPropsT & Fem.FemSheetAttributesT
 			'fem-skeleton': ReactElementPropsT & Fem.FemSkeletonPropsT & Fem.FemSkeletonAttributesT
 			'fem-slider': ReactElementPropsT & Fem.FemSliderPropsT & Fem.FemSliderAttributesT
+			'fem-sortable': ReactElementPropsT & Fem.FemSortablePropsT & Fem.FemSortableAttributesT
 			'fem-spinner': ReactElementPropsT & Fem.FemSpinnerPropsT & Fem.FemSpinnerAttributesT
 			'fem-swap': ReactElementPropsT & Fem.FemSwapPropsT & Fem.FemSwapAttributesT
 			'fem-switch': ReactElementPropsT & Fem.FemSwitchPropsT & Fem.FemSwitchAttributesT
@@ -66,6 +72,7 @@ declare module 'react' {
 			'fem-tabs': ReactElementPropsT & Fem.FemTabsPropsT & Fem.FemTabsAttributesT
 			'fem-tag': ReactElementPropsT & Fem.FemTagPropsT & Fem.FemTagAttributesT
 			'fem-text': ReactElementPropsT & Fem.FemTextPropsT & Fem.FemTextAttributesT
+			'fem-textarea': ReactElementPropsT & Fem.FemTextareaPropsT & Fem.FemTextareaAttributesT
 			'fem-toast': ReactElementPropsT & Fem.FemToastPropsT & Fem.FemToastAttributesT
 			'fem-tooltip': ReactElementPropsT & Fem.FemTooltipPropsT & Fem.FemTooltipAttributesT
 			'fem-tree': ReactElementPropsT & Fem.FemTreePropsT & Fem.FemTreeAttributesT

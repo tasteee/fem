@@ -145,6 +145,15 @@ export type FemCommandPalettePropsT = {
 	hotkey?: string
 }
 
+export type FemCopyFieldPropsT = {
+	value?: string
+	label?: string
+	copyLabel?: string
+	copiedLabel?: string
+	shareTitle?: string
+	shareable?: boolean
+}
+
 export type FemDatePickerPropsT = {
 	name?: string
 	value?: string
@@ -199,6 +208,21 @@ export type FemFieldPropsT = {
 	layout?: 'stacked' | 'inline'
 }
 
+export type FemFileUploadPropsT = {
+	name?: string
+	kind?: 'files' | 'image'
+	accept?: string
+	multiple?: boolean
+	maxSize?: number
+	label?: string
+	description?: string
+	replaceLabel?: string
+	src?: string
+	ratio?: string
+	files?: unknown[]
+	disabled?: boolean
+}
+
 export type FemGridPropsT = {
 	columns?: number
 	min?: string
@@ -217,6 +241,15 @@ export type FemIconPropsT = {
 	label?: string
 }
 
+export type FemImagePropsT = {
+	src?: string
+	alt?: string
+	ratio?: string
+	fit?: 'cover' | 'contain'
+	radius?: 'container' | 'inset' | 'small' | 'pill' | 'none'
+	eager?: boolean
+}
+
 export type FemInputPropsT = {
 	size?: 'small' | 'medium' | 'large'
 	type?: string
@@ -228,6 +261,17 @@ export type FemInputPropsT = {
 	invalid?: boolean
 	disabled?: boolean
 	onchange?: (event: CustomEvent) => void
+}
+
+export type FemListItemPropsT = {
+	label?: string
+	description?: string
+	href?: string
+	size?: 'medium' | 'large'
+	interactive?: boolean
+	selected?: boolean
+	disabled?: boolean
+	onselect?: (event: CustomEvent) => void
 }
 
 export type FemMenuPropsT = {
@@ -320,6 +364,16 @@ export type FemRowPropsT = {
 	grow?: boolean
 }
 
+export type FemScrubberPropsT = {
+	value?: number
+	max?: number
+	buffered?: number
+	label?: string
+	time?: 'none' | 'sides' | 'below'
+	showRemaining?: boolean
+	disabled?: boolean
+}
+
 export type FemSegmentPropsT = {
 	value?: string
 	selected?: boolean
@@ -365,6 +419,13 @@ export type FemSliderPropsT = {
 	showValue?: boolean
 	disabled?: boolean
 	onchange?: (event: CustomEvent) => void
+}
+
+export type FemSortablePropsT = {
+	label?: string
+	gap?: '0' | '1' | '2' | '3' | '4' | '5' | '6'
+	moveNodes?: boolean
+	disabled?: boolean
 }
 
 export type FemSpinnerPropsT = {
@@ -434,6 +495,20 @@ export type FemTextPropsT = {
 	color?: 'strong' | 'muted' | 'accent' | 'danger' | 'success' | 'warning' | 'info'
 	numeric?: boolean
 	truncate?: boolean
+}
+
+export type FemTextareaPropsT = {
+	value?: string
+	name?: string
+	placeholder?: string
+	label?: string
+	rows?: number
+	maxlength?: number
+	autosize?: boolean
+	required?: boolean
+	invalid?: boolean
+	disabled?: boolean
+	onchange?: (event: CustomEvent) => void
 }
 
 export type FemToastPropsT = {
@@ -597,6 +672,15 @@ export type FemCommandPaletteAttributesT = {
 	'hotkey'?: string
 }
 
+export type FemCopyFieldAttributesT = {
+	'value'?: string
+	'label'?: string
+	'copy-label'?: string
+	'copied-label'?: string
+	'share-title'?: string
+	'shareable'?: boolean | ''
+}
+
 export type FemDatePickerAttributesT = {
 	'name'?: string
 	'value'?: string
@@ -648,6 +732,20 @@ export type FemFieldAttributesT = {
 	'layout'?: 'stacked' | 'inline'
 }
 
+export type FemFileUploadAttributesT = {
+	'name'?: string
+	'kind'?: 'files' | 'image'
+	'accept'?: string
+	'multiple'?: boolean | ''
+	'max-size'?: number
+	'label'?: string
+	'description'?: string
+	'replace-label'?: string
+	'src'?: string
+	'ratio'?: string
+	'disabled'?: boolean | ''
+}
+
 export type FemGridAttributesT = {
 	'columns'?: number
 	'min'?: string
@@ -666,6 +764,15 @@ export type FemIconAttributesT = {
 	'label'?: string
 }
 
+export type FemImageAttributesT = {
+	'src'?: string
+	'alt'?: string
+	'ratio'?: string
+	'fit'?: 'cover' | 'contain'
+	'radius'?: 'container' | 'inset' | 'small' | 'pill' | 'none'
+	'eager'?: boolean | ''
+}
+
 export type FemInputAttributesT = {
 	'size'?: 'small' | 'medium' | 'large'
 	'type'?: string
@@ -675,6 +782,16 @@ export type FemInputAttributesT = {
 	'label'?: string
 	'required'?: boolean | ''
 	'invalid'?: boolean | ''
+	'disabled'?: boolean | ''
+}
+
+export type FemListItemAttributesT = {
+	'label'?: string
+	'description'?: string
+	'href'?: string
+	'size'?: 'medium' | 'large'
+	'interactive'?: boolean | ''
+	'selected'?: boolean | ''
 	'disabled'?: boolean | ''
 }
 
@@ -762,6 +879,16 @@ export type FemRowAttributesT = {
 	'grow'?: boolean | ''
 }
 
+export type FemScrubberAttributesT = {
+	'value'?: number
+	'max'?: number
+	'buffered'?: number
+	'label'?: string
+	'time'?: 'none' | 'sides' | 'below'
+	'show-remaining'?: boolean | ''
+	'disabled'?: boolean | ''
+}
+
 export type FemSegmentAttributesT = {
 	'value'?: string
 	'selected'?: boolean | ''
@@ -802,6 +929,13 @@ export type FemSliderAttributesT = {
 	'step'?: number
 	'label'?: string
 	'show-value'?: boolean | ''
+	'disabled'?: boolean | ''
+}
+
+export type FemSortableAttributesT = {
+	'label'?: string
+	'gap'?: '0' | '1' | '2' | '3' | '4' | '5' | '6'
+	'move-nodes'?: boolean | ''
 	'disabled'?: boolean | ''
 }
 
@@ -864,6 +998,19 @@ export type FemTextAttributesT = {
 	'color'?: 'strong' | 'muted' | 'accent' | 'danger' | 'success' | 'warning' | 'info'
 	'numeric'?: boolean | ''
 	'truncate'?: boolean | ''
+}
+
+export type FemTextareaAttributesT = {
+	'value'?: string
+	'name'?: string
+	'placeholder'?: string
+	'label'?: string
+	'rows'?: number
+	'maxlength'?: number
+	'autosize'?: boolean | ''
+	'required'?: boolean | ''
+	'invalid'?: boolean | ''
+	'disabled'?: boolean | ''
 }
 
 export type FemToastAttributesT = {
@@ -1023,6 +1170,15 @@ export type FemCommandPaletteElementT = HTMLElement & {
 	hotkey: string
 }
 
+export type FemCopyFieldElementT = HTMLElement & {
+	value: string
+	label: string
+	copyLabel: string
+	copiedLabel: string
+	shareTitle: string
+	shareable: boolean
+}
+
 export type FemDatePickerElementT = HTMLElement & {
 	name: string | undefined
 	value: string
@@ -1074,6 +1230,21 @@ export type FemFieldElementT = HTMLElement & {
 	layout: 'stacked' | 'inline'
 }
 
+export type FemFileUploadElementT = HTMLElement & {
+	name: string
+	kind: 'files' | 'image'
+	accept: string
+	multiple: boolean
+	maxSize: number
+	label: string
+	description: string
+	replaceLabel: string
+	src: string
+	ratio: string
+	files: unknown[]
+	disabled: boolean
+}
+
 export type FemGridElementT = HTMLElement & {
 	columns: number
 	min: string | undefined
@@ -1092,6 +1263,15 @@ export type FemIconElementT = HTMLElement & {
 	label: string
 }
 
+export type FemImageElementT = HTMLElement & {
+	src: string
+	alt: string
+	ratio: string
+	fit: 'cover' | 'contain'
+	radius: 'container' | 'inset' | 'small' | 'pill' | 'none'
+	eager: boolean
+}
+
 export type FemInputElementT = HTMLElement & {
 	size: 'small' | 'medium' | 'large'
 	type: string
@@ -1101,6 +1281,16 @@ export type FemInputElementT = HTMLElement & {
 	label: string | undefined
 	required: boolean
 	invalid: boolean
+	disabled: boolean
+}
+
+export type FemListItemElementT = HTMLElement & {
+	label: string
+	description: string
+	href: string
+	size: 'medium' | 'large'
+	interactive: boolean
+	selected: boolean
 	disabled: boolean
 }
 
@@ -1188,6 +1378,16 @@ export type FemRowElementT = HTMLElement & {
 	grow: boolean
 }
 
+export type FemScrubberElementT = HTMLElement & {
+	value: number
+	max: number
+	buffered: number
+	label: string
+	time: 'none' | 'sides' | 'below'
+	showRemaining: boolean
+	disabled: boolean
+}
+
 export type FemSegmentElementT = HTMLElement & {
 	value: string
 	selected: boolean
@@ -1228,6 +1428,13 @@ export type FemSliderElementT = HTMLElement & {
 	step: number
 	label: string | undefined
 	showValue: boolean
+	disabled: boolean
+}
+
+export type FemSortableElementT = HTMLElement & {
+	label: string
+	gap: '0' | '1' | '2' | '3' | '4' | '5' | '6'
+	moveNodes: boolean
 	disabled: boolean
 }
 
@@ -1294,6 +1501,19 @@ export type FemTextElementT = HTMLElement & {
 	truncate: boolean
 }
 
+export type FemTextareaElementT = HTMLElement & {
+	value: string
+	name: string | undefined
+	placeholder: string | undefined
+	label: string | undefined
+	rows: number
+	maxlength: number
+	autosize: boolean
+	required: boolean
+	invalid: boolean
+	disabled: boolean
+}
+
 export type FemToastElementT = HTMLElement & {
 	open: boolean
 	duration: number
@@ -1338,16 +1558,20 @@ declare global {
 		'fem-command-group': FemCommandGroupElementT
 		'fem-command-item': FemCommandItemElementT
 		'fem-command-palette': FemCommandPaletteElementT
+		'fem-copy-field': FemCopyFieldElementT
 		'fem-date-picker': FemDatePickerElementT
 		'fem-date-range-picker': FemDateRangePickerElementT
 		'fem-dialog': FemDialogElementT
 		'fem-divider': FemDividerElementT
 		'fem-empty-state': FemEmptyStateElementT
 		'fem-field': FemFieldElementT
+		'fem-file-upload': FemFileUploadElementT
 		'fem-grid': FemGridElementT
 		'fem-heading': FemHeadingElementT
 		'fem-icon': FemIconElementT
+		'fem-image': FemImageElementT
 		'fem-input': FemInputElementT
+		'fem-list-item': FemListItemElementT
 		'fem-menu': FemMenuElementT
 		'fem-menu-item': FemMenuItemElementT
 		'fem-nav': FemNavElementT
@@ -1360,12 +1584,14 @@ declare global {
 		'fem-radio-group': FemRadioGroupElementT
 		'fem-range-slider': FemRangeSliderElementT
 		'fem-row': FemRowElementT
+		'fem-scrubber': FemScrubberElementT
 		'fem-segment': FemSegmentElementT
 		'fem-segmented': FemSegmentedElementT
 		'fem-select': FemSelectElementT
 		'fem-sheet': FemSheetElementT
 		'fem-skeleton': FemSkeletonElementT
 		'fem-slider': FemSliderElementT
+		'fem-sortable': FemSortableElementT
 		'fem-spinner': FemSpinnerElementT
 		'fem-swap': FemSwapElementT
 		'fem-switch': FemSwitchElementT
@@ -1376,6 +1602,7 @@ declare global {
 		'fem-tabs': FemTabsElementT
 		'fem-tag': FemTagElementT
 		'fem-text': FemTextElementT
+		'fem-textarea': FemTextareaElementT
 		'fem-toast': FemToastElementT
 		'fem-tooltip': FemTooltipElementT
 		'fem-tree': FemTreeElementT

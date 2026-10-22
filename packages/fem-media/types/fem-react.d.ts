@@ -8,6 +8,10 @@ type ReactElementPropsT = DetailedHTMLProps<ReactHTMLAttributes<HTMLElement>, HT
 declare module 'react' {
 	namespace JSX {
 		interface IntrinsicElements {
+			'fem-now-playing': ReactElementPropsT & Fem.FemNowPlayingPropsT & Fem.FemNowPlayingAttributesT
+			'fem-play-button': ReactElementPropsT & Fem.FemPlayButtonPropsT & Fem.FemPlayButtonAttributesT
+			'fem-player-bar': ReactElementPropsT & Fem.FemPlayerBarPropsT & Fem.FemPlayerBarAttributesT
+			'fem-track-row': ReactElementPropsT & Fem.FemTrackRowPropsT & Fem.FemTrackRowAttributesT
 		}
 	}
 }

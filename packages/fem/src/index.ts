@@ -58,6 +58,13 @@ import { CommandItem } from './components/command-item/command-item'
 import { CommandPalette } from './components/command-palette/command-palette'
 import { Tree } from './components/tree/tree'
 import { TreeItem } from './components/tree-item/tree-item'
+import { CopyField } from './components/copy-field/copy-field'
+import { FileUpload } from './components/file-upload/file-upload'
+import { Image } from './components/image/image'
+import { ListItem } from './components/list-item/list-item'
+import { Scrubber } from './components/scrubber/scrubber'
+import { Sortable } from './components/sortable/sortable'
+import { Textarea } from './components/textarea/textarea'
 import { registerIcons } from './icons/registry'
 import { showToast } from './show-toast'
 
@@ -123,7 +130,14 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-command-item', CommandItem],
 	['fem-command-palette', CommandPalette],
 	['fem-tree', Tree],
-	['fem-tree-item', TreeItem]
+	['fem-tree-item', TreeItem],
+	['fem-copy-field', CopyField],
+	['fem-file-upload', FileUpload],
+	['fem-image', Image],
+	['fem-list-item', ListItem],
+	['fem-scrubber', Scrubber],
+	['fem-sortable', Sortable],
+	['fem-textarea', Textarea]
 ]
 
 for (const element of elements) {
@@ -145,3 +159,6 @@ export { Calendar, Combobox, DatePicker, DateRangePicker, RangeSlider }
 export { CommandGroup, CommandItem, CommandPalette, Tree, TreeItem }
 export type { TableColumnT, TableRowT } from './components/table/table'
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'
+export { CopyField, FileUpload, Image, ListItem, Scrubber, Sortable, Textarea }
+export type { ReorderDetailT } from './components/sortable/sortable-drag'
+export type { FileRejectDetailT } from './components/file-upload/file-upload'

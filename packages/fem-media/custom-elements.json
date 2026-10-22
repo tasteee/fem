@@ -1,5 +1,254 @@
 {
 	"schemaVersion": "1.0.0",
 	"readme": "README.md",
-	"modules": []
+	"modules": [
+		{
+			"kind": "javascript-module",
+			"path": "src/components/now-playing/now-playing.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "NowPlaying",
+					"tagName": "fem-now-playing",
+					"customElement": true,
+					"description": "The big view: artwork, title, seek bar, and controls. With a track set it shows that track, ready to play, as on a share page. Without one it follows whatever is playing.",
+					"attributes": [
+						{
+							"name": "artist-href",
+							"fieldName": "artistHref",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "track",
+							"type": {
+								"text": "object"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "queue",
+							"type": {
+								"text": "unknown[]"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "artistHref",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "actions",
+							"description": ""
+						},
+						{
+							"name": "end",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-now-playing",
+					"declaration": {
+						"name": "NowPlaying",
+						"module": "src/components/now-playing/now-playing.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/play-button/play-button.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "PlayButton",
+					"tagName": "fem-play-button",
+					"customElement": true,
+					"description": "Plays a track, or a whole list from its first track, and turns to pause while that track plays. Use it for \"Play\" on a profile or playlist header.",
+					"attributes": [
+						{
+							"name": "size",
+							"fieldName": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"default": "\"large\""
+						},
+						{
+							"name": "kind",
+							"fieldName": "kind",
+							"type": {
+								"text": "'ghost' | 'solid'"
+							},
+							"default": "\"solid\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "track",
+							"type": {
+								"text": "object"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "queue",
+							"type": {
+								"text": "unknown[]"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "size",
+							"type": {
+								"text": "'small' | 'medium' | 'large'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "kind",
+							"type": {
+								"text": "'ghost' | 'solid'"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-play-button",
+					"declaration": {
+						"name": "PlayButton",
+						"module": "src/components/play-button/play-button.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/player-bar/player-bar.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "PlayerBar",
+					"tagName": "fem-player-bar",
+					"customElement": true,
+					"description": "The mini player that sits along the bottom of an app. Wide, it shows transport, seek, and volume. Narrow, it folds to the track and a play button, with a thin progress line. Tap the track to send expand.",
+					"attributes": [
+						{
+							"name": "expandable",
+							"fieldName": "expandable",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "expandable",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "expand",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "actions",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-player-bar",
+					"declaration": {
+						"name": "PlayerBar",
+						"module": "src/components/player-bar/player-bar.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/track-row/track-row.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "TrackRow",
+					"tagName": "fem-track-row",
+					"customElement": true,
+					"description": "One track in a list. Tap it to play the list from here. The playing track shows its state, and the trailing slot holds actions like a menu.",
+					"attributes": [],
+					"members": [
+						{
+							"kind": "field",
+							"name": "track",
+							"type": {
+								"text": "object"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "queue",
+							"type": {
+								"text": "unknown[]"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "trailing",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-track-row",
+					"declaration": {
+						"name": "TrackRow",
+						"module": "src/components/track-row/track-row.tsx"
+					}
+				}
+			]
+		}
+	]
 }

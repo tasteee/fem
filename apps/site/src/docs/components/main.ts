@@ -1,6 +1,7 @@
 import '../docs'
 import './components.css'
-import manifest from '@tasteee/fem/custom-elements.json'
+import coreManifest from '@tasteee/fem/custom-elements.json'
+import mediaManifest from '@tasteee/fem-media/custom-elements.json'
 import { showToast } from '@tasteee/fem'
 import { examplesByTag, groupOrder, parentByChildTag } from './examples'
 
@@ -56,7 +57,8 @@ const getGroup = (tagName: string, parentTag: string | undefined): string => {
 }
 
 const buildEntries = (): ComponentEntryT[] => {
-	const declarations = manifest.modules.flatMap((module) => module.declarations) as ManifestDeclarationT[]
+	const modules = [...coreManifest.modules, ...mediaManifest.modules]
+	const declarations = modules.flatMap((module) => module.declarations) as ManifestDeclarationT[]
 	return declarations.map((declaration) => {
 		const parentTag = parentByChildTag[declaration.tagName]
 		return {

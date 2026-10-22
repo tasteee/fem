@@ -143,6 +143,12 @@
 	--avatar-large: 96px;
 	--indicator-height: 3px;
 	--tab-bar-item-height: 56px;
+	--list-item-height: 56px;
+	--list-item-height-large: 72px;
+	--file-upload-height: 160px;
+	--scrubber-hit: 24px;
+	--scrubber-track: 4px;
+	--scrubber-track-active: 6px;
 }
 
 /* ---------- type ---------- */
@@ -243,6 +249,10 @@
 	--slider-thumb: 18px;
 	--tab-bar-item-height: 48px;
 	--calendar-day-size: 36px;
+	--list-item-height: 48px;
+	--list-item-height-large: 60px;
+	--file-upload-height: 132px;
+	--scrubber-hit: 20px;
 	--space-3: 8px;
 	--space-4: 12px;
 	--space-5: 14px;
@@ -278,6 +288,10 @@
 	--slider-thumb: 24px;
 	--tab-bar-item-height: 56px;
 	--calendar-day-size: 44px;
+	--list-item-height: 56px;
+	--list-item-height-large: 72px;
+	--file-upload-height: 160px;
+	--scrubber-hit: 24px;
 	--space-3: 12px;
 	--space-4: 16px;
 	--space-5: 20px;

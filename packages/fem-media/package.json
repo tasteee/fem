@@ -6,6 +6,7 @@
 	"license": "MIT",
 	"files": [
 		"dist",
+		"src/tokens.css",
 		"types",
 		"custom-elements.json",
 		"vscode.html-custom-data.json"
@@ -20,6 +21,7 @@
 	"customElements": "custom-elements.json",
 	"exports": {
 		".": "./dist/fem-media.js",
+		"./tokens.css": "./src/tokens.css",
 		"./jsx": {
 			"types": "./types/fem-jsx.d.ts"
 		},
