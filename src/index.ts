@@ -53,6 +53,11 @@ import { Combobox } from './components/combobox/combobox'
 import { DatePicker } from './components/date-picker/date-picker'
 import { DateRangePicker } from './components/date-range-picker/date-range-picker'
 import { RangeSlider } from './components/range-slider/range-slider'
+import { CommandGroup } from './components/command-group/command-group'
+import { CommandItem } from './components/command-item/command-item'
+import { CommandPalette } from './components/command-palette/command-palette'
+import { Tree } from './components/tree/tree'
+import { TreeItem } from './components/tree-item/tree-item'
 import { registerIcons } from './icons/registry'
 import { showToast } from './show-toast'
 
@@ -113,7 +118,12 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-combobox', Combobox],
 	['fem-date-picker', DatePicker],
 	['fem-date-range-picker', DateRangePicker],
-	['fem-range-slider', RangeSlider]
+	['fem-range-slider', RangeSlider],
+	['fem-command-group', CommandGroup],
+	['fem-command-item', CommandItem],
+	['fem-command-palette', CommandPalette],
+	['fem-tree', Tree],
+	['fem-tree-item', TreeItem]
 ]
 
 for (const element of elements) {
@@ -132,5 +142,6 @@ export { Tooltip, Box, Row, Column, Grid, Nav, NavItem, TabBar, TabBarItem }
 export { Card, Divider, Heading, Popover, RadioGroup, Skeleton, Spinner, Text }
 export { Accordion, AccordionItem, AvatarGroup, Breadcrumb, Breadcrumbs, CheckboxGroup, EmptyState, Pagination, Table }
 export { Calendar, Combobox, DatePicker, DateRangePicker, RangeSlider }
+export { CommandGroup, CommandItem, CommandPalette, Tree, TreeItem }
 export type { TableColumnT, TableRowT } from './components/table/table'
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'

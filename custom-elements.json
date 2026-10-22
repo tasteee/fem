@@ -1597,6 +1597,268 @@
 		},
 		{
 			"kind": "javascript-module",
+			"path": "src/components/command-group/command-group.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "CommandGroup",
+					"tagName": "fem-command-group",
+					"customElement": true,
+					"description": "A labeled set of commands. The palette hides a group when a search leaves nothing in it.",
+					"attributes": [
+						{
+							"name": "heading",
+							"fieldName": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "heading",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-command-group",
+					"declaration": {
+						"name": "CommandGroup",
+						"module": "src/components/command-group/command-group.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/command-item/command-item.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "CommandItem",
+					"tagName": "fem-command-item",
+					"customElement": true,
+					"description": "One command in a fem-command-palette: an icon, a label, and an optional shortcut hint. Keywords help it match searches its label doesn't cover.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "keywords",
+							"fieldName": "keywords",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "active",
+							"fieldName": "active",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Set by the palette while the arrow keys or the pointer rest on this command."
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "keywords",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "active",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true,
+							"description": "Set by the palette while the arrow keys or the pointer rest on this command."
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "icon",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						},
+						{
+							"name": "shortcut",
+							"description": ""
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-command-item",
+					"declaration": {
+						"name": "CommandItem",
+						"module": "src/components/command-item/command-item.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/command-palette/command-palette.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "CommandPalette",
+					"tagName": "fem-command-palette",
+					"customElement": true,
+					"description": "Search and run any command from the keyboard. Opens with ⌘K or Ctrl+K. The highlight slides between commands, like every selection in fem.",
+					"attributes": [
+						{
+							"name": "open",
+							"fieldName": "open",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Command palette\""
+						},
+						{
+							"name": "placeholder",
+							"fieldName": "placeholder",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Search commands\""
+						},
+						{
+							"name": "empty-text",
+							"fieldName": "emptyText",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"No matching commands\""
+						},
+						{
+							"name": "hotkey",
+							"fieldName": "hotkey",
+							"type": {
+								"text": "string"
+							},
+							"description": "Set to an empty string to turn the shortcut off.",
+							"default": "\"mod+k\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "open",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "placeholder",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "emptyText",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "hotkey",
+							"type": {
+								"text": "string"
+							},
+							"description": "Set to an empty string to turn the shortcut off."
+						}
+					],
+					"events": [],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-command-palette",
+					"declaration": {
+						"name": "CommandPalette",
+						"module": "src/components/command-palette/command-palette.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/date-picker/date-picker.tsx",
 			"declarations": [
 				{
@@ -5452,6 +5714,201 @@
 					"declaration": {
 						"name": "Tooltip",
 						"module": "src/components/tooltip/tooltip.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tree/tree.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "Tree",
+					"tagName": "fem-tree",
+					"customElement": true,
+					"description": "Nested items, like folders and files. The selected row's fill slides, even across levels.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tree",
+					"declaration": {
+						"name": "Tree",
+						"module": "src/components/tree/tree.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "src/components/tree-item/tree-item.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "TreeItem",
+					"tagName": "fem-tree-item",
+					"customElement": true,
+					"description": "One row in a fem-tree. Nested tree items are its children. The caret opens and closes them.",
+					"attributes": [
+						{
+							"name": "value",
+							"fieldName": "value",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "expanded",
+							"fieldName": "expanded",
+							"type": {
+								"text": "boolean"
+							}
+						},
+						{
+							"name": "selected",
+							"fieldName": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"description": "Set by fem-tree from its value."
+						},
+						{
+							"name": "disabled",
+							"fieldName": "disabled",
+							"type": {
+								"text": "boolean"
+							}
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "value",
+							"type": {
+								"text": "string"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "expanded",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "selected",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true,
+							"description": "Set by fem-tree from its value."
+						},
+						{
+							"kind": "field",
+							"name": "disabled",
+							"type": {
+								"text": "boolean"
+							},
+							"reflects": true
+						}
+					],
+					"events": [
+						{
+							"name": "toggle",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": [
+						{
+							"name": "icon",
+							"description": ""
+						},
+						{
+							"name": "end",
+							"description": ""
+						},
+						{
+							"name": "",
+							"description": "Default slot"
+						}
+					]
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-tree-item",
+					"declaration": {
+						"name": "TreeItem",
+						"module": "src/components/tree-item/tree-item.tsx"
 					}
 				}
 			]

@@ -1,0 +1,18 @@
+:host {
+	display: flex;
+}
+
+.tree {
+	position: relative;
+	isolation: isolate;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-hairline);
+}
+
+.tree-indicator {
+	z-index: -1;
+	border-radius: var(--radius-small);
+	background: var(--surface-inverse);
+}

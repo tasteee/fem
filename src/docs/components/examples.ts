@@ -387,6 +387,42 @@ const navigationExamples: Record<string, ExampleT> = {
 	}
 }
 
+const commandExamples: Record<string, ExampleT> = {
+	'fem-command-palette': {
+		group: 'Overlays',
+		html: `<fem-button data-opens="example-palette">Open palette, or press ⌘K</fem-button>
+<fem-command-palette id="example-palette">
+	<fem-command-group heading="Tracks">
+		<fem-command-item value="new-track"><fem-icon slot="icon" name="plus"></fem-icon>New track<span slot="shortcut">⌘N</span></fem-command-item>
+		<fem-command-item value="open-safeword" keywords="dark pop d minor"><fem-icon slot="icon" name="music-notes"></fem-icon>Open safeword</fem-command-item>
+		<fem-command-item value="share"><fem-icon slot="icon" name="share-fat"></fem-icon>Share track</fem-command-item>
+	</fem-command-group>
+	<fem-command-group heading="Settings">
+		<fem-command-item value="theme" keywords="dark light"><fem-icon slot="icon" name="gear-six"></fem-icon>Change theme</fem-command-item>
+		<fem-command-item value="delete"><fem-icon slot="icon" name="trash"></fem-icon>Delete track</fem-command-item>
+	</fem-command-group>
+</fem-command-palette>`
+	},
+	'fem-tree': {
+		group: 'Data display',
+		html: `<fem-tree value="safeword" label="Library">
+	<fem-tree-item value="drafts" label="Drafts" expanded>
+		<fem-icon slot="icon" name="music-notes"></fem-icon>
+		<fem-tree-item value="safeword" label="safeword"></fem-tree-item>
+		<fem-tree-item value="fangirl" label="fangirl"></fem-tree-item>
+		<fem-tree-item value="stems" label="Stems">
+			<fem-tree-item value="vocals" label="vocals.wav"></fem-tree-item>
+			<fem-tree-item value="drums" label="drums.wav"></fem-tree-item>
+		</fem-tree-item>
+	</fem-tree-item>
+	<fem-tree-item value="released" label="Released">
+		<fem-icon slot="icon" name="music-notes"></fem-icon>
+		<fem-tree-item value="dead-people" label="dead people"></fem-tree-item>
+	</fem-tree-item>
+</fem-tree>`
+	}
+}
+
 const tableColumns = JSON.stringify([
 	{ key: 'title', label: 'Track', sortable: true },
 	{ key: 'bpm', label: 'BPM', numeric: true, align: 'end', sortable: true },
@@ -449,7 +485,8 @@ export const examplesByTag: Record<string, ExampleT> = {
 	...feedbackExamples,
 	...overlayExamples,
 	...navigationExamples,
-	...displayExamples
+	...displayExamples,
+	...commandExamples
 }
 
 // Tags that only make sense inside a parent show the
@@ -464,7 +501,10 @@ export const parentByChildTag: Record<string, string> = {
 	'fem-nav-item': 'fem-nav',
 	'fem-tab-bar-item': 'fem-tab-bar',
 	'fem-breadcrumb': 'fem-breadcrumbs',
-	'fem-accordion-item': 'fem-accordion'
+	'fem-accordion-item': 'fem-accordion',
+	'fem-command-item': 'fem-command-palette',
+	'fem-command-group': 'fem-command-palette',
+	'fem-tree-item': 'fem-tree'
 }
 
 export const groupOrder = [

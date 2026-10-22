@@ -1,0 +1,108 @@
+:host {
+	display: contents;
+}
+
+/* Sits in the upper third, where the eye already is, */
+/* on the overlay surface over a dimmed page. */
+.command-palette {
+	width: min(var(--command-palette-width), calc(100vw - var(--space-8)));
+	max-height: calc(100dvh - var(--space-10) * 2);
+	margin: 12dvh auto auto;
+	padding: 0;
+	border: 0;
+	border-radius: var(--radius-container);
+	background: var(--surface-overlay);
+	color: var(--text-strong);
+	overflow: hidden;
+	opacity: 0;
+	transform: scale(0.97);
+	transition:
+		opacity var(--duration-medium) var(--easing-standard),
+		transform var(--duration-medium) var(--easing-standard),
+		display var(--duration-medium) allow-discrete,
+		overlay var(--duration-medium) allow-discrete;
+}
+
+.command-palette[open] {
+	display: flex;
+	flex-direction: column;
+	opacity: 1;
+	transform: scale(1);
+}
+
+@starting-style {
+	.command-palette[open] {
+		opacity: 0;
+		transform: scale(0.97);
+	}
+}
+
+.command-palette::backdrop {
+	background: var(--scrim);
+	opacity: 0;
+	transition:
+		opacity var(--duration-medium) var(--easing-standard),
+		display var(--duration-medium) allow-discrete,
+		overlay var(--duration-medium) allow-discrete;
+}
+
+.command-palette[open]::backdrop {
+	opacity: 1;
+}
+
+@starting-style {
+	.command-palette[open]::backdrop {
+		opacity: 0;
+	}
+}
+
+.command-palette-search {
+	height: var(--control-height-large);
+	padding: 0 var(--space-4);
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	color: var(--text-muted);
+	flex-shrink: 0;
+}
+
+.command-palette-input {
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+	color: var(--text-strong);
+	font-size: var(--font-size-large);
+}
+
+.command-palette-input::placeholder {
+	color: var(--text-muted);
+}
+
+.command-palette-input:focus-visible {
+	outline: none;
+}
+
+/* The list scrolls. Its highlight slides on the */
+/* overlay's inset step, softer than a selection. */
+.command-palette-list {
+	position: relative;
+	isolation: isolate;
+	max-height: var(--command-palette-list-height);
+	padding: 0 var(--space-2) var(--space-2);
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	overscroll-behavior: contain;
+}
+
+.command-palette-indicator {
+	z-index: -1;
+	border-radius: var(--radius-small);
+	background: var(--surface-overlay-inset);
+}
+
+.command-palette-empty {
+	padding: var(--space-6) var(--space-3);
+	color: var(--text-muted);
+	text-align: center;
+}

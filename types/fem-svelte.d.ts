@@ -22,6 +22,9 @@ declare module 'svelte/elements' {
 		'fem-chip': HTMLAttributes<HTMLElement> & Fem.FemChipPropsT & Fem.FemChipAttributesT
 		'fem-column': HTMLAttributes<HTMLElement> & Fem.FemColumnPropsT & Fem.FemColumnAttributesT
 		'fem-combobox': HTMLAttributes<HTMLElement> & Fem.FemComboboxPropsT & Fem.FemComboboxAttributesT
+		'fem-command-group': HTMLAttributes<HTMLElement> & Fem.FemCommandGroupPropsT & Fem.FemCommandGroupAttributesT
+		'fem-command-item': HTMLAttributes<HTMLElement> & Fem.FemCommandItemPropsT & Fem.FemCommandItemAttributesT
+		'fem-command-palette': HTMLAttributes<HTMLElement> & Fem.FemCommandPalettePropsT & Fem.FemCommandPaletteAttributesT
 		'fem-date-picker': HTMLAttributes<HTMLElement> & Fem.FemDatePickerPropsT & Fem.FemDatePickerAttributesT
 		'fem-date-range-picker': HTMLAttributes<HTMLElement> & Fem.FemDateRangePickerPropsT & Fem.FemDateRangePickerAttributesT
 		'fem-dialog': HTMLAttributes<HTMLElement> & Fem.FemDialogPropsT & Fem.FemDialogAttributesT
@@ -62,5 +65,7 @@ declare module 'svelte/elements' {
 		'fem-text': HTMLAttributes<HTMLElement> & Fem.FemTextPropsT & Fem.FemTextAttributesT
 		'fem-toast': HTMLAttributes<HTMLElement> & Fem.FemToastPropsT & Fem.FemToastAttributesT
 		'fem-tooltip': HTMLAttributes<HTMLElement> & Fem.FemTooltipPropsT & Fem.FemTooltipAttributesT
+		'fem-tree': HTMLAttributes<HTMLElement> & Fem.FemTreePropsT & Fem.FemTreeAttributesT
+		'fem-tree-item': HTMLAttributes<HTMLElement> & Fem.FemTreeItemPropsT & Fem.FemTreeItemAttributesT
 	}
 }

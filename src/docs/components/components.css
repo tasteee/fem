@@ -110,6 +110,7 @@ body {
 .site-preview > fem-tab-bar,
 .site-preview > fem-tabs,
 .site-preview > fem-segmented,
+.site-preview > fem-tree,
 .site-preview > fem-box {
 	align-self: stretch;
 }

@@ -25,6 +25,9 @@ declare module 'react' {
 			'fem-chip': ReactElementPropsT & Fem.FemChipPropsT & Fem.FemChipAttributesT
 			'fem-column': ReactElementPropsT & Fem.FemColumnPropsT & Fem.FemColumnAttributesT
 			'fem-combobox': ReactElementPropsT & Fem.FemComboboxPropsT & Fem.FemComboboxAttributesT
+			'fem-command-group': ReactElementPropsT & Fem.FemCommandGroupPropsT & Fem.FemCommandGroupAttributesT
+			'fem-command-item': ReactElementPropsT & Fem.FemCommandItemPropsT & Fem.FemCommandItemAttributesT
+			'fem-command-palette': ReactElementPropsT & Fem.FemCommandPalettePropsT & Fem.FemCommandPaletteAttributesT
 			'fem-date-picker': ReactElementPropsT & Fem.FemDatePickerPropsT & Fem.FemDatePickerAttributesT
 			'fem-date-range-picker': ReactElementPropsT & Fem.FemDateRangePickerPropsT & Fem.FemDateRangePickerAttributesT
 			'fem-dialog': ReactElementPropsT & Fem.FemDialogPropsT & Fem.FemDialogAttributesT
@@ -65,6 +68,8 @@ declare module 'react' {
 			'fem-text': ReactElementPropsT & Fem.FemTextPropsT & Fem.FemTextAttributesT
 			'fem-toast': ReactElementPropsT & Fem.FemToastPropsT & Fem.FemToastAttributesT
 			'fem-tooltip': ReactElementPropsT & Fem.FemTooltipPropsT & Fem.FemTooltipAttributesT
+			'fem-tree': ReactElementPropsT & Fem.FemTreePropsT & Fem.FemTreeAttributesT
+			'fem-tree-item': ReactElementPropsT & Fem.FemTreeItemPropsT & Fem.FemTreeItemAttributesT
 		}
 	}
 }
