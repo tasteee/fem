@@ -4,6 +4,8 @@ A flat, premium web component design system. No shadows, no gradients. Depth com
 
 Built with [Atomico](https://atomico.gitbook.io/doc) and shadow DOM.
 
+Docs for every component, with live examples and full APIs: [tasteee.github.io/fem/components](https://tasteee.github.io/fem/components/).
+
 ## Principles
 
 - **Shape signals function.** Pills act. Rounded boxes hold.
@@ -288,7 +290,7 @@ A wrong value is a type error:
 
 ```sh
 npm install
-npm run dev        # docs page, and the notes example at /notes/
+npm run dev        # docs page, component docs at /components/, notes example at /notes/
 npm run build
 npm run typecheck
 npm run build:demos   # static site in demos/, for GitHub Pages
