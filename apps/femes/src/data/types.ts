@@ -1,5 +1,3 @@
-import type { TrackT } from '@tasteee/fem-media'
-
 export type VisibilityT = 'public' | 'unlisted' | 'private'
 
 export type SocialLinkT = {
@@ -17,9 +15,17 @@ export type ArtistT = {
 	links: SocialLinkT[]
 }
 
-// A track as femes stores it. It carries everything the
-// player needs, plus what the pages show.
-export type FemesTrackT = TrackT & {
+// A track as femes stores it. Its first fields are the
+// player's TrackT, so it plays as is. Spelled out here so
+// the server needs no browser code to read it.
+export type FemesTrackT = {
+	id: string
+	src: string
+	title: string
+	artist: string
+	artwork?: string
+	duration?: number
+	href?: string
 	slug: string
 	artistSlug: string
 	genre: string

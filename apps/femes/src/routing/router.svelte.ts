@@ -15,6 +15,13 @@ export const navigate = (path: string) => {
 	window.scrollTo(0, 0)
 }
 
+// Swaps the address without a new history entry, as when
+// an old link points at a renamed track.
+export const replacePath = (path: string) => {
+	window.history.replaceState(null, '', path)
+	router.route = parseRoute(window.location.pathname)
+}
+
 const findAnchor = (event: MouseEvent): HTMLAnchorElement | undefined => {
 	const path = event.composedPath()
 	const anchors = path.filter((entry) => entry instanceof HTMLAnchorElement) as HTMLAnchorElement[]
@@ -37,6 +44,9 @@ const handleDocumentClick = (event: MouseEvent) => {
 	const url = new URL(anchor.href, window.location.href)
 	const isOwnSite = url.origin === window.location.origin
 	if (!isOwnSite) return
+	// Server paths, like a sign-in link, load for real.
+	const isServerPath = url.pathname.startsWith('/api/') || url.pathname.startsWith('/media/')
+	if (isServerPath) return
 	event.preventDefault()
 	navigate(url.pathname)
 }

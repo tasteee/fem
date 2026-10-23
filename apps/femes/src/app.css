@@ -240,3 +240,220 @@ p {
 	gap: var(--space-4);
 	max-width: 560px;
 }
+
+/* ---------- sign in ---------- */
+.signin {
+	max-width: 440px;
+	padding-top: var(--space-10);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-5);
+}
+
+.signin-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+.signin-dev-link {
+	font-weight: var(--font-weight-act);
+	text-decoration: underline;
+}
+
+/* ---------- studio frame ---------- */
+.studio {
+	min-height: 100vh;
+	display: flex;
+}
+
+.studio-center {
+	min-height: 60vh;
+	align-items: center;
+	justify-content: center;
+}
+
+.studio-side {
+	box-sizing: border-box;
+	width: 240px;
+	flex: none;
+	padding: var(--space-5) var(--space-3);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+	position: sticky;
+	top: 0;
+	height: 100vh;
+}
+
+.studio-brand {
+	padding: 0 var(--space-4);
+}
+
+.studio-side-end {
+	margin-top: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-2);
+	padding: 0 var(--space-3);
+}
+
+.studio-side-link {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-act);
+}
+
+.studio-top {
+	display: none;
+}
+
+.studio-main {
+	flex: 1;
+	min-width: 0;
+	max-width: 1040px;
+	padding: var(--space-5) var(--space-6) calc(var(--player-bar-height) + var(--space-10)) 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+/* A phone swaps the side menu for a strip on top. */
+@media (max-width: 800px) {
+	.studio {
+		flex-direction: column;
+	}
+
+	.studio-side {
+		display: none;
+	}
+
+	.studio-top {
+		padding: var(--space-4) var(--space-4) 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	.studio-main {
+		padding: var(--space-4) var(--space-4) calc(var(--player-bar-height) + var(--space-10));
+	}
+}
+
+.studio-toolbar {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.studio-toolbar-spacer {
+	flex: 1;
+}
+
+.studio-list,
+.studio-empty {
+	--card-padding: var(--space-2);
+}
+
+.studio-grip {
+	padding: 0;
+	border: none;
+	border-radius: var(--radius-small);
+	background: none;
+	color: var(--text-muted);
+	display: flex;
+	align-items: center;
+}
+
+.studio-row-art {
+	width: var(--track-row-art);
+}
+
+.studio-dialog.isWide {
+	--dialog-width: 560px;
+}
+
+.upload-row {
+	padding: var(--space-3);
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+.edit-track {
+	display: grid;
+	grid-template-columns: 160px minmax(0, 1fr);
+	gap: var(--space-5);
+}
+
+.pick-list {
+	max-height: 50vh;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-3);
+}
+
+/* ---------- studio playlists ---------- */
+.playlist-studio {
+	display: grid;
+	grid-template-columns: 260px minmax(0, 1fr);
+	gap: var(--space-5);
+	align-items: start;
+}
+
+.playlist-picker {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}
+
+.playlist-editor,
+.profile-editor {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-5);
+}
+
+.playlist-editor-head {
+	display: grid;
+	grid-template-columns: 180px minmax(0, 1fr);
+	gap: var(--space-5);
+}
+
+@media (max-width: 800px) {
+	.playlist-studio,
+	.playlist-editor-head,
+	.edit-track {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.playlist-cover-upload {
+		max-width: 200px;
+	}
+}
+
+/* ---------- studio profile ---------- */
+.profile-avatar-upload {
+	width: 120px;
+}
+
+.profile-editor-pair {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: var(--space-4);
+}
+
+.profile-link-row {
+	display: grid;
+	grid-template-columns: 160px minmax(0, 1fr) auto;
+	gap: var(--space-2);
+	align-items: center;
+}

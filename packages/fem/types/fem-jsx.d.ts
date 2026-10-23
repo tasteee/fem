@@ -143,6 +143,7 @@ export type FemCommandPalettePropsT = {
 	emptyText?: string
 	/** Set to an empty string to turn the shortcut off. */
 	hotkey?: string
+	onselect?: (event: CustomEvent) => void
 }
 
 export type FemCopyFieldPropsT = {
@@ -152,6 +153,8 @@ export type FemCopyFieldPropsT = {
 	copiedLabel?: string
 	shareTitle?: string
 	shareable?: boolean
+	oncopy?: (event: CustomEvent) => void
+	onshare?: (event: CustomEvent) => void
 }
 
 export type FemDatePickerPropsT = {
@@ -221,6 +224,8 @@ export type FemFileUploadPropsT = {
 	ratio?: string
 	files?: unknown[]
 	disabled?: boolean
+	onchange?: (event: CustomEvent) => void
+	onreject?: (event: CustomEvent) => void
 }
 
 export type FemGridPropsT = {
@@ -372,6 +377,8 @@ export type FemScrubberPropsT = {
 	time?: 'none' | 'sides' | 'below'
 	showRemaining?: boolean
 	disabled?: boolean
+	oninput?: (event: CustomEvent) => void
+	onchange?: (event: CustomEvent) => void
 }
 
 export type FemSegmentPropsT = {
@@ -426,6 +433,7 @@ export type FemSortablePropsT = {
 	gap?: '0' | '1' | '2' | '3' | '4' | '5' | '6'
 	moveNodes?: boolean
 	disabled?: boolean
+	onreorder?: (event: CustomEvent) => void
 }
 
 export type FemSpinnerPropsT = {

@@ -23,6 +23,7 @@ export type FemPlayerBarPropsT = {
 export type FemTrackRowPropsT = {
 	track?: object
 	queue?: unknown[]
+	onplay?: (event: CustomEvent) => void
 }
 
 export type FemNowPlayingAttributesT = {

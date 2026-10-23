@@ -230,7 +230,14 @@
 							}
 						}
 					],
-					"events": [],
+					"events": [
+						{
+							"name": "play",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
 					"slots": [
 						{
 							"name": "trailing",

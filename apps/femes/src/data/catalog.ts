@@ -1,53 +1,51 @@
-import { demoArtists, demoPlaylists, demoTracks } from './demo-catalog'
-import type { ArtistPageT, FemesTrackT, PlaylistPageT, TrackPageT } from './types'
+import { replacePath } from '../routing/router.svelte'
+import * as demoReader from './demo-catalog-reader'
+import type { ArtistPageT, PlaylistPageT, TrackPageT } from './types'
 
-// What the public pages read. Each call answers one
-// page in one round trip, so it maps to one API call
-// once the backend is in. Undefined means not found.
+// What the public pages read. Each call is one request
+// for one page. Undefined means not found.
+//
+// `npm run dev` reads the demo catalog. A real build
+// reads the API, set VITE_CATALOG=api to try it locally.
 
-const moreTracksCount = 3
+const isDemo = import.meta.env.VITE_CATALOG === 'demo'
 
-const findArtist = (artistSlug: string) => demoArtists.find((artist) => artist.slug === artistSlug)
+type MovedT = { movedTo: string }
 
-// Private tracks never reach a listener. Unlisted ones
-// open by link but stay off the profile.
-const checkIsListed = (track: FemesTrackT): boolean => track.visibility === 'public'
-const checkIsReachable = (track: FemesTrackT): boolean => track.visibility !== 'private'
-
-const getArtistTracks = (artistSlug: string): FemesTrackT[] => {
-	return demoTracks.filter((track) => track.artistSlug === artistSlug)
+const checkIsMoved = (body: unknown): body is MovedT => {
+	const isObject = typeof body === 'object' && body !== null
+	return isObject && 'movedTo' in body
 }
 
-export const getArtistPage = async (artistSlug: string): Promise<ArtistPageT | undefined> => {
-	const artist = findArtist(artistSlug)
-	if (!artist) return undefined
-	const tracks = getArtistTracks(artistSlug).filter(checkIsListed)
-	const ownPlaylists = demoPlaylists.filter((playlist) => playlist.artistSlug === artistSlug)
-	const playlists = ownPlaylists.filter((playlist) => playlist.visibility === 'public')
-	return { artist, tracks, playlists }
+// Old links to a renamed item get the new address. The
+// page reloads under it, so this request never settles.
+const waitForever = <T>() => new Promise<T>(() => {})
+
+const fetchPage = async <T>(path: string): Promise<T | undefined> => {
+	const response = await fetch(path, { headers: { accept: 'application/json' } })
+	const isMissing = response.status === 404
+	if (isMissing) return undefined
+	if (!response.ok) throw new Error(`femes: ${path} answered ${response.status}`)
+	const body: unknown = await response.json()
+	const isMoved = checkIsMoved(body)
+	if (!isMoved) return body as T
+	replacePath(body.movedTo)
+	return waitForever<T>()
 }
 
-export const getTrackPage = async (artistSlug: string, trackSlug: string): Promise<TrackPageT | undefined> => {
-	const artist = findArtist(artistSlug)
-	if (!artist) return undefined
-	const artistTracks = getArtistTracks(artistSlug)
-	const track = artistTracks.find((entry) => entry.slug === trackSlug)
-	const isVisible = track !== undefined && checkIsReachable(track)
-	if (!isVisible) return undefined
-	const otherTracks = artistTracks.filter((entry) => entry.id !== track.id && checkIsListed(entry))
-	const moreTracks = otherTracks.slice(0, moreTracksCount)
-	return { artist, track, moreTracks }
+const encode = (slug: string) => encodeURIComponent(slug)
+
+export const getArtistPage = (artistSlug: string): Promise<ArtistPageT | undefined> => {
+	if (isDemo) return demoReader.getArtistPage(artistSlug)
+	return fetchPage<ArtistPageT>(`/api/artists/${encode(artistSlug)}`)
 }
 
-export const getPlaylistPage = async (artistSlug: string, playlistSlug: string): Promise<PlaylistPageT | undefined> => {
-	const artist = findArtist(artistSlug)
-	if (!artist) return undefined
-	const isMatch = (entry: { artistSlug: string; slug: string }) => entry.artistSlug === artistSlug && entry.slug === playlistSlug
-	const playlist = demoPlaylists.find(isMatch)
-	const isVisible = playlist !== undefined && playlist.visibility !== 'private'
-	if (!isVisible) return undefined
-	const findTrack = (trackId: string) => demoTracks.find((track) => track.id === trackId)
-	const foundTracks = playlist.trackIds.map(findTrack)
-	const tracks = foundTracks.filter((track): track is FemesTrackT => track !== undefined && checkIsReachable(track))
-	return { artist, playlist, tracks }
+export const getTrackPage = (artistSlug: string, trackSlug: string): Promise<TrackPageT | undefined> => {
+	if (isDemo) return demoReader.getTrackPage(artistSlug, trackSlug)
+	return fetchPage<TrackPageT>(`/api/artists/${encode(artistSlug)}/tracks/${encode(trackSlug)}`)
+}
+
+export const getPlaylistPage = (artistSlug: string, playlistSlug: string): Promise<PlaylistPageT | undefined> => {
+	if (isDemo) return demoReader.getPlaylistPage(artistSlug, playlistSlug)
+	return fetchPage<PlaylistPageT>(`/api/artists/${encode(artistSlug)}/playlists/${encode(playlistSlug)}`)
 }
