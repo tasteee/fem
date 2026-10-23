@@ -2,3 +2,8 @@ node_modules
 dist
 packages/fem/src/icons/generated.ts
 demos
+
+# local secrets for wrangler
+.dev.vars
+.wrangler/
+apps/femes/dist/

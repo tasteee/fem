@@ -4,6 +4,10 @@
 	import HomePage from './pages/HomePage.svelte'
 	import NotFoundPage from './pages/NotFoundPage.svelte'
 	import PlaylistPage from './pages/PlaylistPage.svelte'
+	import SignInPage from './pages/SignInPage.svelte'
+	import StudioPlaylistsPage from './pages/studio/StudioPlaylistsPage.svelte'
+	import StudioProfilePage from './pages/studio/StudioProfilePage.svelte'
+	import StudioTracksPage from './pages/studio/StudioTracksPage.svelte'
 	import TrackPage from './pages/TrackPage.svelte'
 	import { navigate, router } from './routing/router.svelte'
 
@@ -25,6 +29,14 @@
 	<TrackPage artistSlug={router.route.artistSlug} trackSlug={router.route.trackSlug} />
 {:else if router.route.kind === 'playlist'}
 	<PlaylistPage artistSlug={router.route.artistSlug} playlistSlug={router.route.playlistSlug} />
+{:else if router.route.kind === 'signin'}
+	<SignInPage />
+{:else if router.route.kind === 'studio-tracks'}
+	<StudioTracksPage />
+{:else if router.route.kind === 'studio-playlists'}
+	<StudioPlaylistsPage playlistId={router.route.playlistId} />
+{:else if router.route.kind === 'studio-profile'}
+	<StudioProfilePage />
 {:else}
 	<NotFoundPage />
 {/if}

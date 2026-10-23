@@ -220,7 +220,8 @@ const readComponentDeclarations = (sourceFile, sourceText) => {
 }
 
 const readEvents = (sourceText) => {
-	const eventPattern = /useEvent\('([\w-]+)'/g
+	// Matches useEvent('name') and useEvent<DetailT>('name').
+	const eventPattern = /useEvent(?:<[^(]*?>)?\('([\w-]+)'/g
 	const eventNames = [...sourceText.matchAll(eventPattern)].map((match) => match[1])
 	return [...new Set(eventNames)]
 }

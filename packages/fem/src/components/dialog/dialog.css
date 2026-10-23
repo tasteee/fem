@@ -7,6 +7,9 @@
 /* A dialog dims the page, so it uses the overlay */
 /* surface and not the inverse one. */
 .dialog {
+	/* Fields inside sit on the overlay, not the page, */
+	/* so the inset step is taken from the overlay. */
+	--surface-inset: var(--surface-overlay-inset);
 	width: min(var(--dialog-width), calc(100vw - var(--space-8)));
 	max-height: calc(100dvh - var(--space-8));
 	margin: auto;

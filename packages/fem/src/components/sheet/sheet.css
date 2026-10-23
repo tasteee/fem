@@ -7,6 +7,9 @@
 /* A sheet rises from the bottom edge. Like a dialog, */
 /* it dims the page and uses the overlay surface. */
 .sheet {
+	/* Fields inside sit on the overlay, not the page, */
+	/* so the inset step is taken from the overlay. */
+	--surface-inset: var(--surface-overlay-inset);
 	width: 100%;
 	max-width: min(var(--sheet-width), 100vw);
 	max-height: 85dvh;
