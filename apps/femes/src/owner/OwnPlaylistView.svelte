@@ -82,10 +82,11 @@
 	{/if}
 	<div class="manage-row">
 		<fem-play-button queue={tracks}></fem-play-button>
-		<fem-button kind="soft" onclick={handleEdit}>Edit</fem-button>
-		<fem-button kind="soft" onclick={handleFill}>
+		<fem-button kind="soft" shape="circle" label="Add songs" onclick={handleFill}>
 			<fem-icon name="plus"></fem-icon>
-			Add songs
+		</fem-button>
+		<fem-button kind="soft" shape="circle" label="Edit playlist" onclick={handleEdit}>
+			<fem-icon name="pencil-simple"></fem-icon>
 		</fem-button>
 		<fem-button kind="soft" shape="circle" label="Share" onclick={handleShare}>
 			<fem-icon name="share-fat"></fem-icon>

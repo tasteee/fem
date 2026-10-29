@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { studio } from '../data/studio.svelte'
 	import SiteHeader from '../parts/SiteHeader.svelte'
 	import HomeAddresses from './home/HomeAddresses.svelte'
 	import HomePromises from './home/HomePromises.svelte'
@@ -6,13 +7,16 @@
 
 	const signInPath = '/signin'
 	const examplePath = '/tasteink'
+	const isSignedOut = $derived(studio.status !== 'ready')
 </script>
 
 <div class="home">
 	<div class="home-frame">
 		<SiteHeader>
 			{#snippet end()}
-				<a class="home-header-link" href={signInPath}>Sign in</a>
+				{#if isSignedOut}
+					<a class="home-header-link" href={signInPath}>Sign in</a>
+				{/if}
 			{/snippet}
 		</SiteHeader>
 	</div>

@@ -7,6 +7,7 @@ import { player } from '../../player/player'
 import type { PlayerStateT, RepeatModeT } from '../../player/player'
 import { usePlayer } from '../../player/use-player'
 import playerBarCss from './player-bar.css?inline'
+import { useSwipeDismiss } from './use-swipe-dismiss'
 
 const playerBarSheet = createStyleSheet(playerBarCss)
 
@@ -60,11 +61,21 @@ const usePlayerBarState = () => {
 // The mini player that sits along the bottom of an app.
 // Wide, it shows transport, seek, and volume. Narrow,
 // it folds to the track and a play button, with a thin
-// progress line. Tap the track to send expand.
+// progress line. Tap the track to send expand. With
+// dismissible, a swipe down stops playback and sends
+// dismiss.
 export const PlayerBar = c(
 	(props) => {
 		usePressWithin()
 		const dispatchExpand = useEvent('expand', { bubbles: true, composed: true })
+		const dispatchDismiss = useEvent('dismiss', { bubbles: true, composed: true })
+
+		const handleDismiss = () => {
+			player.stop()
+			dispatchDismiss()
+		}
+
+		const swipe = useSwipeDismiss({ isEnabled: Boolean(props.dismissible), handleDismiss })
 		const bar = usePlayerBarState()
 		const track = bar.track
 		const hasTrack = track !== undefined
@@ -91,8 +102,13 @@ export const PlayerBar = c(
 		const art = hasArtwork ? artwork : artworkPlaceholder
 		const expandLabel = `Open ${track.title}`
 		const trackClassName = buildClassName(['player-bar-track', getFlagClass(props.expandable, 'isExpandable')])
+		const barClassName = buildClassName(['player-bar', getFlagClass(props.dismissible, 'isDismissible')])
 
-		const handleExpand = () => dispatchExpand()
+		const handleExpand = () => {
+			const wasDragged = swipe.checkWasDragged()
+			if (wasDragged) return
+			dispatchExpand()
+		}
 		const handleToggle = () => player.toggle()
 		const handlePrevious = () => player.previous()
 		const handleNext = () => player.next()
@@ -103,7 +119,15 @@ export const PlayerBar = c(
 
 		return (
 			<host shadowDom data-empty={emptyFlag}>
-				<div class='player-bar' style={progressStyle}>
+				<div
+					class={barClassName}
+					style={progressStyle}
+					onpointerdown={swipe.handlePointerDown}
+					onpointermove={swipe.handlePointerMove}
+					onpointerup={swipe.handlePointerEnd}
+					onpointercancel={swipe.handlePointerEnd}
+				>
+					<span class='player-bar-grip' aria-hidden='true'></span>
 					<span class='player-bar-progress' aria-hidden='true'></span>
 					<button class={trackClassName} type='button' aria-label={expandLabel} onclick={handleExpand}>
 						{art}
@@ -161,7 +185,8 @@ export const PlayerBar = c(
 	},
 	{
 		props: {
-			expandable: { type: Boolean, reflect: true }
+			expandable: { type: Boolean, reflect: true },
+			dismissible: { type: Boolean, reflect: true }
 		},
 		styles: [foundationSheet, mediaSheet, playerBarSheet]
 	}

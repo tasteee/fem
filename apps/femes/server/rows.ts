@@ -90,7 +90,7 @@ export const toTrack = (row: TrackRowT, artist: TrackArtistT): FemesTrackT => {
 	}
 }
 
-export const toPlaylist = (row: PlaylistRowT, artist: ArtistT, trackIds: string[]): PlaylistT => {
+export const toPlaylist = (row: PlaylistRowT, artist: ArtistT, trackIds: string[], hasGuests = false): PlaylistT => {
 	return {
 		id: row.id,
 		slug: row.slug,
@@ -99,7 +99,8 @@ export const toPlaylist = (row: PlaylistRowT, artist: ArtistT, trackIds: string[
 		description: row.description,
 		coverUrl: buildMediaUrl(row.cover_key),
 		visibility: row.visibility,
-		trackIds
+		trackIds,
+		hasGuests
 	}
 }
 

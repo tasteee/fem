@@ -27,37 +27,78 @@ p {
 .app-page {
 	max-width: 1120px;
 	margin: 0 auto;
-	padding: var(--space-4) var(--space-4) calc(var(--player-bar-height) + var(--tab-bar-space) + var(--space-10));
+	padding: var(--space-4) var(--space-4) calc(var(--player-space) + var(--tab-bar-space) + var(--space-10));
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-6);
 }
 
-.player-dock {
-	position: fixed;
-	left: var(--space-2);
-	right: var(--space-2);
-	bottom: calc(var(--space-2) + env(safe-area-inset-bottom));
-	z-index: 10;
-	max-width: 1440px;
-	margin: 0 auto;
+/* ---------- page changes ---------- */
+/* The old page fades out fast, then the new one fades */
+/* in a little slower. The dock stays put. Reduced */
+/* motion zeroes the durations, so pages just switch. */
+::view-transition-old(root) {
+	animation: page-fade-out var(--duration-fast) var(--easing-standard) both;
 }
 
-/* Signed-in artists get the tab bar under the player. */
-/* Pages make room for it through --tab-bar-space. */
+::view-transition-new(root) {
+	animation: page-fade-in var(--duration-medium) var(--easing-standard) var(--duration-fast) both;
+}
+
+::view-transition-group(player-dock),
+::view-transition-old(player-dock),
+::view-transition-new(player-dock) {
+	animation: none;
+}
+
+@keyframes page-fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes page-fade-in {
+	from {
+		opacity: 0;
+	}
+}
+
+/* ---------- floating dock ---------- */
+/* The player and, on a phone, the tab bar float over */
+/* the bottom of every page. Pages leave room for */
+/* whichever are showing through the two space tokens. */
 :root {
+	--dock-gap: var(--space-2);
+	--player-space: 0px;
 	--tab-bar-space: 0px;
 }
 
+:root[data-playing] {
+	--player-space: calc(var(--player-bar-height) + var(--dock-gap));
+}
+
 :root[data-tabs] {
-	--tab-bar-space: calc(var(--tab-bar-item-height) + var(--space-4));
+	--tab-bar-space: calc(var(--tab-bar-item-height) + var(--space-2) + var(--dock-gap));
 }
 
 .player-dock {
+	position: fixed;
+	left: var(--dock-gap);
+	right: var(--dock-gap);
+	bottom: calc(var(--dock-gap) + env(safe-area-inset-bottom));
+	z-index: 10;
+	max-width: 1120px;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: var(--space-2);
+	gap: var(--dock-gap);
+	pointer-events: none;
+	view-transition-name: player-dock;
+}
+
+.player-dock > * {
+	pointer-events: auto;
 }
 
 .player-dock > fem-player-bar {
@@ -66,6 +107,17 @@ p {
 
 .app-tabs {
 	width: min(100%, 480px);
+}
+
+/* A wide screen gets its links in the header instead. */
+@media (min-width: 900px) {
+	:root[data-tabs] {
+		--tab-bar-space: 0px;
+	}
+
+	.app-tabs {
+		display: none;
+	}
 }
 
 .site-header {
@@ -79,6 +131,49 @@ p {
 	font-size: var(--font-size-heading);
 	font-weight: var(--font-weight-title);
 	letter-spacing: -0.02em;
+}
+
+/* Wide screens only. Phones use the bottom tab bar. */
+.header-nav {
+	display: none;
+	align-items: center;
+	gap: var(--space-1);
+}
+
+.header-nav-link {
+	padding: var(--space-1) var(--space-3);
+	border-radius: var(--radius-pill);
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-medium);
+	transition:
+		color var(--duration-fast) var(--easing-standard),
+		background var(--duration-fast) var(--easing-standard);
+}
+
+.header-nav-link:hover {
+	color: var(--text-strong);
+}
+
+.header-nav-link.isCurrent {
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+}
+
+.header-nav-link.isDisabled {
+	opacity: var(--disabled-opacity);
+	cursor: not-allowed;
+}
+
+.header-nav-link:focus-visible {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+@media (min-width: 900px) {
+	.header-nav {
+		display: flex;
+	}
 }
 
 .site-header-end {
@@ -198,6 +293,18 @@ p {
 	display: flex;
 	flex-direction: column;
 	margin: 0 calc(var(--space-3) * -1);
+}
+
+.playlist-shelf {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-8);
+}
+
+.playlist-group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
 }
 
 .playlist-grid {
@@ -320,7 +427,7 @@ p {
 	display: flex;
 	flex-direction: column;
 	gap: var(--home-section-gap);
-	padding-bottom: calc(var(--player-bar-height) + var(--tab-bar-space) + var(--space-10));
+	padding-bottom: calc(var(--player-space) + var(--tab-bar-space) + var(--space-10));
 }
 
 .home-frame {
@@ -680,6 +787,10 @@ p {
 	flex-wrap: wrap;
 	align-items: center;
 	gap: var(--space-3);
+}
+
+.manage-row.isNoWrap {
+	flex-wrap: nowrap;
 }
 
 .studio-empty {

@@ -92,6 +92,25 @@
 	min-width: 0;
 }
 
+/* ---------- swipe to close ---------- */
+/* Vertical drags belong to the bar, not the page. */
+.player-bar.isDismissible {
+	touch-action: pan-x;
+}
+
+/* A small handle hints that the bar swipes away. */
+.player-bar-grip {
+	display: none;
+	position: absolute;
+	top: var(--space-1);
+	left: 50%;
+	width: var(--space-6);
+	height: var(--indicator-height);
+	border-radius: var(--radius-pill);
+	background: var(--surface-control);
+	transform: translateX(-50%);
+}
+
 /* ---------- compact ---------- */
 .player-bar-compact-play,
 .player-bar-progress {
@@ -128,6 +147,10 @@
 
 	.player-bar-compact-play,
 	.player-bar-progress {
+		display: block;
+	}
+
+	.player-bar.isDismissible .player-bar-grip {
 		display: block;
 	}
 }

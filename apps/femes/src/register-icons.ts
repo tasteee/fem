@@ -17,6 +17,7 @@ export const registerFemesIcons = () => {
 		icons.linkIcon,
 		icons.listIcon,
 		icons.musicNotesIcon,
+		icons.pencilSimpleIcon,
 		icons.plusIcon,
 		icons.shareFatIcon,
 		icons.shuffleIcon,

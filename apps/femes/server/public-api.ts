@@ -50,15 +50,20 @@ export const loadArtistPage = async (env: EnvT, artistSlug: string): Promise<Loo
 	const tracks = await listPublicTracks(env, artist)
 	const playlistSql = "SELECT * FROM playlists WHERE artist_id = ? AND visibility = 'public' ORDER BY created_at DESC"
 	const playlistResult = await env.DB.prepare(playlistSql).bind(artist.id).all<PlaylistRowT>()
-	const pairSql = `SELECT playlist_tracks.playlist_id, playlist_tracks.track_id FROM playlist_tracks JOIN playlists ON playlists.id = playlist_tracks.playlist_id JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlists.artist_id = ? AND ${visiblePlaylistTrack} ORDER BY playlist_tracks.position`
-	const pairResult = await env.DB.prepare(pairSql).bind(artist.id).all<{ playlist_id: string; track_id: string }>()
+	const pairSql = `SELECT playlist_tracks.playlist_id, playlist_tracks.track_id, tracks.artist_id FROM playlist_tracks JOIN playlists ON playlists.id = playlist_tracks.playlist_id JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlists.artist_id = ? AND ${visiblePlaylistTrack} ORDER BY playlist_tracks.position`
+	const pairResult = await env.DB.prepare(pairSql).bind(artist.id).all<{ playlist_id: string; track_id: string; artist_id: string }>()
 
 	const getTrackIds = (playlistId: string) => {
 		const pairs = pairResult.results.filter((pair) => pair.playlist_id === playlistId)
 		return pairs.map((pair) => pair.track_id)
 	}
 
-	const playlists = playlistResult.results.map((row) => toPlaylist(row, artist, getTrackIds(row.id)))
+	const checkHasGuests = (playlistId: string) => {
+		const isGuestPair = (pair: { playlist_id: string; artist_id: string }) => pair.playlist_id === playlistId && pair.artist_id !== artist.id
+		return pairResult.results.some(isGuestPair)
+	}
+
+	const playlists = playlistResult.results.map((row) => toPlaylist(row, artist, getTrackIds(row.id), checkHasGuests(row.id)))
 	return { kind: 'found', page: { artist, tracks, playlists } }
 }
 
@@ -97,7 +102,8 @@ export const loadPlaylistPage = async (env: EnvT, artistSlug: string, playlistSl
 	const trackResult = await env.DB.prepare(trackSql).bind(row.id).all<JoinedTrackRowT>()
 	const tracks = trackResult.results.map(toJoinedTrack)
 	const trackIds = tracks.map((track) => track.id)
-	const playlist = toPlaylist(row, artist, trackIds)
+	const hasGuests = tracks.some((track) => track.artistSlug !== artist.slug)
+	const playlist = toPlaylist(row, artist, trackIds, hasGuests)
 	return { kind: 'found', page: { artist, playlist, tracks } }
 }
 

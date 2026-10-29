@@ -114,7 +114,11 @@ const createPlayer = () => {
 		playAt(state.index + 1)
 	}
 
+	// Stopping unloads the element on purpose. With no
+	// track there is nothing to report.
 	const handleError = () => {
+		const hasTrack = state.track !== undefined
+		if (!hasTrack) return
 		stopTicking()
 		setState({ isPlaying: false, isLoading: false, error: 'This track could not be played.' })
 	}
@@ -199,6 +203,22 @@ const createPlayer = () => {
 	}
 
 	const pause = () => audio?.pause()
+
+	// Ends listening altogether: the track unloads and the
+	// queue clears, so every player view goes empty.
+	const stop = () => {
+		const element = audio
+		if (element) {
+			element.pause()
+			element.removeAttribute('src')
+			element.load()
+		}
+
+		stopTicking()
+		setState({ ...initialState, volume: state.volume, isMuted: state.isMuted, repeat: state.repeat })
+		const hasMediaSession = 'mediaSession' in navigator
+		if (hasMediaSession) navigator.mediaSession.metadata = null
+	}
 
 	const toggle = () => {
 		if (state.isPlaying) return pause()
@@ -308,6 +328,7 @@ const createPlayer = () => {
 		setQueue,
 		play,
 		pause,
+		stop,
 		toggle,
 		next,
 		previous,

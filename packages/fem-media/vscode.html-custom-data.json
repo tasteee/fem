@@ -43,10 +43,14 @@
 		},
 		{
 			"name": "fem-player-bar",
-			"description": "The mini player that sits along the bottom of an app. Wide, it shows transport, seek, and volume. Narrow, it folds to the track and a play button, with a thin progress line. Tap the track to send expand.",
+			"description": "The mini player that sits along the bottom of an app. Wide, it shows transport, seek, and volume. Narrow, it folds to the track and a play button, with a thin progress line. Tap the track to send expand. With dismissible, a swipe down stops playback and sends dismiss.",
 			"attributes": [
 				{
 					"name": "expandable",
+					"valueSet": "v"
+				},
+				{
+					"name": "dismissible",
 					"valueSet": "v"
 				}
 			]

@@ -17,7 +17,9 @@ export type FemPlayButtonPropsT = {
 
 export type FemPlayerBarPropsT = {
 	expandable?: boolean
+	dismissible?: boolean
 	onexpand?: (event: CustomEvent) => void
+	ondismiss?: (event: CustomEvent) => void
 }
 
 export type FemTrackRowPropsT = {
@@ -37,6 +39,7 @@ export type FemPlayButtonAttributesT = {
 
 export type FemPlayerBarAttributesT = {
 	'expandable'?: boolean | ''
+	'dismissible'?: boolean | ''
 }
 
 export type FemTrackRowAttributesT = {
@@ -58,6 +61,7 @@ export type FemPlayButtonElementT = HTMLElement & {
 
 export type FemPlayerBarElementT = HTMLElement & {
 	expandable: boolean
+	dismissible: boolean
 }
 
 export type FemTrackRowElementT = HTMLElement & {

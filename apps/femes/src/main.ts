@@ -12,16 +12,9 @@ registerFemesIcons()
 startRouter()
 startPlayReports()
 
-// Touch screens get roomy controls. A mouse gets compact.
-const touchQuery = window.matchMedia('(pointer: coarse)')
-
-const applyDensity = () => {
-	const density = touchQuery.matches ? 'roomy' : 'compact'
-	document.documentElement.setAttribute('density', density)
-}
-
-touchQuery.addEventListener('change', applyDensity)
-applyDensity()
+// Compact everywhere, phones included. femes pages are
+// light enough that compact controls stay easy to tap.
+document.documentElement.setAttribute('density', 'compact')
 
 const target = document.getElementById('app')
 if (!target) throw new Error('Missing element: #app')
