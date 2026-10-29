@@ -1837,7 +1837,14 @@
 							"description": "Set to an empty string to turn the shortcut off."
 						}
 					],
-					"events": [],
+					"events": [
+						{
+							"name": "select",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
 					"slots": [
 						{
 							"name": "",
@@ -1959,7 +1966,20 @@
 							"reflects": true
 						}
 					],
-					"events": [],
+					"events": [
+						{
+							"name": "copy",
+							"type": {
+								"text": "CustomEvent"
+							}
+						},
+						{
+							"name": "share",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
 					"slots": []
 				}
 			],
@@ -2866,7 +2886,20 @@
 							"reflects": true
 						}
 					],
-					"events": [],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						},
+						{
+							"name": "reject",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
 					"slots": []
 				}
 			],
@@ -4855,7 +4888,20 @@
 							"reflects": true
 						}
 					],
-					"events": [],
+					"events": [
+						{
+							"name": "input",
+							"type": {
+								"text": "CustomEvent"
+							}
+						},
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
 					"slots": []
 				}
 			],
@@ -5539,7 +5585,14 @@
 							"reflects": true
 						}
 					],
-					"events": [],
+					"events": [
+						{
+							"name": "reorder",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
 					"slots": [
 						{
 							"name": "",

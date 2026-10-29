@@ -8,6 +8,10 @@ export type RouteT =
 	| { kind: 'artist'; artistSlug: string }
 	| { kind: 'track'; artistSlug: string; trackSlug: string }
 	| { kind: 'playlist'; artistSlug: string; playlistSlug: string }
+	| { kind: 'signin' }
+	| { kind: 'studio-tracks' }
+	| { kind: 'studio-playlists'; playlistId: string }
+	| { kind: 'studio-profile' }
 	| { kind: 'not-found' }
 
 // Paths the app owns. No artist can take these names.
@@ -26,10 +30,35 @@ const getSegments = (pathname: string): string[] => {
 	return parts.map((part) => decodeURIComponent(part).toLowerCase())
 }
 
+export const studioPaths = {
+	tracks: '/studio',
+	playlists: '/studio/playlists',
+	profile: '/studio/profile'
+}
+
+export const buildStudioPlaylistPath = (playlistId: string): string => `/studio/playlists/${playlistId}`
+
+// /studio, /studio/playlists, /studio/playlists/:id,
+// /studio/profile
+const parseStudioRoute = (segments: string[]): RouteT => {
+	const section = segments[1]
+	const hasNoSection = section === undefined
+	if (hasNoSection) return { kind: 'studio-tracks' }
+	const isPlaylists = section === 'playlists'
+	if (isPlaylists) return { kind: 'studio-playlists', playlistId: segments[2] ?? '' }
+	const isProfile = section === 'profile'
+	if (isProfile) return { kind: 'studio-profile' }
+	return { kind: 'not-found' }
+}
+
 export const parseRoute = (pathname: string): RouteT => {
 	const segments = getSegments(pathname)
 	const isHome = segments.length === 0
 	if (isHome) return { kind: 'home' }
+	const isSignIn = segments[0] === 'signin'
+	if (isSignIn) return { kind: 'signin' }
+	const isStudio = segments[0] === 'studio'
+	if (isStudio) return parseStudioRoute(segments)
 
 	const artistSlug = segments[0]
 	const isReserved = reservedSlugs.includes(artistSlug)

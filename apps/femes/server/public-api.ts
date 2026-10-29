@@ -1,0 +1,91 @@
+import type { ArtistT } from '../src/data/types'
+import { buildPlaylistPath, buildTrackPath } from '../src/routing/routes'
+import type { EnvT } from './env'
+import { respondJson, respondMissing, respondMoved } from './respond'
+import { toArtist, toPlaylist, toTrack } from './rows'
+import type { ArtistRowT, PlaylistRowT, TrackRowT } from './rows'
+
+// Read-only answers for the public pages. Private items
+// never leave the database. Unlisted ones open by link
+// but never appear in lists.
+
+const moreTracksCount = 3
+
+const findArtist = async (env: EnvT, artistSlug: string): Promise<ArtistT | undefined> => {
+	const statement = env.DB.prepare('SELECT * FROM artists WHERE slug = ?').bind(artistSlug)
+	const row = await statement.first<ArtistRowT>()
+	if (!row) return undefined
+	return toArtist(row)
+}
+
+const listPublicTracks = async (env: EnvT, artist: ArtistT) => {
+	const sql = "SELECT * FROM tracks WHERE artist_id = ? AND visibility = 'public' ORDER BY position, created_at"
+	const result = await env.DB.prepare(sql).bind(artist.id).all<TrackRowT>()
+	return result.results.map((row) => toTrack(row, artist))
+}
+
+// A slug that moved on rename points to the item's
+// current slug, so old links keep working.
+const findMovedSlug = async (env: EnvT, artist: ArtistT, kind: 'track' | 'playlist', oldSlug: string) => {
+	const table = kind === 'track' ? 'tracks' : 'playlists'
+	const sql = `SELECT ${table}.slug AS slug FROM slug_history JOIN ${table} ON ${table}.id = slug_history.item_id WHERE slug_history.artist_id = ? AND slug_history.kind = ? AND slug_history.old_slug = ?`
+	const row = await env.DB.prepare(sql).bind(artist.id, kind, oldSlug).first<{ slug: string }>()
+	return row?.slug
+}
+
+export const handleArtistPage = async (env: EnvT, artistSlug: string): Promise<Response> => {
+	const artist = await findArtist(env, artistSlug)
+	if (!artist) return respondMissing()
+	const tracks = await listPublicTracks(env, artist)
+	const playlistSql = "SELECT * FROM playlists WHERE artist_id = ? AND visibility = 'public' ORDER BY created_at DESC"
+	const playlistResult = await env.DB.prepare(playlistSql).bind(artist.id).all<PlaylistRowT>()
+	const countSql = 'SELECT playlist_id, track_id FROM playlist_tracks WHERE playlist_id IN (SELECT id FROM playlists WHERE artist_id = ?) ORDER BY position'
+	const pairResult = await env.DB.prepare(countSql).bind(artist.id).all<{ playlist_id: string; track_id: string }>()
+
+	const getTrackIds = (playlistId: string) => {
+		const pairs = pairResult.results.filter((pair) => pair.playlist_id === playlistId)
+		return pairs.map((pair) => pair.track_id)
+	}
+
+	const playlists = playlistResult.results.map((row) => toPlaylist(row, artist, getTrackIds(row.id)))
+	return respondJson({ artist, tracks, playlists })
+}
+
+export const handleTrackPage = async (env: EnvT, artistSlug: string, trackSlug: string): Promise<Response> => {
+	const artist = await findArtist(env, artistSlug)
+	if (!artist) return respondMissing()
+	const sql = "SELECT * FROM tracks WHERE artist_id = ? AND slug = ? AND visibility != 'private'"
+	const row = await env.DB.prepare(sql).bind(artist.id, trackSlug).first<TrackRowT>()
+
+	if (!row) {
+		const currentSlug = await findMovedSlug(env, artist, 'track', trackSlug)
+		if (!currentSlug) return respondMissing()
+		return respondMoved(buildTrackPath(artist.slug, currentSlug))
+	}
+
+	const track = toTrack(row, artist)
+	const publicTracks = await listPublicTracks(env, artist)
+	const otherTracks = publicTracks.filter((entry) => entry.id !== track.id)
+	const moreTracks = otherTracks.slice(0, moreTracksCount)
+	return respondJson({ artist, track, moreTracks })
+}
+
+export const handlePlaylistPage = async (env: EnvT, artistSlug: string, playlistSlug: string): Promise<Response> => {
+	const artist = await findArtist(env, artistSlug)
+	if (!artist) return respondMissing()
+	const sql = "SELECT * FROM playlists WHERE artist_id = ? AND slug = ? AND visibility != 'private'"
+	const row = await env.DB.prepare(sql).bind(artist.id, playlistSlug).first<PlaylistRowT>()
+
+	if (!row) {
+		const currentSlug = await findMovedSlug(env, artist, 'playlist', playlistSlug)
+		if (!currentSlug) return respondMissing()
+		return respondMoved(buildPlaylistPath(artist.slug, currentSlug))
+	}
+
+	const trackSql = "SELECT tracks.* FROM playlist_tracks JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlist_tracks.playlist_id = ? AND tracks.visibility != 'private' ORDER BY playlist_tracks.position"
+	const trackResult = await env.DB.prepare(trackSql).bind(row.id).all<TrackRowT>()
+	const tracks = trackResult.results.map((trackRow) => toTrack(trackRow, artist))
+	const trackIds = tracks.map((track) => track.id)
+	const playlist = toPlaylist(row, artist, trackIds)
+	return respondJson({ artist, playlist, tracks })
+}

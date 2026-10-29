@@ -6,6 +6,7 @@
 	import ArtistChip from '../parts/ArtistChip.svelte'
 	import LoadingPage from '../parts/LoadingPage.svelte'
 	import SiteHeader from '../parts/SiteHeader.svelte'
+	import { formatTrackCount } from '../parts/format-count'
 	import TrackList from '../parts/TrackList.svelte'
 	import NotFoundPage from './NotFoundPage.svelte'
 
@@ -20,8 +21,7 @@
 	const buildSummary = (page: PlaylistPageT): string => {
 		const durations = page.tracks.map((track) => track.duration ?? 0)
 		const totalSeconds = durations.reduce((sum, seconds) => sum + seconds, 0)
-		const trackWord = page.tracks.length === 1 ? 'track' : 'tracks'
-		return `${page.tracks.length} ${trackWord} · ${formatDuration(totalSeconds)}`
+		return `${formatTrackCount(page.tracks.length)} · ${formatDuration(totalSeconds)}`
 	}
 
 	const handleShare = () => sharePage(props.playlistSlug)

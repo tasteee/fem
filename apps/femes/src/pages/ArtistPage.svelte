@@ -4,6 +4,7 @@
 	import type { ArtistPageT, PlaylistT } from '../data/types'
 	import LoadingPage from '../parts/LoadingPage.svelte'
 	import SiteHeader from '../parts/SiteHeader.svelte'
+	import { formatTrackCount } from '../parts/format-count'
 	import TrackList from '../parts/TrackList.svelte'
 	import { buildPlaylistPath } from '../routing/routes'
 	import NotFoundPage from './NotFoundPage.svelte'
@@ -26,7 +27,7 @@
 	const handleShare = () => sharePage(props.artistSlug)
 
 	const getPlaylistPath = (playlist: PlaylistT): string => buildPlaylistPath(playlist.artistSlug, playlist.slug)
-	const getTrackCountLabel = (page: ArtistPageT): string => `${page.tracks.length} tracks`
+	const getTrackCountLabel = (page: ArtistPageT): string => formatTrackCount(page.tracks.length)
 </script>
 
 {#await pageRequest}
@@ -82,7 +83,7 @@
 								<a class="playlist-tile" href={getPlaylistPath(playlist)}>
 									<fem-image src={playlist.coverUrl} alt="" radius="container"></fem-image>
 									<span class="playlist-tile-name">{playlist.name}</span>
-									<span class="numeric muted">{playlist.trackIds.length} tracks</span>
+									<span class="numeric muted">{formatTrackCount(playlist.trackIds.length)}</span>
 								</a>
 							{/each}
 						</div>

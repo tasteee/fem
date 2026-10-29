@@ -1,0 +1,17 @@
+# femes local config. Pages reads its own dashboard
+# bindings; this file sits in apps/femes, not the repo
+# root, so Pages never reads it. Used for local runs
+# and `npm run db:migrate:remote`.
+name = "femes"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "femes-db"
+database_id = "dab1e862-38d9-4037-918d-eb3580bf44fe"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "femes-media"
