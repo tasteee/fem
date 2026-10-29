@@ -6,8 +6,11 @@ import { registerIcons } from '@tasteee/fem'
 export const registerFemesIcons = () => {
 	registerIcons([
 		icons.arrowSquareOutIcon,
+		icons.bookmarkSimpleIcon,
+		icons.booksIcon,
 		icons.caretLeftIcon,
 		icons.caretRightIcon,
+		icons.checkIcon,
 		icons.dotsSixVerticalIcon,
 		icons.dotsThreeIcon,
 		icons.linkIcon,
@@ -17,7 +20,9 @@ export const registerFemesIcons = () => {
 		icons.shareFatIcon,
 		icons.shuffleIcon,
 		icons.uploadSimpleIcon,
+		icons.userCheckIcon,
 		icons.userIcon,
+		icons.userPlusIcon,
 		icons.xIcon
 	])
 }

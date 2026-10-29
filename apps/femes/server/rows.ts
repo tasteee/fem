@@ -70,7 +70,10 @@ export const toArtist = (row: ArtistRowT): ArtistT => {
 	}
 }
 
-export const toTrack = (row: TrackRowT, artist: ArtistT): FemesTrackT => {
+// What a track needs to know about its artist.
+type TrackArtistT = Pick<ArtistT, 'slug' | 'name'>
+
+export const toTrack = (row: TrackRowT, artist: TrackArtistT): FemesTrackT => {
 	return {
 		id: row.id,
 		slug: row.slug,
@@ -98,4 +101,18 @@ export const toPlaylist = (row: PlaylistRowT, artist: ArtistT, trackIds: string[
 		visibility: row.visibility,
 		trackIds
 	}
+}
+
+// A track read together with its own artist, for lists
+// that mix artists: playlists, saves, and the feed.
+export type JoinedTrackRowT = TrackRowT & {
+	artist_slug: string
+	artist_name: string
+}
+
+export const joinedTrackColumns = 'tracks.*, artists.slug AS artist_slug, artists.name AS artist_name'
+
+export const toJoinedTrack = (row: JoinedTrackRowT): FemesTrackT => {
+	const artist = { slug: row.artist_slug, name: row.artist_name }
+	return toTrack(row, artist)
 }

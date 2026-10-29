@@ -64,6 +64,13 @@
 		return `${window.location.origin}${buildPlaylistPath(artist.slug, playlist.slug)}`
 	})
 
+	// Other artists' songs show whose they are.
+	const describeGuest = (track: FemesTrackT): string => {
+		const isOwn = track.artistSlug === studio.artist?.slug
+		if (isOwn) return ''
+		return track.artist
+	}
+
 	const deleteHeading = $derived(`Delete “${selected?.name ?? ''}”?`)
 	const isPublic = $derived(visibility === 'public')
 
@@ -230,7 +237,7 @@
 				</fem-row>
 				<fem-sortable label="Playlist order" gap="0" onreorder={handleReorder}>
 					{#each selectedTracks as track (track.id)}
-						<fem-list-item label={track.title}>
+						<fem-list-item label={track.title} description={describeGuest(track)}>
 							<button slot="leading" class="studio-grip" type="button" data-sortable-handle aria-label="Drag to reorder"><fem-icon name="dots-six-vertical"></fem-icon></button>
 							<fem-image slot="leading" class="studio-row-art" src={track.artwork} alt="" radius="small"></fem-image>
 							<span slot="meta">{formatDuration(track.duration ?? 0)}</span>

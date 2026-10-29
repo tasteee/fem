@@ -7,6 +7,7 @@
 	import PlaylistPage from './pages/PlaylistPage.svelte'
 	import SignInPage from './pages/SignInPage.svelte'
 	import StudioPlaylistsPage from './pages/studio/StudioPlaylistsPage.svelte'
+	import StudioLibraryPage from './pages/studio/StudioLibraryPage.svelte'
 	import StudioProfilePage from './pages/studio/StudioProfilePage.svelte'
 	import StudioTracksPage from './pages/studio/StudioTracksPage.svelte'
 	import TrackPage from './pages/TrackPage.svelte'
@@ -46,6 +47,8 @@
 	<StudioTracksPage />
 {:else if router.route.kind === 'studio-playlists'}
 	<StudioPlaylistsPage playlistId={router.route.playlistId} />
+{:else if router.route.kind === 'studio-library'}
+	<StudioLibraryPage />
 {:else if router.route.kind === 'studio-profile'}
 	<StudioProfilePage />
 {:else}

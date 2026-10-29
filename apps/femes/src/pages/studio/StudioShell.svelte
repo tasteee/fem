@@ -7,7 +7,7 @@
 	import { buildArtistPath, studioPaths } from '../../routing/routes'
 	import Onboarding from './Onboarding.svelte'
 
-	export type StudioSectionT = 'tracks' | 'playlists' | 'profile'
+	export type StudioSectionT = 'tracks' | 'playlists' | 'library' | 'profile'
 
 	type StudioShellPropsT = {
 		section: StudioSectionT
@@ -67,6 +67,7 @@
 			<fem-nav label="Studio" value={props.section} onchange={handleSectionChange}>
 				<fem-nav-item value="tracks"><fem-icon slot="icon" name="music-notes"></fem-icon>Tracks</fem-nav-item>
 				<fem-nav-item value="playlists"><fem-icon slot="icon" name="list"></fem-icon>Playlists</fem-nav-item>
+				<fem-nav-item value="library"><fem-icon slot="icon" name="books"></fem-icon>Library</fem-nav-item>
 				<fem-nav-item value="profile"><fem-icon slot="icon" name="user"></fem-icon>Profile</fem-nav-item>
 			</fem-nav>
 			<div class="studio-side-end">
@@ -82,6 +83,7 @@
 			<fem-segmented value={props.section} onchange={handleSectionChange}>
 				<fem-segment value="tracks">Tracks</fem-segment>
 				<fem-segment value="playlists">Playlists</fem-segment>
+				<fem-segment value="library">Library</fem-segment>
 				<fem-segment value="profile">Profile</fem-segment>
 			</fem-segmented>
 		</div>

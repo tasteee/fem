@@ -205,6 +205,13 @@ p {
 	gap: var(--space-5);
 }
 
+.track-side-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-3);
+}
+
 @media (min-width: 960px) {
 	.track-layout {
 		grid-template-columns: minmax(0, 1fr) 360px;
@@ -719,9 +726,20 @@ p {
 	gap: var(--space-5);
 }
 
-.pick-list {
+.pick-groups {
 	max-height: 50vh;
 	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+}
+
+.pick-artist {
+	margin-left: var(--space-1);
+	color: var(--text-muted);
+}
+
+.pick-list {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -871,4 +889,12 @@ p {
 .embed-missing {
 	align-items: center;
 	justify-content: center;
+}
+
+/* ---------- row actions ---------- */
+/* A wrapped button in a list row's slot stays pressable */
+/* instead of passing the tap to the row behind it. */
+.row-action {
+	display: inline-flex;
+	pointer-events: auto;
 }

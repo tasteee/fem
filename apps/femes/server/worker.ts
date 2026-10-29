@@ -3,6 +3,7 @@ import type { EnvT } from './env'
 import { handleMedia } from './media'
 import { serveAppPage } from './meta'
 import { ensureSchema } from './schema'
+import * as social from './social'
 import { handleArtistPage, handlePlaylistPage, handleTrackPage } from './public-api'
 import { respondError, respondJson, respondMissing } from './respond'
 import * as studio from './studio'
@@ -84,6 +85,21 @@ const handleStudio = async (request: Request, env: EnvT, segments: string[], ema
 	const isTrackDelete = isTracks && itemId !== '' && method === 'DELETE'
 	if (isTrackDelete) return studio.handleDeleteTrack(env, artist, itemId)
 
+	const isSaves = area === 'saves' && itemId !== ''
+	const isSave = isSaves && method === 'POST'
+	if (isSave) return social.handleSave(env, artist, itemId)
+	const isUnsave = isSaves && method === 'DELETE'
+	if (isUnsave) return social.handleUnsave(env, artist, itemId)
+
+	const isFollows = area === 'follows' && itemId !== ''
+	const isFollow = isFollows && method === 'POST'
+	if (isFollow) return social.handleFollow(env, artist, itemId)
+	const isUnfollow = isFollows && method === 'DELETE'
+	if (isUnfollow) return social.handleUnfollow(env, artist, itemId)
+
+	const isLibrary = area === 'library' && method === 'GET'
+	if (isLibrary) return social.handleLibrary(env, artist)
+
 	const isPlaylists = area === 'playlists'
 	const isPlaylistCreate = isPlaylists && segments.length === 3 && method === 'POST'
 	if (isPlaylistCreate) return studio.handleCreatePlaylist(request, env, artist)
@@ -117,6 +133,9 @@ const handleApi = async (request: Request, env: EnvT, segments: string[]): Promi
 	if (isPublic) return handlePublic(env, segments)
 	const isHealth = area === 'health'
 	if (isHealth) return handleHealth(env)
+	// Only femes pages and embeds report plays.
+	const isPlay = area === 'plays' && method === 'POST' && checkIsSameOrigin(request)
+	if (isPlay) return social.handleRecordPlay(request, env)
 
 	const isAuth = area === 'auth'
 	const authAction = segments[2]
