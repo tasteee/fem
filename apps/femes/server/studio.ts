@@ -171,15 +171,20 @@ export const handleStudio = async (env: EnvT, artistRow: ArtistRowT): Promise<Re
 	const tracks = trackResult.results.map((row) => toTrack(row, artist))
 	const playlistSql = 'SELECT * FROM playlists WHERE artist_id = ? ORDER BY created_at DESC'
 	const playlistResult = await env.DB.prepare(playlistSql).bind(artist.id).all<PlaylistRowT>()
-	const pairSql = `SELECT playlist_tracks.playlist_id, playlist_tracks.track_id FROM playlist_tracks JOIN playlists ON playlists.id = playlist_tracks.playlist_id JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlists.artist_id = ? AND ${visiblePlaylistTrack} ORDER BY playlist_tracks.position`
-	const pairResult = await env.DB.prepare(pairSql).bind(artist.id).all<{ playlist_id: string; track_id: string }>()
+	const pairSql = `SELECT playlist_tracks.playlist_id, playlist_tracks.track_id, tracks.artist_id FROM playlist_tracks JOIN playlists ON playlists.id = playlist_tracks.playlist_id JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlists.artist_id = ? AND ${visiblePlaylistTrack} ORDER BY playlist_tracks.position`
+	const pairResult = await env.DB.prepare(pairSql).bind(artist.id).all<{ playlist_id: string; track_id: string; artist_id: string }>()
 
 	const getTrackIds = (playlistId: string) => {
 		const pairs = pairResult.results.filter((pair) => pair.playlist_id === playlistId)
 		return pairs.map((pair) => pair.track_id)
 	}
 
-	const playlists = playlistResult.results.map((row) => toPlaylist(row, artist, getTrackIds(row.id)))
+	const checkHasGuests = (playlistId: string) => {
+		const isGuestPair = (pair: { playlist_id: string; artist_id: string }) => pair.playlist_id === playlistId && pair.artist_id !== artist.id
+		return pairResult.results.some(isGuestPair)
+	}
+
+	const playlists = playlistResult.results.map((row) => toPlaylist(row, artist, getTrackIds(row.id), checkHasGuests(row.id)))
 	const savedTracks = await listSavedTracks(env, artist.id)
 	const guestTracks = await listPlaylistGuestTracks(env, artist.id)
 	return respondJson({ artist, tracks, playlists, savedTracks, guestTracks })

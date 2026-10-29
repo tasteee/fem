@@ -75,6 +75,7 @@ export const demoPlaylists: PlaylistT[] = [
 		description: 'Unfinished ideas I keep coming back to. Headphones on.',
 		coverUrl: buildArtworkUrl('drafts'),
 		visibility: 'public',
-		trackIds: ['track-low-tide', 'track-safeword']
+		trackIds: ['track-low-tide', 'track-safeword'],
+		hasGuests: false
 	}
 ]

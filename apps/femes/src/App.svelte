@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { player } from '@tasteee/fem-media'
+	import type { PlayerStateT } from '@tasteee/fem-media'
 	import { ensureStudio, studio } from './data/studio.svelte'
 	import OwnerDialogs from './owner/OwnerDialogs.svelte'
 	import ArtistPage from './pages/ArtistPage.svelte'
@@ -20,10 +21,22 @@
 	const isEmbed = $derived(router.route.kind === 'embed-track')
 	const isSignedInArtist = $derived(studio.status === 'ready')
 	const shouldShowTabs = $derived(isSignedInArtist && !isEmbed)
+	let hasTrack = $state(false)
+
+	// Pages leave room at the bottom only for what is
+	// actually floating there.
+	const handlePlayerChange = (playerState: PlayerStateT) => {
+		hasTrack = playerState.track !== undefined
+	}
+
+	$effect(() => player.subscribe(handlePlayerChange))
 
 	$effect(() => {
-		document.documentElement.toggleAttribute('data-embed', isEmbed)
-		document.documentElement.toggleAttribute('data-tabs', shouldShowTabs)
+		const root = document.documentElement
+		const isPlayerShowing = hasTrack && !isEmbed
+		root.toggleAttribute('data-embed', isEmbed)
+		root.toggleAttribute('data-tabs', shouldShowTabs)
+		root.toggleAttribute('data-playing', isPlayerShowing)
 		if (!isEmbed) ensureStudio()
 	})
 
@@ -61,7 +74,7 @@
 
 {#if !isEmbed}
 	<div class="player-dock">
-		<fem-player-bar expandable onexpand={handleExpand}></fem-player-bar>
+		<fem-player-bar expandable dismissible onexpand={handleExpand}></fem-player-bar>
 		{#if shouldShowTabs}
 			<AppTabs />
 		{/if}

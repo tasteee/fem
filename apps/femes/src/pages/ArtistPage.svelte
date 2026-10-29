@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { getArtistPage } from '../data/catalog'
 	import { sharePage } from '../data/share-page'
-	import type { ArtistPageT, PlaylistT } from '../data/types'
+	import type { ArtistPageT } from '../data/types'
 	import LoadingPage from '../parts/LoadingPage.svelte'
 	import SiteHeader from '../parts/SiteHeader.svelte'
 	import FollowButton from '../parts/FollowButton.svelte'
-	import { formatTrackCount } from '../parts/format-count'
+	import { formatPlaylistCount, formatTrackCount } from '../parts/format-count'
+	import PlaylistShelf from '../parts/PlaylistShelf.svelte'
 	import TrackList from '../parts/TrackList.svelte'
-	import { buildPlaylistPath } from '../routing/routes'
 	import { checkIsOwnSlug, studio } from '../data/studio.svelte'
 	import OwnArtistView from '../owner/OwnArtistView.svelte'
 	import NotFoundPage from './NotFoundPage.svelte'
@@ -33,8 +33,11 @@
 
 	const handleShare = () => sharePage(props.artistSlug)
 
-	const getPlaylistPath = (playlist: PlaylistT): string => buildPlaylistPath(playlist.artistSlug, playlist.slug)
-	const getTrackCountLabel = (page: ArtistPageT): string => formatTrackCount(page.tracks.length)
+	const getCountLabel = (page: ArtistPageT): string => {
+		const isTracks = selectedTab === 'tracks'
+		if (isTracks) return formatTrackCount(page.tracks.length)
+		return formatPlaylistCount(page.playlists.length)
+	}
 </script>
 
 {#if isCheckingOwner}
@@ -48,6 +51,7 @@
 	{#if page}
 		{@const isTracksTab = selectedTab === 'tracks'}
 		{@const hasPlaylists = page.playlists.length > 0}
+		{@const hasTracks = page.tracks.length > 0}
 		<div class="app-page">
 			<SiteHeader />
 			<div class="profile-header">
@@ -77,29 +81,29 @@
 					</div>
 				</div>
 				<div class="profile-body">
-					<fem-row align-y="center" align-x="between">
-						{#if hasPlaylists}
-							<fem-segmented value={selectedTab} onchange={handleTabChange}>
-								<fem-segment value="tracks">Tracks</fem-segment>
-								<fem-segment value="playlists">Playlists</fem-segment>
-							</fem-segmented>
-						{:else}
-							<span class="section-label">Tracks</span>
-						{/if}
-						<span class="numeric muted">{getTrackCountLabel(page)}</span>
-					</fem-row>
+					<div class="manage-row">
+						<fem-segmented value={selectedTab} onchange={handleTabChange}>
+							<fem-segment value="tracks">Tracks</fem-segment>
+							<fem-segment value="playlists">Playlists</fem-segment>
+						</fem-segmented>
+						<span class="numeric muted">{getCountLabel(page)}</span>
+					</div>
 					{#if isTracksTab}
-						<TrackList tracks={page.tracks} />
+						{#if hasTracks}
+							<TrackList tracks={page.tracks} />
+						{:else}
+							<fem-empty-state heading="No tracks yet">
+								<fem-icon slot="icon" name="music-notes"></fem-icon>
+								New music from {page.artist.name} shows up here.
+							</fem-empty-state>
+						{/if}
+					{:else if hasPlaylists}
+						<PlaylistShelf artistName={page.artist.name} playlists={page.playlists} />
 					{:else}
-						<div class="playlist-grid">
-							{#each page.playlists as playlist (playlist.id)}
-								<a class="playlist-tile" href={getPlaylistPath(playlist)}>
-									<fem-image src={playlist.coverUrl} alt="" radius="container"></fem-image>
-									<span class="playlist-tile-name">{playlist.name}</span>
-									<span class="numeric muted">{formatTrackCount(playlist.trackIds.length)}</span>
-								</a>
-							{/each}
-						</div>
+						<fem-empty-state heading="No playlists yet">
+							<fem-icon slot="icon" name="list"></fem-icon>
+							Playlists from {page.artist.name} show up here.
+						</fem-empty-state>
 					{/if}
 				</div>
 			</div>

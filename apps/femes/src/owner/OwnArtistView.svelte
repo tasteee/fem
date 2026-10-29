@@ -4,7 +4,8 @@
 	import { formatPlaylistCount, formatTrackCount } from '../parts/format-count'
 	import SiteHeader from '../parts/SiteHeader.svelte'
 	import { navigate } from '../routing/router.svelte'
-	import { buildArtistPath, buildPlaylistPath } from '../routing/routes'
+	import { buildArtistPath } from '../routing/routes'
+	import PlaylistShelf from '../parts/PlaylistShelf.svelte'
 	import { openNewPlaylist, openProfile, openUpload } from './owner-dialogs.svelte'
 	import OwnTrackMenu from './OwnTrackMenu.svelte'
 	import { shareLink } from './share-link'
@@ -49,7 +50,17 @@
 		navigate('/')
 	}
 
-	const getPlaylistPath = (playlist: PlaylistT): string => buildPlaylistPath(props.artist.slug, playlist.slug)
+	// A playlist with any song that isn't yours is one of
+	// your picks. Worked out here so it updates the moment
+	// a song is added.
+	const ownTrackIds = $derived(new Set(studio.tracks.map((track) => track.id)))
+
+	const markGuests = (playlist: PlaylistT): PlaylistT => {
+		const hasGuests = playlist.trackIds.some((trackId) => !ownTrackIds.has(trackId))
+		return { ...playlist, hasGuests }
+	}
+
+	const shelfPlaylists = $derived(studio.playlists.map(markGuests))
 </script>
 
 <div class="app-page">
@@ -91,7 +102,7 @@
 			</div>
 		</div>
 		<div class="profile-body">
-			<div class="manage-row">
+			<div class="manage-row isNoWrap">
 				<fem-segmented value={selectedTab} onchange={handleTabChange}>
 					<fem-segment value="tracks">Tracks</fem-segment>
 					<fem-segment value="playlists">Playlists</fem-segment>
@@ -99,14 +110,12 @@
 				<span class="numeric muted">{countLabel}</span>
 				<span class="studio-toolbar-spacer"></span>
 				{#if isTracksTab}
-					<fem-button onclick={openUpload}>
+					<fem-button shape="circle" label="Upload tracks" onclick={openUpload}>
 						<fem-icon name="upload-simple"></fem-icon>
-						Upload
 					</fem-button>
 				{:else}
-					<fem-button onclick={handleNewPlaylist}>
+					<fem-button shape="circle" label="New playlist" onclick={handleNewPlaylist}>
 						<fem-icon name="plus"></fem-icon>
-						New playlist
 					</fem-button>
 				{/if}
 			</div>
@@ -134,22 +143,14 @@
 					</fem-card>
 				{/if}
 			{:else}
-				<div class="playlist-grid">
-					{#each studio.playlists as playlist (playlist.id)}
-						<a class="playlist-tile" href={getPlaylistPath(playlist)}>
-							<fem-image src={playlist.coverUrl} alt="" radius="container"></fem-image>
-							<span class="playlist-tile-name">{playlist.name}</span>
-							<span class="playlist-tile-meta">
-								<span class="numeric muted">{formatTrackCount(playlist.trackIds.length)}</span>
-								<VisibilityBadge visibility={playlist.visibility} />
-							</span>
-						</a>
-					{/each}
-					<button class="playlist-tile-new" type="button" onclick={handleNewPlaylist}>
-						<fem-icon name="plus"></fem-icon>
-						New playlist
-					</button>
-				</div>
+				<PlaylistShelf artistName={props.artist.name} playlists={shelfPlaylists} showVisibility>
+					{#snippet newTile()}
+						<button class="playlist-tile-new" type="button" onclick={handleNewPlaylist}>
+							<fem-icon name="plus"></fem-icon>
+							New playlist
+						</button>
+					{/snippet}
+				</PlaylistShelf>
 			{/if}
 		</div>
 	</div>

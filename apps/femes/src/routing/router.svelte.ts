@@ -1,3 +1,4 @@
+import { tick } from 'svelte'
 import { parseRoute } from './routes'
 import type { RouteT } from './routes'
 
@@ -7,12 +8,31 @@ import type { RouteT } from './routes'
 
 export const router = $state<{ route: RouteT }>({ route: parseRoute(window.location.pathname) })
 
+type ViewTransitionDocumentT = Document & {
+	startViewTransition?: (update: () => Promise<void>) => unknown
+}
+
+// Page changes fade: the old page out quickly, the new
+// one in a little slower (see app.css). Browsers without
+// view transitions just switch.
+const showRoute = (shouldScrollUp: boolean) => {
+	const updatePage = async () => {
+		router.route = parseRoute(window.location.pathname)
+		if (shouldScrollUp) window.scrollTo(0, 0)
+		await tick()
+	}
+
+	const transitionDocument = document as ViewTransitionDocumentT
+	const canTransition = typeof transitionDocument.startViewTransition === 'function'
+	if (!canTransition) return updatePage()
+	transitionDocument.startViewTransition?.(updatePage)
+}
+
 export const navigate = (path: string) => {
 	const isSamePath = path === window.location.pathname
 	if (isSamePath) return
 	window.history.pushState(null, '', path)
-	router.route = parseRoute(window.location.pathname)
-	window.scrollTo(0, 0)
+	showRoute(true)
 }
 
 // Swaps the address without a new history entry, as when
@@ -51,9 +71,7 @@ const handleDocumentClick = (event: MouseEvent) => {
 	navigate(url.pathname)
 }
 
-const handlePopState = () => {
-	router.route = parseRoute(window.location.pathname)
-}
+const handlePopState = () => showRoute(false)
 
 export const startRouter = () => {
 	document.addEventListener('click', handleDocumentClick)

@@ -42,6 +42,9 @@ export type PlaylistT = {
 	coverUrl: string
 	visibility: VisibilityT
 	trackIds: string[]
+	// True when it holds other artists' songs: one of the
+	// artist's picks rather than their own music.
+	hasGuests: boolean
 }
 
 export type ArtistPageT = {

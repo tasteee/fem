@@ -16,6 +16,7 @@
 		"db:migrate:remote": "wrangler d1 migrations apply femes-db --remote"
 	},
 	"dependencies": {
+		"@breezystack/lamejs": "1.2.7",
 		"@tasteee/fem": "*",
 		"@tasteee/fem-media": "*"
 	},
