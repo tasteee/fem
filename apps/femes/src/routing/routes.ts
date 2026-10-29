@@ -12,6 +12,7 @@ export type RouteT =
 	| { kind: 'studio-tracks' }
 	| { kind: 'studio-playlists'; playlistId: string }
 	| { kind: 'studio-profile' }
+	| { kind: 'embed-track'; artistSlug: string; trackSlug: string }
 	| { kind: 'not-found' }
 
 // Paths the app owns. No artist can take these names.
@@ -51,6 +52,15 @@ const parseStudioRoute = (segments: string[]): RouteT => {
 	return { kind: 'not-found' }
 }
 
+export const buildEmbedTrackPath = (artistSlug: string, trackSlug: string): string => `/embed/${artistSlug}/track/${trackSlug}`
+
+// /embed/:artist/track/:track
+const parseEmbedRoute = (segments: string[]): RouteT => {
+	const isTrackEmbed = segments.length === 4 && segments[2] === 'track'
+	if (isTrackEmbed) return { kind: 'embed-track', artistSlug: segments[1], trackSlug: segments[3] }
+	return { kind: 'not-found' }
+}
+
 export const parseRoute = (pathname: string): RouteT => {
 	const segments = getSegments(pathname)
 	const isHome = segments.length === 0
@@ -59,6 +69,8 @@ export const parseRoute = (pathname: string): RouteT => {
 	if (isSignIn) return { kind: 'signin' }
 	const isStudio = segments[0] === 'studio'
 	if (isStudio) return parseStudioRoute(segments)
+	const isEmbed = segments[0] === 'embed'
+	if (isEmbed) return parseEmbedRoute(segments)
 
 	const artistSlug = segments[0]
 	const isReserved = reservedSlugs.includes(artistSlug)

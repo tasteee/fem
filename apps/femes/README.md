@@ -11,6 +11,7 @@ A quiet place for your music. Built with fem and fem-media, hosted on Cloudflare
 | Playlist | `/tasteink/playlist/late-night-drafts` |
 | Sign in | `/signin` |
 | Studio | `/studio`, `/studio/playlists`, `/studio/profile` |
+| Embed | `/embed/tasteink/track/safeword` |
 
 Renamed tracks and playlists keep their old links working.
 
@@ -20,7 +21,7 @@ Renamed tracks and playlists keep their old links working.
 - **`server/worker.ts`**: one Worker, bundled to `dist/_worker.js`. Pages runs it for every request:
   - `/api/...`: public pages, sign-in, and the Studio API
   - `/media/...`: files from R2, with byte ranges so audio can seek
-  - everything else: the app
+  - everything else: the app, with link-preview tags (title, art, audio) written into its head for that page
 - **`migrations/`**: database tables. The Worker applies new ones on the first request after a deploy.
 - **Uploads**: audio goes up in 20 MB parts (Cloudflare caps one request at 100 MB); images go whole. Files live in R2 under `artists/<id>/`.
 - **Sign-in**: a one-time email link (15 minutes), then a 30-day session cookie. Only token hashes are stored.

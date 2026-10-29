@@ -5,7 +5,7 @@
 	import LoadingPage from '../parts/LoadingPage.svelte'
 	import SiteHeader from '../parts/SiteHeader.svelte'
 	import TrackList from '../parts/TrackList.svelte'
-	import { buildArtistPath } from '../routing/routes'
+	import { buildArtistPath, buildEmbedTrackPath } from '../routing/routes'
 	import NotFoundPage from './NotFoundPage.svelte'
 
 	type TrackPagePropsT = {
@@ -20,6 +20,15 @@
 	// artist's other tracks.
 	const buildQueue = (page: TrackPageT) => [page.track, ...page.moreTracks]
 	const buildShareUrl = () => window.location.href
+
+	// What an artist pastes into their own site.
+	const buildEmbedCode = (page: TrackPageT) => {
+		const embedPath = buildEmbedTrackPath(page.artist.slug, page.track.slug)
+		const embedUrl = `${window.location.origin}${embedPath}`
+		const safeTitle = page.track.title.replace(/"/g, '&quot;')
+		return `<iframe src="${embedUrl}" width="100%" height="120" style="border:0;border-radius:12px" allow="autoplay" loading="lazy" title="${safeTitle}"></iframe>`
+	}
+
 	const buildMoreLabel = (page: TrackPageT) => `More from ${page.artist.name}`
 </script>
 
@@ -38,7 +47,12 @@
 					{#if hasDescription}
 						<fem-text color="muted">{page.track.description}</fem-text>
 					{/if}
-					<fem-copy-field value={buildShareUrl()} shareable shareTitle={page.track.title}></fem-copy-field>
+					<fem-field label="Link">
+						<fem-copy-field value={buildShareUrl()} shareable shareTitle={page.track.title}></fem-copy-field>
+					</fem-field>
+					<fem-field label="Embed" help="Paste into any website.">
+						<fem-copy-field label="Embed code" value={buildEmbedCode(page)}></fem-copy-field>
+					</fem-field>
 					{#if hasMore}
 						<fem-column gap="2">
 							<span class="section-label">{buildMoreLabel(page)}</span>
