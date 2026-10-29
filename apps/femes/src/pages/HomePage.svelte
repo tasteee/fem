@@ -1,19 +1,57 @@
 <script lang="ts">
 	import SiteHeader from '../parts/SiteHeader.svelte'
-	import { navigate } from '../routing/router.svelte'
-	import { buildArtistPath } from '../routing/routes'
+	import HomeAddresses from './home/HomeAddresses.svelte'
+	import HomePromises from './home/HomePromises.svelte'
+	import HomeShowcase from './home/HomeShowcase.svelte'
 
-	const demoArtistPath = buildArtistPath('tasteink')
-	const handleDemoClick = () => navigate(demoArtistPath)
+	const signInPath = '/signin'
+	const examplePath = '/tasteink'
 </script>
 
-<div class="app-page">
-	<SiteHeader />
-	<section class="home-hero">
-		<fem-heading level={1} size="display">A quiet place for your music.</fem-heading>
-		<fem-text color="muted">Share tracks and playlists with a link. No ads. Listeners never need an account.</fem-text>
-		<fem-row gap="2">
-			<fem-button onclick={handleDemoClick}>See an artist page</fem-button>
-		</fem-row>
+<div class="home">
+	<div class="home-frame">
+		<SiteHeader>
+			{#snippet end()}
+				<a class="home-header-link" href={signInPath}>Sign in</a>
+			{/snippet}
+		</SiteHeader>
+	</div>
+
+	<section class="home-hero home-frame">
+		<h1 class="home-headline">
+			<span class="home-headline-line">A quiet place</span>
+			<span class="home-headline-line">for your music.</span>
+		</h1>
+		<div class="home-hero-end">
+			<p class="home-lede">Upload your songs, get a clean link for each one, and share it anywhere. No ads, and listeners never need an account.</p>
+			<div class="home-actions">
+				<a class="home-action isPrimary" href={signInPath}>Start your page</a>
+				<a class="home-action" href={examplePath}>Hear an example</a>
+			</div>
+		</div>
 	</section>
+
+	<section class="home-frame">
+		<HomeShowcase />
+	</section>
+
+	<section class="home-frame">
+		<HomeAddresses />
+	</section>
+
+	<section class="home-frame">
+		<HomePromises />
+	</section>
+
+	<section class="home-closing home-frame">
+		<h2 class="home-closing-heading">Your songs deserve a quiet room.</h2>
+		<a class="home-action isPrimary" href={signInPath}>Start your page</a>
+	</section>
+
+	<footer class="home-frame">
+		<div class="home-footer">
+			<span class="site-brand">femes</span>
+			<span class="home-footer-note">Free for artists. Free for listeners.</span>
+		</div>
+	</footer>
 </div>
