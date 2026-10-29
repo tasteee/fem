@@ -852,6 +852,51 @@ p {
 	}
 }
 
+/* ---------- image crop ---------- */
+.crop-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}
+
+.crop-frame {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	border-radius: var(--radius-inset);
+	background: var(--surface-inset);
+	cursor: grab;
+	touch-action: none;
+	user-select: none;
+}
+
+.crop-frame:active {
+	cursor: grabbing;
+}
+
+.crop-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: none;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.crop-image.isReady {
+	opacity: 1;
+}
+
+.crop-zoom {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+
+.crop-zoom input {
+	flex: 1;
+}
+
 /* ---------- edit profile ---------- */
 .profile-avatar-upload {
 	width: 120px;

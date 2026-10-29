@@ -4,6 +4,7 @@
 	import { getErrorReason, uploadFile } from '../data/studio-api'
 	import { readValue } from '../parts/read-value'
 	import { buildArtistPath, buildSlug } from '../routing/routes'
+	import ImageCropDialog from './ImageCropDialog.svelte'
 
 	type EditProfileDialogPropsT = {
 		open: boolean
@@ -25,6 +26,10 @@
 	let avatarKey = $state<string | undefined>(undefined)
 	let headerKey = $state<string | undefined>(undefined)
 	let isSaving = $state(false)
+	let cropTarget = $state<'avatar' | 'header' | undefined>(undefined)
+	let cropFile = $state<File | undefined>(undefined)
+	let headerUpload = $state<HTMLElement | undefined>(undefined)
+	let avatarUpload = $state<HTMLElement | undefined>(undefined)
 	let failure = $state('')
 
 	const toLinkRow = (link: { label: string; url: string }): LinkRowT => ({ id: crypto.randomUUID(), label: link.label, url: link.url })
@@ -79,10 +84,12 @@
 		links = links.filter((link) => link.id !== linkId)
 	}
 
-	const uploadImage = async (event: Event): Promise<string | undefined> => {
-		const detail = (event as CustomEvent<{ files: File[] }>).detail
-		const file = detail.files[0]
-		if (!file) return undefined
+	const cropSettings = {
+		avatar: { ratio: 1, outputWidth: 512, heading: 'Crop avatar' },
+		header: { ratio: 4, outputWidth: 1600, heading: 'Crop header' }
+	}
+
+	const uploadImage = async (file: File): Promise<string | undefined> => {
 		const ignoreProgress = () => {}
 
 		try {
@@ -93,12 +100,35 @@
 		}
 	}
 
-	const handleAvatarChange = async (event: Event) => {
-		avatarKey = await uploadImage(event)
+	// A picked picture opens the cropper before anything uploads.
+	const startCrop = (target: 'avatar' | 'header', event: Event) => {
+		const detail = (event as CustomEvent<{ files: File[] }>).detail
+		const file = detail.files[0]
+		if (!file) return
+		cropTarget = target
+		cropFile = file
 	}
 
-	const handleHeaderChange = async (event: Event) => {
-		headerKey = await uploadImage(event)
+	const handleAvatarChange = (event: Event) => startCrop('avatar', event)
+	const handleHeaderChange = (event: Event) => startCrop('header', event)
+
+	const handleCropCancel = () => {
+		const target = cropTarget
+		cropTarget = undefined
+		cropFile = undefined
+		const upload = target === 'avatar' ? avatarUpload : headerUpload
+		if (upload) (upload as HTMLElement & { files: File[] }).files = []
+	}
+
+	const handleCropConfirm = async (cropped: File) => {
+		const target = cropTarget
+		cropTarget = undefined
+		cropFile = undefined
+		const upload = (target === 'avatar' ? avatarUpload : headerUpload) as (HTMLElement & { files: File[] }) | undefined
+		if (upload) upload.files = [cropped]
+		const key = await uploadImage(cropped)
+		if (target === 'avatar') avatarKey = key
+		else headerKey = key
 	}
 
 	const handleSave = async () => {
@@ -121,11 +151,11 @@
 
 <fem-dialog class="studio-dialog isWide" open={props.open} heading="Edit profile" onclose={props.onClose}>
 	<div class="profile-editor">
-		<fem-field label="Header" help="A wide image, at least 1600 × 400.">
-			<fem-file-upload kind="image" ratio="4 / 1" accept="image/*" label="Add a header" src={headerSource} onchange={handleHeaderChange}></fem-file-upload>
+		<fem-field label="Header" help="Any wide picture. You choose the part that shows.">
+			<fem-file-upload kind="image" ratio="4 / 1" accept="image/*" label="Add a header" src={headerSource} onchange={handleHeaderChange} bind:this={headerUpload}></fem-file-upload>
 		</fem-field>
 		<fem-field label="Avatar">
-			<fem-file-upload class="profile-avatar-upload" kind="image" accept="image/*" label="Add" src={avatarSource} onchange={handleAvatarChange}></fem-file-upload>
+			<fem-file-upload class="profile-avatar-upload" kind="image" accept="image/*" label="Add" src={avatarSource} onchange={handleAvatarChange} bind:this={avatarUpload}></fem-file-upload>
 		</fem-field>
 		<div class="profile-editor-pair">
 			<fem-field label="Artist name">
@@ -166,3 +196,13 @@
 	<fem-button slot="actions" kind="soft" onclick={props.onClose}>Cancel</fem-button>
 	<fem-button slot="actions" loading={isSaving} onclick={handleSave}>Save</fem-button>
 </fem-dialog>
+
+<ImageCropDialog
+	open={cropTarget !== undefined}
+	file={cropFile}
+	ratio={cropTarget ? cropSettings[cropTarget].ratio : 1}
+	outputWidth={cropTarget ? cropSettings[cropTarget].outputWidth : 512}
+	heading={cropTarget ? cropSettings[cropTarget].heading : ''}
+	onConfirm={handleCropConfirm}
+	onCancel={handleCropCancel}
+/>
