@@ -10,6 +10,7 @@ export const registerFemesIcons = () => {
 		icons.booksIcon,
 		icons.caretLeftIcon,
 		icons.caretRightIcon,
+		icons.chatCircleIcon,
 		icons.checkIcon,
 		icons.dotsSixVerticalIcon,
 		icons.dotsThreeIcon,
@@ -23,6 +24,7 @@ export const registerFemesIcons = () => {
 		icons.userCheckIcon,
 		icons.userIcon,
 		icons.userPlusIcon,
+		icons.usersIcon,
 		icons.xIcon
 	])
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { listPickableGuestTracks, studio } from '../../data/studio.svelte'
-	import type { FemesTrackT } from '../../data/types'
+	import { listPickableGuestTracks, studio } from '../data/studio.svelte'
+	import type { FemesTrackT } from '../data/types'
 
 	type AddTracksDialogPropsT = {
 		open: boolean

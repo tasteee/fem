@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { formatFileSize } from '@tasteee/fem/foundation'
-	import { addTrack } from '../../data/studio.svelte'
-	import { buildTitleFromFileName, getErrorReason, readAudioDuration, uploadFile } from '../../data/studio-api'
+	import { addTrack } from '../data/studio.svelte'
+	import { buildTitleFromFileName, getErrorReason, readAudioDuration, uploadFile } from '../data/studio-api'
 
 	type UploadDialogPropsT = {
 		open: boolean

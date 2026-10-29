@@ -10,16 +10,20 @@ A quiet place for your music. Built with fem and fem-media, hosted on Cloudflare
 | Track | `/tasteink/track/safeword` |
 | Playlist | `/tasteink/playlist/late-night-drafts` |
 | Sign in | `/signin` |
-| Studio | `/studio`, `/studio/playlists`, `/studio/profile` |
+| After sign-in | `/studio` (goes to your own page) |
+| Following | `/following` |
+| Saved | `/saved` |
 | Embed | `/embed/tasteink/track/safeword` |
 
 Renamed tracks and playlists keep their old links working.
 
+There is no separate studio. A signed-in artist manages everything from their own pages (upload, edit, reorder, playlists, profile) and moves around with the bottom tab bar. Listeners never see any of it.
+
 ## How it fits together
 
-- **`src/`**: the Svelte app. Pages read through `data/catalog.ts` (public) and `data/studio.svelte.ts` (Studio).
+- **`src/`**: the Svelte app. Pages read through `data/catalog.ts` (public) and `data/studio.svelte.ts` (the signed-in artist's own things; `owner/` holds their manage views and dialogs).
 - **`server/worker.ts`**: one Worker, bundled to `dist/_worker.js`. Pages runs it for every request:
-  - `/api/...`: public pages, sign-in, and the Studio API
+  - `/api/...`: public pages, sign-in, and the signed-in artist's API (`/api/studio/...`)
   - `/media/...`: files from R2, with byte ranges so audio can seek
   - everything else: the app, with link-preview tags (title, art, audio) written into its head for that page
 - **`migrations/`**: database tables. The Worker applies new ones on the first request after a deploy.

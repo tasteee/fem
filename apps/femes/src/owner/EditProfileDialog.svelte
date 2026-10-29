@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { showToast } from '@tasteee/fem'
-	import { studio, updateArtist } from '../../data/studio.svelte'
-	import { getErrorReason, uploadFile } from '../../data/studio-api'
-	import { readValue } from '../../parts/read-value'
-	import { navigate } from '../../routing/router.svelte'
-	import { buildArtistPath, buildSlug } from '../../routing/routes'
-	import StudioShell from './StudioShell.svelte'
+	import { studio, updateArtist } from '../data/studio.svelte'
+	import { getErrorReason, uploadFile } from '../data/studio-api'
+	import { readValue } from '../parts/read-value'
+	import { buildArtistPath, buildSlug } from '../routing/routes'
+
+	type EditProfileDialogPropsT = {
+		open: boolean
+		onClose: () => void
+	}
 
 	type LinkRowT = {
 		id: string
@@ -13,6 +16,7 @@
 		url: string
 	}
 
+	const props: EditProfileDialogPropsT = $props()
 	const maxLinks = 6
 	let name = $state('')
 	let slug = $state('')
@@ -25,14 +29,17 @@
 
 	const toLinkRow = (link: { label: string; url: string }): LinkRowT => ({ id: crypto.randomUUID(), label: link.label, url: link.url })
 
-	// The form starts from the saved profile.
+	// Opening starts the form from the saved profile.
 	$effect(() => {
 		const artist = studio.artist
-		if (!artist) return
+		if (!props.open || !artist) return
 		name = artist.name
 		slug = artist.slug
 		bio = artist.bio
 		links = artist.links.map(toLinkRow)
+		avatarKey = undefined
+		headerKey = undefined
+		failure = ''
 	})
 
 	const avatarSource = $derived(studio.artist?.avatarUrl ?? '')
@@ -94,8 +101,6 @@
 		headerKey = await uploadImage(event)
 	}
 
-	const handleViewPage = () => navigate(publicPath)
-
 	const handleSave = async () => {
 		isSaving = true
 		failure = ''
@@ -103,8 +108,7 @@
 
 		try {
 			await updateArtist({ name, slug, bio, links: savedLinks, avatarKey, headerKey })
-			avatarKey = undefined
-			headerKey = undefined
+			props.onClose()
 			showToast('Profile saved')
 		} catch (saveError) {
 			const reason = getErrorReason(saveError)
@@ -115,15 +119,8 @@
 	}
 </script>
 
-<StudioShell section="profile">
-	<div class="studio-toolbar">
-		<fem-heading level={1} size="heading">Profile</fem-heading>
-		<span class="studio-toolbar-spacer"></span>
-		<fem-button kind="soft" onclick={handleViewPage}>View public page</fem-button>
-		<fem-button loading={isSaving} onclick={handleSave}>Save</fem-button>
-	</div>
-
-	<fem-card class="profile-editor">
+<fem-dialog class="studio-dialog isWide" open={props.open} heading="Edit profile" onclose={props.onClose}>
+	<div class="profile-editor">
 		<fem-field label="Header" help="A wide image, at least 1600 × 400.">
 			<fem-file-upload kind="image" ratio="4 / 1" accept="image/*" label="Add a header" src={headerSource} onchange={handleHeaderChange}></fem-file-upload>
 		</fem-field>
@@ -165,5 +162,7 @@
 		{#if hasFailure}
 			<fem-text size="small" color="danger">{failure}</fem-text>
 		{/if}
-	</fem-card>
-</StudioShell>
+	</div>
+	<fem-button slot="actions" kind="soft" onclick={props.onClose}>Cancel</fem-button>
+	<fem-button slot="actions" loading={isSaving} onclick={handleSave}>Save</fem-button>
+</fem-dialog>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { updateTrack } from '../../data/studio.svelte'
-	import { getErrorReason, uploadFile } from '../../data/studio-api'
-	import type { FemesTrackT, VisibilityT } from '../../data/types'
-	import { readValue } from '../../parts/read-value'
+	import { updateTrack } from '../data/studio.svelte'
+	import { getErrorReason, uploadFile } from '../data/studio-api'
+	import type { FemesTrackT, VisibilityT } from '../data/types'
+	import { readValue } from '../parts/read-value'
 
 	type EditTrackDialogPropsT = {
 		track: FemesTrackT | undefined

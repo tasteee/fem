@@ -9,15 +9,14 @@ export type RouteT =
 	| { kind: 'track'; artistSlug: string; trackSlug: string }
 	| { kind: 'playlist'; artistSlug: string; playlistSlug: string }
 	| { kind: 'signin' }
-	| { kind: 'studio-tracks' }
-	| { kind: 'studio-playlists'; playlistId: string }
-	| { kind: 'studio-profile' }
-	| { kind: 'studio-library' }
+	| { kind: 'studio' }
+	| { kind: 'following' }
+	| { kind: 'saved' }
 	| { kind: 'embed-track'; artistSlug: string; trackSlug: string }
 	| { kind: 'not-found' }
 
 // Paths the app owns. No artist can take these names.
-export const reservedSlugs = ['studio', 'signin', 'embed', 'api', 'demo', 'assets', 'track', 'playlist']
+export const reservedSlugs = ['studio', 'signin', 'embed', 'api', 'demo', 'assets', 'track', 'playlist', 'following', 'saved', 'messages', 'me']
 
 export const buildArtistPath = (artistSlug: string): string => `/${artistSlug}`
 
@@ -32,29 +31,11 @@ const getSegments = (pathname: string): string[] => {
 	return parts.map((part) => decodeURIComponent(part).toLowerCase())
 }
 
-export const studioPaths = {
-	tracks: '/studio',
-	playlists: '/studio/playlists',
-	profile: '/studio/profile',
-	library: '/studio/library'
-}
-
-export const buildStudioPlaylistPath = (playlistId: string): string => `/studio/playlists/${playlistId}`
-
-// /studio, /studio/playlists, /studio/playlists/:id,
-// /studio/profile
-const parseStudioRoute = (segments: string[]): RouteT => {
-	const section = segments[1]
-	const hasNoSection = section === undefined
-	if (hasNoSection) return { kind: 'studio-tracks' }
-	const isPlaylists = section === 'playlists'
-	if (isPlaylists) return { kind: 'studio-playlists', playlistId: segments[2] ?? '' }
-	const isProfile = section === 'profile'
-	if (isProfile) return { kind: 'studio-profile' }
-	const isLibrary = section === 'library'
-	if (isLibrary) return { kind: 'studio-library' }
-	return { kind: 'not-found' }
-}
+// /studio is where sign-in lands. It sends an artist to
+// their own page, which is where they manage everything.
+export const studioPath = '/studio'
+export const followingPath = '/following'
+export const savedPath = '/saved'
 
 export const buildEmbedTrackPath = (artistSlug: string, trackSlug: string): string => `/embed/${artistSlug}/track/${trackSlug}`
 
@@ -71,8 +52,12 @@ export const parseRoute = (pathname: string): RouteT => {
 	if (isHome) return { kind: 'home' }
 	const isSignIn = segments[0] === 'signin'
 	if (isSignIn) return { kind: 'signin' }
-	const isStudio = segments[0] === 'studio'
-	if (isStudio) return parseStudioRoute(segments)
+	const isStudio = segments[0] === 'studio' || segments[0] === 'me'
+	if (isStudio) return { kind: 'studio' }
+	const isFollowing = segments[0] === 'following' && segments.length === 1
+	if (isFollowing) return { kind: 'following' }
+	const isSaved = segments[0] === 'saved' && segments.length === 1
+	if (isSaved) return { kind: 'saved' }
 	const isEmbed = segments[0] === 'embed'
 	if (isEmbed) return parseEmbedRoute(segments)
 

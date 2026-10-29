@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ArtistT } from '../data/types'
-	import { checkIsFollowing, checkIsOwnSlug, checkIsSignedInArtist, ensureViewer, toggleFollow } from '../data/viewer.svelte'
+	import { checkIsFollowing, checkIsOwnSlug, checkIsSignedInArtist, toggleFollow } from '../data/viewer.svelte'
 
 	type FollowButtonPropsT = {
 		artist: ArtistT
@@ -10,7 +10,6 @@
 	// counts anywhere.
 	const props: FollowButtonPropsT = $props()
 
-	ensureViewer()
 
 	const isSelf = $derived(checkIsOwnSlug(props.artist.slug))
 	const canFollow = $derived(checkIsSignedInArtist() && !isSelf)

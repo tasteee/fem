@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { addPlaylist } from '../../data/studio.svelte'
-	import { getErrorReason } from '../../data/studio-api'
-	import { readValue } from '../../parts/read-value'
-	import { navigate } from '../../routing/router.svelte'
-	import { buildStudioPlaylistPath } from '../../routing/routes'
+	import { addPlaylist, buildOwnPlaylistPath, setPlaylistTracks } from '../data/studio.svelte'
+	import { getErrorReason } from '../data/studio-api'
+	import { readValue } from '../parts/read-value'
+	import { navigate } from '../routing/router.svelte'
 
 	type NewPlaylistDialogPropsT = {
 		open: boolean
+		trackId: string
 		onClose: () => void
 	}
 
@@ -17,20 +17,24 @@
 
 	const hasFailure = $derived(failure !== '')
 	const hasName = $derived(name.trim() !== '')
+	const hasStartingTrack = $derived(props.trackId !== '')
 
 	const handleNameInput = (event: Event) => {
 		name = readValue(event)
 	}
 
+	// Opened from a track's "Add to playlist", the new
+	// playlist starts with that track.
 	const handleCreate = async () => {
 		isCreating = true
 		failure = ''
 
 		try {
 			const playlist = await addPlaylist({ name })
+			if (hasStartingTrack) await setPlaylistTracks(playlist.id, [props.trackId])
 			name = ''
 			props.onClose()
-			navigate(buildStudioPlaylistPath(playlist.id))
+			navigate(buildOwnPlaylistPath(playlist.id))
 		} catch (createError) {
 			failure = `Couldn't create it (${getErrorReason(createError)}).`
 		} finally {

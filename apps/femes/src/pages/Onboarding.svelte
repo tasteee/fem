@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { createArtist } from '../../data/studio.svelte'
-	import { getErrorReason } from '../../data/studio-api'
-	import { readValue } from '../../parts/read-value'
-	import { buildSlug } from '../../routing/routes'
+	import { createArtist } from '../data/studio.svelte'
+	import { getErrorReason } from '../data/studio-api'
+	import { readValue } from '../parts/read-value'
+	import { buildSlug } from '../routing/routes'
 
 	let name = $state('')
 	let slug = $state('')
