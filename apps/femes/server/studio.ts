@@ -4,6 +4,8 @@ import type { EnvT } from './env'
 import { readJson, respondError, respondJson, respondMissing } from './respond'
 import { toArtist, toPlaylist, toTrack } from './rows'
 import type { ArtistRowT, PlaylistRowT, TrackRowT } from './rows'
+import { visiblePlaylistTrack } from './public-api'
+import { listFollowingIds, listPlaylistGuestTracks, listSavedTrackIds, listSavedTracks } from './social'
 import { checkOwnsKey, deleteKeys } from './uploads'
 
 // The artist's own workspace. Every handler here gets
@@ -67,10 +69,14 @@ export const findArtistByEmail = (env: EnvT, email: string) => {
 	return env.DB.prepare('SELECT * FROM artists WHERE email = ?').bind(email).first<ArtistRowT>()
 }
 
+// Who is signed in, plus what they saved and follow, so
+// public pages can show Save and Follow correctly.
 export const handleMe = async (env: EnvT, email: string): Promise<Response> => {
 	const row = await findArtistByEmail(env, email)
-	const artist = row ? toArtist(row) : null
-	return respondJson({ email, artist })
+	if (!row) return respondJson({ email, artist: null, savedTrackIds: [], followingIds: [] })
+	const savedTrackIds = await listSavedTrackIds(env, row.id)
+	const followingIds = await listFollowingIds(env, row.id)
+	return respondJson({ email, artist: toArtist(row), savedTrackIds, followingIds })
 }
 
 // ---------- the artist ----------
@@ -165,7 +171,7 @@ export const handleStudio = async (env: EnvT, artistRow: ArtistRowT): Promise<Re
 	const tracks = trackResult.results.map((row) => toTrack(row, artist))
 	const playlistSql = 'SELECT * FROM playlists WHERE artist_id = ? ORDER BY created_at DESC'
 	const playlistResult = await env.DB.prepare(playlistSql).bind(artist.id).all<PlaylistRowT>()
-	const pairSql = 'SELECT playlist_id, track_id FROM playlist_tracks WHERE playlist_id IN (SELECT id FROM playlists WHERE artist_id = ?) ORDER BY position'
+	const pairSql = `SELECT playlist_tracks.playlist_id, playlist_tracks.track_id FROM playlist_tracks JOIN playlists ON playlists.id = playlist_tracks.playlist_id JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlists.artist_id = ? AND ${visiblePlaylistTrack} ORDER BY playlist_tracks.position`
 	const pairResult = await env.DB.prepare(pairSql).bind(artist.id).all<{ playlist_id: string; track_id: string }>()
 
 	const getTrackIds = (playlistId: string) => {
@@ -174,7 +180,9 @@ export const handleStudio = async (env: EnvT, artistRow: ArtistRowT): Promise<Re
 	}
 
 	const playlists = playlistResult.results.map((row) => toPlaylist(row, artist, getTrackIds(row.id)))
-	return respondJson({ artist, tracks, playlists })
+	const savedTracks = await listSavedTracks(env, artist.id)
+	const guestTracks = await listPlaylistGuestTracks(env, artist.id)
+	return respondJson({ artist, tracks, playlists, savedTracks, guestTracks })
 }
 
 // ---------- tracks ----------
@@ -250,6 +258,8 @@ export const handleDeleteTrack = async (env: EnvT, artist: ArtistRowT, trackId: 
 	if (!row) return respondMissing()
 	await env.DB.batch([
 		env.DB.prepare('DELETE FROM playlist_tracks WHERE track_id = ?').bind(row.id),
+		env.DB.prepare('DELETE FROM saves WHERE track_id = ?').bind(row.id),
+		env.DB.prepare('DELETE FROM play_counts WHERE track_id = ?').bind(row.id),
 		env.DB.prepare("DELETE FROM slug_history WHERE item_id = ? AND kind = 'track'").bind(row.id),
 		env.DB.prepare('DELETE FROM tracks WHERE id = ?').bind(row.id)
 	])
@@ -334,16 +344,18 @@ export const handleDeletePlaylist = async (env: EnvT, artist: ArtistRowT, playli
 }
 
 // Replaces the playlist's tracks with this list, in
-// this order. Only the artist's own tracks are kept.
+// this order. Keeps the artist's own tracks and other
+// artists' public ones.
 export const handleSetPlaylistTracks = async (request: Request, env: EnvT, artist: ArtistRowT, playlistId: string): Promise<Response> => {
 	const row = await findPlaylistRow(env, artist, playlistId)
 	if (!row) return respondMissing()
 	const input = await readJson<OrderInputT>(request)
 	const requestedIds = input?.ids ?? []
-	const ownResult = await env.DB.prepare('SELECT id FROM tracks WHERE artist_id = ?').bind(artist.id).all<{ id: string }>()
-	const ownIds = new Set(ownResult.results.map((track) => track.id))
 	const uniqueIds = [...new Set(requestedIds)]
-	const keptIds = uniqueIds.filter((id) => ownIds.has(id))
+	const allowedSql = "SELECT id FROM tracks WHERE id IN (SELECT value FROM json_each(?)) AND (artist_id = ? OR visibility = 'public')"
+	const allowedResult = await env.DB.prepare(allowedSql).bind(JSON.stringify(uniqueIds), artist.id).all<{ id: string }>()
+	const allowedIds = new Set(allowedResult.results.map((track) => track.id))
+	const keptIds = uniqueIds.filter((id) => allowedIds.has(id))
 	const insertSql = 'INSERT INTO playlist_tracks (playlist_id, track_id, position) VALUES (?, ?, ?)'
 	const inserts = keptIds.map((trackId, index) => env.DB.prepare(insertSql).bind(row.id, trackId, index))
 	const clear = env.DB.prepare('DELETE FROM playlist_tracks WHERE playlist_id = ?').bind(row.id)

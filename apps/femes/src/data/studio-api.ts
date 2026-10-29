@@ -6,12 +6,23 @@ import type { ArtistT, FemesTrackT, PlaylistT, SocialLinkT, VisibilityT } from '
 export type MeT = {
 	email: string
 	artist: ArtistT | null
+	savedTrackIds: string[]
+	followingIds: string[]
 }
 
+// guestTracks are other artists' songs already in this
+// artist's playlists.
 export type StudioDataT = {
 	artist: ArtistT
 	tracks: FemesTrackT[]
 	playlists: PlaylistT[]
+	savedTracks: FemesTrackT[]
+	guestTracks: FemesTrackT[]
+}
+
+export type LibraryT = {
+	following: ArtistT[]
+	freshTracks: FemesTrackT[]
 }
 
 export type UploadKindT = 'audio' | 'image'
@@ -131,6 +142,14 @@ export const deletePlaylist = (playlistId: string) => callApi<{ deleted: string 
 export const setPlaylistTracks = (playlistId: string, ids: string[]) => {
 	return callApi<{ trackIds: string[] }>('PUT', `/api/studio/playlists/${playlistId}/tracks`, { ids })
 }
+
+// ---------- saves and follows ----------
+
+export const saveTrack = (trackId: string) => callApi<{ saved: boolean }>('POST', `/api/studio/saves/${trackId}`)
+export const unsaveTrack = (trackId: string) => callApi<{ saved: boolean }>('DELETE', `/api/studio/saves/${trackId}`)
+export const followArtist = (artistId: string) => callApi<{ following: boolean }>('POST', `/api/studio/follows/${artistId}`)
+export const unfollowArtist = (artistId: string) => callApi<{ following: boolean }>('DELETE', `/api/studio/follows/${artistId}`)
+export const getLibrary = () => callApi<LibraryT>('GET', '/api/studio/library')
 
 // ---------- uploads ----------
 

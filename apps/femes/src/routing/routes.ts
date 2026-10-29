@@ -12,6 +12,7 @@ export type RouteT =
 	| { kind: 'studio-tracks' }
 	| { kind: 'studio-playlists'; playlistId: string }
 	| { kind: 'studio-profile' }
+	| { kind: 'studio-library' }
 	| { kind: 'embed-track'; artistSlug: string; trackSlug: string }
 	| { kind: 'not-found' }
 
@@ -34,7 +35,8 @@ const getSegments = (pathname: string): string[] => {
 export const studioPaths = {
 	tracks: '/studio',
 	playlists: '/studio/playlists',
-	profile: '/studio/profile'
+	profile: '/studio/profile',
+	library: '/studio/library'
 }
 
 export const buildStudioPlaylistPath = (playlistId: string): string => `/studio/playlists/${playlistId}`
@@ -49,6 +51,8 @@ const parseStudioRoute = (segments: string[]): RouteT => {
 	if (isPlaylists) return { kind: 'studio-playlists', playlistId: segments[2] ?? '' }
 	const isProfile = section === 'profile'
 	if (isProfile) return { kind: 'studio-profile' }
+	const isLibrary = section === 'library'
+	if (isLibrary) return { kind: 'studio-library' }
 	return { kind: 'not-found' }
 }
 

@@ -4,6 +4,7 @@
 	import type { ArtistPageT, PlaylistT } from '../data/types'
 	import LoadingPage from '../parts/LoadingPage.svelte'
 	import SiteHeader from '../parts/SiteHeader.svelte'
+	import FollowButton from '../parts/FollowButton.svelte'
 	import { formatTrackCount } from '../parts/format-count'
 	import TrackList from '../parts/TrackList.svelte'
 	import { buildPlaylistPath } from '../routing/routes'
@@ -61,6 +62,7 @@
 						<fem-button kind="soft" shape="circle" label="Share" onclick={handleShare}>
 							<fem-icon name="share-fat"></fem-icon>
 						</fem-button>
+						<FollowButton artist={page.artist} />
 					</div>
 				</div>
 				<div class="profile-body">

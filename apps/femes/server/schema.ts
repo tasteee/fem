@@ -1,5 +1,6 @@
 import initialSql from '../migrations/0001_initial.sql'
 import authSql from '../migrations/0002_auth.sql'
+import socialSql from '../migrations/0003_social.sql'
 import type { EnvT } from './env'
 
 // Brings the database up to date on the first request,
@@ -8,7 +9,8 @@ import type { EnvT } from './env'
 
 const migrations = [
 	{ name: '0001_initial.sql', sql: initialSql },
-	{ name: '0002_auth.sql', sql: authSql }
+	{ name: '0002_auth.sql', sql: authSql },
+	{ name: '0003_social.sql', sql: socialSql }
 ]
 
 let readyPromise: Promise<void> | undefined

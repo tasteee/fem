@@ -12,6 +12,8 @@ type StudioStateT = {
 	artist: ArtistT | null
 	tracks: FemesTrackT[]
 	playlists: PlaylistT[]
+	savedTracks: FemesTrackT[]
+	guestTracks: FemesTrackT[]
 }
 
 export const studio = $state<StudioStateT>({
@@ -19,7 +21,9 @@ export const studio = $state<StudioStateT>({
 	email: '',
 	artist: null,
 	tracks: [],
-	playlists: []
+	playlists: [],
+	savedTracks: [],
+	guestTracks: []
 })
 
 let hasLoaded = false
@@ -28,7 +32,18 @@ const applyData = (data: api.StudioDataT) => {
 	studio.artist = data.artist
 	studio.tracks = data.tracks
 	studio.playlists = data.playlists
+	studio.savedTracks = data.savedTracks
+	studio.guestTracks = data.guestTracks
 	studio.status = 'ready'
+}
+
+// After a save or follow from a public page. Only a
+// Studio that already loaded needs the fresh copy.
+export const refreshStudio = async () => {
+	const isReady = studio.status === 'ready'
+	if (!isReady) return
+	const data = await api.getStudio()
+	applyData(data)
 }
 
 export const loadStudio = async () => {
@@ -80,6 +95,8 @@ export const signOutOfStudio = async () => {
 	studio.artist = null
 	studio.tracks = []
 	studio.playlists = []
+	studio.savedTracks = []
+	studio.guestTracks = []
 }
 
 // ---------- tracks ----------
@@ -165,4 +182,21 @@ export const setPlaylistTracks = async (playlistId: string, trackIds: string[]) 
 	replacePlaylist(playlistId, { trackIds: result.trackIds })
 }
 
-export const findTrack = (trackId: string) => studio.tracks.find((track) => track.id === trackId)
+// Own tracks first, then other artists' songs the
+// artist saved or already put in a playlist.
+export const findTrack = (trackId: string) => {
+	const isMatch = (track: FemesTrackT) => track.id === trackId
+	const ownTrack = studio.tracks.find(isMatch)
+	if (ownTrack) return ownTrack
+	const savedTrack = studio.savedTracks.find(isMatch)
+	if (savedTrack) return savedTrack
+	return studio.guestTracks.find(isMatch)
+}
+
+// Other artists' songs a playlist can take: saved ones,
+// plus ones already in a playlist.
+export const listPickableGuestTracks = (): FemesTrackT[] => {
+	const savedIds = new Set(studio.savedTracks.map((track) => track.id))
+	const unsavedGuests = studio.guestTracks.filter((track) => !savedIds.has(track.id))
+	return [...studio.savedTracks, ...unsavedGuests]
+}

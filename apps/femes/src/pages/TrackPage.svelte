@@ -6,6 +6,7 @@
 	import SiteHeader from '../parts/SiteHeader.svelte'
 	import TrackList from '../parts/TrackList.svelte'
 	import { buildArtistPath, buildEmbedTrackPath } from '../routing/routes'
+	import SaveButton from '../parts/SaveButton.svelte'
 	import NotFoundPage from './NotFoundPage.svelte'
 
 	type TrackPagePropsT = {
@@ -43,7 +44,10 @@
 			<div class="track-layout">
 				<fem-now-playing track={page.track} queue={buildQueue(page)} artistHref={buildArtistPath(page.artist.slug)}></fem-now-playing>
 				<aside class="track-side">
-					<ArtistChip artist={page.artist} />
+					<div class="track-side-head">
+						<ArtistChip artist={page.artist} />
+						<SaveButton track={page.track} />
+					</div>
 					{#if hasDescription}
 						<fem-text color="muted">{page.track.description}</fem-text>
 					{/if}

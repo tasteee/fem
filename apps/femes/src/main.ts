@@ -4,11 +4,13 @@ import './app.css'
 import '@tasteee/fem-media'
 import { mount } from 'svelte'
 import App from './App.svelte'
+import { startPlayReports } from './data/report-plays'
 import { registerFemesIcons } from './register-icons'
 import { startRouter } from './routing/router.svelte'
 
 registerFemesIcons()
 startRouter()
+startPlayReports()
 
 // Touch screens get roomy controls. A mouse gets compact.
 const touchQuery = window.matchMedia('(pointer: coarse)')

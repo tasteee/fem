@@ -2,14 +2,19 @@ import type { ArtistPageT, ArtistT, PlaylistPageT, TrackPageT } from '../src/dat
 import { buildPlaylistPath, buildTrackPath } from '../src/routing/routes'
 import type { EnvT } from './env'
 import { respondJson, respondMissing, respondMoved } from './respond'
-import { toArtist, toPlaylist, toTrack } from './rows'
-import type { ArtistRowT, PlaylistRowT, TrackRowT } from './rows'
+import { joinedTrackColumns, toArtist, toJoinedTrack, toPlaylist, toTrack } from './rows'
+import type { ArtistRowT, JoinedTrackRowT, PlaylistRowT, TrackRowT } from './rows'
 
 // Read-only answers for the public pages. Private items
 // never leave the database. Unlisted ones open by link
 // but never appear in lists.
 
 const moreTracksCount = 3
+
+// A playlist can hold the owner's public and unlisted
+// tracks, and other artists' public tracks. Anything else
+// quietly drops out.
+export const visiblePlaylistTrack = "(tracks.visibility = 'public' OR (tracks.artist_id = playlists.artist_id AND tracks.visibility != 'private'))"
 
 const findArtist = async (env: EnvT, artistSlug: string): Promise<ArtistT | undefined> => {
 	const statement = env.DB.prepare('SELECT * FROM artists WHERE slug = ?').bind(artistSlug)
@@ -45,7 +50,7 @@ export const loadArtistPage = async (env: EnvT, artistSlug: string): Promise<Loo
 	const tracks = await listPublicTracks(env, artist)
 	const playlistSql = "SELECT * FROM playlists WHERE artist_id = ? AND visibility = 'public' ORDER BY created_at DESC"
 	const playlistResult = await env.DB.prepare(playlistSql).bind(artist.id).all<PlaylistRowT>()
-	const pairSql = 'SELECT playlist_id, track_id FROM playlist_tracks WHERE playlist_id IN (SELECT id FROM playlists WHERE artist_id = ?) ORDER BY position'
+	const pairSql = `SELECT playlist_tracks.playlist_id, playlist_tracks.track_id FROM playlist_tracks JOIN playlists ON playlists.id = playlist_tracks.playlist_id JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlists.artist_id = ? AND ${visiblePlaylistTrack} ORDER BY playlist_tracks.position`
 	const pairResult = await env.DB.prepare(pairSql).bind(artist.id).all<{ playlist_id: string; track_id: string }>()
 
 	const getTrackIds = (playlistId: string) => {
@@ -88,9 +93,9 @@ export const loadPlaylistPage = async (env: EnvT, artistSlug: string, playlistSl
 		return { kind: 'moved', path: buildPlaylistPath(artist.slug, currentSlug) }
 	}
 
-	const trackSql = "SELECT tracks.* FROM playlist_tracks JOIN tracks ON tracks.id = playlist_tracks.track_id WHERE playlist_tracks.playlist_id = ? AND tracks.visibility != 'private' ORDER BY playlist_tracks.position"
-	const trackResult = await env.DB.prepare(trackSql).bind(row.id).all<TrackRowT>()
-	const tracks = trackResult.results.map((trackRow) => toTrack(trackRow, artist))
+	const trackSql = `SELECT ${joinedTrackColumns} FROM playlist_tracks JOIN playlists ON playlists.id = playlist_tracks.playlist_id JOIN tracks ON tracks.id = playlist_tracks.track_id JOIN artists ON artists.id = tracks.artist_id WHERE playlist_tracks.playlist_id = ? AND ${visiblePlaylistTrack} ORDER BY playlist_tracks.position`
+	const trackResult = await env.DB.prepare(trackSql).bind(row.id).all<JoinedTrackRowT>()
+	const tracks = trackResult.results.map(toJoinedTrack)
 	const trackIds = tracks.map((track) => track.id)
 	const playlist = toPlaylist(row, artist, trackIds)
 	return { kind: 'found', page: { artist, playlist, tracks } }
