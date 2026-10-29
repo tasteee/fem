@@ -1,6 +1,7 @@
 import { checkIsSameOrigin, getSessionEmail, handleRequestLink, handleSignOut, handleVerifyLink } from './auth'
 import type { EnvT } from './env'
 import { handleMedia } from './media'
+import { serveAppPage } from './meta'
 import { ensureSchema } from './schema'
 import { handleArtistPage, handlePlaylistPage, handleTrackPage } from './public-api'
 import { respondError, respondJson, respondMissing } from './respond'
@@ -134,14 +135,13 @@ const handleApi = async (request: Request, env: EnvT, segments: string[]): Promi
 // A path with a dot is a file. Anything else is a page,
 // and every page is the app.
 const handleAsset = async (request: Request, env: EnvT, pathname: string): Promise<Response> => {
-	const assetResponse = await env.ASSETS.fetch(request)
-	const isFound = assetResponse.status !== 404
-	if (isFound) return assetResponse
 	const lastSegment = pathname.split('/').pop() ?? ''
 	const looksLikeFile = lastSegment.includes('.')
-	if (looksLikeFile) return assetResponse
-	const appUrl = new URL('/index.html', request.url)
-	return env.ASSETS.fetch(new Request(appUrl, request))
+	if (looksLikeFile) return env.ASSETS.fetch(request)
+	const appUrl = new URL('/', request.url)
+	const appResponse = await env.ASSETS.fetch(new Request(appUrl, request))
+	await ensureSchema(env)
+	return serveAppPage(request, env, appResponse)
 }
 
 const handleRequest = async (request: Request, env: EnvT): Promise<Response> => {

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { player } from '@tasteee/fem-media'
 	import ArtistPage from './pages/ArtistPage.svelte'
+	import EmbedTrackPage from './pages/EmbedTrackPage.svelte'
 	import HomePage from './pages/HomePage.svelte'
 	import NotFoundPage from './pages/NotFoundPage.svelte'
 	import PlaylistPage from './pages/PlaylistPage.svelte'
@@ -10,6 +11,14 @@
 	import StudioTracksPage from './pages/studio/StudioTracksPage.svelte'
 	import TrackPage from './pages/TrackPage.svelte'
 	import { navigate, router } from './routing/router.svelte'
+
+	// An embed is a bare player inside someone's page, so
+	// it gets no player bar of its own.
+	const isEmbed = $derived(router.route.kind === 'embed-track')
+
+	$effect(() => {
+		document.documentElement.toggleAttribute('data-embed', isEmbed)
+	})
 
 	// Tapping the player bar opens the playing track's page,
 	// which is its big now-playing view.
@@ -21,7 +30,9 @@
 	}
 </script>
 
-{#if router.route.kind === 'home'}
+{#if router.route.kind === 'embed-track'}
+	<EmbedTrackPage artistSlug={router.route.artistSlug} trackSlug={router.route.trackSlug} />
+{:else if router.route.kind === 'home'}
 	<HomePage />
 {:else if router.route.kind === 'artist'}
 	<ArtistPage artistSlug={router.route.artistSlug} />
@@ -41,6 +52,8 @@
 	<NotFoundPage />
 {/if}
 
-<div class="player-dock">
-	<fem-player-bar expandable onexpand={handleExpand}></fem-player-bar>
-</div>
+{#if !isEmbed}
+	<div class="player-dock">
+		<fem-player-bar expandable onexpand={handleExpand}></fem-player-bar>
+	</div>
+{/if}
