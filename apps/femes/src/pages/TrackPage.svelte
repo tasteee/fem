@@ -7,6 +7,8 @@
 	import TrackList from '../parts/TrackList.svelte'
 	import { buildArtistPath, buildEmbedTrackPath } from '../routing/routes'
 	import SaveButton from '../parts/SaveButton.svelte'
+	import { checkIsOwnSlug, findOwnTrackBySlug, studio } from '../data/studio.svelte'
+	import OwnTrackView from '../owner/OwnTrackView.svelte'
 	import NotFoundPage from './NotFoundPage.svelte'
 
 	type TrackPagePropsT = {
@@ -15,6 +17,9 @@
 	}
 
 	const props: TrackPagePropsT = $props()
+	const isCheckingOwner = $derived(studio.status === 'loading')
+	const isOwnPage = $derived(checkIsOwnSlug(props.artistSlug))
+	const ownTrack = $derived(isOwnPage ? findOwnTrackBySlug(props.trackSlug) : undefined)
 	const pageRequest = $derived(getTrackPage(props.artistSlug, props.trackSlug))
 
 	// Play starts this track, then carries on through the
@@ -33,6 +38,11 @@
 	const buildMoreLabel = (page: TrackPageT) => `More from ${page.artist.name}`
 </script>
 
+{#if isCheckingOwner}
+	<LoadingPage />
+{:else if ownTrack && studio.artist}
+	<OwnTrackView artist={studio.artist} track={ownTrack} />
+{:else}
 {#await pageRequest}
 	<LoadingPage />
 {:then page}
@@ -70,3 +80,4 @@
 		<NotFoundPage />
 	{/if}
 {/await}
+{/if}

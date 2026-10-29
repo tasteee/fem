@@ -1,8 +1,12 @@
+import { replacePath } from '../routing/router.svelte'
+import { buildArtistPath, buildPlaylistPath } from '../routing/routes'
 import * as api from './studio-api'
 import type { ArtistT, FemesTrackT, PlaylistT } from './types'
 
-// The Studio's shared state. Pages read it; actions
-// call the API, then update it with what came back.
+// The signed-in artist's own things. Their pages read it
+// to show manage controls; actions call the API, then
+// update it with what came back. Listeners never load
+// more than one quick "who am I" check.
 
 export type StudioStatusT = 'loading' | 'signed-out' | 'no-artist' | 'ready' | 'failed'
 
@@ -14,6 +18,8 @@ type StudioStateT = {
 	playlists: PlaylistT[]
 	savedTracks: FemesTrackT[]
 	guestTracks: FemesTrackT[]
+	savedTrackIds: string[]
+	followingIds: string[]
 }
 
 export const studio = $state<StudioStateT>({
@@ -23,8 +29,12 @@ export const studio = $state<StudioStateT>({
 	tracks: [],
 	playlists: [],
 	savedTracks: [],
-	guestTracks: []
+	guestTracks: [],
+	savedTrackIds: [],
+	followingIds: []
 })
+
+const isDemo = import.meta.env.VITE_CATALOG === 'demo'
 
 let hasLoaded = false
 
@@ -47,6 +57,11 @@ export const refreshStudio = async () => {
 }
 
 export const loadStudio = async () => {
+	if (isDemo) {
+		studio.status = 'signed-out'
+		return
+	}
+
 	try {
 		const me = await api.getMe()
 
@@ -56,6 +71,8 @@ export const loadStudio = async () => {
 		}
 
 		studio.email = me.email
+		studio.savedTrackIds = me.savedTrackIds
+		studio.followingIds = me.followingIds
 		const hasArtist = me.artist !== null
 
 		if (!hasArtist) {
@@ -84,9 +101,19 @@ export const createArtist = async (name: string, slug: string) => {
 	applyData(data)
 }
 
+// A new link moves the page you're on along with it.
 export const updateArtist = async (changes: api.ArtistChangesT) => {
+	const oldSlug = studio.artist?.slug ?? ''
 	const result = await api.updateArtist(changes)
 	studio.artist = result.artist
+	const oldPrefix = buildArtistPath(oldSlug)
+	const pathname = window.location.pathname
+	const isOnOldPage = pathname === oldPrefix || pathname.startsWith(`${oldPrefix}/`)
+	const isSlugChanged = result.artist.slug !== oldSlug
+	const shouldMove = isOnOldPage && isSlugChanged
+	if (!shouldMove) return
+	const newPath = buildArtistPath(result.artist.slug) + pathname.slice(oldPrefix.length)
+	replacePath(newPath)
 }
 
 export const signOutOfStudio = async () => {
@@ -97,6 +124,8 @@ export const signOutOfStudio = async () => {
 	studio.playlists = []
 	studio.savedTracks = []
 	studio.guestTracks = []
+	studio.savedTrackIds = []
+	studio.followingIds = []
 }
 
 // ---------- tracks ----------
@@ -117,9 +146,16 @@ export const addTrack = async (title: string, audioKey: string, duration: number
 	return result.track
 }
 
+// A rename changes the track's link. If you're on its
+// page, the address follows.
 export const updateTrack = async (trackId: string, changes: api.TrackChangesT) => {
+	const oldHref = findTrack(trackId)?.href ?? ''
 	const result = await api.updateTrack(trackId, changes)
 	replaceTrack(result.track)
+	const newHref = result.track.href ?? ''
+	const isOnOldPage = window.location.pathname === oldHref
+	const hasMoved = isOnOldPage && newHref !== oldHref
+	if (hasMoved) replacePath(newHref)
 	return result.track
 }
 
@@ -147,6 +183,15 @@ export const moveTrack = async (fromIndex: number, toIndex: number) => {
 
 // ---------- playlists ----------
 
+export const findPlaylist = (playlistId: string) => studio.playlists.find((playlist) => playlist.id === playlistId)
+
+export const buildOwnPlaylistPath = (playlistId: string): string => {
+	const artistSlug = studio.artist?.slug ?? ''
+	const playlist = findPlaylist(playlistId)
+	if (!playlist) return buildArtistPath(artistSlug)
+	return buildPlaylistPath(artistSlug, playlist.slug)
+}
+
 const replacePlaylist = (playlistId: string, changes: Partial<PlaylistT>) => {
 	const applyChanges = (playlist: PlaylistT) => {
 		const isChanged = playlist.id === playlistId
@@ -166,9 +211,14 @@ export const addPlaylist = async (changes: api.PlaylistChangesT) => {
 // Fields come back from a full reload, since a rename
 // changes the playlist's link too.
 export const updatePlaylist = async (playlistId: string, changes: api.PlaylistChangesT) => {
+	const oldPath = buildOwnPlaylistPath(playlistId)
 	await api.updatePlaylist(playlistId, changes)
 	const data = await api.getStudio()
 	applyData(data)
+	const newPath = buildOwnPlaylistPath(playlistId)
+	const isOnOldPage = window.location.pathname === oldPath
+	const hasMoved = isOnOldPage && newPath !== oldPath
+	if (hasMoved) replacePath(newPath)
 }
 
 export const removePlaylist = async (playlistId: string) => {
@@ -199,4 +249,25 @@ export const listPickableGuestTracks = (): FemesTrackT[] => {
 	const savedIds = new Set(studio.savedTracks.map((track) => track.id))
 	const unsavedGuests = studio.guestTracks.filter((track) => !savedIds.has(track.id))
 	return [...studio.savedTracks, ...unsavedGuests]
+}
+
+// ---------- ownership ----------
+
+export const checkIsSignedInArtist = (): boolean => studio.status === 'ready'
+
+// True on the signed-in artist's own pages.
+export const checkIsOwnSlug = (artistSlug: string): boolean => {
+	const ownSlug = studio.artist?.slug
+	if (!ownSlug) return false
+	return ownSlug === artistSlug
+}
+
+export const findOwnTrackBySlug = (trackSlug: string) => studio.tracks.find((track) => track.slug === trackSlug)
+export const findOwnPlaylistBySlug = (playlistSlug: string) => studio.playlists.find((playlist) => playlist.slug === playlistSlug)
+
+// Tracks in a playlist, in its order. Ones that went
+// private or were deleted drop out.
+export const listPlaylistTracks = (playlist: PlaylistT): FemesTrackT[] => {
+	const foundTracks = playlist.trackIds.map(findTrack)
+	return foundTracks.filter((track): track is FemesTrackT => track !== undefined)
 }

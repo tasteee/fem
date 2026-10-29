@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FemesTrackT } from '../data/types'
-	import { checkIsOwnSlug, checkIsSaved, checkIsSignedInArtist, ensureViewer, toggleSave } from '../data/viewer.svelte'
+	import { checkIsOwnSlug, checkIsSaved, checkIsSignedInArtist, toggleSave } from '../data/viewer.svelte'
 
 	type SaveButtonPropsT = {
 		track: FemesTrackT
@@ -10,7 +10,6 @@
 	// own songs. No counts, just the artist's own state.
 	const props: SaveButtonPropsT = $props()
 
-	ensureViewer()
 
 	const isOwnTrack = $derived(checkIsOwnSlug(props.track.artistSlug))
 	const isPublic = $derived(props.track.visibility === 'public')

@@ -8,6 +8,8 @@
 	import SiteHeader from '../parts/SiteHeader.svelte'
 	import { formatTrackCount } from '../parts/format-count'
 	import TrackList from '../parts/TrackList.svelte'
+	import { checkIsOwnSlug, findOwnPlaylistBySlug, studio } from '../data/studio.svelte'
+	import OwnPlaylistView from '../owner/OwnPlaylistView.svelte'
 	import NotFoundPage from './NotFoundPage.svelte'
 
 	type PlaylistPagePropsT = {
@@ -16,6 +18,9 @@
 	}
 
 	const props: PlaylistPagePropsT = $props()
+	const isCheckingOwner = $derived(studio.status === 'loading')
+	const isOwnPage = $derived(checkIsOwnSlug(props.artistSlug))
+	const ownPlaylist = $derived(isOwnPage ? findOwnPlaylistBySlug(props.playlistSlug) : undefined)
 	const pageRequest = $derived(getPlaylistPage(props.artistSlug, props.playlistSlug))
 
 	const buildSummary = (page: PlaylistPageT): string => {
@@ -27,6 +32,11 @@
 	const handleShare = () => sharePage(props.playlistSlug)
 </script>
 
+{#if isCheckingOwner}
+	<LoadingPage />
+{:else if ownPlaylist && studio.artist}
+	<OwnPlaylistView artist={studio.artist} playlist={ownPlaylist} />
+{:else}
 {#await pageRequest}
 	<LoadingPage />
 {:then page}
@@ -58,3 +68,4 @@
 		<NotFoundPage />
 	{/if}
 {/await}
+{/if}

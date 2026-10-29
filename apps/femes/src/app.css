@@ -27,7 +27,7 @@ p {
 .app-page {
 	max-width: 1120px;
 	margin: 0 auto;
-	padding: var(--space-4) var(--space-4) calc(var(--player-bar-height) + var(--space-10));
+	padding: var(--space-4) var(--space-4) calc(var(--player-bar-height) + var(--tab-bar-space) + var(--space-10));
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-6);
@@ -41,6 +41,31 @@ p {
 	z-index: 10;
 	max-width: 1440px;
 	margin: 0 auto;
+}
+
+/* Signed-in artists get the tab bar under the player. */
+/* Pages make room for it through --tab-bar-space. */
+:root {
+	--tab-bar-space: 0px;
+}
+
+:root[data-tabs] {
+	--tab-bar-space: calc(var(--tab-bar-item-height) + var(--space-4));
+}
+
+.player-dock {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.player-dock > fem-player-bar {
+	align-self: stretch;
+}
+
+.app-tabs {
+	width: min(100%, 480px);
 }
 
 .site-header {
@@ -191,6 +216,46 @@ p {
 	font-weight: var(--font-weight-medium);
 }
 
+.playlist-tile-meta {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+/* The owner's "New playlist" tile, square like a cover. */
+.playlist-tile-new {
+	aspect-ratio: 1;
+	border: none;
+	border-radius: var(--radius-container);
+	background: var(--surface-inset);
+	color: var(--text-muted);
+	font: inherit;
+	font-weight: var(--font-weight-medium);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+	cursor: pointer;
+	transition: background var(--duration-fast) var(--easing-standard);
+}
+
+.playlist-tile-new:hover {
+	background: var(--surface-control);
+	color: var(--text-strong);
+}
+
+.playlist-tile-new:focus-visible {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+.track-owner-actions {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
 /* ---------- track page ---------- */
 .track-layout {
 	display: grid;
@@ -255,7 +320,7 @@ p {
 	display: flex;
 	flex-direction: column;
 	gap: var(--home-section-gap);
-	padding-bottom: calc(var(--player-bar-height) + var(--space-10));
+	padding-bottom: calc(var(--player-bar-height) + var(--tab-bar-space) + var(--space-10));
 }
 
 .home-frame {
@@ -595,89 +660,9 @@ p {
 	text-decoration: underline;
 }
 
-/* ---------- studio frame ---------- */
-.studio {
-	min-height: 100vh;
-	display: flex;
-}
-
-.studio-center {
-	min-height: 60vh;
-	align-items: center;
-	justify-content: center;
-}
-
-.studio-side {
-	box-sizing: border-box;
-	width: 240px;
-	flex: none;
-	padding: var(--space-5) var(--space-3);
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-4);
-	position: sticky;
-	top: 0;
-	height: 100vh;
-}
-
-.studio-brand {
-	padding: 0 var(--space-4);
-}
-
-.studio-side-end {
-	margin-top: auto;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: var(--space-2);
-	padding: 0 var(--space-3);
-}
-
-.studio-side-link {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--space-2);
-	color: var(--text-muted);
-	font-size: var(--font-size-small);
-	font-weight: var(--font-weight-act);
-}
-
-.studio-top {
-	display: none;
-}
-
-.studio-main {
-	flex: 1;
-	min-width: 0;
-	max-width: 1040px;
-	padding: var(--space-5) var(--space-6) calc(var(--player-bar-height) + var(--space-10)) 0;
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-4);
-}
-
-/* A phone swaps the side menu for a strip on top. */
-@media (max-width: 800px) {
-	.studio {
-		flex-direction: column;
-	}
-
-	.studio-side {
-		display: none;
-	}
-
-	.studio-top {
-		padding: var(--space-4) var(--space-4) 0;
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-	}
-
-	.studio-main {
-		padding: var(--space-4) var(--space-4) calc(var(--player-bar-height) + var(--space-10));
-	}
-}
-
+/* ---------- manage ---------- */
+/* Toolbars, dialogs, and lists the signed-in artist */
+/* uses on their own pages. */
 .studio-toolbar {
 	display: flex;
 	align-items: center;
@@ -688,19 +673,17 @@ p {
 	flex: 1;
 }
 
-.studio-list,
-.studio-empty {
-	--card-padding: var(--space-2);
+/* A row of controls that wraps on a narrow phone */
+/* instead of running off the side. */
+.manage-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--space-3);
 }
 
-.studio-grip {
-	padding: 0;
-	border: none;
-	border-radius: var(--radius-small);
-	background: none;
-	color: var(--text-muted);
-	display: flex;
-	align-items: center;
+.studio-empty {
+	--card-padding: var(--space-2);
 }
 
 .studio-row-art {
@@ -746,46 +729,19 @@ p {
 	gap: var(--space-3);
 }
 
-/* ---------- studio playlists ---------- */
-.playlist-studio {
-	display: grid;
-	grid-template-columns: 260px minmax(0, 1fr);
-	gap: var(--space-5);
-	align-items: start;
-}
-
-.playlist-picker {
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-1);
-}
-
-.playlist-editor,
 .profile-editor {
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-5);
 }
 
-.playlist-editor-head {
-	display: grid;
-	grid-template-columns: 180px minmax(0, 1fr);
-	gap: var(--space-5);
-}
-
 @media (max-width: 800px) {
-	.playlist-studio,
-	.playlist-editor-head,
 	.edit-track {
 		grid-template-columns: minmax(0, 1fr);
 	}
-
-	.playlist-cover-upload {
-		max-width: 200px;
-	}
 }
 
-/* ---------- studio profile ---------- */
+/* ---------- edit profile ---------- */
 .profile-avatar-upload {
 	width: 120px;
 }
@@ -896,5 +852,7 @@ p {
 /* instead of passing the tap to the row behind it. */
 .row-action {
 	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
 	pointer-events: auto;
 }

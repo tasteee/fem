@@ -8,6 +8,8 @@
 	import { formatTrackCount } from '../parts/format-count'
 	import TrackList from '../parts/TrackList.svelte'
 	import { buildPlaylistPath } from '../routing/routes'
+	import { checkIsOwnSlug, studio } from '../data/studio.svelte'
+	import OwnArtistView from '../owner/OwnArtistView.svelte'
 	import NotFoundPage from './NotFoundPage.svelte'
 
 	type ArtistPagePropsT = {
@@ -17,6 +19,10 @@
 	type TabT = 'tracks' | 'playlists'
 
 	const props: ArtistPagePropsT = $props()
+	// Your own page shows manage controls. Everyone else's
+	// is the public page.
+	const isCheckingOwner = $derived(studio.status === 'loading')
+	const ownArtist = $derived(checkIsOwnSlug(props.artistSlug) ? studio.artist : null)
 	const pageRequest = $derived(getArtistPage(props.artistSlug))
 	let selectedTab = $state<TabT>('tracks')
 
@@ -31,6 +37,11 @@
 	const getTrackCountLabel = (page: ArtistPageT): string => formatTrackCount(page.tracks.length)
 </script>
 
+{#if isCheckingOwner}
+	<LoadingPage />
+{:else if ownArtist}
+	<OwnArtistView artist={ownArtist} />
+{:else}
 {#await pageRequest}
 	<LoadingPage />
 {:then page}
@@ -97,3 +108,4 @@
 		<NotFoundPage />
 	{/if}
 {/await}
+{/if}

@@ -25,3 +25,8 @@
 .tab-bar-item-label {
 	white-space: nowrap;
 }
+
+.tab-bar-item.isDisabled {
+	opacity: var(--disabled-opacity);
+	cursor: not-allowed;
+}

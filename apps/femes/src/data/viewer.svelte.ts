@@ -1,64 +1,19 @@
 import { showToast } from '@tasteee/fem'
 import * as api from './studio-api'
-import { refreshStudio } from './studio.svelte'
+import { refreshStudio, studio } from './studio.svelte'
 
-// Who is looking at a public page. Listeners are never
-// signed in and see nothing extra. A signed-in artist
-// gets Save on songs and Follow on artists.
+// Save and Follow for a signed-in artist. Listeners are
+// never signed in and see neither.
 
-type ViewerStateT = {
-	artistId: string
-	artistSlug: string
-	savedTrackIds: string[]
-	followingIds: string[]
-}
-
-export const viewer = $state<ViewerStateT>({
-	artistId: '',
-	artistSlug: '',
-	savedTrackIds: [],
-	followingIds: []
-})
-
-const isDemo = import.meta.env.VITE_CATALOG === 'demo'
-let hasLoaded = false
-
-const loadViewer = async () => {
-	try {
-		const me = await api.getMe()
-		const artist = me?.artist
-		if (!artist) return
-		viewer.artistId = artist.id
-		viewer.artistSlug = artist.slug
-		viewer.savedTrackIds = me?.savedTrackIds ?? []
-		viewer.followingIds = me?.followingIds ?? []
-	} catch (viewerError) {
-		// Pages work the same without it, so this only logs.
-		console.warn('femes: could not read the signed-in artist', viewerError)
-	}
-}
-
-// Loads once per visit.
-export const ensureViewer = () => {
-	if (hasLoaded) return
-	hasLoaded = true
-	if (isDemo) return
-	loadViewer()
-}
-
-export const checkIsSignedInArtist = (): boolean => viewer.artistId !== ''
-
-// An artist can't save their own songs or follow
-// themselves.
-export const checkIsOwnSlug = (artistSlug: string): boolean => viewer.artistSlug === artistSlug
+export { checkIsOwnSlug, checkIsSignedInArtist } from './studio.svelte'
 
 // ---------- saves ----------
 
-export const checkIsSaved = (trackId: string): boolean => viewer.savedTrackIds.includes(trackId)
+export const checkIsSaved = (trackId: string): boolean => studio.savedTrackIds.includes(trackId)
 
 const setSaved = (trackId: string, shouldSave: boolean) => {
-	const withoutTrack = viewer.savedTrackIds.filter((id) => id !== trackId)
-	viewer.savedTrackIds = shouldSave ? [...withoutTrack, trackId] : withoutTrack
+	const withoutTrack = studio.savedTrackIds.filter((id) => id !== trackId)
+	studio.savedTrackIds = shouldSave ? [...withoutTrack, trackId] : withoutTrack
 }
 
 // Flips right away and flips back if the server says no.
@@ -79,11 +34,11 @@ export const toggleSave = async (trackId: string) => {
 
 // ---------- follows ----------
 
-export const checkIsFollowing = (artistId: string): boolean => viewer.followingIds.includes(artistId)
+export const checkIsFollowing = (artistId: string): boolean => studio.followingIds.includes(artistId)
 
 const setFollowing = (artistId: string, shouldFollow: boolean) => {
-	const withoutArtist = viewer.followingIds.filter((id) => id !== artistId)
-	viewer.followingIds = shouldFollow ? [...withoutArtist, artistId] : withoutArtist
+	const withoutArtist = studio.followingIds.filter((id) => id !== artistId)
+	studio.followingIds = shouldFollow ? [...withoutArtist, artistId] : withoutArtist
 }
 
 export const toggleFollow = async (artistId: string) => {
