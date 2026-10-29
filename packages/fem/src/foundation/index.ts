@@ -4,6 +4,8 @@
 
 export { buildClassName, getFlagClass, getModifierClass } from './class-names'
 export { createStyleSheet } from './create-style-sheet'
+export { cropImage } from './crop-image'
+export type { CropImageInputT } from './crop-image'
 export { formatDuration, formatFileSize } from './format-duration'
 export { foundationSheet } from './foundation-sheet'
 export { getEffectiveTheme } from './get-effective-theme'

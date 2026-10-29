@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { showToast } from '@tasteee/fem'
 	import { studio, updateArtist } from '../data/studio.svelte'
-	import { getErrorReason, uploadFile } from '../data/studio-api'
+	import { getErrorReason } from '../data/studio-api'
 	import { readValue } from '../parts/read-value'
 	import { buildArtistPath, buildSlug } from '../routing/routes'
+	import CroppedImagePicker from './CroppedImagePicker.svelte'
 
 	type EditProfileDialogPropsT = {
 		open: boolean
@@ -79,27 +80,21 @@
 		links = links.filter((link) => link.id !== linkId)
 	}
 
-	const uploadImage = async (event: Event): Promise<string | undefined> => {
-		const detail = (event as CustomEvent<{ files: File[] }>).detail
-		const file = detail.files[0]
-		if (!file) return undefined
-		const ignoreProgress = () => {}
+	// Both pictures are cropped before they upload: the
+	// avatar round, the header wide.
+	let busyImageCount = $state(0)
+	const isUploadingImage = $derived(busyImageCount > 0)
+	const hasPendingAvatar = $derived(avatarKey !== undefined)
+	const hasPendingHeader = $derived(headerKey !== undefined)
 
-		try {
-			return await uploadFile(file, 'image', ignoreProgress)
-		} catch (uploadError) {
-			showToast(`Image didn't upload (${getErrorReason(uploadError)}).`)
-			return undefined
-		}
+	const handleImageBusy = (isBusy: boolean) => {
+		const change = isBusy ? 1 : -1
+		busyImageCount = Math.max(0, busyImageCount + change)
 	}
 
-	const handleAvatarChange = async (event: Event) => {
-		avatarKey = await uploadImage(event)
-	}
-
-	const handleHeaderChange = async (event: Event) => {
-		headerKey = await uploadImage(event)
-	}
+	const handleImageFailure = (message: string) => showToast(message)
+	const handleAvatarUploaded = (key: string) => (avatarKey = key)
+	const handleHeaderUploaded = (key: string) => (headerKey = key)
 
 	const handleSave = async () => {
 		isSaving = true
@@ -122,10 +117,34 @@
 <fem-dialog class="studio-dialog isWide" open={props.open} heading="Edit profile" onclose={props.onClose}>
 	<div class="profile-editor">
 		<fem-field label="Header" help="A wide image, at least 1600 × 400.">
-			<fem-file-upload kind="image" ratio="4 / 1" accept="image/*" label="Add a header" src={headerSource} onchange={handleHeaderChange}></fem-file-upload>
+			<CroppedImagePicker
+				label="Add a header"
+				cropHeading="Crop header"
+				src={headerSource}
+				aspect={4}
+				ratio="4 / 1"
+				shape="square"
+				outputWidth={2400}
+				hasPending={hasPendingHeader}
+				onUploaded={handleHeaderUploaded}
+				onBusyChange={handleImageBusy}
+				onFailure={handleImageFailure}
+			/>
 		</fem-field>
 		<fem-field label="Avatar">
-			<fem-file-upload class="profile-avatar-upload" kind="image" accept="image/*" label="Add" src={avatarSource} onchange={handleAvatarChange}></fem-file-upload>
+			<CroppedImagePicker
+				class="profile-avatar-upload"
+				label="Add"
+				cropHeading="Crop avatar"
+				src={avatarSource}
+				aspect={1}
+				shape="round"
+				outputWidth={800}
+				hasPending={hasPendingAvatar}
+				onUploaded={handleAvatarUploaded}
+				onBusyChange={handleImageBusy}
+				onFailure={handleImageFailure}
+			/>
 		</fem-field>
 		<div class="profile-editor-pair">
 			<fem-field label="Artist name">
@@ -164,5 +183,5 @@
 		{/if}
 	</div>
 	<fem-button slot="actions" kind="soft" onclick={props.onClose}>Cancel</fem-button>
-	<fem-button slot="actions" loading={isSaving} onclick={handleSave}>Save</fem-button>
+	<fem-button slot="actions" loading={isSaving} disabled={isUploadingImage} onclick={handleSave}>Save</fem-button>
 </fem-dialog>

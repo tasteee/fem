@@ -40,6 +40,7 @@ declare module 'react' {
 			'fem-heading': ReactElementPropsT & Fem.FemHeadingPropsT & Fem.FemHeadingAttributesT
 			'fem-icon': ReactElementPropsT & Fem.FemIconPropsT & Fem.FemIconAttributesT
 			'fem-image': ReactElementPropsT & Fem.FemImagePropsT & Fem.FemImageAttributesT
+			'fem-image-crop': ReactElementPropsT & Fem.FemImageCropPropsT & Fem.FemImageCropAttributesT
 			'fem-input': ReactElementPropsT & Fem.FemInputPropsT & Fem.FemInputAttributesT
 			'fem-list-item': ReactElementPropsT & Fem.FemListItemPropsT & Fem.FemListItemAttributesT
 			'fem-menu': ReactElementPropsT & Fem.FemMenuPropsT & Fem.FemMenuAttributesT

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { updatePlaylist } from '../data/studio.svelte'
-	import { getErrorReason, uploadFile } from '../data/studio-api'
+	import { getErrorReason } from '../data/studio-api'
 	import type { PlaylistT, VisibilityT } from '../data/types'
 	import { readValue } from '../parts/read-value'
+	import CroppedImagePicker from './CroppedImagePicker.svelte'
 
 	type EditPlaylistDialogPropsT = {
 		playlist: PlaylistT | undefined
@@ -56,21 +57,11 @@
 		visibility = readValue(event) as VisibilityT
 	}
 
-	const handleCoverChange = async (event: Event) => {
-		const detail = (event as CustomEvent<{ files: File[] }>).detail
-		const file = detail.files[0]
-		if (!file) return
-		isUploadingCover = true
-		const ignoreProgress = () => {}
-
-		try {
-			coverKey = await uploadFile(file, 'image', ignoreProgress)
-		} catch (uploadError) {
-			failure = `Cover didn't upload (${getErrorReason(uploadError)}).`
-		} finally {
-			isUploadingCover = false
-		}
-	}
+	// The cover is cropped square and uploads right away.
+	const handleCoverUploaded = (key: string) => (coverKey = key)
+	const handleCoverBusy = (isBusy: boolean) => (isUploadingCover = isBusy)
+	const handleCoverFailure = (message: string) => (failure = message)
+	const hasPendingCover = $derived(coverKey !== undefined)
 
 	const handleSave = async () => {
 		const playlist = props.playlist
@@ -98,7 +89,18 @@
 	<fem-column gap="5">
 		<div class="edit-track">
 			<fem-field label="Cover">
-				<fem-file-upload kind="image" accept="image/*" label="Add cover" src={coverSource} onchange={handleCoverChange}></fem-file-upload>
+				<CroppedImagePicker
+					label="Add cover"
+					cropHeading="Crop cover"
+					src={coverSource}
+					aspect={1}
+					shape="square"
+					outputWidth={1400}
+					hasPending={hasPendingCover}
+					onUploaded={handleCoverUploaded}
+					onBusyChange={handleCoverBusy}
+					onFailure={handleCoverFailure}
+				/>
 			</fem-field>
 			<fem-column gap="4">
 				<fem-field label="Name" help="Renaming keeps the old link working.">

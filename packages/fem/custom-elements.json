@@ -3272,6 +3272,102 @@
 		},
 		{
 			"kind": "javascript-module",
+			"path": "src/components/image-crop/image-crop.tsx",
+			"declarations": [
+				{
+					"kind": "class",
+					"name": "ImageCrop",
+					"tagName": "fem-image-crop",
+					"customElement": true,
+					"description": "Pick the part of an image to keep: drag to move, pinch, scroll, or the slider to zoom. The window's shape is the crop's shape. It only measures; change carries the crop in the image's own pixels, and cropImage() from the foundation turns that into a file.",
+					"attributes": [
+						{
+							"name": "src",
+							"fieldName": "src",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"name": "aspect",
+							"fieldName": "aspect",
+							"type": {
+								"text": "number"
+							},
+							"default": "1"
+						},
+						{
+							"name": "shape",
+							"fieldName": "shape",
+							"type": {
+								"text": "'square' | 'round'"
+							},
+							"default": "\"square\""
+						},
+						{
+							"name": "label",
+							"fieldName": "label",
+							"type": {
+								"text": "string"
+							},
+							"default": "\"Crop image\""
+						}
+					],
+					"members": [
+						{
+							"kind": "field",
+							"name": "src",
+							"type": {
+								"text": "string"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "aspect",
+							"type": {
+								"text": "number"
+							}
+						},
+						{
+							"kind": "field",
+							"name": "shape",
+							"type": {
+								"text": "'square' | 'round'"
+							},
+							"reflects": true
+						},
+						{
+							"kind": "field",
+							"name": "label",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"name": "change",
+							"type": {
+								"text": "CustomEvent"
+							}
+						}
+					],
+					"slots": []
+				}
+			],
+			"exports": [
+				{
+					"kind": "custom-element-definition",
+					"name": "fem-image-crop",
+					"declaration": {
+						"name": "ImageCrop",
+						"module": "src/components/image-crop/image-crop.tsx"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
 			"path": "src/components/input/input.tsx",
 			"declarations": [
 				{

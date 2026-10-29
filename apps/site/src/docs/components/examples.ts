@@ -538,6 +538,13 @@ const listAndMediaExamples: Record<string, ExampleT> = {
 	<fem-file-upload kind="image" accept="image/*" label="Artwork" description="Square" style="width: 180px"></fem-file-upload>
 </fem-column>`
 	},
+	'fem-image-crop': {
+		group: 'Forms',
+		html: `<fem-row gap="6" wrap>
+	<fem-image-crop src="https://picsum.photos/seed/fem-crop/1200/800" aspect="1" label="Artwork" style="width: 280px"></fem-image-crop>
+	<fem-image-crop src="https://picsum.photos/seed/fem-crop/1200/800" aspect="1" shape="round" label="Avatar" style="width: 240px"></fem-image-crop>
+</fem-row>`
+	},
 	'fem-copy-field': {
 		group: 'Forms',
 		html: `<fem-copy-field shareable share-title="safeword" value="https://artisst.app/tasteink/safeword"></fem-copy-field>`

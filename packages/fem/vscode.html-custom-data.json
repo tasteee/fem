@@ -1187,6 +1187,32 @@
 			]
 		},
 		{
+			"name": "fem-image-crop",
+			"description": "Pick the part of an image to keep: drag to move, pinch, scroll, or the slider to zoom. The window's shape is the crop's shape. It only measures; change carries the crop in the image's own pixels, and cropImage() from the foundation turns that into a file.",
+			"attributes": [
+				{
+					"name": "src"
+				},
+				{
+					"name": "aspect"
+				},
+				{
+					"name": "shape",
+					"values": [
+						{
+							"name": "square"
+						},
+						{
+							"name": "round"
+						}
+					]
+				},
+				{
+					"name": "label"
+				}
+			]
+		},
+		{
 			"name": "fem-input",
 			"description": "A single line of text. Works in forms like a native input.",
 			"attributes": [

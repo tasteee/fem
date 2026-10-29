@@ -61,6 +61,7 @@ import { TreeItem } from './components/tree-item/tree-item'
 import { CopyField } from './components/copy-field/copy-field'
 import { FileUpload } from './components/file-upload/file-upload'
 import { Image } from './components/image/image'
+import { ImageCrop } from './components/image-crop/image-crop'
 import { ListItem } from './components/list-item/list-item'
 import { Scrubber } from './components/scrubber/scrubber'
 import { Sortable } from './components/sortable/sortable'
@@ -134,6 +135,7 @@ const elements: [string, CustomElementConstructor][] = [
 	['fem-copy-field', CopyField],
 	['fem-file-upload', FileUpload],
 	['fem-image', Image],
+	['fem-image-crop', ImageCrop],
 	['fem-list-item', ListItem],
 	['fem-scrubber', Scrubber],
 	['fem-sortable', Sortable],
@@ -159,6 +161,8 @@ export { Calendar, Combobox, DatePicker, DateRangePicker, RangeSlider }
 export { CommandGroup, CommandItem, CommandPalette, Tree, TreeItem }
 export type { TableColumnT, TableRowT } from './components/table/table'
 export type { BoxAlignT, BoxDirectionT, BoxSpaceT } from './components/box/box'
-export { CopyField, FileUpload, Image, ListItem, Scrubber, Sortable, Textarea }
+export { CopyField, FileUpload, Image, ImageCrop, ListItem, Scrubber, Sortable, Textarea }
+export type { CropRectT } from './components/image-crop/crop-geometry'
+export type { ImageCropShapeT } from './components/image-crop/image-crop'
 export type { ReorderDetailT } from './components/sortable/sortable-drag'
 export type { FileRejectDetailT } from './components/file-upload/file-upload'

@@ -12,7 +12,9 @@ export const Dialog = c(
 	(props) => {
 		const dialogRef = useRef<HTMLDialogElement>()
 		const [isOpen, setOpen] = useProp<boolean>('open')
-		const dispatchClose = useEvent('close', { bubbles: true, composed: true })
+		// Like a native dialog, close doesn't bubble, so a
+		// dialog opened inside another never closes its parent.
+		const dispatchClose = useEvent('close')
 
 		useModal(dialogRef, Boolean(isOpen))
 
