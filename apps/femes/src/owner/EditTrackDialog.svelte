@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { updateTrack } from '../data/studio.svelte'
-	import { getErrorReason, uploadFile } from '../data/studio-api'
+	import { getErrorReason } from '../data/studio-api'
 	import type { FemesTrackT, VisibilityT } from '../data/types'
 	import { readValue } from '../parts/read-value'
+	import CroppedImagePicker from './CroppedImagePicker.svelte'
 
 	type EditTrackDialogPropsT = {
 		track: FemesTrackT | undefined
@@ -62,23 +63,12 @@
 		visibility = readValue(event) as VisibilityT
 	}
 
-	// Artwork uploads as soon as it's picked, so Save is
-	// quick.
-	const handleArtworkChange = async (event: Event) => {
-		const detail = (event as CustomEvent<{ files: File[] }>).detail
-		const file = detail.files[0]
-		if (!file) return
-		isUploadingArtwork = true
-		const ignoreProgress = () => {}
-
-		try {
-			artworkKey = await uploadFile(file, 'image', ignoreProgress)
-		} catch (uploadError) {
-			failure = `Artwork didn't upload (${getErrorReason(uploadError)}).`
-		} finally {
-			isUploadingArtwork = false
-		}
-	}
+	// Artwork is cropped square and uploads right away,
+	// so Save is quick.
+	const handleArtworkUploaded = (key: string) => (artworkKey = key)
+	const handleArtworkBusy = (isBusy: boolean) => (isUploadingArtwork = isBusy)
+	const handleArtworkFailure = (message: string) => (failure = message)
+	const hasPendingArtwork = $derived(artworkKey !== undefined)
 
 	const handleSave = async () => {
 		const track = props.track
@@ -106,7 +96,18 @@
 	<fem-column gap="5">
 	<div class="edit-track">
 		<fem-field label="Artwork" help="Square, 1400 px or more.">
-			<fem-file-upload kind="image" accept="image/*" label="Add artwork" src={artworkSource} onchange={handleArtworkChange}></fem-file-upload>
+			<CroppedImagePicker
+				label="Add artwork"
+				cropHeading="Crop artwork"
+				src={artworkSource}
+				aspect={1}
+				shape="square"
+				outputWidth={1400}
+				hasPending={hasPendingArtwork}
+				onUploaded={handleArtworkUploaded}
+				onBusyChange={handleArtworkBusy}
+				onFailure={handleArtworkFailure}
+			/>
 		</fem-field>
 		<fem-column gap="4">
 			<fem-field label="Title">

@@ -37,6 +37,7 @@ declare module 'svelte/elements' {
 		'fem-heading': HTMLAttributes<HTMLElement> & Fem.FemHeadingPropsT & Fem.FemHeadingAttributesT
 		'fem-icon': HTMLAttributes<HTMLElement> & Fem.FemIconPropsT & Fem.FemIconAttributesT
 		'fem-image': HTMLAttributes<HTMLElement> & Fem.FemImagePropsT & Fem.FemImageAttributesT
+		'fem-image-crop': HTMLAttributes<HTMLElement> & Fem.FemImageCropPropsT & Fem.FemImageCropAttributesT
 		'fem-input': HTMLAttributes<HTMLElement> & Fem.FemInputPropsT & Fem.FemInputAttributesT
 		'fem-list-item': HTMLAttributes<HTMLElement> & Fem.FemListItemPropsT & Fem.FemListItemAttributesT
 		'fem-menu': HTMLAttributes<HTMLElement> & Fem.FemMenuPropsT & Fem.FemMenuAttributesT

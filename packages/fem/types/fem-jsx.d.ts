@@ -255,6 +255,14 @@ export type FemImagePropsT = {
 	eager?: boolean
 }
 
+export type FemImageCropPropsT = {
+	src?: string
+	aspect?: number
+	shape?: 'square' | 'round'
+	label?: string
+	onchange?: (event: CustomEvent) => void
+}
+
 export type FemInputPropsT = {
 	size?: 'small' | 'medium' | 'large'
 	type?: string
@@ -781,6 +789,13 @@ export type FemImageAttributesT = {
 	'eager'?: boolean | ''
 }
 
+export type FemImageCropAttributesT = {
+	'src'?: string
+	'aspect'?: number
+	'shape'?: 'square' | 'round'
+	'label'?: string
+}
+
 export type FemInputAttributesT = {
 	'size'?: 'small' | 'medium' | 'large'
 	'type'?: string
@@ -1280,6 +1295,13 @@ export type FemImageElementT = HTMLElement & {
 	eager: boolean
 }
 
+export type FemImageCropElementT = HTMLElement & {
+	src: string
+	aspect: number
+	shape: 'square' | 'round'
+	label: string
+}
+
 export type FemInputElementT = HTMLElement & {
 	size: 'small' | 'medium' | 'large'
 	type: string
@@ -1578,6 +1600,7 @@ declare global {
 		'fem-heading': FemHeadingElementT
 		'fem-icon': FemIconElementT
 		'fem-image': FemImageElementT
+		'fem-image-crop': FemImageCropElementT
 		'fem-input': FemInputElementT
 		'fem-list-item': FemListItemElementT
 		'fem-menu': FemMenuElementT

@@ -1,0 +1,54 @@
+:host {
+	display: block;
+}
+
+.image-crop {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+/* The window is the crop. Its shape comes from aspect, */
+/* and round turns it into a circle for avatars. */
+.image-crop-viewport {
+	position: relative;
+	width: 100%;
+	aspect-ratio: var(--image-crop-aspect);
+	border-radius: var(--radius-container);
+	background: var(--surface-inset);
+	overflow: hidden;
+	cursor: grab;
+	touch-action: none;
+	user-select: none;
+}
+
+.image-crop-viewport:active {
+	cursor: grabbing;
+}
+
+.image-crop-viewport:focus-visible {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+.image-crop.isRound .image-crop-viewport {
+	width: min(100%, 320px);
+	margin: 0 auto;
+	border-radius: var(--radius-pill);
+}
+
+.image-crop-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: var(--image-crop-width);
+	height: var(--image-crop-height);
+	max-width: none;
+	transform: translate(calc(-50% + var(--image-crop-x)), calc(-50% + var(--image-crop-y)));
+	pointer-events: none;
+}
+
+.image-crop-image:not([src]),
+.image-crop-image[src=''] {
+	display: none;
+}
