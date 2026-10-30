@@ -8,8 +8,8 @@
 	],
 	"scripts": {
 		"dev": "npm run dev -w apps/site",
-		"build": "npm run build -w @tasteee/fem && npm run build -w @tasteee/fem-media",
-		"typecheck": "npm run typecheck -w @tasteee/fem && npm run typecheck -w @tasteee/fem-media && npm run typecheck -w apps/site && npm run typecheck -w apps/femes && npm run typecheck -w apps/pianist",
+		"build": "npm run build -w @tasteee/fem && npm run build -w @tasteee/fem-media && npm run build -w @tasteee/midi-piano",
+		"typecheck": "npm run typecheck -w @tasteee/fem && npm run typecheck -w @tasteee/fem-media && npm run typecheck -w @tasteee/midi-piano && npm run typecheck -w apps/site && npm run typecheck -w apps/femes",
 		"build:demos": "npm run build:demos -w apps/site",
 		"format": "prettier --write .",
 		"dev:femes": "npm run dev -w apps/femes",
