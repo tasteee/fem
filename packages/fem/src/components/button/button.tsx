@@ -2,6 +2,7 @@ import { c, useInternals, useRef } from 'atomico'
 import { buildClassName, getFlagClass, getModifierClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
+import { focusableShadow } from '../../foundation/use-form-control'
 import { usePressFeedback } from '../../foundation/use-press-feedback'
 import buttonCss from './button.css?inline'
 
@@ -41,7 +42,7 @@ export const Button = c(
 		const spinner = props.loading ? <span class='spinner' aria-hidden='true'></span> : null
 
 		return (
-			<host shadowDom>
+			<host shadowDom={focusableShadow}>
 				<button
 					ref={buttonRef}
 					class={className}

@@ -1,4 +1,4 @@
-import { c, useProp, useRef } from 'atomico'
+import { c, useEffect, useProp, useRef } from 'atomico'
 import { buildClassName, getFlagClass } from '../../foundation/class-names'
 import { createStyleSheet } from '../../foundation/create-style-sheet'
 import { foundationSheet } from '../../foundation/foundation-sheet'
@@ -24,6 +24,13 @@ export const Popover = c(
 		const placement = props.placement as FloatingPlacementT
 		const alignment = props.alignment as FloatingAlignmentT
 		useFloatingPopover(anchorRef, panelRef, isPanelOpen, { placement, alignment })
+
+		// It is a dialog, so opening moves focus into it.
+		// Tab then reaches its first control, and closing
+		// sends focus back to the trigger.
+		useEffect(() => {
+			if (isPanelOpen) panelRef.current?.focus()
+		}, [isPanelOpen])
 
 		const anchorElement = anchorRef.current
 		const pageTheme = anchorElement ? getEffectiveTheme(anchorElement) : 'light'
@@ -55,7 +62,7 @@ export const Popover = c(
 					<slot name='trigger'></slot>
 				</span>
 
-				<div ref={panelRef} class={panelClassName} popover='auto' role='dialog' aria-label={props.label} ontoggle={handleToggle}>
+				<div ref={panelRef} class={panelClassName} popover='auto' role='dialog' tabindex='-1' aria-label={props.label} ontoggle={handleToggle}>
 					<slot></slot>
 				</div>
 			</host>
