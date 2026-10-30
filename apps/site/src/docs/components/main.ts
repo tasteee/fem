@@ -228,7 +228,7 @@ const renderComponent = (entry: ComponentEntryT) => {
 					<fem-text size="small" color="muted">HTML</fem-text>
 					<fem-button size="small" kind="ghost" id="copy-code">Copy</fem-button>
 				</div>
-				<pre><code id="example-code">${highlightHtml(exampleHtml)}</code></pre>
+				<pre tabindex="0" aria-label="Example code"><code id="example-code">${highlightHtml(exampleHtml)}</code></pre>
 			</div>
 		</div>
 
@@ -245,10 +245,10 @@ const renderComponent = (entry: ComponentEntryT) => {
 	const previewElement = document.getElementById('example-preview') as HTMLElement
 	const controlsElement = document.getElementById('example-controls') as HTMLElement
 	const codeElement = document.getElementById('example-code') as HTMLElement
-	const rootEntry = entryByTag.get(previewElement.firstElementChild?.tagName.toLowerCase() ?? '')
+	const rootEntry = entryByTag.get(exampleTag)
 	if (rootEntry) {
 		const rootAttributes = rootEntry.declaration.attributes
-		mountPlayground(controlsElement, previewElement, codeElement, exampleHtml, rootAttributes, () => renderComponent(entry))
+		mountPlayground(controlsElement, previewElement, codeElement, exampleHtml, exampleTag, rootAttributes, () => renderComponent(entry))
 	}
 
 	const copyButton = document.getElementById('copy-code')

@@ -36,7 +36,7 @@ const stepLength = (text: string, direction: number, isLarge: boolean): string |
 	const next = Math.round((Number(match[1]) + direction * step) * 100) / 100
 	return `${next}${match[2]}`
 }
-const skippedNames = new Set(['name', 'value', 'label', 'type', 'placeholder', 'href', 'src'])
+const skippedNames = new Set(['open', 'name', 'value', 'label', 'type', 'placeholder', 'href', 'src'])
 
 const readControlKind = (attribute: AttributeT, isSet: boolean): ControlKindT | undefined => {
 	const typeText = attribute.type?.text ?? ''
@@ -60,9 +60,14 @@ const parseAttributes = (text: string): [string, string | null][] => {
 // attribute, or false when the attribute is removed.
 type OverrideT = string | null | false
 
+// The first opening tag of the documented element. It is
+// often nested, like the grid inside a column.
+const findOpeningTag = (source: string, tagName: string): RegExpMatchArray | null => {
+	return source.match(new RegExp(`<${tagName}((?:\\s[^>]*)?)>`))
+}
+
 const buildCode = (source: string, rootTag: string, overrides: Map<string, OverrideT>): string => {
-	const openingPattern = new RegExp(`^<${rootTag}([^>]*)>`)
-	const opening = source.match(openingPattern)
+	const opening = findOpeningTag(source, rootTag)
 	if (!opening) return source
 	const pairs = parseAttributes(opening[1])
 	for (const [name, value] of overrides) {
@@ -77,7 +82,8 @@ const buildCode = (source: string, rootTag: string, overrides: Map<string, Overr
 	const attributeText = pairs
 		.map(([name, value]) => (value === null ? ` ${name}` : ` ${name}="${value}"`))
 		.join('')
-	return `<${rootTag}${attributeText}>` + source.slice(opening[0].length)
+	const start = opening.index ?? 0
+	return source.slice(0, start) + `<${rootTag}${attributeText}>` + source.slice(start + opening[0].length)
 }
 
 const buildControl = (attribute: AttributeT, control: ControlKindT, current: string | null): string => {
@@ -91,7 +97,7 @@ const buildControl = (attribute: AttributeT, control: ControlKindT, current: str
 		})
 		return `<fem-select size="small" label="${label}" value="${selected}">${options.join('')}</fem-select>`
 	}
-	if (control.kind === 'boolean') return `<fem-switch label="${label}"${current !== null ? ' checked' : ''}></fem-switch>`
+	if (control.kind === 'boolean') return `<fem-switch${current !== null ? ' checked' : ''}>${label}</fem-switch>`
 	const inputType = control.kind === 'number' ? 'number' : 'text'
 	const placeholder = attribute.default?.replace(/"/g, '') ?? ''
 	return `<fem-input size="small" type="${inputType}" label="${label}" placeholder="${placeholder}" value="${current ?? ''}"></fem-input>`
@@ -102,16 +108,16 @@ export const mountPlayground = (
 	previewElement: HTMLElement,
 	codeElement: HTMLElement,
 	source: string,
+	rootTag: string,
 	attributes: AttributeT[],
 	onReset: () => void
 ) => {
-	const root = previewElement.firstElementChild
+	const root = previewElement.querySelector(rootTag)
 	if (!root) return
-	const rootTag = root.tagName.toLowerCase()
 	const overrides = new Map<string, OverrideT>()
 	// Read the authored attributes from the source. The live
 	// element also carries defaults the component reflects.
-	const authored = new Map(parseAttributes(source.match(new RegExp(`^<${rootTag}([^>]*)>`))?.[1] ?? ''))
+	const authored = new Map(parseAttributes(findOpeningTag(source, rootTag)?.[1] ?? ''))
 
 	const showCode = () => {
 		codeElement.innerHTML = highlightHtml(buildCode(source, rootTag, overrides))
