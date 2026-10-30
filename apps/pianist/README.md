@@ -11,6 +11,7 @@ npm test -w apps/pianist
 npm run layouts -w apps/pianist   # prints the degree under every key, per layout
 ```
 
+- The built-in piano is [`@tasteee/midi-piano`](../../packages/midi-piano), which plays smplr's Splendid Grand Piano. Samples download on first load.
 - Pick **Built-in piano** or a MIDI output. MIDI needs a browser with Web MIDI (Chrome, Edge). Press "Find MIDI outputs" to connect.
 - Hold **Space** to sustain. Notes lifted under the pedal ring until it lifts.
 - Settings save to `localStorage` under `pianist:settings`.

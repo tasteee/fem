@@ -75,7 +75,14 @@
 <main class="app-page" onchangecapture={handleChange}>
 	<div class="page-head">
 		<fem-heading level={1} size="title">pianist</fem-heading>
-		<fem-text size="small" color="muted">Play with your computer keyboard. Hold Space to sustain.</fem-text>
+		{#if live.isPianoLoading}
+			<fem-row gap="2">
+				<fem-spinner size="small"></fem-spinner>
+				<fem-text size="small" color="muted">Loading the piano…</fem-text>
+			</fem-row>
+		{:else}
+			<fem-text size="small" color="muted">Play with your computer keyboard. Hold Space to sustain.</fem-text>
+		{/if}
 	</div>
 
 	<div class="board">

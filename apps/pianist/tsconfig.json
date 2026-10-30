@@ -15,6 +15,7 @@
 			"@tasteee/fem": ["../../packages/fem/src/index.ts"],
 			"@tasteee/fem/icons": ["../../packages/fem/src/icons/index.ts"],
 			"@tasteee/fem/foundation": ["../../packages/fem/src/foundation/index.ts"],
+			"@tasteee/midi-piano": ["../../packages/midi-piano/src/index.ts"],
 			"@tasteee/fem/custom-elements.json": ["../../packages/fem/custom-elements.json"]
 		},
 		"jsx": "react-jsx",
