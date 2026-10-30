@@ -19,6 +19,23 @@ type ControlKindT =
 type ValueElementT = HTMLElement & { value: string; checked: boolean }
 
 const DEFAULT_CHOICE = '__default'
+
+// Attributes that fight each other. Setting one clears
+// the rest, so a change always shows up in the preview.
+const exclusiveGroups: Record<string, string[][]> = {
+	'fem-grid': [['columns', 'min']]
+}
+
+// A number with an optional CSS unit, like 120px or 12rem.
+const lengthPattern = /^(-?\d*\.?\d+)([a-z%]*)$/i
+
+const stepLength = (text: string, direction: number, isLarge: boolean): string | undefined => {
+	const match = text.trim().match(lengthPattern)
+	if (!match) return undefined
+	const step = isLarge ? 10 : 1
+	const next = Math.round((Number(match[1]) + direction * step) * 100) / 100
+	return `${next}${match[2]}`
+}
 const skippedNames = new Set(['name', 'value', 'label', 'type', 'placeholder', 'href', 'src'])
 
 const readControlKind = (attribute: AttributeT, isSet: boolean): ControlKindT | undefined => {
@@ -76,7 +93,8 @@ const buildControl = (attribute: AttributeT, control: ControlKindT, current: str
 	}
 	if (control.kind === 'boolean') return `<fem-switch label="${label}"${current !== null ? ' checked' : ''}></fem-switch>`
 	const inputType = control.kind === 'number' ? 'number' : 'text'
-	return `<fem-input size="small" type="${inputType}" label="${label}" value="${current ?? ''}"></fem-input>`
+	const placeholder = attribute.default?.replace(/"/g, '') ?? ''
+	return `<fem-input size="small" type="${inputType}" label="${label}" placeholder="${placeholder}" value="${current ?? ''}"></fem-input>`
 }
 
 export const mountPlayground = (
@@ -111,6 +129,24 @@ export const mountPlayground = (
 		showCode()
 	}
 
+	const clearControl = (name: string) => {
+		const control = controlsElement.querySelector(`[data-attribute="${name}"] > :last-child`) as ValueElementT | null
+		if (!control) return
+		control.value = control.tagName === 'FEM-SELECT' ? DEFAULT_CHOICE : ''
+	}
+
+	const clearRivals = (name: string) => {
+		const groups = exclusiveGroups[rootTag] ?? []
+		const rivals = groups.filter((group) => group.includes(name)).flat()
+		for (const rival of rivals) {
+			if (rival === name) continue
+			const isAlreadyCleared = overrides.get(rival) === false || (!overrides.has(rival) && !authored.has(rival))
+			if (isAlreadyCleared) continue
+			remove(rival)
+			clearControl(rival)
+		}
+	}
+
 	const cells: string[] = []
 	const wired: { attribute: AttributeT; control: ControlKindT }[] = []
 	for (const attribute of attributes) {
@@ -142,10 +178,32 @@ export const mountPlayground = (
 		const value = target.value
 		const isEmpty = value === '' || value === DEFAULT_CHOICE
 		if (isEmpty) return remove(attribute.name)
+		// A count below one means nothing, so wait for a real one.
+		if (control.kind === 'number' && !(Number(value) >= 1)) return
+		clearRivals(attribute.name)
 		apply(attribute.name, value)
+	}
+
+	// Arrow keys step a length and keep its unit, the way a
+	// number input would, so 120px becomes 121px.
+	const handleKeyDown = (event: KeyboardEvent) => {
+		const isUp = event.key === 'ArrowUp'
+		const isDown = event.key === 'ArrowDown'
+		if (!isUp && !isDown) return
+		const target = event.target as ValueElementT
+		const cell = target.closest('.site-control') as HTMLElement | null
+		const entry = wired.find(({ attribute }) => attribute.name === cell?.dataset.attribute)
+		if (entry?.control.kind !== 'text') return
+		const stepped = stepLength(target.value, isUp ? 1 : -1, event.shiftKey)
+		if (stepped === undefined) return
+		event.preventDefault()
+		target.value = stepped
+		clearRivals(entry.attribute.name)
+		apply(entry.attribute.name, stepped)
 	}
 
 	controlsElement.addEventListener('change', handleChange)
 	controlsElement.addEventListener('input', handleChange)
+	controlsElement.addEventListener('keydown', handleKeyDown)
 	controlsElement.querySelector('#reset-playground')?.addEventListener('click', onReset)
 }
