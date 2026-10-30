@@ -1,4 +1,5 @@
 import '@tasteee/fem/tokens.css'
+import '@tasteee/fem/palette-zest.css'
 import '@tasteee/fem-media/tokens.css'
 import './docs.css'
 import '@tasteee/fem'

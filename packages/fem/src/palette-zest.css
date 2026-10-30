@@ -1,0 +1,49 @@
+/* Experiment: Zest's dark colors inside fem. */
+/* Opt in with palette="zest" on the root or any container. */
+/* Light mode is untouched. Values come from tink's */
+/* design-tokens/zest-tokens.css (dark semantic layer). */
+
+[palette='zest'] {
+	/* Zest neutrals 1-12 (green-tinted) */
+	--zest-neutral-1: #0d130e;
+	--zest-neutral-2: #151b16;
+	--zest-neutral-3: #1f251f;
+	--zest-neutral-4: #272d27;
+	--zest-neutral-5: #313731;
+	--zest-neutral-6: #3d443e;
+	--zest-neutral-10: #8f968f;
+	--zest-neutral-11: #b1b9b2;
+	--zest-neutral-12: #e2eae3;
+
+	/* Zest accents */
+	--zest-dom: #e12a7c;
+	--zest-sub: #9955f0;
+	--zest-success: #00a221;
+	--zest-warning: #c66600;
+	--zest-danger: #e92f1b;
+	--zest-danger-text: #ff8f7b;
+}
+
+/* light-dark() keeps light mode on fem's own values. */
+[palette='zest'] {
+	--surface-page: light-dark(var(--neutral-2), var(--zest-neutral-1));
+	--surface-card: light-dark(var(--neutral-1), var(--zest-neutral-2));
+	--surface-inset: light-dark(var(--neutral-3), var(--zest-neutral-3));
+	--surface-control: light-dark(var(--neutral-4), var(--zest-neutral-4));
+	--surface-overlay: light-dark(var(--neutral-1), var(--zest-neutral-3));
+	--surface-overlay-inset: light-dark(var(--neutral-3), var(--zest-neutral-4));
+	--surface-inverse: light-dark(var(--neutral-11), var(--zest-neutral-12));
+
+	--text-strong: light-dark(var(--neutral-11), var(--zest-neutral-12));
+	--text-muted: light-dark(var(--neutral-7), var(--zest-neutral-10));
+	--text-inverse: light-dark(var(--neutral-1), var(--zest-neutral-1));
+
+	--danger: light-dark(var(--red), var(--zest-danger));
+	--danger-text: light-dark(#bf2110, var(--zest-danger-text));
+	--success: light-dark(var(--green), var(--zest-success));
+	--warning: light-dark(var(--yellow), var(--zest-warning));
+
+	/* Brand accent: Zest's dominant pink. Delete this line */
+	/* to keep fem's inverse accent. */
+	--accent: light-dark(var(--surface-inverse), var(--zest-dom));
+}
