@@ -58,7 +58,7 @@ const getGroup = (tagName: string, parentTag: string | undefined): string => {
 
 const buildEntries = (): ComponentEntryT[] => {
 	const modules = [...coreManifest.modules, ...mediaManifest.modules]
-	const declarations = modules.flatMap((module) => module.declarations) as ManifestDeclarationT[]
+	const declarations = modules.flatMap((module) => module.declarations) as unknown as ManifestDeclarationT[]
 	return declarations.map((declaration) => {
 		const parentTag = parentByChildTag[declaration.tagName]
 		return {
