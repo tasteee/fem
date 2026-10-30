@@ -86,3 +86,30 @@ describe('random', () => {
 		expect(pick(first)).not.toEqual(pick(other))
 	})
 })
+
+describe('isomorphic (Push) layout', () => {
+	const midiOf = (settings: Partial<MapSettingsT>, code: string) => buildKeyMap({ ...base, ...settings }).get(code)?.midi
+
+	it('maps A to the note on V, S to B, and D to N', () => {
+		for (const scale of ['major', 'minor', 'dorian']) {
+			const settings = { layout: 'fourths', scale }
+			expect(midiOf(settings, 'KeyA')).toBe(midiOf(settings, 'KeyV'))
+			expect(midiOf(settings, 'KeyS')).toBe(midiOf(settings, 'KeyB'))
+			expect(midiOf(settings, 'KeyD')).toBe(midiOf(settings, 'KeyN'))
+		}
+	})
+
+	it('maps Q to the note on F and Z, X, C climb in order', () => {
+		const settings = { layout: 'fourths' }
+		expect(midiOf(settings, 'KeyQ')).toBe(midiOf(settings, 'KeyM'))
+		const climb = ['KeyZ', 'KeyX', 'KeyC'].map((code) => midiOf(settings, code) as number)
+		expect(climb[0]).toBeLessThan(climb[1])
+		expect(climb[1]).toBeLessThan(climb[2])
+	})
+
+	it('keeps chromatic rows a fourth (5 semitones) apart', () => {
+		const settings = { layout: 'chromatic' }
+		expect(midiOf(settings, 'KeyA')).toBe(midiOf(settings, 'KeyN'))
+		expect(midiOf(settings, 'KeyS')).toBe(midiOf(settings, 'KeyM'))
+	})
+})

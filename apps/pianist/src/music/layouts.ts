@@ -43,25 +43,25 @@ export const layouts: LayoutT[] = [
 		place: (row, column) => row * 7 + column
 	},
 	{
-		id: 'thirds',
-		label: 'Thirds',
-		help: 'Each row up is a third higher. Chords sit under your fingers.',
-		isChromatic: false,
-		place: (row, column) => row * 2 + column
-	},
-	{
 		id: 'fourths',
-		label: 'Fourths',
-		help: 'Each row up is a fourth higher, like a guitar.',
+		label: 'Isomorphic (Push)',
+		help: 'Like Ableton Push in key. Each row up is a fourth, so A plays what V plays, S what B plays, and every shape sounds the same in any key.',
 		isChromatic: false,
 		place: (row, column) => row * 3 + column
 	},
 	{
 		id: 'chromatic',
-		label: 'Chromatic',
-		help: 'Every key is one semitone. The scale is ignored. The root still sets the key.',
+		label: 'Isomorphic chromatic',
+		help: 'Like Push chromatic. Every key is a semitone and each row up is five, so A plays what N plays. The scale is ignored.',
 		isChromatic: true,
 		place: (row, column) => row * 5 + column
+	},
+	{
+		id: 'thirds',
+		label: 'Thirds',
+		help: 'Each row up is a third higher. Chords sit under your fingers.',
+		isChromatic: false,
+		place: (row, column) => row * 2 + column
 	},
 	{
 		id: 'staircase',
