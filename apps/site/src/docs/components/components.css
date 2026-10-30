@@ -145,6 +145,23 @@ body {
 	tab-size: 2;
 }
 
+/* Syntax colors for the code block. */
+.tok-tag {
+	color: light-dark(#a81c0d, #ff8a7a);
+}
+
+.tok-attr {
+	color: light-dark(#0b559e, #6cb4ff);
+}
+
+.tok-value {
+	color: light-dark(#0a6338, #4fd99a);
+}
+
+.tok-punct {
+	color: var(--text-muted);
+}
+
 /* ---------- links ---------- */
 .site-link {
 	color: var(--text-strong);

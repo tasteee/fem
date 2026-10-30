@@ -3,6 +3,7 @@ import './components.css'
 import coreManifest from '@tasteee/fem/custom-elements.json'
 import mediaManifest from '@tasteee/fem-media/custom-elements.json'
 import { showToast } from '@tasteee/fem'
+import { highlightHtml } from './highlight'
 import { examplesByTag, groupOrder, parentByChildTag } from './examples'
 
 // One page per component, read from the generated
@@ -85,10 +86,6 @@ const getChildEntries = (parentTag: string): ComponentEntryT[] => {
 }
 
 // ---------- html helpers ----------
-
-const escapeHtml = (text: string): string => {
-	return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-}
 
 const buildLink = (entry: ComponentEntryT): string => {
 	return `<a class="site-link" href="#${entry.tagName}">${entry.title}</a>`
@@ -229,7 +226,7 @@ const renderComponent = (entry: ComponentEntryT) => {
 					<fem-text size="small" color="muted">HTML</fem-text>
 					<fem-button size="small" kind="ghost" id="copy-code">Copy</fem-button>
 				</div>
-				<pre><code>${escapeHtml(exampleHtml)}</code></pre>
+				<pre><code>${highlightHtml(exampleHtml)}</code></pre>
 			</div>
 		</div>
 
