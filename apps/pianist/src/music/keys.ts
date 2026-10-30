@@ -59,8 +59,34 @@ export const keyRows: KeyCapT[][] = [
 	]
 ]
 
-// How far each row sits to the right, in key widths,
-// like a real keyboard.
-export const rowOffsets = [1.25, 0.75, 0.5, 0]
-
 export const pedalCode = 'Space'
+
+export type BoardKeyT = { code: string; label: string; span: number }
+
+const modifier = (code: string, label: string, span: number): BoardKeyT => ({ code, label, span })
+const fromRow = (row: KeyCapT[]): BoardKeyT[] => row.map((keyCap) => ({ ...keyCap, span: 1 }))
+
+// The whole board, top row first, in key widths. Every row
+// is 15 wide, so the edges line up like a real keyboard.
+// Only the letter, number, and punctuation keys play.
+export const boardRows: BoardKeyT[][] = [
+	[modifier('Backquote', '`', 1), ...fromRow(keyRows[3]), modifier('Backspace', 'backspace', 2)],
+	[modifier('Tab', 'tab', 1.5), ...fromRow(keyRows[2]), modifier('Backslash', '\\', 1.5)],
+	[modifier('CapsLock', 'caps', 1.75), ...fromRow(keyRows[1]), modifier('Enter', 'enter', 2.25)],
+	[modifier('ShiftLeft', 'shift', 2.25), ...fromRow(keyRows[0]), modifier('ShiftRight', 'shift', 2.75)],
+	[
+		modifier('ControlLeft', 'ctrl', 1.5),
+		modifier('AltLeft', 'alt', 1.5),
+		modifier(pedalCode, 'space', 9),
+		modifier('AltRight', 'alt', 1.5),
+		modifier('ControlRight', 'ctrl', 1.5)
+	]
+]
+
+// Keys that only light up when pressed.
+export const decorCodes = new Set(
+	boardRows
+		.flat()
+		.map((key) => key.code)
+		.filter((code) => !keyRows.flat().some((keyCap) => keyCap.code === code) && code !== pedalCode)
+)
