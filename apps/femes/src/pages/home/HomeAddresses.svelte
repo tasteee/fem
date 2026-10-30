@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { siteHost } from '../../site'
+
 	type AddressT = {
 		path: string
 		meaning: string
@@ -6,7 +8,7 @@
 
 	// The addresses are the product. Each one reads like
 	// a sentence.
-	const host = window.location.host
+	const host = siteHost
 
 	const addresses: AddressT[] = [
 		{ path: '/tasteink', meaning: 'Your page' },

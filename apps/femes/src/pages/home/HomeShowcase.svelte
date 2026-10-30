@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { siteHost } from '../../site'
 	import { demoArtists, demoTracks } from '../../data/demo-catalog'
 
 	// A real, playable artist page in miniature. It reads
 	// the demo catalog so it works before anyone signs up.
 	const artist = demoArtists[0]
 	const tracks = demoTracks
-	const pageAddress = `${window.location.host}/${artist.slug}`
+	const pageAddress = `${siteHost}/${artist.slug}`
 </script>
 
 <figure class="home-showcase">
