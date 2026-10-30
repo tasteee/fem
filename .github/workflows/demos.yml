@@ -25,6 +25,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:demos
+      # pianist builds after the site, into its demos folder.
+      - run: npm run build -w apps/pianist -- --outDir ../site/demos/pianist --emptyOutDir
       - uses: actions/upload-pages-artifact@v3
         with:
           path: apps/site/demos

@@ -13,8 +13,10 @@
 		"build:demos": "npm run build:demos -w apps/site",
 		"format": "prettier --write .",
 		"dev:femes": "npm run dev -w apps/femes",
-		"test": "npm test -w @tasteee/fem",
-		"build:femes": "npm run build -w apps/femes"
+		"test": "npm test -w @tasteee/fem && npm test -w apps/pianist",
+		"build:femes": "npm run build -w apps/femes",
+		"dev:pianist": "npm run dev -w apps/pianist",
+		"build:pianist": "npm run build -w apps/pianist"
 	},
 	"devDependencies": {
 		"prettier": "^3.3.0"

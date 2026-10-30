@@ -122,6 +122,26 @@ body {
 	width: 240px;
 }
 
+.site-controls {
+	padding: var(--space-3) var(--space-6);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: var(--space-3) var(--space-4);
+	background: var(--surface-card);
+}
+
+.site-controls[hidden] {
+	display: none;
+}
+
+.site-control {
+	min-width: 7rem;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}
+
 .site-code {
 	position: relative;
 	background: var(--surface-inset);
@@ -143,6 +163,23 @@ body {
 	font-size: var(--font-size-small);
 	line-height: 1.6;
 	tab-size: 2;
+}
+
+/* Syntax colors for the code block. */
+.tok-tag {
+	color: light-dark(#a81c0d, #ff8a7a);
+}
+
+.tok-attr {
+	color: light-dark(#0b559e, #6cb4ff);
+}
+
+.tok-value {
+	color: light-dark(#0a6338, #4fd99a);
+}
+
+.tok-punct {
+	color: var(--text-muted);
 }
 
 /* ---------- links ---------- */
@@ -185,6 +222,10 @@ body {
 
 	.site-preview {
 		padding: var(--space-6) var(--space-4);
+	}
+
+	.site-controls {
+		padding: var(--space-3) var(--space-4);
 	}
 
 	.site-code-bar {

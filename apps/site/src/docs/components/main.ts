@@ -3,6 +3,8 @@ import './components.css'
 import coreManifest from '@tasteee/fem/custom-elements.json'
 import mediaManifest from '@tasteee/fem-media/custom-elements.json'
 import { showToast } from '@tasteee/fem'
+import { highlightHtml } from './highlight'
+import { mountPlayground } from './playground'
 import { examplesByTag, groupOrder, parentByChildTag } from './examples'
 
 // One page per component, read from the generated
@@ -85,10 +87,6 @@ const getChildEntries = (parentTag: string): ComponentEntryT[] => {
 }
 
 // ---------- html helpers ----------
-
-const escapeHtml = (text: string): string => {
-	return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-}
 
 const buildLink = (entry: ComponentEntryT): string => {
 	return `<a class="site-link" href="#${entry.tagName}">${entry.title}</a>`
@@ -223,13 +221,14 @@ const renderComponent = (entry: ComponentEntryT) => {
 		</fem-column>
 
 		<div class="site-example">
-			<div class="site-preview">${exampleHtml}</div>
+			<div class="site-preview" id="example-preview">${exampleHtml}</div>
+			<div class="site-controls" id="example-controls" hidden></div>
 			<div class="site-code">
 				<div class="site-code-bar">
 					<fem-text size="small" color="muted">HTML</fem-text>
 					<fem-button size="small" kind="ghost" id="copy-code">Copy</fem-button>
 				</div>
-				<pre><code>${escapeHtml(exampleHtml)}</code></pre>
+				<pre><code id="example-code">${highlightHtml(exampleHtml)}</code></pre>
 			</div>
 		</div>
 
@@ -243,8 +242,17 @@ const renderComponent = (entry: ComponentEntryT) => {
 		attributeTable.rows = buildAttributeRows(entry.declaration)
 	}
 
+	const previewElement = document.getElementById('example-preview') as HTMLElement
+	const controlsElement = document.getElementById('example-controls') as HTMLElement
+	const codeElement = document.getElementById('example-code') as HTMLElement
+	const rootEntry = entryByTag.get(previewElement.firstElementChild?.tagName.toLowerCase() ?? '')
+	if (rootEntry) {
+		const rootAttributes = rootEntry.declaration.attributes
+		mountPlayground(controlsElement, previewElement, codeElement, exampleHtml, rootAttributes, () => renderComponent(entry))
+	}
+
 	const copyButton = document.getElementById('copy-code')
-	copyButton?.addEventListener('click', () => copyCode(exampleHtml))
+	copyButton?.addEventListener('click', () => copyCode(codeElement.textContent ?? exampleHtml))
 }
 
 const copyCode = async (codeText: string) => {
