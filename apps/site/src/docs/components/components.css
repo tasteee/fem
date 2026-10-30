@@ -122,6 +122,26 @@ body {
 	width: 240px;
 }
 
+.site-controls {
+	padding: var(--space-3) var(--space-6);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: var(--space-3) var(--space-4);
+	background: var(--surface-card);
+}
+
+.site-controls[hidden] {
+	display: none;
+}
+
+.site-control {
+	min-width: 7rem;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}
+
 .site-code {
 	position: relative;
 	background: var(--surface-inset);
@@ -202,6 +222,10 @@ body {
 
 	.site-preview {
 		padding: var(--space-6) var(--space-4);
+	}
+
+	.site-controls {
+		padding: var(--space-3) var(--space-4);
 	}
 
 	.site-code-bar {
