@@ -56,7 +56,7 @@
 }
 
 .text.isDanger {
-	color: var(--danger);
+	color: var(--danger-text);
 }
 
 .text.isSuccess {

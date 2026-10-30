@@ -239,6 +239,12 @@ export const Calendar = c(
 		))
 
 		const dayCells = gridDates.map(renderDay)
+		// Each week is a row, as the grid role requires.
+		const weekRows = Array.from({ length: dayCells.length / 7 }, (_, weekIndex) => (
+			<div key={weekIndex} class='calendar-week' role='row'>
+				{dayCells.slice(weekIndex * 7, weekIndex * 7 + 7)}
+			</div>
+		))
 
 		return (
 			<host shadowDom>
@@ -266,7 +272,7 @@ export const Calendar = c(
 					<div class='calendar-weekdays'>{weekdayCells}</div>
 					<div ref={gridRef} class='calendar-grid' role='grid' aria-label={monthLabel} onkeydown={handleGridKeyDown}>
 						<span ref={indicatorRef} class='slide-indicator calendar-indicator' aria-hidden='true'></span>
-						{dayCells}
+						{weekRows}
 					</div>
 				</div>
 			</host>

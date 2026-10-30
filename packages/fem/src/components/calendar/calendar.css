@@ -97,7 +97,6 @@
 
 .calendar-day.isOutside {
 	color: var(--text-muted);
-	opacity: 0.6;
 }
 
 /* Today gets a small dot under its number. */
@@ -169,4 +168,10 @@
 	z-index: -1;
 	border-radius: var(--radius-pill);
 	background: var(--surface-inverse);
+}
+
+/* Weeks are rows for assistive tech only. The days */
+/* still sit on the grid. */
+.calendar-week {
+	display: contents;
 }

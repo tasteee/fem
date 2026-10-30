@@ -56,7 +56,6 @@
 	font-family: var(--font-family-numeric);
 	font-size: var(--font-size-small);
 	font-weight: var(--font-weight-read);
-	opacity: 0.7;
 }
 
 .radio.isRow.isChecked {

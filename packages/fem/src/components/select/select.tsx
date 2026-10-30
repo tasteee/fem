@@ -118,6 +118,10 @@ export const Select = c(
 		const triggerClassName = buildClassName(['select', sizeClass, placeholderClass, openClass, disabledClass])
 		const expandedLabel = String(isOpen)
 
+		// The name starts with the label and keeps the shown
+		// value in it, so voice control can say what it sees.
+		const triggerName = props.label ? `${props.label}: ${labelText}` : undefined
+
 		return (
 			<host shadowDom={focusableShadow}>
 				<button
@@ -126,7 +130,7 @@ export const Select = c(
 					disabled={props.disabled}
 					aria-haspopup='listbox'
 					aria-expanded={expandedLabel}
-					aria-label={props.label}
+					aria-label={triggerName}
 					onpointerdown={handleTriggerPress}
 					onclick={handleTriggerClick}
 				>
