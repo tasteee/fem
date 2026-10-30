@@ -25,9 +25,9 @@ const newSeed = () => Math.floor(Math.random() * 2 ** 31)
 export const defaultSettings = (): SettingsT => ({
 	root: 'C',
 	scale: 'major',
-	octave: 3,
+	octave: 2,
 	volume: 0.8,
-	layout: 'standard',
+	layout: 'fourths',
 	custom: { rowStep: 7, colStep: 1 },
 	seed: newSeed(),
 	output: 'builtin'
