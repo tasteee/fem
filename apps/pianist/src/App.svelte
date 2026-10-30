@@ -73,10 +73,14 @@
 </script>
 
 <main class="app-page" onchangecapture={handleChange}>
-	<fem-column gap="1">
+	<div class="page-head">
 		<fem-heading level={1} size="title">pianist</fem-heading>
-		<fem-text color="muted">Play with your computer keyboard. Hold Space to sustain.</fem-text>
-	</fem-column>
+		<fem-text size="small" color="muted">Play with your computer keyboard. Hold Space to sustain.</fem-text>
+	</div>
+
+	<div class="board">
+		<Keyboard {keyMap} />
+	</div>
 
 	<fem-card padding="4" gap="4">
 		<div class="settings-grid">
@@ -109,14 +113,14 @@
 					{/each}
 				</fem-select>
 			</fem-field>
-			<fem-field label="Octave">
+			<fem-field class="wide" label="Octave">
 				<fem-segmented value={String(settings.octave)} onchange={handleOctave}>
 					{#each octaves as octave (octave)}
 						<fem-segment value={String(octave)}>{octave}</fem-segment>
 					{/each}
 				</fem-segmented>
 			</fem-field>
-			<fem-field label="Volume">
+			<fem-field class="narrow" label="Volume">
 				<fem-slider min={0} max={100} value={Math.round(settings.volume * 100)} onchange={handleVolume}></fem-slider>
 			</fem-field>
 		</div>
@@ -158,6 +162,4 @@
 			<fem-banner color="warning">{live.midiMessage}</fem-banner>
 		{/if}
 	</fem-card>
-
-	<Keyboard {keyMap} />
 </main>

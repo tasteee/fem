@@ -11,7 +11,7 @@ body {
 }
 
 .app-page {
-	max-width: 880px;
+	max-width: 1100px;
 	margin: 0 auto;
 	padding: var(--space-4);
 	display: flex;
@@ -20,22 +20,53 @@ body {
 	box-sizing: border-box;
 }
 
+.page-head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--space-2) var(--space-4);
+}
+
+/* The board is the page. Settings sit under it in one row. */
+.board {
+	background: var(--surface-card);
+	border-radius: var(--radius-container);
+	padding: var(--space-3);
+}
+
 .settings-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
 	gap: var(--space-4);
 }
 
+.settings-grid > * {
+	flex: 1 1 140px;
+	min-width: 0;
+}
+
+/* Volume only needs a short track. */
+.settings-grid > .narrow {
+	flex: 1 1 160px;
+}
+
+/* Six octave choices need more room than a select. */
+.settings-grid > .wide {
+	flex: 1.6 1 230px;
+}
+
 /* ---------- keyboard ---------- */
-/* Keys size from the width they are given, so the widest */
-/* row always fits, down to a phone. */
+/* One key is a 15th of the width, so the board keeps its */
+/* proportions from a phone to a desktop. */
 .keyboard {
 	container-type: inline-size;
 	display: flex;
 	flex-direction: column;
 	gap: var(--keycap-gap);
 	--keycap-gap: var(--space-1);
-	--keycap-size: min(64px, calc((100cqw - 11 * var(--keycap-gap)) / 12.5));
+	--unit: calc((100cqw - 14 * var(--keycap-gap)) / 15);
 	user-select: none;
 	-webkit-user-select: none;
 	touch-action: none;
@@ -44,39 +75,55 @@ body {
 .keyboard-row {
 	display: flex;
 	gap: var(--keycap-gap);
-	padding-left: calc(var(--row-offset) * (var(--keycap-size) + var(--keycap-gap)));
 }
 
 .keycap {
 	all: unset;
 	box-sizing: border-box;
 	flex: none;
-	width: var(--keycap-size);
-	height: var(--keycap-size);
+	width: calc(var(--span) * var(--unit) + (var(--span) - 1) * var(--keycap-gap));
+	height: min(calc(var(--unit) * 1), 72px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 	padding: var(--space-1) 0;
 	border-radius: var(--radius-small);
-	background: var(--surface-card);
+	background: var(--surface-inset);
 	color: var(--text-strong);
-	font-size: var(--font-size-caption);
+	font-size: clamp(8px, calc(var(--unit) * 0.2), var(--font-size-small));
 	cursor: pointer;
 	transition: background var(--duration-press-out) var(--easing-standard);
 }
 
-.keycap.isRoot {
+/* Keys that play stand out from the ones that don't. */
+.keycap.isNote {
 	background: var(--surface-control);
 }
 
-.keycap.isPressed {
+.keycap.isNote.isRoot {
+	background: color-mix(in oklch, var(--surface-control), var(--text-strong) 22%);
+}
+
+.keycap.isMod {
+	cursor: default;
+	color: var(--text-muted);
+	justify-content: center;
+}
+
+.keycap.isPedal {
+	justify-content: center;
+}
+
+.keycap.isPressed,
+.keycap.isNote.isPressed,
+.keycap.isNote.isRoot.isPressed {
 	background: var(--surface-inverse);
 	color: var(--text-inverse);
 	transition-duration: var(--duration-press-in);
 }
 
-/* A key with no note is an outline, not a fill. */
+/* A note key with no note is an outline, not a fill. */
 .keycap.isSilent {
 	background: transparent;
 	outline: var(--border-width) dashed var(--surface-control);
@@ -92,29 +139,36 @@ body {
 
 .keycap-note {
 	font-weight: var(--font-weight-act);
-	font-size: clamp(9px, calc(var(--keycap-size) * 0.26), var(--font-size-small));
+	font-size: clamp(8px, calc(var(--unit) * 0.28), var(--font-size-small));
 	min-height: 1em;
 }
 
 .keycap-label {
 	font-family: var(--font-family-numeric);
-	color: var(--text-muted);
+	opacity: 0.7;
+}
+
+.keycap-center {
+	opacity: 1;
 }
 
 .keycap.isPressed .keycap-label {
-	color: inherit;
+	opacity: 1;
 }
 
-.keycap.pedal {
-	width: 100%;
-	height: var(--control-height-large);
-	margin-top: var(--space-2);
-	justify-content: center;
-	background: var(--surface-inset);
-}
+@media (max-width: 520px) {
+	.keyboard {
+		--keycap-gap: 2px;
+	}
 
-.keycap.pedal.isPressed {
-	background: var(--surface-inverse);
+	.board {
+		padding: var(--space-2);
+	}
+
+	/* Smaller note names, so they fit the narrow keys. */
+	.keycap-note {
+		font-size: 7px;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

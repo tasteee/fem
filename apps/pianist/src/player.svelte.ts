@@ -8,7 +8,7 @@ import {
 	type MidiPortT
 } from './engine/midi-output'
 import { createPianoSynth } from './engine/piano-synth'
-import { pedalCode, keyRows } from './music/keys'
+import { decorCodes, pedalCode, keyRows } from './music/keys'
 import type { KeyInfoT } from './music/layouts'
 import { loadSettings, saveSettings, type SettingsT } from './settings'
 
@@ -20,6 +20,8 @@ export const settings = $state<SettingsT>(loadSettings())
 export const live = $state({
 	pressed: [] as string[],
 	isPedalDown: false,
+	// Modifier keys only glow. They never play or get blocked.
+	glowing: [] as string[],
 	ports: [] as MidiPortT[],
 	hasMidiAccess: false,
 	midiMessage: ''
@@ -103,6 +105,7 @@ export const releaseSource = (source: string) => {
 export const setPedal = (isDown: boolean) => engine.setPedal(isDown)
 
 export const releaseEverything = () => {
+	live.glowing = []
 	pressedSources.clear()
 	engine.releaseAll()
 }
@@ -126,7 +129,13 @@ const isTyping = (event: Event) => {
 
 const allCodes = new Set(keyRows.flat().map((keyCap) => keyCap.code))
 
+const setGlow = (code: string, isOn: boolean) => {
+	const others = live.glowing.filter((glowing) => glowing !== code)
+	live.glowing = isOn ? [...others, code] : others
+}
+
 const handleKeyDown = (event: KeyboardEvent) => {
+	if (decorCodes.has(event.code)) setGlow(event.code, true)
 	const hasModifier = event.ctrlKey || event.metaKey || event.altKey
 	const isOurs = allCodes.has(event.code) || event.code === pedalCode
 	if (!isOurs || hasModifier || isTyping(event)) return
@@ -137,6 +146,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
 }
 
 const handleKeyUp = (event: KeyboardEvent) => {
+	if (decorCodes.has(event.code)) setGlow(event.code, false)
 	const isOurs = allCodes.has(event.code) || event.code === pedalCode
 	if (!isOurs || isTyping(event)) return
 	event.preventDefault()
