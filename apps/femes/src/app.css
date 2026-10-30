@@ -762,9 +762,79 @@ p {
 	gap: var(--space-4);
 }
 
-.signin-dev-link {
+/* ---------- sign-in page ---------- */
+/* Same type and rhythm as home, one size down, so */
+/* signing in feels like the same quiet place. */
+.signin-hero {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-8);
+	margin-top: calc(var(--home-section-gap) * -0.4);
+}
+
+.signin-headline {
+	margin: 0;
+	font-size: clamp(44px, 8vw, 104px);
 	font-weight: var(--font-weight-act);
+	letter-spacing: var(--home-headline-tracking);
+	line-height: 0.95;
+}
+
+.signin-body {
+	max-width: 560px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-5);
+}
+
+.signin-row {
+	align-self: stretch;
+	display: flex;
+	gap: var(--space-2);
+}
+
+.signin-input {
+	flex: 1;
+	min-width: 0;
+}
+
+.signin-note {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: var(--font-size-small);
+}
+
+.signin-note.isDanger {
+	color: var(--danger);
+}
+
+.signin-text-button {
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--text-muted);
+	font: inherit;
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-medium);
 	text-decoration: underline;
+	text-underline-offset: 0.2em;
+	cursor: pointer;
+}
+
+.signin-text-button:hover {
+	color: var(--text-strong);
+}
+
+.signin-text-button:focus-visible {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+@media (max-width: 560px) {
+	.signin-row {
+		flex-direction: column;
+	}
 }
 
 /* ---------- manage ---------- */
