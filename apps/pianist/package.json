@@ -14,7 +14,9 @@
 		"layouts": "vite-node scripts/print-layouts.ts"
 	},
 	"dependencies": {
-		"@tasteee/fem": "*"
+		"@tasteee/fem": "*",
+		"@tasteee/midi-piano": "*",
+		"smplr": "^1.1.0"
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^4.0.4",

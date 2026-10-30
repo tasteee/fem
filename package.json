@@ -9,14 +9,15 @@
 	"scripts": {
 		"dev": "npm run dev -w apps/site",
 		"build": "npm run build -w @tasteee/fem && npm run build -w @tasteee/fem-media && npm run build -w @tasteee/midi-piano",
-		"typecheck": "npm run typecheck -w @tasteee/fem && npm run typecheck -w @tasteee/fem-media && npm run typecheck -w @tasteee/midi-piano && npm run typecheck -w apps/site && npm run typecheck -w apps/femes",
+		"typecheck": "npm run typecheck -w @tasteee/fem && npm run typecheck -w @tasteee/fem-media && npm run typecheck -w @tasteee/midi-piano && npm run typecheck -w apps/site && npm run typecheck -w apps/femes && npm run typecheck -w apps/pianist",
 		"build:demos": "npm run build:demos -w apps/site",
 		"format": "prettier --write .",
 		"dev:femes": "npm run dev -w apps/femes",
 		"test": "npm test -w @tasteee/fem && npm test -w apps/pianist",
 		"build:femes": "npm run build -w apps/femes",
 		"dev:pianist": "npm run dev -w apps/pianist",
-		"build:pianist": "npm run build -w apps/pianist"
+		"build:pianist": "npm run build -w apps/pianist",
+		"build:pages": "npm run build:demos && npm run build -w apps/pianist -- --outDir ../site/demos/pianist --emptyOutDir"
 	},
 	"devDependencies": {
 		"prettier": "^3.3.0"

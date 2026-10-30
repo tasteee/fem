@@ -30,7 +30,8 @@ export default defineConfig({
 		emptyOutDir: true,
 		rollupOptions: {
 			input: {
-				docs: 'index.html',
+				home: 'index.html',
+				foundations: 'foundations/index.html',
 				notes: 'notes/index.html',
 				components: 'components/index.html'
 			}

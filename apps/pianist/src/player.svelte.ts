@@ -1,3 +1,4 @@
+import { piano } from '@tasteee/midi-piano'
 import { createEngine, type NoteOutputT } from './engine/engine'
 import {
 	createMidiOutput,
@@ -7,12 +8,12 @@ import {
 	requestMidi,
 	type MidiPortT
 } from './engine/midi-output'
-import { createPianoSynth } from './engine/piano-synth'
+import { createPianoOutput } from './engine/piano-output'
 import { decorCodes, pedalCode, keyRows } from './music/keys'
 import type { KeyInfoT } from './music/layouts'
 import { loadSettings, saveSettings, type SettingsT } from './settings'
 
-const synth = createPianoSynth()
+const synth = createPianoOutput(piano)
 const builtinId = 'builtin'
 const builtinVelocity = 100
 
@@ -24,7 +25,9 @@ export const live = $state({
 	glowing: [] as string[],
 	ports: [] as MidiPortT[],
 	hasMidiAccess: false,
-	midiMessage: ''
+	midiMessage: '',
+	// Splendid Grand Piano samples download on first use.
+	isPianoLoading: !piano.loaded
 })
 
 export const midiSupported = isMidiSupported()
@@ -165,6 +168,8 @@ export const startPlayer = () => {
 	window.addEventListener('blur', releaseEverything)
 	document.addEventListener('visibilitychange', handleHidden)
 	void reconnectMidiQuietly()
+	// Start the sample download now, so the first press is ready.
+	void piano.load().then(() => (live.isPianoLoading = false))
 
 	return () => {
 		window.removeEventListener('keydown', handleKeyDown, { capture: true })

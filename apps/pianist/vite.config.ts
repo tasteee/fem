@@ -10,7 +10,8 @@ const sourceAliases = [
 	{ find: /^@tasteee\/fem\/tokens\.css$/, replacement: fromRoot('packages/fem/src/tokens.css') },
 	{ find: /^@tasteee\/fem\/icons$/, replacement: fromRoot('packages/fem/src/icons/index.ts') },
 	{ find: /^@tasteee\/fem\/foundation$/, replacement: fromRoot('packages/fem/src/foundation/index.ts') },
-	{ find: /^@tasteee\/fem$/, replacement: fromRoot('packages/fem/src/index.ts') }
+	{ find: /^@tasteee\/fem$/, replacement: fromRoot('packages/fem/src/index.ts') },
+	{ find: /^@tasteee\/midi-piano$/, replacement: fromRoot('packages/midi-piano/src/index.ts') }
 ]
 
 export default defineConfig({

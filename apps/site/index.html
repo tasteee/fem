@@ -2,713 +2,146 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<title>fem</title>
+		<meta name="description" content="A flat, premium web component design system, and the apps built with it." />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Google+Sans+Code:wght@400;500&display=swap"
 			rel="stylesheet"
 		/>
-		<script type="module" src="/src/docs/docs.ts"></script>
+		<script type="module" src="/src/home/home.ts"></script>
 	</head>
 	<body>
-		<main class="docs-page">
-			<h1 class="docs-title">fem</h1>
+		<div class="home">
+			<header class="home-frame home-header">
+				<a class="home-brand" href="./">fem</a>
+				<nav class="home-nav" aria-label="Site">
+					<a class="home-nav-link" href="./components/">Components</a>
+					<a class="home-nav-link" href="./foundations/">Foundations</a>
+					<a class="home-nav-link" href="https://github.com/tasteee/fem">GitHub</a>
+				</nav>
+			</header>
 
-			<section class="docs-card">
-				<h2 class="docs-heading">Examples</h2>
-				<a class="docs-link" href="./components/">Component docs</a>
-				<a class="docs-link" href="./notes/">Notes app</a>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Type</h2>
-				<code class="docs-code">&lt;fem-heading level size&gt; &lt;fem-text size weight color numeric truncate&gt;</code>
-				<fem-heading level="1">Display</fem-heading>
-				<fem-heading level="2">Title</fem-heading>
-				<fem-heading level="3">Heading</fem-heading>
-				<fem-heading level="4">Large</fem-heading>
-				<fem-text>Body text reads at the regular weight.</fem-text>
-				<fem-text size="small" color="muted">Small, muted text for help and meta.</fem-text>
-				<fem-row gap="3">
-					<fem-text numeric size="large" weight="medium">1:11</fem-text>
-					<fem-text numeric color="muted">128 BPM</fem-text>
-					<fem-text numeric color="accent">D minor</fem-text>
-				</fem-row>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Card and divider</h2>
-				<code class="docs-code">&lt;fem-card surface padding gap&gt; &lt;fem-divider orientation&gt;</code>
-				<fem-card surface="inset" padding="4" gap="3">
-					<fem-row align-x="between">
-						<fem-heading level="4">safeword</fem-heading>
-						<fem-badge color="accent">Draft</fem-badge>
-					</fem-row>
-					<fem-text size="small" color="muted">Dark pop in D minor. Last edited today.</fem-text>
-					<fem-divider></fem-divider>
-					<fem-row gap="3">
-						<fem-text numeric size="small">2:48</fem-text>
-						<fem-divider orientation="vertical"></fem-divider>
-						<fem-text numeric size="small">92 BPM</fem-text>
-					</fem-row>
-				</fem-card>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Loading</h2>
-				<code class="docs-code">&lt;fem-spinner size label&gt; &lt;fem-skeleton shape lines width height&gt;</code>
-				<fem-row gap="4">
-					<fem-spinner size="small"></fem-spinner>
-					<fem-spinner></fem-spinner>
-					<fem-spinner size="large"></fem-spinner>
-				</fem-row>
-				<fem-row gap="3" align-y="start">
-					<fem-skeleton shape="circle"></fem-skeleton>
-					<fem-column gap="2" grow>
-						<fem-skeleton width="40%"></fem-skeleton>
-						<fem-skeleton lines="3"></fem-skeleton>
-					</fem-column>
-				</fem-row>
-				<fem-skeleton shape="box" height="120px"></fem-skeleton>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Popover</h2>
-				<code class="docs-code">&lt;fem-popover open placement alignment label&gt; slot: trigger</code>
-				<code class="docs-code">Opens in the inverse theme. Everything inside flips with it.</code>
-				<fem-row>
-					<fem-popover label="Rename track">
-						<fem-button slot="trigger">Rename</fem-button>
-						<fem-field label="Track name">
-							<fem-input value="safeword"></fem-input>
-						</fem-field>
-						<fem-row gap="2" align-x="end">
-							<fem-button size="small" kind="ghost">Cancel</fem-button>
-							<fem-button size="small" color="accent">Save</fem-button>
-						</fem-row>
-					</fem-popover>
-				</fem-row>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Layout</h2>
-				<code class="docs-code">&lt;fem-row | fem-column | fem-box direction align-x align-y gap padding wrap grow&gt;</code>
-				<code class="docs-code">align-x is always left to right. align-y is always top to bottom. The box maps them to flexbox for you.</code>
-
-				<fem-row gap="2" align-x="between">
-					<fem-row gap="2">
-						<fem-avatar size="small" name="tasteink"></fem-avatar>
-						<fem-column>
-							<span>safeword</span>
-							<fem-tag>D minor</fem-tag>
-						</fem-column>
-					</fem-row>
-					<fem-button size="small" kind="soft">Open</fem-button>
-				</fem-row>
-
-				<fem-column gap="2" align-x="center" padding="4" class="docs-specimen">
-					<span>Centered column</span>
-					<fem-badge color="accent">align-x="center"</fem-badge>
-				</fem-column>
-
-				<code class="docs-code">&lt;fem-grid columns min gap&gt;</code>
-				<fem-grid min="120px" gap="2">
-					<div class="docs-tile">Pop</div>
-					<div class="docs-tile">Dark pop</div>
-					<div class="docs-tile">Electronic</div>
-					<div class="docs-tile">Acoustic</div>
-					<div class="docs-tile">R&amp;B</div>
-					<div class="docs-tile">Hip hop</div>
-				</fem-grid>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Combobox</h2>
-				<code class="docs-code">&lt;fem-combobox value name placeholder label empty-text size required disabled&gt; &lt;fem-option value&gt;</code>
-				<fem-field label="Key">
-					<fem-combobox placeholder="Type a key" value="d-minor">
-						<fem-option value="c-major">C major</fem-option>
-						<fem-option value="c-minor">C minor</fem-option>
-						<fem-option value="d-minor">D minor</fem-option>
-						<fem-option value="e-minor">E minor</fem-option>
-						<fem-option value="f-minor">F minor</fem-option>
-						<fem-option value="g-major">G major</fem-option>
-						<fem-option value="a-minor">A minor</fem-option>
-					</fem-combobox>
-				</fem-field>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Date picker</h2>
-				<code class="docs-code">&lt;fem-date-picker value name min max locale week-start placeholder label&gt; &lt;fem-calendar value min max&gt;</code>
-				<fem-field label="Release date">
-					<fem-date-picker value="2026-11-13"></fem-date-picker>
-				</fem-field>
-				<fem-calendar value="2026-11-13"></fem-calendar>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Date range picker</h2>
-				<code class="docs-code">&lt;fem-date-range-picker start end name min max locale placeholder label&gt; &lt;fem-calendar mode="range" start end&gt;</code>
-				<fem-field label="Tour dates">
-					<fem-date-range-picker start="2026-11-13" end="2026-11-20"></fem-date-range-picker>
-				</fem-field>
-				<fem-calendar mode="range" start="2026-11-13" end="2026-11-20"></fem-calendar>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Range slider</h2>
-				<code class="docs-code">&lt;fem-range-slider start end min max step show-value&gt; submits "start,end"</code>
-				<fem-field label="Tempo">
-					<fem-range-slider start="90" end="140" min="60" max="180" show-value></fem-range-slider>
-				</fem-field>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Collapsible nav</h2>
-				<code class="docs-code">&lt;fem-nav collapsed&gt; shows icons only</code>
-				<fem-row align-y="start" gap="4">
-					<fem-nav value="ideas" label="Notes collapsed" collapsed id="collapsible-nav">
-						<fem-nav-item value="all"><fem-icon slot="icon" name="note"></fem-icon>All notes<span slot="end">128</span></fem-nav-item>
-						<fem-nav-item value="ideas"><fem-icon slot="icon" name="lightbulb"></fem-icon>Ideas<span slot="end">17</span></fem-nav-item>
-						<fem-nav-item value="trash"><fem-icon slot="icon" name="trash"></fem-icon>Trash<span slot="end">3</span></fem-nav-item>
-					</fem-nav>
-					<fem-button size="small" kind="soft" data-toggle-collapsed="collapsible-nav">Toggle</fem-button>
-				</fem-row>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Breadcrumbs</h2>
-				<code class="docs-code">&lt;fem-breadcrumbs label&gt; &lt;fem-breadcrumb href&gt;</code>
-				<fem-breadcrumbs>
-					<fem-breadcrumb href="#">Library</fem-breadcrumb>
-					<fem-breadcrumb href="#">Drafts</fem-breadcrumb>
-					<fem-breadcrumb>safeword</fem-breadcrumb>
-				</fem-breadcrumbs>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Accordion</h2>
-				<code class="docs-code">&lt;fem-accordion single&gt; &lt;fem-accordion-item open disabled&gt; slot: summary</code>
-				<fem-accordion single>
-					<fem-accordion-item open>
-						<span slot="summary">Who can hear my drafts?</span>
-						Only you, until you share a link or publish the track.
-					</fem-accordion-item>
-					<fem-accordion-item>
-						<span slot="summary">Can I export stems?</span>
-						Yes. Open a track, then pick Export and choose Stems.
-					</fem-accordion-item>
-					<fem-accordion-item>
-						<span slot="summary">What formats can I upload?</span>
-						WAV, AIFF, FLAC, and MP3 up to 200 MB each.
-					</fem-accordion-item>
-				</fem-accordion>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Table</h2>
-				<code class="docs-code">&lt;fem-table columns rows label empty-text&gt; columns: key label align numeric sortable</code>
-				<fem-table label="Tracks" columns='[{"key": "title", "label": "Track", "sortable": true}, {"key": "key", "label": "Key"}, {"key": "bpm", "label": "BPM", "numeric": true, "align": "end", "sortable": true}, {"key": "length", "label": "Length", "numeric": true, "align": "end"}]' rows='[{"title": "safeword", "key": "D minor", "bpm": 92, "length": "2:48"}, {"title": "fangirl", "key": "A minor", "bpm": 124, "length": "3:05"}, {"title": "dead people", "key": "F minor", "bpm": 140, "length": "2:31"}, {"title": "señorita", "key": "G major", "bpm": 104, "length": "3:22"}]'></fem-table>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Pagination</h2>
-				<code class="docs-code">&lt;fem-pagination page total siblings&gt;</code>
-				<fem-pagination page="4" total="12"></fem-pagination>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Empty state</h2>
-				<code class="docs-code">&lt;fem-empty-state heading&gt; slots: icon, actions</code>
-				<fem-empty-state heading="No drafts yet">
-					<fem-icon slot="icon" name="music-notes"></fem-icon>
-					Start a draft to sketch an idea. It stays private until you share it.
-					<fem-button slot="actions" color="accent">New draft</fem-button>
-				</fem-empty-state>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Avatar group and tags</h2>
-				<code class="docs-code">&lt;fem-avatar-group max&gt; &lt;fem-tag removable&gt; sends remove</code>
-				<fem-avatar-group max="3">
-					<fem-avatar name="tasteink" color="accent"></fem-avatar>
-					<fem-avatar name="Robin"></fem-avatar>
-					<fem-avatar name="Mia"></fem-avatar>
-					<fem-avatar name="Jo"></fem-avatar>
-					<fem-avatar name="Kai"></fem-avatar>
-				</fem-avatar-group>
-				<fem-row gap="2" wrap>
-					<fem-tag removable>dark pop</fem-tag>
-					<fem-tag removable>D minor</fem-tag>
-					<fem-tag removable>92 BPM</fem-tag>
-				</fem-row>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Checkbox group</h2>
-				<code class="docs-code">&lt;fem-checkbox-group name label&gt;</code>
-				<fem-checkbox-group name="notify" label="Notify me about">
-					<fem-checkbox value="comments" checked>Comments</fem-checkbox>
-					<fem-checkbox value="follows">New followers</fem-checkbox>
-					<fem-checkbox value="collabs" checked>Collab invites</fem-checkbox>
-				</fem-checkbox-group>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Field</h2>
-				<code class="docs-code">&lt;fem-field label help error layout&gt; wraps one control</code>
-				<code class="docs-code">layout: stacked (default) or inline. Tap the label to focus or toggle.</code>
-
-				<fem-field label="Track name" help="Shown on your profile and in search.">
-					<fem-input placeholder="Untitled"></fem-input>
-				</fem-field>
-
-				<fem-field label="Genre">
-					<fem-select placeholder="Pick a genre">
-						<fem-option value="pop">Pop</fem-option>
-						<fem-option value="electronic">Electronic</fem-option>
-					</fem-select>
-				</fem-field>
-
-				<fem-field label="Email" error="Add the part after the @.">
-					<fem-input value="shane@"></fem-input>
-				</fem-field>
-
-				<fem-field label="Public track" help="Anyone with the link can listen." layout="inline">
-					<fem-switch checked></fem-switch>
-				</fem-field>
-
-				<fem-field label="Allow downloads" layout="inline">
-					<fem-checkbox></fem-checkbox>
-				</fem-field>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Contract</h2>
-				<code class="docs-code">One row, every control. Same height, same fills, same rhythm.</code>
-				<div class="docs-row isContract">
-					<fem-input placeholder="Input" label="Input"></fem-input>
-					<fem-select placeholder="Select" label="Select">
-						<fem-option value="one">One</fem-option>
-						<fem-option value="two">Two</fem-option>
-					</fem-select>
-					<fem-button>Button</fem-button>
-					<fem-switch label="Switch" checked></fem-switch>
-					<fem-checkbox label="Checkbox" checked></fem-checkbox>
-					<fem-slider label="Slider" value="40"></fem-slider>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Display</h2>
-
-				<div class="docs-row">
-					<fem-button data-setting="theme" data-value="dark">Dark</fem-button>
-					<fem-button data-setting="theme" data-value="light">Light</fem-button>
-					<fem-button data-setting="density" data-value="roomy">Roomy</fem-button>
-					<fem-button data-setting="density" data-value="compact">Compact</fem-button>
-				</div>
-
-				<div class="docs-row">
-					<fem-button data-accent="">Neutral accent</fem-button>
-					<fem-button data-accent="var(--purple)">Purple</fem-button>
-					<fem-button data-accent="var(--red)">Red</fem-button>
-					<fem-button data-accent="var(--yellow)">Yellow</fem-button>
-					<fem-button data-accent="var(--green)">Green</fem-button>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Icon</h2>
-				<code class="docs-code">&lt;fem-icon name kind size label&gt; registerIcons([heartIcon, playIcon])</code>
-
-				<div class="docs-row isLoose">
-					<fem-icon name="heart"></fem-icon>
-					<fem-icon name="play"></fem-icon>
-					<fem-icon name="pause"></fem-icon>
-					<fem-icon name="plus"></fem-icon>
-					<fem-icon name="x"></fem-icon>
-					<fem-icon name="check"></fem-icon>
-					<fem-icon name="magnifying-glass"></fem-icon>
-					<fem-icon name="gear-six"></fem-icon>
-					<fem-icon name="lightning"></fem-icon>
-					<fem-icon name="pencil-simple"></fem-icon>
-					<fem-icon name="trash"></fem-icon>
-					<fem-icon name="share-fat"></fem-icon>
-					<fem-icon name="chat-circle"></fem-icon>
-					<fem-icon name="music-notes"></fem-icon>
-					<fem-icon name="house"></fem-icon>
-					<fem-icon name="push-pin"></fem-icon>
-					<fem-icon name="dots-three"></fem-icon>
-					<fem-icon name="image"></fem-icon>
-				</div>
-
-				<div class="docs-row isLoose">
-					<fem-icon name="heart" kind="fill"></fem-icon>
-					<fem-icon name="play" kind="fill"></fem-icon>
-					<fem-icon name="pause" kind="fill"></fem-icon>
-					<fem-icon name="plus" kind="fill"></fem-icon>
-					<fem-icon name="x" kind="fill"></fem-icon>
-					<fem-icon name="check" kind="fill"></fem-icon>
-					<fem-icon name="magnifying-glass" kind="fill"></fem-icon>
-					<fem-icon name="gear-six" kind="fill"></fem-icon>
-					<fem-icon name="lightning" kind="fill"></fem-icon>
-					<fem-icon name="pencil-simple" kind="fill"></fem-icon>
-					<fem-icon name="trash" kind="fill"></fem-icon>
-					<fem-icon name="share-fat" kind="fill"></fem-icon>
-					<fem-icon name="chat-circle" kind="fill"></fem-icon>
-					<fem-icon name="music-notes" kind="fill"></fem-icon>
-					<fem-icon name="house" kind="fill"></fem-icon>
-					<fem-icon name="push-pin" kind="fill"></fem-icon>
-					<fem-icon name="dots-three" kind="fill"></fem-icon>
-					<fem-icon name="image" kind="fill"></fem-icon>
-				</div>
-
-				<div class="docs-row">
-					<fem-button color="accent"><fem-icon name="plus"></fem-icon>New note</fem-button>
-					<fem-button shape="circle" aria-label="Settings"><fem-icon name="gear-six"></fem-icon></fem-button>
-					<fem-button color="danger"><fem-icon name="trash"></fem-icon>Delete</fem-button>
-					<fem-icon name="heart" kind="fill" size="small"></fem-icon>
-					<fem-icon name="heart" kind="fill"></fem-icon>
-					<fem-icon name="heart" kind="fill" size="large"></fem-icon>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Button</h2>
-				<code class="docs-code">&lt;fem-button size kind color shape disabled loading wide&gt;</code>
-
-				<div class="docs-row">
-					<fem-button color="accent">Accent</fem-button>
-					<fem-button>Neutral</fem-button>
-					<fem-button color="danger">Danger</fem-button>
-					<fem-button color="success">Success</fem-button>
-					<fem-button color="warning">Warning</fem-button>
-					<fem-button color="info">Info</fem-button>
-				</div>
-
-				<div class="docs-row">
-					<fem-button kind="soft">Soft</fem-button>
-					<fem-button kind="soft" color="danger">Soft danger</fem-button>
-					<fem-button kind="ghost">Ghost</fem-button>
-					<fem-button kind="ghost" color="info">Ghost info</fem-button>
-				</div>
-
-				<div class="docs-row">
-					<fem-button size="small">Small</fem-button>
-					<fem-button>Medium</fem-button>
-					<fem-button size="large">Large</fem-button>
-					<fem-button shape="circle" aria-label="Add"><fem-icon name="plus"></fem-icon></fem-button>
-				</div>
-
-				<div class="docs-row">
-					<fem-button color="accent" disabled>Disabled</fem-button>
-					<fem-button color="accent" loading>Saving</fem-button>
-				</div>
-
-				<fem-button color="accent" wide>Wide</fem-button>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Input</h2>
-				<code class="docs-code">&lt;fem-input size type value name placeholder label invalid disabled&gt;</code>
-				<fem-input label="Track name" value="ink shaped box"></fem-input>
-				<fem-input label="Search" placeholder="Search notes" size="small"></fem-input>
-				<fem-input label="Email" value="shane@" invalid></fem-input>
-				<fem-input label="Locked field" value="Can't change this" disabled></fem-input>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Form</h2>
-				<code class="docs-code">Every control submits, resets, and validates inside a plain &lt;form&gt;.</code>
-
-				<form class="docs-form" id="demo-form">
-					<fem-field label="Track name">
-						<fem-input name="title" placeholder="Untitled" required></fem-input>
-					</fem-field>
-
-					<fem-field label="Genre">
-						<fem-select name="genre" placeholder="Pick a genre" required>
-							<fem-option value="pop">Pop</fem-option>
-							<fem-option value="electronic">Electronic</fem-option>
-						</fem-select>
-					</fem-field>
-
-					<fem-field label="Volume">
-						<fem-slider name="volume" value="60" show-value></fem-slider>
-					</fem-field>
-
-					<fem-field label="Public track" layout="inline">
-						<fem-switch name="public" checked></fem-switch>
-					</fem-field>
-					<fem-checkbox name="terms" required>I own the rights to this track</fem-checkbox>
-					<fem-radio name="comments" value="anyone" checked>Anyone can comment</fem-radio>
-					<fem-radio name="comments" value="off">Comments off</fem-radio>
-
-					<div class="docs-row">
-						<fem-button type="reset">Reset</fem-button>
-						<fem-button type="submit" color="accent">Save track</fem-button>
+			<section class="home-frame home-hero">
+				<h1 class="home-headline">
+					<span class="home-headline-line">Flat, quiet,</span>
+					<span class="home-headline-line">and finished.</span>
+				</h1>
+				<div class="home-hero-end">
+					<p class="home-lede">
+						fem is a web component design system with no shadows and no gradients. Depth comes from surface, type, and color
+						used with intent. These are the apps built on it.
+					</p>
+					<div class="home-actions">
+						<a class="home-action isPrimary" href="./components/">Browse components</a>
+						<a class="home-action" href="./pianist/">Play pianist</a>
 					</div>
-				</form>
-
-				<code class="docs-code" id="demo-form-output">Submit to see what the form sends.</code>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Select</h2>
-				<code class="docs-code">&lt;fem-select size value placeholder label disabled&gt; &lt;fem-option value disabled&gt;</code>
-
-				<fem-select label="Genre" value="electronic">
-					<fem-option value="pop">Pop</fem-option>
-					<fem-option value="hip-hop">Hip Hop</fem-option>
-					<fem-option value="electronic">Electronic</fem-option>
-					<fem-option value="lo-fi">Lo-fi</fem-option>
-				</fem-select>
-
-				<fem-select label="Key" placeholder="Pick a key" size="small">
-					<fem-option value="c">C major</fem-option>
-					<fem-option value="dm">D minor</fem-option>
-					<fem-option value="g" disabled>G major</fem-option>
-				</fem-select>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Menu</h2>
-				<code class="docs-code">&lt;fem-menu open&gt; &lt;fem-menu-item color disabled&gt;</code>
-
-				<div class="docs-row">
-					<fem-menu>
-						<fem-button slot="trigger">Options</fem-button>
-						<fem-menu-item>Rename</fem-menu-item>
-						<fem-menu-item>Duplicate</fem-menu-item>
-						<fem-menu-item disabled>Move to album</fem-menu-item>
-						<fem-menu-item color="danger">Delete</fem-menu-item>
-					</fem-menu>
 				</div>
 			</section>
 
-			<section class="docs-card">
-				<h2 class="docs-heading">Tooltip</h2>
-				<code class="docs-code">&lt;fem-tooltip text&gt;</code>
+			<section class="home-frame home-split" aria-labelledby="apps-heading">
+				<div class="home-split-intro">
+					<h2 class="home-section-heading" id="apps-heading">Built with fem.</h2>
+					<p class="home-section-text">
+						Each app uses the same components and tokens, so any two apps feel like one family.
+					</p>
+				</div>
+				<ul class="home-apps">
+					<li>
+						<a class="home-app" href="./pianist/">
+							<span class="home-app-name">pianist</span>
+							<span class="home-app-text"
+								>Play piano or MIDI with your computer keyboard. Seven layouts, any key and scale.</span
+							>
+							<span class="home-app-go" aria-hidden="true">Open</span>
+						</a>
+					</li>
+					<li>
+						<a class="home-app" href="./notes/">
+							<span class="home-app-name">notes</span>
+							<span class="home-app-text">A notes app in a single page. Lists, editing, and dialogs.</span>
+							<span class="home-app-go" aria-hidden="true">Open</span>
+						</a>
+					</li>
+					<li>
+						<a class="home-app" href="https://femes.studio">
+							<span class="home-app-name">femes</span>
+							<span class="home-app-text">A quiet place for your music. Pages, playlists, and a player.</span>
+							<span class="home-app-go" aria-hidden="true">Visit</span>
+						</a>
+					</li>
+				</ul>
+			</section>
 
-				<div class="docs-row">
-					<fem-tooltip text="Counts plays over 30 seconds">
-						<fem-button>Hover or focus me</fem-button>
-					</fem-tooltip>
+			<section class="home-frame home-specimen-section" aria-labelledby="parts-heading">
+				<div class="home-split-intro">
+					<h2 class="home-section-heading" id="parts-heading">Every part, ready to use.</h2>
+					<p class="home-section-text">These are live components. Press, drag, and tab through them.</p>
+				</div>
+				<div class="home-specimens">
+					<div class="home-specimen">
+						<span class="home-specimen-label">Choose</span>
+						<fem-segmented value="soft">
+							<fem-segment value="solid">Solid</fem-segment>
+							<fem-segment value="soft">Soft</fem-segment>
+							<fem-segment value="ghost">Ghost</fem-segment>
+						</fem-segmented>
+						<fem-row gap="2" wrap>
+							<fem-chip selected>Pop</fem-chip>
+							<fem-chip>Electronic</fem-chip>
+							<fem-chip>Lo-fi</fem-chip>
+						</fem-row>
+					</div>
+					<div class="home-specimen">
+						<span class="home-specimen-label">Adjust</span>
+						<fem-slider min="0" max="100" value="64" show-value></fem-slider>
+						<fem-switch checked>Public profile</fem-switch>
+					</div>
+					<div class="home-specimen">
+						<span class="home-specimen-label">Act</span>
+						<fem-row gap="2" wrap>
+							<fem-button color="accent">Save</fem-button>
+							<fem-button kind="soft">Cancel</fem-button>
+							<fem-button kind="ghost" color="danger">Delete</fem-button>
+						</fem-row>
+						<fem-progress label="Uploading" value="68"></fem-progress>
+					</div>
+				</div>
+				<div class="home-actions">
+					<a class="home-action isPrimary" href="./components/">Every component</a>
 				</div>
 			</section>
 
-			<section class="docs-card">
-				<h2 class="docs-heading">Toast, sheet, dialog</h2>
-				<code class="docs-code">showToast(message) &lt;fem-sheet open heading&gt; &lt;fem-dialog open heading&gt;</code>
+			<section class="home-frame" aria-labelledby="principles-heading">
+				<h2 class="home-visually-hidden" id="principles-heading">Principles</h2>
+				<ul class="home-principles">
+					<li class="home-principle">
+						<h3 class="home-principle-heading">Shape signals function.</h3>
+						<p class="home-principle-text">
+							Pills act. Rounded boxes hold. You can tell what a thing does before you read it.
+						</p>
+					</li>
+					<li class="home-principle">
+						<h3 class="home-principle-heading">Depth from surface.</h3>
+						<p class="home-principle-text">
+							No shadows, no gradients, no structural borders. Layers are fills, and fills are tokens.
+						</p>
+					</li>
+					<li class="home-principle">
+						<h3 class="home-principle-heading">Color is earned.</h3>
+						<p class="home-principle-text">Neutral first. When color shows up, it means something.</p>
+					</li>
+				</ul>
+			</section>
 
-				<div class="docs-row">
-					<fem-button data-toast="Link copied">Show toast</fem-button>
-					<fem-button data-opens="demo-sheet">Open sheet</fem-button>
-					<fem-button data-opens="demo-dialog">Open dialog</fem-button>
+			<footer class="home-frame">
+				<div class="home-footer">
+					<span class="home-brand">fem</span>
+					<span class="home-footer-note">Open source. Built with Atomico and shadow DOM.</span>
 				</div>
-
-				<fem-sheet id="demo-sheet" heading="Share track">
-					<fem-button wide data-closes="demo-sheet">Copy link</fem-button>
-					<fem-button wide data-closes="demo-sheet">Edit details</fem-button>
-				</fem-sheet>
-
-				<fem-dialog id="demo-dialog" heading="Delete this track?">
-					You can't undo this. The track and its comments are removed for good.
-					<fem-button slot="actions" data-closes="demo-dialog">Cancel</fem-button>
-					<fem-button slot="actions" color="danger" data-closes="demo-dialog">Delete track</fem-button>
-				</fem-dialog>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Switch</h2>
-				<code class="docs-code">&lt;fem-switch checked disabled&gt;</code>
-				<fem-switch checked>Public profile</fem-switch>
-				<fem-switch>Email me about comments</fem-switch>
-				<fem-switch disabled>Locked setting</fem-switch>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Checkbox</h2>
-				<code class="docs-code">&lt;fem-checkbox checked disabled&gt;</code>
-				<fem-checkbox checked>Allow downloads</fem-checkbox>
-				<fem-checkbox>Mark as explicit</fem-checkbox>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Radio</h2>
-				<code class="docs-code">&lt;fem-radio-group value name label kind&gt; &lt;fem-radio value disabled&gt; slot: end</code>
-				<fem-radio-group name="audience" value="anyone" label="Who can comment">
-					<fem-radio value="anyone">Anyone can comment</fem-radio>
-					<fem-radio value="followers">Followers only</fem-radio>
-					<fem-radio value="off">Comments off</fem-radio>
-				</fem-radio-group>
-
-				<code class="docs-code">kind="list": rows with a sliding fill</code>
-				<fem-radio-group name="key" value="d-minor" label="Key" kind="list">
-					<fem-radio value="c-minor">C minor<span slot="end">3♭</span></fem-radio>
-					<fem-radio value="d-minor">D minor<span slot="end">1♭</span></fem-radio>
-					<fem-radio value="f-minor">F minor<span slot="end">4♭</span></fem-radio>
-					<fem-radio value="a-minor">A minor<span slot="end">0</span></fem-radio>
-				</fem-radio-group>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Slider</h2>
-				<code class="docs-code">&lt;fem-slider value min max step show-value disabled&gt;</code>
-				<fem-field label="Volume">
-					<fem-slider value="60" show-value></fem-slider>
-				</fem-field>
-				<fem-field label="Tempo" layout="inline">
-					<fem-slider value="111" min="60" max="180" show-value></fem-slider>
-				</fem-field>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Nav</h2>
-				<code class="docs-code">&lt;fem-nav value label&gt; &lt;fem-nav-item value disabled&gt; slots: icon, end</code>
-				<fem-nav value="all" label="Notes">
-					<fem-nav-item value="all">
-						<fem-icon slot="icon" name="note"></fem-icon>All notes<span slot="end">128</span>
-					</fem-nav-item>
-					<fem-nav-item value="lyrics">
-						<fem-icon slot="icon" name="music-notes"></fem-icon>Lyrics<span slot="end">42</span>
-					</fem-nav-item>
-					<fem-nav-item value="ideas">
-						<fem-icon slot="icon" name="lightbulb"></fem-icon>Ideas<span slot="end">17</span>
-					</fem-nav-item>
-					<fem-nav-item value="trash">
-						<fem-icon slot="icon" name="trash"></fem-icon>Trash<span slot="end">3</span>
-					</fem-nav-item>
-				</fem-nav>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Tab bar</h2>
-				<code class="docs-code">&lt;fem-tab-bar value label&gt; &lt;fem-tab-bar-item value disabled&gt; slot: icon</code>
-				<div class="docs-phone">
-					<fem-tab-bar value="home" label="App">
-						<fem-tab-bar-item value="home"><fem-icon slot="icon" name="house"></fem-icon>Home</fem-tab-bar-item>
-						<fem-tab-bar-item value="search"><fem-icon slot="icon" name="magnifying-glass"></fem-icon>Search</fem-tab-bar-item>
-						<fem-tab-bar-item value="library"><fem-icon slot="icon" name="music-notes"></fem-icon>Library</fem-tab-bar-item>
-						<fem-tab-bar-item value="you"><fem-icon slot="icon" name="user"></fem-icon>You</fem-tab-bar-item>
-					</fem-tab-bar>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Tabs</h2>
-				<code class="docs-code">&lt;fem-tabs value&gt; &lt;fem-tab value disabled&gt;</code>
-
-				<fem-tabs value="projects">
-					<fem-tab value="projects">Projects</fem-tab>
-					<fem-tab value="albums">Albums</fem-tab>
-					<fem-tab value="playlists">Playlists</fem-tab>
-					<fem-tab value="bands" disabled>Bands</fem-tab>
-				</fem-tabs>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Segmented control</h2>
-				<code class="docs-code">&lt;fem-segmented value&gt; &lt;fem-segment value disabled&gt;</code>
-
-				<fem-segmented value="list">
-					<fem-segment value="list">List</fem-segment>
-					<fem-segment value="grid">Grid</fem-segment>
-					<fem-segment value="board">Board</fem-segment>
-				</fem-segmented>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Banner</h2>
-				<code class="docs-code">&lt;fem-banner color&gt;</code>
-				<fem-banner>A new version of this track is ready to review.</fem-banner>
-				<fem-banner color="success">Your track is live. Anyone with the link can listen.</fem-banner>
-				<fem-banner color="warning">You have changes that aren't saved yet.</fem-banner>
-				<fem-banner color="danger">The upload failed. Check your connection and try again.</fem-banner>
-				<fem-banner color="neutral">Session starts at noon.</fem-banner>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Progress</h2>
-				<code class="docs-code">&lt;fem-progress value max label&gt;</code>
-				<fem-progress label="Uploading" value="68"></fem-progress>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Avatar</h2>
-				<code class="docs-code">&lt;fem-avatar size color name src&gt;</code>
-
-				<div class="docs-row">
-					<fem-avatar size="small" name="tasteink"></fem-avatar>
-					<fem-avatar name="tasteink"></fem-avatar>
-					<fem-avatar name="Mars" color="accent"></fem-avatar>
-					<fem-avatar size="large" name="tasteink"></fem-avatar>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Swap</h2>
-				<code class="docs-code">&lt;fem-swap size kind color on label disabled&gt;</code>
-
-				<div class="docs-row">
-					<fem-swap label="Play">
-						<fem-icon slot="off" name="play" kind="fill"></fem-icon>
-						<fem-icon slot="on" name="pause" kind="fill"></fem-icon>
-					</fem-swap>
-
-					<fem-swap label="Play" color="accent" size="large">
-						<fem-icon slot="off" name="play" kind="fill"></fem-icon>
-						<fem-icon slot="on" name="pause" kind="fill"></fem-icon>
-					</fem-swap>
-
-					<fem-swap label="Like" kind="ghost" on>
-						<fem-icon slot="off" name="heart"></fem-icon>
-						<fem-icon slot="on" name="heart" kind="fill"></fem-icon>
-					</fem-swap>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Chip</h2>
-				<code class="docs-code">&lt;fem-chip size selected disabled&gt;</code>
-
-				<div class="docs-row">
-					<fem-chip selected>Pop</fem-chip>
-					<fem-chip>Rock</fem-chip>
-					<fem-chip>Hip Hop</fem-chip>
-					<fem-chip size="medium">Medium</fem-chip>
-					<fem-chip disabled>Disabled</fem-chip>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Tag</h2>
-				<code class="docs-code">&lt;fem-tag&gt;</code>
-
-				<div class="docs-row">
-					<fem-tag>Guitarist</fem-tag>
-					<fem-tag>Keyboardist</fem-tag>
-					<fem-tag>Drummer</fem-tag>
-				</div>
-			</section>
-
-			<section class="docs-card">
-				<h2 class="docs-heading">Badge</h2>
-				<code class="docs-code">&lt;fem-badge color&gt;</code>
-
-				<div class="docs-row">
-					<fem-badge>Draft</fem-badge>
-					<fem-badge color="success">Published</fem-badge>
-					<fem-badge color="warning">Unsaved</fem-badge>
-					<fem-badge color="info">New</fem-badge>
-					<fem-badge color="danger">Failed</fem-badge>
-					<fem-badge color="accent">Accent</fem-badge>
-				</div>
-			</section>
-		</main>
+			</footer>
+		</div>
 	</body>
 </html>
