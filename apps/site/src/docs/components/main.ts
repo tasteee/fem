@@ -307,6 +307,12 @@ const applyTheme = (themeValue: string) => {
 	document.documentElement.setAttribute('theme', themeValue)
 }
 
+const applyPalette = (paletteValue: string) => {
+	const isFem = paletteValue === 'fem'
+	if (isFem) return document.documentElement.removeAttribute('palette')
+	document.documentElement.setAttribute('palette', paletteValue)
+}
+
 const applyDensity = (densityValue: string) => {
 	document.documentElement.setAttribute('density', densityValue)
 }
@@ -319,6 +325,12 @@ const handleSettingChange = (event: Event) => {
 		writeSetting('fem-docs-theme', changedElement.value)
 		return
 	}
+	const isPalette = changedElement.id === 'palette-setting'
+	if (isPalette) {
+		applyPalette(changedElement.value)
+		writeSetting('fem-docs-palette', changedElement.value)
+		return
+	}
 	const isDensity = changedElement.id === 'density-setting'
 	if (!isDensity) return
 	applyDensity(changedElement.value)
@@ -328,11 +340,15 @@ const handleSettingChange = (event: Event) => {
 const restoreSettings = () => {
 	const savedTheme = readSetting('fem-docs-theme') ?? 'system'
 	const savedDensity = readSetting('fem-docs-density') ?? 'compact'
+	const savedPalette = readSetting('fem-docs-palette') ?? 'fem'
 	applyTheme(savedTheme)
+	applyPalette(savedPalette)
 	applyDensity(savedDensity)
 	const themeControl = document.getElementById('theme-setting') as ValueElementT | null
 	const densityControl = document.getElementById('density-setting') as ValueElementT | null
 	if (themeControl) themeControl.value = savedTheme
+	const paletteControl = document.getElementById('palette-setting') as ValueElementT | null
+	if (paletteControl) paletteControl.value = savedPalette
 	if (densityControl) densityControl.value = savedDensity
 }
 
