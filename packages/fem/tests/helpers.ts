@@ -21,3 +21,29 @@ export const cleanup = () => {
 export const inShadow = <T extends HTMLElement>(host: Element, selector: string): T => {
 	return host.shadowRoot!.querySelector(selector) as T
 }
+
+// The element that really has focus, looking through
+// shadow roots.
+export const getDeepActiveElement = (): Element | null => {
+	let active = document.activeElement
+	while (active?.shadowRoot?.activeElement) active = active.shadowRoot.activeElement
+	return active
+}
+
+// True when `node` is inside `container`, crossing shadow
+// roots, which `contains` can't do.
+export const isInsideComposed = (container: Element, node: Node | null): boolean => {
+	let current: Node | null = node
+	while (current) {
+		if (current === container) return true
+		current = current.parentNode ?? (current as ShadowRoot).host ?? null
+	}
+	return false
+}
+
+// The text of the component that owns the focused element.
+export const getFocusedHostText = (): string => {
+	const active = getDeepActiveElement()
+	const owner = (active?.getRootNode() as ShadowRoot | undefined)?.host ?? active
+	return owner?.textContent?.trim() ?? ''
+}

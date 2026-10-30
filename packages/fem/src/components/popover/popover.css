@@ -54,3 +54,9 @@
 		transform: scale(0.96);
 	}
 }
+
+/* Focus lands on the panel itself, so Tab starts at the */
+/* first control. It isn't a control, so it draws no ring. */
+.popover-panel:focus {
+	outline: none;
+}
