@@ -13,3 +13,8 @@ export const settle = () => new Promise((resolve) => setTimeout(resolve, 30))
 export const cleanup = () => {
 	document.body.innerHTML = ''
 }
+
+// Finds an element inside a component's shadow root.
+export const inShadow = <T extends HTMLElement>(host: Element, selector: string): T => {
+	return host.shadowRoot!.querySelector(selector) as T
+}
