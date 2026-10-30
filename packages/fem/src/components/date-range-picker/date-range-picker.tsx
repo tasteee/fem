@@ -112,6 +112,8 @@ export const DateRangePicker = c(
 			triggerRef.current?.focus()
 		}
 
+		const triggerName = props.label ? `${props.label}: ${labelText}` : undefined
+
 		return (
 			<host shadowDom={focusableShadow}>
 				<button
@@ -120,7 +122,7 @@ export const DateRangePicker = c(
 					disabled={props.disabled}
 					aria-haspopup='dialog'
 					aria-expanded={expandedLabel}
-					aria-label={props.label}
+					aria-label={triggerName}
 					onpointerdown={handleTriggerPress}
 					onclick={handleTriggerClick}
 				>

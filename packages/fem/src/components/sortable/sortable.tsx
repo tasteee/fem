@@ -40,6 +40,14 @@ export const Sortable = c(
 			return destroy
 		}, [])
 
+		// Slotted rows become list items, so the list's
+		// children are valid whatever they are.
+		const handleSlotChange = () => {
+			for (const child of hostRef.current.children) {
+				if (!child.hasAttribute('role')) child.setAttribute('role', 'listitem')
+			}
+		}
+
 		const gapStyle = `--sortable-gap: var(--space-${props.gap})`
 		const zeroGapStyle = '--sortable-gap: 0px'
 		const isZeroGap = props.gap === '0'
@@ -48,7 +56,7 @@ export const Sortable = c(
 		return (
 			<host shadowDom>
 				<div class='sortable' role='list' aria-label={props.label} style={listStyle}>
-					<slot></slot>
+					<slot onslotchange={handleSlotChange}></slot>
 				</div>
 				<span class='sortable-status' aria-live='assertive'>
 					{announcement}

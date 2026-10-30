@@ -1,4 +1,7 @@
 import '../src/index'
+import '../src/tokens.css'
+import '../../fem-media/src/tokens.css'
+import '../../fem-media/src/index'
 
 // Mounts markup and returns the first element.
 export const mount = <T extends HTMLElement>(html: string): T => {

@@ -6,5 +6,5 @@
 }
 
 .floating-row.isDanger {
-	color: var(--danger);
+	color: var(--danger-text);
 }

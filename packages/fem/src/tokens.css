@@ -14,7 +14,7 @@
 	--neutral-3: oklch(0.915 var(--neutral-chroma-light) var(--neutral-hue));
 	--neutral-4: oklch(0.86 var(--neutral-chroma-light) var(--neutral-hue));
 	--neutral-6: oklch(0.66 var(--neutral-chroma-dark) var(--neutral-hue));
-	--neutral-7: oklch(0.52 var(--neutral-chroma-light) var(--neutral-hue));
+	--neutral-7: oklch(0.5 var(--neutral-chroma-light) var(--neutral-hue));
 	--neutral-9: oklch(0.31 var(--neutral-chroma-dark) var(--neutral-hue));
 	--neutral-10: oklch(0.25 var(--neutral-chroma-dark) var(--neutral-hue));
 	--neutral-11: oklch(0.19 var(--neutral-chroma-dark) var(--neutral-hue));
@@ -39,7 +39,7 @@
 	--orange: #ff690d;
 	--pink: #f443c2;
 	--purple: #b400ff;
-	--red: #f12c18;
+	--red: #e02814;
 	--yellow: #ffaf13;
 }
 
@@ -74,6 +74,8 @@
 	--text-inverse: light-dark(var(--neutral-1), var(--neutral-12));
 
 	--danger: var(--red);
+	/* Red as text needs more contrast than red as a fill. */
+	--danger-text: light-dark(#bf2110, #ff6a58);
 	--success: var(--green);
 	--warning: var(--yellow);
 	--info: var(--blue);

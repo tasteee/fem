@@ -11,18 +11,19 @@ const listItemSheet = createStyleSheet(listItemCss)
 
 type HitAreaPropsT = {
 	href: string
-	label: string
 	handleClick: () => void
 }
 
 // One invisible control covers the row, so trailing
-// buttons can sit on top without nesting buttons.
+// buttons can sit on top without nesting buttons. The
+// visible label names it, whether it comes from the
+// label prop or the default slot.
 const HitArea = (props: HitAreaPropsT) => {
 	const isLink = props.href !== ''
-	if (isLink) return <a class='list-item-hit' href={props.href} aria-label={props.label}></a>
+	if (isLink) return <a class='list-item-hit' href={props.href} aria-labelledby='list-item-label'></a>
 
 	return (
-		<button class='list-item-hit' type='button' aria-label={props.label} onclick={props.handleClick}></button>
+		<button class='list-item-hit' type='button' aria-labelledby='list-item-label' onclick={props.handleClick}></button>
 	)
 }
 
@@ -52,7 +53,7 @@ export const ListItem = c(
 		const currentState = props.selected ? 'true' : null
 
 		const handleClick = () => dispatchSelect()
-		const hitArea = <HitArea href={props.href} label={props.label} handleClick={handleClick} />
+		const hitArea = <HitArea href={props.href} handleClick={handleClick} />
 		const maybeHitArea = isInteractive ? hitArea : null
 
 		return (
@@ -63,7 +64,7 @@ export const ListItem = c(
 						<slot name='leading' onslotchange={handleLeadingChange}></slot>
 					</span>
 					<span class='list-item-body'>
-						<span class='list-item-label'>
+						<span id='list-item-label' class='list-item-label'>
 							{props.label}
 							<slot></slot>
 						</span>

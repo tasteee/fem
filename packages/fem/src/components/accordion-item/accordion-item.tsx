@@ -30,6 +30,7 @@ export const AccordionItem = c(
 			<host shadowDom>
 				<div class={className}>
 					<button
+						id='accordion-header'
 						class='accordion-header'
 						aria-expanded={expandedLabel}
 						disabled={props.disabled}
@@ -40,7 +41,7 @@ export const AccordionItem = c(
 						</span>
 						<IconSvg icon={caretDownIcon} kind='bold' />
 					</button>
-					<div class='accordion-panel' role='region'>
+					<div class='accordion-panel' role='region' aria-labelledby='accordion-header'>
 						<div class='accordion-panel-inner'>
 							<div class='accordion-content'>
 								<slot></slot>

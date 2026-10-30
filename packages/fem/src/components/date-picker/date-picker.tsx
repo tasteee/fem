@@ -101,6 +101,10 @@ export const DatePicker = c(
 			triggerRef.current?.focus()
 		}
 
+		// The name keeps the shown date in it, so voice
+		// control can say what it sees.
+		const triggerName = props.label ? `${props.label}: ${labelText}` : undefined
+
 		return (
 			<host shadowDom={focusableShadow}>
 				<button
@@ -109,7 +113,7 @@ export const DatePicker = c(
 					disabled={props.disabled}
 					aria-haspopup='dialog'
 					aria-expanded={expandedLabel}
-					aria-label={props.label}
+					aria-label={triggerName}
 					onpointerdown={handleTriggerPress}
 					onclick={handleTriggerClick}
 				>
