@@ -1,0 +1,124 @@
+/* pianist page styles. Every value comes from fem's tokens. */
+
+body {
+	margin: 0;
+	background: var(--surface-page);
+	color: var(--text-strong);
+	font-family: var(--font-family);
+	font-size: var(--font-size-medium);
+	line-height: var(--line-height);
+	-webkit-font-smoothing: antialiased;
+}
+
+.app-page {
+	max-width: 880px;
+	margin: 0 auto;
+	padding: var(--space-4);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+	box-sizing: border-box;
+}
+
+.settings-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+	gap: var(--space-4);
+}
+
+/* ---------- keyboard ---------- */
+/* Keys size from the width they are given, so the widest */
+/* row always fits, down to a phone. */
+.keyboard {
+	container-type: inline-size;
+	display: flex;
+	flex-direction: column;
+	gap: var(--keycap-gap);
+	--keycap-gap: var(--space-1);
+	--keycap-size: min(64px, calc((100cqw - 11 * var(--keycap-gap)) / 12.5));
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: none;
+}
+
+.keyboard-row {
+	display: flex;
+	gap: var(--keycap-gap);
+	padding-left: calc(var(--row-offset) * (var(--keycap-size) + var(--keycap-gap)));
+}
+
+.keycap {
+	all: unset;
+	box-sizing: border-box;
+	flex: none;
+	width: var(--keycap-size);
+	height: var(--keycap-size);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--space-1) 0;
+	border-radius: var(--radius-small);
+	background: var(--surface-card);
+	color: var(--text-strong);
+	font-size: var(--font-size-caption);
+	cursor: pointer;
+	transition: background var(--duration-press-out) var(--easing-standard);
+}
+
+.keycap.isRoot {
+	background: var(--surface-control);
+}
+
+.keycap.isPressed {
+	background: var(--surface-inverse);
+	color: var(--text-inverse);
+	transition-duration: var(--duration-press-in);
+}
+
+/* A key with no note is an outline, not a fill. */
+.keycap.isSilent {
+	background: transparent;
+	outline: var(--border-width) dashed var(--surface-control);
+	outline-offset: calc(var(--border-width) * -1);
+	color: var(--text-muted);
+	cursor: default;
+}
+
+.keycap:focus-visible {
+	outline: var(--focus-ring-width) solid var(--text-strong);
+	outline-offset: var(--focus-ring-offset);
+}
+
+.keycap-note {
+	font-weight: var(--font-weight-act);
+	font-size: clamp(9px, calc(var(--keycap-size) * 0.26), var(--font-size-small));
+	min-height: 1em;
+}
+
+.keycap-label {
+	font-family: var(--font-family-numeric);
+	color: var(--text-muted);
+}
+
+.keycap.isPressed .keycap-label {
+	color: inherit;
+}
+
+.keycap.pedal {
+	width: 100%;
+	height: var(--control-height-large);
+	margin-top: var(--space-2);
+	justify-content: center;
+	background: var(--surface-inset);
+}
+
+.keycap.pedal.isPressed {
+	background: var(--surface-inverse);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.keycap {
+		transition: none;
+	}
+}

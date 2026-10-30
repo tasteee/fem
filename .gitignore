@@ -8,3 +8,4 @@ demos
 .wrangler/
 apps/femes/dist/
 packages/fem/tests/__screenshots__
+apps/pianist/dist/
