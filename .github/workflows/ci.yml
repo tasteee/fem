@@ -23,3 +23,6 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       - run: npm run test
+      # The same build the Pages deploy runs, so a break shows up here.
+      - run: npm run build:pages
+      - run: test -f apps/site/demos/index.html -a -f apps/site/demos/pianist/index.html
