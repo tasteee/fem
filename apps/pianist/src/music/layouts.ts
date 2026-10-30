@@ -10,7 +10,6 @@ export type LayoutContextT = { seed: number; custom: CustomParamsT }
 export type LayoutT = {
 	id: string
 	label: string
-	help: string
 	isChromatic: boolean
 	place: (row: number, column: number, context: LayoutContextT) => number | null
 }
@@ -38,35 +37,30 @@ export const layouts: LayoutT[] = [
 	{
 		id: 'standard',
 		label: 'Standard',
-		help: 'Each row climbs the scale. Each row up is one octave higher.',
 		isChromatic: false,
 		place: (row, column) => row * 7 + column
 	},
 	{
 		id: 'fourths',
 		label: 'Isomorphic (Push)',
-		help: 'Like Ableton Push in key. Each row up is a fourth, so A plays what V plays, S what B plays, and every shape sounds the same in any key.',
 		isChromatic: false,
 		place: (row, column) => row * 3 + column
 	},
 	{
 		id: 'chromatic',
 		label: 'Isomorphic chromatic',
-		help: 'Like Push chromatic. Every key is a semitone and each row up is five, so A plays what N plays. The scale is ignored.',
 		isChromatic: true,
 		place: (row, column) => row * 5 + column
 	},
 	{
 		id: 'thirds',
 		label: 'Thirds',
-		help: 'Each row up is a third higher. Chords sit under your fingers.',
 		isChromatic: false,
 		place: (row, column) => row * 2 + column
 	},
 	{
 		id: 'staircase',
 		label: 'Staircase',
-		help: 'A single diagonal run of ten keys, V to 0. Other keys stay silent.',
 		isChromatic: false,
 		place: (row, column) => {
 			const code = keyRows[row][column].code
@@ -76,7 +70,6 @@ export const layouts: LayoutT[] = [
 	{
 		id: 'random',
 		label: 'Random',
-		help: 'Scrambled notes across three octaves. Same seed, same map.',
 		isChromatic: false,
 		place: (row, column, context) => {
 			const random = makeRandom(context.seed + row * 97 + column * 7919)
@@ -86,7 +79,6 @@ export const layouts: LayoutT[] = [
 	{
 		id: 'custom',
 		label: 'Custom',
-		help: 'Pick how far a key step and a row step move.',
 		isChromatic: false,
 		place: (row, column, context) => row * context.custom.rowStep + column * context.custom.colStep
 	}

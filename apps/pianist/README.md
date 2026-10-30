@@ -27,7 +27,7 @@ Rows run bottom to top (Z, A, Q, 1). Degrees count up the scale from the root of
 | Isomorphic (Push)    | `3r + c`. Like Ableton Push in key: A plays what V plays, S what B plays            |
 | Isomorphic chromatic | `5r + c` in semitones, like Push chromatic: A plays what N plays. Ignores the scale |
 | Staircase            | `V B N M J K L O P 0` play degrees 0 to 9. Other keys are silent and drawn dashed   |
-| Random               | seeded scramble across three octaves                                                |
+| Random               | scramble across three octaves. Picking Random deals a new one                       |
 | Custom               | `rowStep·r + colStep·c`                                                             |
 
 Notes outside MIDI 21 to 108 are silent and drawn dashed. Notes are spelled by letter, so E♭ minor has C♭ and G♭, and F♯ major has E♯.
