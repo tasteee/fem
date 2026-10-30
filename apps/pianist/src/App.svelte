@@ -30,10 +30,10 @@
 
 	const layout = $derived(findLayout(settings.layout))
 	const isCustom = $derived(settings.layout === 'custom')
-	const isRandom = $derived(settings.layout === 'random')
 	const isChromatic = $derived(layout.isChromatic)
 	const octaves = Array.from({ length: octaveRange.max - octaveRange.min + 1 }, (_, index) => octaveRange.min + index)
 	const shouldOfferMidi = $derived(midiSupported && !live.hasMidiAccess)
+	const connectValue = '__connect'
 
 	// New mappings apply on the next press. Held keys
 	// keep the note they started.
@@ -57,19 +57,23 @@
 	const handleRoot = (event: Event) => (settings.root = readText(event))
 	const handleScale = (event: Event) => (settings.scale = readText(event))
 	const handleOctave = (event: Event) => (settings.octave = readNumber(event))
-	const handleLayout = (event: Event) => (settings.layout = readText(event))
+	// Picking Random deals a fresh map each time.
+	const handleLayout = (event: Event) => {
+		const next = readText(event)
+		if (next === 'random') settings.seed = rerollSeed()
+		settings.layout = next
+	}
 	const handleVolume = (event: Event) => (settings.volume = readNumber(event) / 100)
-	const handleOutput = (event: Event) => (settings.output = readText(event))
+	// The last option asks the browser for MIDI. The choice
+	// itself does not change until a port is picked.
+	const handleOutput = (event: Event) => {
+		const select = event.currentTarget as HTMLInputElement
+		if (select.value !== connectValue) return (settings.output = select.value)
+		select.value = settings.output
+		void connectMidi()
+	}
 	const handleRowStep = (event: Event) => (settings.custom.rowStep = readNumber(event))
 	const handleColStep = (event: Event) => (settings.custom.colStep = readNumber(event))
-	const handleReroll = () => {
-		settings.seed = rerollSeed()
-		blurActive()
-	}
-	const handleConnect = () => {
-		void connectMidi()
-		blurActive()
-	}
 </script>
 
 <main class="app-page" onchangecapture={handleChange}>
@@ -80,6 +84,8 @@
 				<fem-spinner size="small"></fem-spinner>
 				<fem-text size="small" color="muted">Loading the piano…</fem-text>
 			</fem-row>
+		{:else if live.midiMessage !== ''}
+			<fem-text size="small" color="danger">{live.midiMessage}</fem-text>
 		{:else}
 			<fem-text size="small" color="muted">Play with your computer keyboard. Hold Space to sustain.</fem-text>
 		{/if}
@@ -89,7 +95,7 @@
 		<Keyboard {keyMap} />
 	</div>
 
-	<fem-card padding="4" gap="4">
+	<fem-card padding="4">
 		<div class="settings-grid">
 			<fem-field label="Output">
 				<fem-select value={settings.output} onchange={handleOutput}>
@@ -97,9 +103,12 @@
 					{#each live.ports as port (port.id)}
 						<fem-option value={port.id}>{port.name}</fem-option>
 					{/each}
+					{#if shouldOfferMidi}
+						<fem-option value={connectValue}>Find MIDI outputs…</fem-option>
+					{/if}
 				</fem-select>
 			</fem-field>
-			<fem-field label="Layout" help={layout.help}>
+			<fem-field class="layout" label="Layout">
 				<fem-select value={settings.layout} onchange={handleLayout}>
 					{#each layouts as item (item.id)}
 						<fem-option value={item.id}>{item.label}</fem-option>
@@ -113,7 +122,7 @@
 					{/each}
 				</fem-select>
 			</fem-field>
-			<fem-field label="Scale" help={isChromatic ? 'Chromatic layouts ignore the scale.' : ''}>
+			<fem-field label="Scale">
 				<fem-select value={settings.scale} disabled={isChromatic} onchange={handleScale}>
 					{#each scales as scale (scale.id)}
 						<fem-option value={scale.id}>{scale.label}</fem-option>
@@ -130,14 +139,11 @@
 			<fem-field class="narrow" label="Volume">
 				<fem-slider min={0} max={100} value={Math.round(settings.volume * 100)} onchange={handleVolume}></fem-slider>
 			</fem-field>
-		</div>
-
-		{#if isCustom}
-			<div class="settings-grid">
-				<fem-field label="Key step" help="Degrees between neighbors in a row.">
+			{#if isCustom}
+				<fem-field label="Key step">
 					<fem-slider min={-4} max={4} show-value value={settings.custom.colStep} onchange={handleColStep}></fem-slider>
 				</fem-field>
-				<fem-field label="Row step" help="Degrees between rows.">
+				<fem-field label="Row step">
 					<fem-slider
 						min={stepRange.min}
 						max={stepRange.max}
@@ -146,27 +152,7 @@
 						onchange={handleRowStep}
 					></fem-slider>
 				</fem-field>
-			</div>
-		{/if}
-
-		{#if isRandom}
-			<fem-row gap="3" align-x="between">
-				<fem-text size="small" color="muted">Seed <fem-text numeric size="small">{settings.seed}</fem-text></fem-text>
-				<fem-button size="small" kind="soft" onclick={handleReroll}>Shuffle</fem-button>
-			</fem-row>
-		{/if}
-
-		{#if shouldOfferMidi}
-			<fem-row gap="3" align-x="between" wrap>
-				<fem-text size="small" color="muted">Want to play a MIDI device?</fem-text>
-				<fem-button size="small" kind="soft" onclick={handleConnect}>Find MIDI outputs</fem-button>
-			</fem-row>
-		{/if}
-		{#if !midiSupported}
-			<fem-banner color="info">This browser has no MIDI output. The built-in piano still works.</fem-banner>
-		{/if}
-		{#if live.midiMessage !== ''}
-			<fem-banner color="warning">{live.midiMessage}</fem-banner>
-		{/if}
+			{/if}
+		</div>
 	</fem-card>
 </main>
