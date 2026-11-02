@@ -49,6 +49,10 @@ textarea {
 button {
 	cursor: pointer;
 	touch-action: manipulation;
+
+	/* Stays off inside a host that opts in to text. */
+	user-select: none;
+	-webkit-user-select: none;
 }
 
 /* Typing and caret placement need text selection, */

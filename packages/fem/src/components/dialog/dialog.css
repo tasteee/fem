@@ -2,9 +2,6 @@
 /* floating part is ever seen. */
 :host {
 	display: contents;
-	/* Content to read, so it stays selectable. */
-	user-select: text;
-	-webkit-user-select: text;
 }
 
 /* A dialog dims the page, so it uses the overlay */
@@ -75,6 +72,9 @@
 }
 
 .dialog-content {
+	/* The message to read, so it stays selectable. */
+	user-select: text;
+	-webkit-user-select: text;
 	color: var(--text-muted);
 }
 
