@@ -6,16 +6,20 @@
 
 	const promises: PromiseT[] = [
 		{
-			heading: 'No ads',
+			heading: 'Upload your tracks',
+			text: 'Drop in your songs. Each one gets its own page, ready to play.'
+		},
+		{
+			heading: 'No ads or interruptions',
 			text: 'Nothing plays before your song, and nothing plays after it.'
 		},
 		{
-			heading: 'No sign-up to listen',
-			text: 'Send a link. It opens and plays. That is the whole flow.'
+			heading: 'Share with anyone',
+			text: 'Send a link. It opens and plays, and listeners never need an account.'
 		},
 		{
-			heading: 'Play it anywhere',
-			text: 'Links show artwork in messages, and every song has an embed player for your own site.'
+			heading: 'Less overwhelm',
+			text: 'Like SoundCloud, minus the noise. Just your music, in a quiet place.'
 		}
 	]
 </script>
