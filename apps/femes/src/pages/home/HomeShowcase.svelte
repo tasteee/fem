@@ -27,5 +27,4 @@
 			{/each}
 		</div>
 	</div>
-	<figcaption class="home-showcase-caption">This is a working page. Press play.</figcaption>
 </figure>

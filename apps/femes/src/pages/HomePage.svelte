@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { studio } from '../data/studio.svelte'
 	import SiteHeader from '../parts/SiteHeader.svelte'
-	import HomeAddresses from './home/HomeAddresses.svelte'
 	import HomePromises from './home/HomePromises.svelte'
 	import HomeShowcase from './home/HomeShowcase.svelte'
 
@@ -37,10 +36,6 @@
 
 	<section class="home-frame">
 		<HomeShowcase />
-	</section>
-
-	<section class="home-frame">
-		<HomeAddresses />
 	</section>
 
 	<section class="home-frame">
