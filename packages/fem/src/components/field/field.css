@@ -63,8 +63,6 @@
 	line-height: var(--line-height-tight);
 	color: var(--text-strong);
 	cursor: default;
-	user-select: none;
-	-webkit-user-select: none;
 }
 
 .field-control {

@@ -17,8 +17,6 @@
 	align-items: center;
 	gap: var(--space-3);
 	cursor: pointer;
-	user-select: none;
-	-webkit-user-select: none;
 	transition: color var(--duration-slide) var(--easing-standard);
 }
 

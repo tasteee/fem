@@ -15,7 +15,6 @@
 }
 
 :host([data-dragging]) {
-	user-select: none;
 	cursor: grabbing;
 }
 

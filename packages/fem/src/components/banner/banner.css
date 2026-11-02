@@ -1,5 +1,8 @@
 :host {
 	display: flex;
+	/* Content to read, so it stays selectable. */
+	user-select: text;
+	-webkit-user-select: text;
 }
 
 /* A banner holds a sentence to read, so its color is */

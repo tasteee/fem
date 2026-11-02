@@ -93,3 +93,10 @@ td.table-cell.isNumeric {
 	color: var(--text-muted);
 	text-align: center;
 }
+
+/* Body cells hold data to read and copy. Headers are */
+/* controls, so they stay unselectable. */
+td.table-cell {
+	user-select: text;
+	-webkit-user-select: text;
+}
