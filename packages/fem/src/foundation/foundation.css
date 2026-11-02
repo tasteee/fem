@@ -8,6 +8,13 @@
 	line-height: var(--line-height);
 	color: var(--text-strong);
 	-webkit-tap-highlight-color: transparent;
+
+	/* Interface text is not content. A double click on a */
+	/* chip, tab, or menu should never highlight it. This */
+	/* reaches slotted text too. Components that hold */
+	/* content to read set user-select: text on :host. */
+	user-select: none;
+	-webkit-user-select: none;
 }
 
 :host([hidden]) {
@@ -42,8 +49,14 @@ textarea {
 button {
 	cursor: pointer;
 	touch-action: manipulation;
-	user-select: none;
-	-webkit-user-select: none;
+}
+
+/* Typing and caret placement need text selection, */
+/* and Safari breaks typing in a field without it. */
+input,
+textarea {
+	user-select: text;
+	-webkit-user-select: text;
 }
 
 :focus {
@@ -156,11 +169,6 @@ button {
 	display: inline-flex;
 	align-items: center;
 	gap: var(--space-3);
-}
-
-.choice-label {
-	user-select: none;
-	-webkit-user-select: none;
 }
 
 /* With no text, the control stands alone, so it adds */

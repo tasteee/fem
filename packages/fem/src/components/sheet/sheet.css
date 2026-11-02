@@ -2,6 +2,9 @@
 /* floating part is ever seen. */
 :host {
 	display: contents;
+	/* Content to read, so it stays selectable. */
+	user-select: text;
+	-webkit-user-select: text;
 }
 
 /* A sheet rises from the bottom edge. Like a dialog, */

@@ -1,5 +1,8 @@
 :host {
 	display: block;
+	/* Content to read, so it stays selectable. */
+	user-select: text;
+	-webkit-user-select: text;
 }
 
 /* Titles are bold, tight, and balanced. */

@@ -1,6 +1,9 @@
 :host {
 	display: flex;
 	min-width: 0;
+	/* Content to read, so it stays selectable. */
+	user-select: text;
+	-webkit-user-select: text;
 }
 
 .card {
